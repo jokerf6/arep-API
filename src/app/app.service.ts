@@ -12,6 +12,7 @@ export class AppService {
       select: {
         id: true,
         name: true,
+        roleKey: true,
       },
     });
   }

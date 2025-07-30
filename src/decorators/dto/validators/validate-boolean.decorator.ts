@@ -1,33 +1,29 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
-import { isArray, IsBoolean } from 'class-validator';
+import { IsBoolean } from 'class-validator';
 
-export function toBoolean(value: string | number | boolean): boolean {
+function toBoolean(value: string | number | boolean): boolean | undefined {
   if (typeof value === 'boolean') return value;
 
   if (typeof value === 'string') {
-    value = value.toLowerCase();
-    if (value === 'true' || value === '1') {
-      return true;
-    } else if (value === 'false' || value === '0') {
-      return false;
-    } else return undefined;
-  } else if (typeof value === 'number') {
-    return value !== 0;
-  } else return undefined;
+    const lower = value.toLowerCase();
+    if (['true', '1'].includes(lower)) return true;
+    if (['false', '0'].includes(lower)) return false;
+  }
+
+  if (typeof value === 'number') return value !== 0;
+
+  return undefined;
 }
 
 export function ValidateBoolean() {
   return applyDecorators(
-    ApiProperty({ type: Boolean, example: new Boolean() }),
+    ApiProperty({ type: Boolean, example: true }),
     Transform(({ value }) => {
-      if (isArray(value)) {
-        value = toBoolean(value[0]);
-      } else {
-        value = toBoolean(value);
-      }
-      return value;
+      const raw = Array.isArray(value) ? value[0] : value;
+      const transformed = toBoolean(raw);
+      return transformed;
     }),
     IsBoolean(),
   );

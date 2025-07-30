@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Body, Controller, Post, Res, UseInterceptors } from '@nestjs/common';
 import { ApiParam, ApiTags } from '@nestjs/swagger';
 import { SessionType } from '@prisma/client';
 import { Response } from 'express';
@@ -10,10 +10,12 @@ import { ResponseService } from 'src/globals/services/response.service';
 import { Auth } from '../decorators/auth.decorator';
 import { IpAddress } from '../decorators/ip.decorator';
 import { ForgetPasswordDTO } from '../dto/forgot-password.dto';
-import { EmailPasswordLoginDTO } from '../dto/login.dto';
+import { BioLoginDTO, EmailPasswordLoginDTO } from '../dto/login.dto';
 import { ResetPasswordDTO } from '../dto/reset-password.dto';
 import { VerifyOtpDTO } from '../dto/verify-otp.dto';
 import { BaseAuthenticationService } from '../services/base.authentication.service';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
+import { RoleInterceptor } from '../interceptor/role.interceptor';
 
 const prefix = 'authentication';
 @Controller(prefix)
@@ -42,17 +44,46 @@ export class BaseAuthenticationController {
     });
   }
 
-  @Post('login/:roleId')
+  @Post('bio')
+  async loginWithBIO(
+    @IpAddress() ip: string,
+    @Res() res: Response,
+    @Body() dto: BioLoginDTO,
+  ) {
+    const data = await this.service.getBioInfo(dto);
+
+    const { user, AccessToken, RefreshToken, unReadNotifications } =
+      await this.service.login(ip, {
+        email: data.email,
+        password: 'undefined',
+        fcm: dto.fcm,
+        roleKey: data.roleKey,
+        locale: dto.locale,
+      });
+
+    res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
+
+    return this.response.success(res, 'User Logged In Successfully', {
+      user,
+      unReadNotifications,
+      AccessToken,
+      RefreshToken,
+    });
+  }
+
+  @Post('login/:roleKey')
   @ApiParam({
-    name: 'roleId',
-    type: 'number',
+    name: 'roleKey',
+    enum: Object.values(RolesKeys),
     required: true,
   })
+  @UseInterceptors(RoleInterceptor)
   async login(
     @IpAddress() ip: string,
     @Res() res: Response,
     @Body() dto: EmailPasswordLoginDTO,
   ) {
+    await this.service.validateDto(dto);
     const { user, AccessToken, RefreshToken, unReadNotifications } =
       await this.service.login(ip, dto);
 
@@ -85,6 +116,18 @@ export class BaseAuthenticationController {
       user,
       token,
     });
+  }
+
+  @Post('resend-otp')
+  @Auth({ type: SessionType.VERIFY })
+  async resendOtp(
+    @IpAddress() ip: string,
+    @Res() res: Response,
+    @CurrentUser() currentUser: CurrentUser,
+  ) {
+    const token = await this.service.resendOtp(ip, currentUser.id);
+
+    return this.response.success(res, 'otp resent successfully', token);
   }
 
   @Post('verify')

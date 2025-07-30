@@ -83,31 +83,34 @@ export class NotificationService {
     jti?: string,
     userId?: Id,
   ) {
-    const { receiverId, group } = data;
+    try {
+      const { receiverId, group } = data;
+      const title = localizedObject(data.title, locale.languageId) as string;
+      const body = localizedObject(data.body, locale.languageId) as string;
+      if (group) {
+        await this.sendToTopic(receiverId, title, body);
+        await this.prisma.notification.create({
+          data: {
+            title: data.title,
+            body: data.body,
+            groupId: receiverId,
+          },
+        });
+      } else {
+        const token = (await this.prisma.session.findUnique({ where: { jti } }))
+          .fcmToken;
+        await this.sendPushNotification(token, title, body);
 
-    const title = localizedObject(data.title, locale.languageId) as string;
-    const body = localizedObject(data.body, locale.languageId) as string;
-    if (group) {
-      await this.sendToTopic(receiverId, title, body);
-      await this.prisma.notification.create({
-        data: {
-          title: data.title,
-          body: data.body,
-          groupId: receiverId,
-        },
-      });
-    } else {
-      const token = (await this.prisma.session.findUnique({ where: { jti } }))
-        .fcmToken;
-      await this.sendPushNotification(token, title, body);
-
-      await this.prisma.notification.create({
-        data: {
-          title: data.title,
-          body: data.body,
-          userId,
-        },
-      });
+        await this.prisma.notification.create({
+          data: {
+            title: data.title,
+            body: data.body,
+            userId,
+          },
+        });
+      }
+    } catch (error) {
+      this.logger.error(`Error sending notification: ${error.message}`);
     }
   }
 }

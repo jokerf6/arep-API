@@ -40,10 +40,12 @@ const getExampleValue = (key?: string, obj?: any): any => {
     lowerKey.includes('amount') ||
     lowerKey.includes('count') ||
     lowerKey.includes('total') ||
-    lowerKey.includes('price')
+    lowerKey.includes('price') ||
+    lowerKey.includes('wallet') ||
+    lowerKey.includes('points')
   )
     return 1;
-
+  if (lowerKey.includes('male')) return true;
   if (lowerKey.includes('date')) return new Date().toISOString();
   if (lowerKey.includes('email')) return 'user@example.com';
   if (lowerKey.includes('verified')) return true;

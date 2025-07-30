@@ -341,16 +341,66 @@
         ]
       }
     },
-    "/api/authentication/login/{roleId}": {
+    "/api/authentication/bio": {
+      "post": {
+        "operationId": "BaseAuthenticationController_loginWithBIO",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BioLoginDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authentication"
+        ]
+      }
+    },
+    "/api/authentication/login/{roleKey}": {
       "post": {
         "operationId": "BaseAuthenticationController_login",
         "parameters": [
           {
-            "name": "roleId",
+            "name": "roleKey",
             "required": true,
             "in": "path",
             "schema": {
-              "type": "number"
+              "enum": [
+                "Admin",
+                "Customer"
+              ],
+              "type": "string"
             }
           },
           {
@@ -446,6 +496,47 @@
         },
         "tags": [
           "Authentication"
+        ]
+      }
+    },
+    "/api/authentication/resend-otp": {
+      "post": {
+        "operationId": "BaseAuthenticationController_resendOtp",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Authentication"
+        ],
+        "security": [
+          {
+            "VERIFY Token": []
+          }
         ]
       }
     },
@@ -1193,11 +1284,16 @@
                         "verified": true,
                         "active": true,
                         "image": "https://example.com/avatar.png",
+                        "Details": {
+                          "wallet": 1,
+                          "points": 1,
+                          "male": true
+                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z",
                         "Role": {
                           "id": 1,
-                          "key": "string",
+                          "roleKey": "string",
                           "name": "John Doe"
                         },
                         "unReadNotifications": 1,
@@ -1477,6 +1573,11 @@
                           "verified": true,
                           "active": true,
                           "image": "https://example.com/avatar.png",
+                          "Details": {
+                            "wallet": 1,
+                            "points": 1,
+                            "male": true
+                          },
                           "createdAt": "2025-06-26T18:17:10.000Z",
                           "deletedAt": "2025-06-26T18:17:10.000Z"
                         }
@@ -1495,6 +1596,11 @@
                         "verified": true,
                         "active": true,
                         "image": "https://example.com/avatar.png",
+                        "Details": {
+                          "wallet": 1,
+                          "points": 1,
+                          "male": true
+                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z"
                       }
@@ -1623,6 +1729,11 @@
                           "verified": true,
                           "active": true,
                           "image": "https://example.com/avatar.png",
+                          "Details": {
+                            "wallet": 1,
+                            "points": 1,
+                            "male": true
+                          },
                           "createdAt": "2025-06-26T18:17:10.000Z",
                           "deletedAt": "2025-06-26T18:17:10.000Z"
                         }
@@ -1641,6 +1752,11 @@
                         "verified": true,
                         "active": true,
                         "image": "https://example.com/avatar.png",
+                        "Details": {
+                          "wallet": 1,
+                          "points": 1,
+                          "male": true
+                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z"
                       }
@@ -1769,6 +1885,8 @@
     "/api/customers": {
       "post": {
         "operationId": "CustomerCreateController_createUser",
+        "summary": "",
+        "description": "Create a new customer with permission or register customer",
         "parameters": [
           {
             "in": "header",
@@ -1882,6 +2000,11 @@
                           "verified": true,
                           "active": true,
                           "image": "https://example.com/avatar.png",
+                          "Details": {
+                            "wallet": 1,
+                            "points": 1,
+                            "male": true
+                          },
                           "createdAt": "2025-06-26T18:17:10.000Z",
                           "deletedAt": "2025-06-26T18:17:10.000Z"
                         }
@@ -1900,6 +2023,11 @@
                         "verified": true,
                         "active": true,
                         "image": "https://example.com/avatar.png",
+                        "Details": {
+                          "wallet": 1,
+                          "points": 1,
+                          "male": true
+                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z"
                       }
@@ -1988,6 +2116,11 @@
                           "verified": true,
                           "active": true,
                           "image": "https://example.com/avatar.png",
+                          "Details": {
+                            "wallet": 1,
+                            "points": 1,
+                            "male": true
+                          },
                           "createdAt": "2025-06-26T18:17:10.000Z",
                           "deletedAt": "2025-06-26T18:17:10.000Z"
                         }
@@ -2006,6 +2139,11 @@
                         "verified": true,
                         "active": true,
                         "image": "https://example.com/avatar.png",
+                        "Details": {
+                          "wallet": 1,
+                          "points": 1,
+                          "male": true
+                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z"
                       }
@@ -2629,9 +2767,31 @@
           "value"
         ]
       },
+      "BioLoginDTO": {
+        "type": "object",
+        "properties": {
+          "locale": {
+            "type": "string"
+          },
+          "fcm": {
+            "type": "string",
+            "example": "user"
+          },
+          "deviceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "locale",
+          "deviceId"
+        ]
+      },
       "EmailPasswordLoginDTO": {
         "type": "object",
         "properties": {
+          "locale": {
+            "type": "string"
+          },
           "fcm": {
             "type": "string",
             "example": "user"
@@ -2640,6 +2800,10 @@
             "type": "string",
             "example": "test@test.com"
           },
+          "phone": {
+            "type": "string",
+            "example": "+966 0509999999"
+          },
           "password": {
             "type": "string",
             "example": "Default@123",
@@ -2647,7 +2811,7 @@
           }
         },
         "required": [
-          "email",
+          "locale",
           "password"
         ]
       },
@@ -2695,7 +2859,7 @@
             "type": "object",
             "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
-          "key": {
+          "roleKey": {
             "type": "string"
           },
           "permissionIds": {
@@ -2716,13 +2880,13 @@
             "type": "object",
             "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
-          "key": {
+          "roleKey": {
             "type": "string"
           }
         },
         "required": [
           "name",
-          "key"
+          "roleKey"
         ]
       },
       "UpdatePermissionDTO": {
@@ -2770,6 +2934,9 @@
             "type": "string",
             "example": "+966 0509999999"
           },
+          "deviceId": {
+            "type": "string"
+          },
           "fcm": {
             "type": "string"
           }
@@ -2796,7 +2963,7 @@
           },
           "male": {
             "type": "boolean",
-            "example": false
+            "example": true
           }
         },
         "required": [
@@ -2821,14 +2988,9 @@
             "type": "string",
             "example": "+966 0509999999"
           },
-          "password": {
-            "type": "string",
-            "example": "Default@123",
-            "description": "Password must be: 8+ characters, 1 uppercase, 1 lowercase, 1 number, 1 special character"
-          },
           "male": {
             "type": "boolean",
-            "example": false
+            "example": true
           }
         }
       },

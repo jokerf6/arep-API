@@ -31,20 +31,23 @@ export class HelperService {
     id,
     email,
     password,
-    roleId,
+    roleKey,
+    checkVerified = true,
   }: {
     message?: string;
     id?: Id;
     email?: string;
     password?: string;
-    roleId?: Id;
+    roleKey?: string;
+    checkVerified?: boolean;
+    ValidatePassword?: boolean;
   }): Promise<User> {
     message = message ?? 'user_not_found';
     const isFound = await this.prisma.user.findFirst({
       where: {
         id,
         email,
-        roleId,
+        roleKey,
         deletedAt: null,
       },
     });
@@ -53,7 +56,7 @@ export class HelperService {
 
     if (password) validateUserPassword(password, isFound.password);
 
-    await this.userCanLogin(isFound);
+    await this.userCanLogin(isFound, checkVerified);
 
     delete isFound.password;
     return isFound;
@@ -63,18 +66,18 @@ export class HelperService {
     id,
     email,
     phone,
-    roleId,
+    roleKey,
   }: {
     id?: Id;
     email?: string;
     phone?: string;
-    roleId?: number;
+    roleKey?: string;
   }) {
     const isFound = await this.prisma.user.findFirst({
       where: {
         id,
         OR: [{ email }, { phone }],
-        roleId,
+        roleKey,
         deletedAt: null,
       },
     });
@@ -82,11 +85,11 @@ export class HelperService {
     if (isFound) throw new ConflictException('user_already_exist');
   }
 
-  async userCanLogin(user: User) {
+  async userCanLogin(user: User, checkVerified = true) {
     if (!user) {
       throw new UnprocessableEntityException('invalid credentials');
     }
-    if (!user.verified) {
+    if (!user.verified && checkVerified) {
       const token = await this.Token.generateToken(
         user.id,
         undefined,

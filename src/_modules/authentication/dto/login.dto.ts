@@ -5,9 +5,14 @@ import { ValidateExist } from 'src/decorators/dto/validators/validate-found-numb
 import { ValidateOTP } from 'src/decorators/dto/validators/validate-otp.decorator';
 import { ValidateLoginPassword } from 'src/decorators/dto/validators/validate-password.decorator';
 import { ValidatePhone } from 'src/decorators/dto/validators/validate-phone.decorator';
+import { ValidateString } from 'src/decorators/dto/validators/validate-string.decorator';
 import { EnumArrayFilter } from 'src/decorators/filters/enum.filter.decorator';
 
 class LoginInfoDTO {
+  @Required()
+  @ValidateString()
+  locale: string;
+
   @Optional({ example: 'user' })
   fcm?: string;
 }
@@ -25,16 +30,26 @@ export class PhoneOTPLoginDTO extends LoginInfoDTO {
 }
 
 export class EmailPasswordLoginDTO extends LoginInfoDTO {
-  @Required({ example: 'test@test.com' })
+  @Optional({ example: 'test@test.com' })
   @ValidateEmail()
-  email: string;
+  email?: string;
+
+  @Optional({})
+  @ValidatePhone()
+  phone?: string;
 
   @Required()
   @ValidateLoginPassword()
   password: string;
 
   @ValidateExist<'role'>({ model: 'role' })
-  roleId?: Id;
+  roleKey?: string;
+}
+
+export class BioLoginDTO extends LoginInfoDTO {
+  @Required({})
+  @ValidateString()
+  deviceId?: string;
 }
 
 enum RolesCanLoginWithPhone {

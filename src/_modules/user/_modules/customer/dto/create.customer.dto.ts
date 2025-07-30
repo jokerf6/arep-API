@@ -1,5 +1,4 @@
-import { PartialType } from '@nestjs/swagger';
-import { Optional } from 'src/decorators/dto/optional-input.decorator';
+import { OmitType, PartialType } from '@nestjs/swagger';
 import { Required } from 'src/decorators/dto/required-input.decorator';
 import { ValidateBoolean } from 'src/decorators/dto/validators/validate-boolean.decorator';
 import { ValidateEmail } from 'src/decorators/dto/validators/validate-email.decorator';
@@ -29,20 +28,7 @@ export class CreateCustomerDTO {
   male: boolean;
 }
 
-export class UpdateCustomerDTO extends PartialType(CreateCustomerDTO) {
-  @Optional()
-  @ValidateString()
-  name?: string;
-
-  @Optional()
-  @ValidateEmail()
-  email?: string;
-
-  @Optional()
-  @ValidatePhone()
-  phone?: string;
-
-  @Optional()
-  @ValidateBoolean()
-  male?: boolean;
-}
+export class UpdateCustomerDTO extends OmitType(
+  PartialType(CreateCustomerDTO),
+  ['password'],
+) {}

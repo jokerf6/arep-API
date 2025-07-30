@@ -85,7 +85,7 @@ export class UserService {
   async create(data: CreateUserDTO) {
     await this.helper.userExistOrThrow({
       email: data.email,
-      roleId: data.roleId,
+      roleKey: data.roleKey,
     });
 
     const hashedPassword = hashPassword(data.password);

@@ -11,6 +11,11 @@ export type FlattenedUser = {
   image: string;
   createdAt: Date;
   deletedAt: Date | null;
+  Details?: {
+    wallet: number;
+    points: number;
+    male: boolean;
+  };
   Role?: {
     id: number;
     name: string;
@@ -25,6 +30,11 @@ export type FlattenedUser = {
 export const transformFlattenUser = (data: any | any[]): any => {
   const transform = (
     user: User & {
+      Details: {
+        wallet: number;
+        points: number;
+        male: boolean;
+      };
       Role?: {
         id: number;
         name: string;
@@ -47,6 +57,11 @@ export const transformFlattenUser = (data: any | any[]): any => {
       phone: user.phone,
       verified: user.verified,
       active: user.active,
+      Details: {
+        wallet: user.Details?.wallet ?? 0,
+        points: user.Details?.points ?? 0,
+        male: user.Details?.male ?? false,
+      },
       image: user.image,
       createdAt: user.createdAt,
       deletedAt: user.deletedAt,
@@ -88,6 +103,13 @@ export const selectUserOBJ = () => {
     verified: true,
     active: true,
     image: true,
+    Details: {
+      select: {
+        wallet: true,
+        points: true,
+        male: true,
+      },
+    },
     createdAt: true,
     deletedAt: true,
   };
@@ -100,7 +122,7 @@ export const selectUserWithRoleOBJ = () => {
     Role: {
       select: {
         id: true,
-        key: true,
+        roleKey: true,
         name: true,
       },
     },

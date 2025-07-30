@@ -13,7 +13,6 @@ export class PermissionAndTypeGuard implements CanActivate {
     );
     const userPermissions =
       context.switchToHttp().getRequest().user?.permissions || [];
-
     return this.validatePermissions(
       `${requiredPermissions[0]}_${method.toLowerCase()}`,
       userPermissions,

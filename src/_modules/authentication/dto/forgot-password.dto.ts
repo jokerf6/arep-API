@@ -8,5 +8,5 @@ export class ForgetPasswordDTO {
   email: string;
 
   @ValidateExist<'role'>({ model: 'role' })
-  roleId?: Id;
+  roleKey?: string;
 }

@@ -33,12 +33,16 @@ export class CreateUserDTO {
   @ValidateExist<'role'>({
     model: 'role',
   })
-  roleId: Id;
+  roleKey: string;
 }
 export class UpdateUserDTO extends OmitType(PartialType(CreateUserDTO), [
   'password',
-  'roleId',
+  'roleKey',
 ]) {
+  @Optional()
+  @ValidateString()
+  deviceId: string;
+
   @Optional()
   @ValidateString()
   fcm: string;

@@ -6,6 +6,7 @@ model User {
   password String
   verified Boolean @default(false)
   active   Boolean @default(true)
+  deviceId String? @unique @map("device_id")
   image    String  @default("uploads/default.png")
 
   // default columns
@@ -13,8 +14,8 @@ model User {
   deletedAt DateTime? @map("deleted_at")
 
   // direct relations
-  Role   Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  roleId Int  @map("role_id")
+  Role    Role   @relation(fields: [roleKey], references: [roleKey], onDelete: Cascade)
+  roleKey String @map("role_key")
 
   // relations
   OTPs          OTP[]
@@ -23,10 +24,10 @@ model User {
   Details       Details?
   Address       Address?
 
-  @@unique([email, roleId])
-  @@unique([phone, roleId])
-  @@index([phone, roleId])
-  @@index([email, roleId])
+  @@unique([email, roleKey])
+  @@unique([phone, roleKey])
+  @@index([phone, roleKey])
+  @@index([email, roleKey])
   @@map("users")
 }
 
@@ -35,6 +36,7 @@ model Details {
   User   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   wallet Float?   @default(0.0)
+  points Float?   @default(0.0)
   male   Boolean?
 
   @@map("details")
@@ -44,9 +46,9 @@ model Address {
   userId Int  @id @unique @map("user_id")
   User   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  address String @map("address")
-  lat     Float  @map("lat")
-  lng     Float  @map("lng")
+  title String @map("title")
+  lat   Float  @map("lat")
+  lng   Float  @map("lng")
 
   @@map("addresses")
 }

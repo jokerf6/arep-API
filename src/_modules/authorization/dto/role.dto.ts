@@ -14,7 +14,7 @@ export class CreateRoleDTO {
   @Required()
   @ValidateString()
   @ValidateUnique<'role'>({ model: 'role' })
-  key: string;
+  roleKey: string;
 }
 export class UpdateRoleDTO extends PartialType(CreateRoleDTO) {
   @Required({ type: 'number', isArray: true })

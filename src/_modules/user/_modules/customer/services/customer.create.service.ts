@@ -2,6 +2,7 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { hashPassword } from 'src/globals/helpers/password.helpers';
 import { PrismaService } from 'src/globals/services/prisma.service';
 import { CreateCustomerDTO } from '../dto/create.customer.dto';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 
 @Injectable()
 export class CustomerCreateService {
@@ -9,26 +10,29 @@ export class CustomerCreateService {
 
   async create(data: CreateCustomerDTO) {
     const { male, ...rest } = data;
-    const role = await this.prisma.role.findFirst({
-      where: { key: 'Customer' },
-    });
 
     const existingCustomer = await this.prisma.user.findUnique({
       where: {
-        phone_roleId: {
+        phone_roleKey: {
           phone: rest.phone,
-          roleId: role?.id,
+          roleKey: RolesKeys.CUSTOMER,
         },
       },
+      select: {
+        email: true,
+        phone: true,
+        id: true,
+        name: true,
+        verified: true,
+      },
+
       __includeDeleted: true as never,
     });
-    if (existingCustomer.deletedAt !== null) existingCustomer.deletedAt = null;
     if (existingCustomer && existingCustomer.verified)
       throw new ConflictException('customer already exists');
 
     const hashedPassword = hashPassword(rest.password);
     rest.password = hashedPassword;
-    rest['roleId'] = role.id;
 
     const response =
       existingCustomer && !existingCustomer.verified
@@ -36,16 +40,19 @@ export class CustomerCreateService {
         : await this.prisma.user.create({
             data: {
               ...rest,
-              roleId: role.id,
+              roleKey: RolesKeys.CUSTOMER,
               Details: {
                 create: {
                   male,
+                  points: 0,
                   wallet: 0.0,
                 },
               },
             },
             select: { email: true, phone: true, id: true, name: true },
           });
+
+    if (existingCustomer?.verified) delete existingCustomer.verified;
     return response;
   }
 }

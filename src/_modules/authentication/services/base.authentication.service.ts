@@ -1,15 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { OTPType, SessionType, User } from '@prisma/client';
 import { HelperService } from 'src/_modules/user/services/helper.service';
 import { UserService } from 'src/_modules/user/services/user.service';
 import { hashPassword } from 'src/globals/helpers/password.helpers';
 import { PrismaService } from 'src/globals/services/prisma.service';
 import { ForgetPasswordDTO } from '../dto/forgot-password.dto';
-import { EmailPasswordLoginDTO } from '../dto/login.dto';
+import { BioLoginDTO, EmailPasswordLoginDTO } from '../dto/login.dto';
 import { ResetPasswordDTO } from '../dto/reset-password.dto';
 import { VerifyOtpDTO } from '../dto/verify-otp.dto';
 import { TokenService } from './jwt.service';
 import { OTPService } from './otp.service';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 
 @Injectable()
 export class BaseAuthenticationService {
@@ -30,6 +31,14 @@ export class BaseAuthenticationService {
     RefreshToken: string;
     unReadNotifications: number;
   }> {
+    const isLocaleFound = await this.prisma.language.findUnique({
+      where: {
+        key: dto.locale,
+      },
+    });
+    if (!isLocaleFound) {
+      throw new NotFoundException('Locale not found');
+    }
     const user = await this.userHelper.userExist({
       message: 'invalid credentials',
       ...dto,
@@ -56,9 +65,42 @@ export class BaseAuthenticationService {
     };
   }
 
+  async getBioInfo(dto: BioLoginDTO) {
+    const { deviceId } = dto;
+    const user = await this.prisma.user.findUnique({
+      where: {
+        deviceId,
+      },
+      select: {
+        roleKey: true,
+        email: true,
+      },
+    });
+    return user;
+  }
+
+  async validateDto(dto: EmailPasswordLoginDTO) {
+    const { phone, email, roleKey } = dto;
+    console.log('dto', dto);
+    if (!phone && !email) {
+      throw new NotFoundException('Phone or Email is required');
+    }
+    console.log('roleKey', roleKey);
+    if (roleKey === RolesKeys.CUSTOMER) {
+      if (!phone) {
+        throw new NotFoundException('Phone is required for customer login');
+      }
+      return;
+    } else {
+      if (!email) {
+        throw new NotFoundException('Email is required');
+      }
+    }
+  }
+
   async forgetPassword(ip: string, forgotPasswordDTO: ForgetPasswordDTO) {
-    const { email, roleId } = forgotPasswordDTO;
-    const user = await this.userHelper.userExist({ email, roleId });
+    const { email, roleKey } = forgotPasswordDTO;
+    const user = await this.userHelper.userExist({ email, roleKey });
 
     await this.userHelper.userCanLogin(user);
     await this.otpService.generateOTP(user.id, OTPType.PASSWORD_RESET);
@@ -81,8 +123,22 @@ export class BaseAuthenticationService {
     });
   }
 
+  async resendOtp(ip: string, userId: Id) {
+    await this.otpService.generateOTP(userId, OTPType.EMAIL_VERIFICATION);
+    const token = await this.tokenService.generateToken(
+      userId,
+      ip,
+      undefined,
+      SessionType.VERIFY,
+    );
+    return token;
+  }
+
   async verify(ip: string, userId: Id, dto: VerifyOtpDTO) {
-    const user = await this.userHelper.userExist({ id: userId });
+    const user = await this.userHelper.userExist({
+      id: userId,
+      checkVerified: false,
+    });
     await this.otpService.verifyOTP(
       userId,
       dto.otp,

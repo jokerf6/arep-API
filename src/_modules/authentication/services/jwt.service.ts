@@ -38,6 +38,7 @@ export class TokenService {
     ipAddress?: string,
     fcmToken?: string,
     type: SessionType = SessionType.ACCESS,
+    locale: string = 'en',
   ): Promise<string> {
     if (
       !([SessionType.ACCESS, SessionType.REFRESH] as SessionType[]).includes(
@@ -58,6 +59,7 @@ export class TokenService {
         userId,
         fcmToken,
         type,
+        languageId: locale,
       },
     });
 

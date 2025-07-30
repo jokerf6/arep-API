@@ -144,5 +144,11 @@
   "Customer deleted successfully": "Customer deleted successfully",
   "customer created successfully": "customer created successfully",
   "customer already exists": "customer already exists",
-  "locale updated successfully": "locale updated successfully"
+  "locale updated successfully": "locale updated successfully",
+  "otp resent successfully": "otp resent successfully",
+  "Locale not found": "Locale not found",
+  "Phone or Email is required": "Phone or Email is required",
+  "Phone is required for customer login": "Phone is required for customer login",
+  "Email is required": "Email is required",
+  "Invalid notification token": "Invalid notification token"
 }

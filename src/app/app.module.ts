@@ -24,6 +24,8 @@ import { AppService } from './app.service';
 import { SwaggerDiffController } from './swagger/swagger-diff.controller';
 import { NotificationMiddleware } from 'src/globals/middlewares/notification.middleware';
 import { NotificationService } from 'src/globals/services/notification.service';
+import { NotificationQueueModule } from 'src/notification-queue/notification-queue.module';
+import { BullModule } from '@nestjs/bull';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -50,7 +52,9 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
       ],
       inject: [ConfigService],
     }),
-
+    BullModule.registerQueue({
+      name: 'notification',
+    }),
     GlobalModule,
     SearchModule,
     NotificationModule,
@@ -59,6 +63,7 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     AuthorizationModule,
     UserModule,
     LanguagesModule,
+    NotificationQueueModule,
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService],

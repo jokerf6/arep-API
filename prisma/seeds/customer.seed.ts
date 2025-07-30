@@ -1,14 +1,12 @@
 // prisma/seeds/notificationSettings.ts
 import { PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 
 export async function seedCustomer(prisma: PrismaClient) {
-  const role = await prisma.role.findUnique({
-    where: { key: 'customer' },
-  });
   const count = await prisma.user.count({
     where: {
-      roleId: role.id, // Assuming roleId 2 is for customers
+      roleKey: RolesKeys.CUSTOMER, // Assuming roleId 2 is for customers
     },
   });
   if (count > 0) {
@@ -19,7 +17,7 @@ export async function seedCustomer(prisma: PrismaClient) {
       name: `customer${i}`,
       email: `customer${i}@user.com`,
       phone: `+966 0509999${i}`,
-      roleId: role.id,
+      roleKey: RolesKeys.CUSTOMER,
       verified: true,
       password: bcrypt.hashSync(process.env.PASSWORD, +process.env.HASH_SALT),
     };

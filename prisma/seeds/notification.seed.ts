@@ -1,18 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { CustomerNotification } from 'src/_modules/user/_modules/customer/providers/notification.customer.provider';
-interface SystemNotification {
-  id: number;
-  title: Json;
-  body: Json;
-  event: string;
-  senderId: string;
-  receiverId: string;
-  email: boolean;
-  sms: boolean;
-  notification: boolean;
-  group: boolean;
-}
-const SystemNotificationData: SystemNotification[] = [...CustomerNotification];
+
+const SystemNotificationData = [...CustomerNotification];
 
 export async function seedNotification(prisma: PrismaClient) {
   for (const item of SystemNotificationData) {

@@ -39,9 +39,19 @@ export async function seedPermissions(prisma: PrismaClient) {
 export async function seedRoles(prisma: PrismaClient) {
   for (const role of roles) {
     await prisma.role.upsert({
-      where: { key: role.key, default: true },
-      create: { id: role.id, name: role.name, default: true, key: role.key },
-      update: { id: role.id, name: role.name, default: true, key: role.key },
+      where: { roleKey: role.key, default: true },
+      create: {
+        id: role.id,
+        name: role.name,
+        default: true,
+        roleKey: role.key,
+      },
+      update: {
+        id: role.id,
+        name: role.name,
+        default: true,
+        roleKey: role.key,
+      },
     });
   }
   // eslint-disable-next-line no-console
@@ -50,7 +60,9 @@ export async function seedRoles(prisma: PrismaClient) {
 
 export async function seedRolePermissions(prisma: PrismaClient) {
   for (const role of roles) {
-    const dbRole = await prisma.role.findUnique({ where: { key: role.key } });
+    const dbRole = await prisma.role.findUnique({
+      where: { roleKey: role.key },
+    });
     if (!dbRole) continue;
 
     for (const rel of role.permissions) {

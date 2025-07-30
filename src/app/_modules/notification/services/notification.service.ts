@@ -15,7 +15,7 @@ export class NotificationService {
       }),
       this.prisma.notification.count({ where: args.where }),
     ]);
-  
+
     return { data, total };
   }
 }

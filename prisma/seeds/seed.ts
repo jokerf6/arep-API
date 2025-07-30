@@ -9,6 +9,7 @@ import {
   seedRoles,
 } from './permissionAndRoles.seed';
 import { seedCustomer } from './customer.seed';
+import { seedNotification } from './notification.seed';
 
 const prisma = new PrismaClient();
 
@@ -19,6 +20,7 @@ async function main() {
   await seedRoles(prisma);
   await seedRolePermissions(prisma);
   await seedAdmin(prisma);
+  await seedNotification(prisma);
   // await seedLanguage(prisma);
   if (process.env.SEED === 'test') {
     await seedCustomer(prisma);
