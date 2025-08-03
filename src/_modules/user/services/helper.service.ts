@@ -29,6 +29,7 @@ export class HelperService {
   async userExist({
     message,
     id,
+    phone,
     email,
     password,
     roleKey,
@@ -36,6 +37,7 @@ export class HelperService {
   }: {
     message?: string;
     id?: Id;
+    phone?: string;
     email?: string;
     password?: string;
     roleKey?: string;
@@ -47,6 +49,7 @@ export class HelperService {
       where: {
         id,
         email,
+        phone,
         roleKey,
         deletedAt: null,
       },

@@ -99,8 +99,8 @@ export class BaseAuthenticationService {
   }
 
   async forgetPassword(ip: string, forgotPasswordDTO: ForgetPasswordDTO) {
-    const { email, roleKey } = forgotPasswordDTO;
-    const user = await this.userHelper.userExist({ email, roleKey });
+    const { phone, roleKey } = forgotPasswordDTO;
+    const user = await this.userHelper.userExist({ phone, roleKey });
 
     await this.userHelper.userCanLogin(user);
     await this.otpService.generateOTP(user.id, OTPType.PASSWORD_RESET);

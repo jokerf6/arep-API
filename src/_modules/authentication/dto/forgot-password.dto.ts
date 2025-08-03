@@ -1,11 +1,11 @@
 import { Required } from 'src/decorators/dto/required-input.decorator';
-import { ValidateEmail } from 'src/decorators/dto/validators/validate-email.decorator';
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
+import { ValidatePhone } from 'src/decorators/dto/validators/validate-phone.decorator';
 
 export class ForgetPasswordDTO {
-  @Required({ example: 'test@test.com' })
-  @ValidateEmail()
-  email: string;
+  @Required({})
+  @ValidatePhone()
+  phone: string;
 
   @ValidateExist<'role'>({ model: 'role' })
   roleKey?: string;

@@ -97,12 +97,13 @@ export class BaseAuthenticationController {
     });
   }
 
-  @Post('forget-password/:roleId')
+  @Post('forget-password/:roleKey')
   @ApiParam({
-    name: 'roleId',
-    type: 'number',
+    name: 'roleKey',
+    enum: Object.values(RolesKeys),
     required: true,
   })
+  @UseInterceptors(RoleInterceptor)
   async forgetPassword(
     @IpAddress() ip: string,
     @Res() res: Response,
