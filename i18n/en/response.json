@@ -150,5 +150,6 @@
   "Phone or Email is required": "Phone or Email is required",
   "Phone is required for customer login": "Phone is required for customer login",
   "Email is required": "Email is required",
-  "Invalid notification token": "Invalid notification token"
+  "Invalid notification token": "Invalid notification token",
+  "bio enabled successfully": "bio enabled successfully"
 }

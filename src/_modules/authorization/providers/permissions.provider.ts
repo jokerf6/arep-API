@@ -21,7 +21,7 @@ export const permissions = [
     name: { en: 'Profile', ar: 'الحساب الشخصي' },
     prefix: 'profile',
     default: true,
-    methods: ['get', 'patch'],
+    methods: ['post', 'get', 'patch'],
   },
   {
     name: { en: 'Permissions', ar: 'الصلاحيات' },

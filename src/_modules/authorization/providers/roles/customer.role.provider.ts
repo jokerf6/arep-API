@@ -3,7 +3,7 @@ import { PermissionMap } from '../permissions.provider';
 
 const customerPermissions: PermissionMap = {
   languages: ['get'],
-  profile: ['get', 'patch'],
+  profile: ['post', 'get', 'patch'],
 } as const satisfies PermissionMap;
 
 export const CustomerRole = {

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Patch, Res } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Post, Res } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { selectPermissionsOBJ } from 'src/_modules/authorization/prisma-args/permissions.prisma-select';
@@ -8,7 +8,11 @@ import { tag } from 'src/globals/helpers/tag.helper';
 import { ResponseService } from 'src/globals/services/response.service';
 import { Auth } from '../../authentication/decorators/auth.decorator';
 import { CurrentUser } from '../../authentication/decorators/current-user.decorator';
-import { UpdateUserDTO, UpdateUserPasswordDTO } from '../dto/create.user.dto';
+import {
+  EnableBioDTO,
+  UpdateUserDTO,
+  UpdateUserPasswordDTO,
+} from '../dto/create.user.dto';
 import { selectFlattenedUserOBJ } from '../prisma-args/user.prisma-select';
 import { UserService } from '../services/user.service';
 import { LocaleHeader } from 'src/_modules/authentication/decorators/locale.decorator';
@@ -42,6 +46,16 @@ export class MeController {
       'User Permissions returned successfully',
       user,
     );
+  }
+
+  @Post('/enable-bio')
+  async enableBio(
+    @Res() res: Response,
+    @CurrentUser() currentUser: CurrentUser,
+    @Body() dto: EnableBioDTO,
+  ) {
+    await this.userService.enableBio(currentUser.id, dto);
+    return this.responses.success(res, 'bio enabled successfully');
   }
 
   @Get('/')

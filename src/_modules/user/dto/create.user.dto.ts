@@ -57,3 +57,9 @@ export class UpdateUserPasswordDTO {
   @ValidatePassword()
   newPassword: string;
 }
+
+export class EnableBioDTO {
+  @Required()
+  @ValidateString()
+  deviceId: string;
+}

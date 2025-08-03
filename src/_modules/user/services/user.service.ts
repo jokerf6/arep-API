@@ -14,6 +14,7 @@ import { TokenService } from '../../authentication/services/jwt.service';
 import { OTPService } from '../../authentication/services/otp.service';
 import {
   CreateUserDTO,
+  EnableBioDTO,
   UpdateUserDTO,
   UpdateUserPasswordDTO,
 } from '../dto/create.user.dto';
@@ -123,6 +124,16 @@ export class UserService {
     });
   }
 
+  async enableBio(userId: Id, dto: EnableBioDTO) {
+    await this.prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        deviceId: dto.deviceId,
+      },
+    });
+  }
   async updatePassword(id: Id, data: UpdateUserPasswordDTO) {
     const { password, newPassword } = data;
     const user = await this.prisma.user.findUnique({ where: { id } });
