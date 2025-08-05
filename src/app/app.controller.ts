@@ -3,7 +3,6 @@ import { ApiOperation } from '@nestjs/swagger';
 import { ResponseService } from 'src/globals/services/response.service';
 import { AppService } from './app.service';
 import { Response } from 'express';
-import { PrismaService } from 'src/globals/services/prisma.service';
 @Controller()
 export class AppController {
   constructor(
@@ -21,6 +20,4 @@ export class AppController {
     const data = await this.service.getAllRoles();
     return this.response.success(res, 'Roles returned successfully', data);
   }
-
- 
 }
