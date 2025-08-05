@@ -31,6 +31,13 @@ model User {
   @@map("users")
 }
 
+model Test {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now()) @map("created_at")
+  deletedAt DateTime? @map("deleted_at")
+}
+
 model Details {
   userId Int  @id @unique @map("user_id")
   User   User @relation(fields: [userId], references: [id], onDelete: Cascade)

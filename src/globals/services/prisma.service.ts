@@ -10,7 +10,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     try {
       await this.$connect();
       const prisma = new PrismaClient();
-      this.$use(softDeleteMiddleware());
+      this.$use(softDeleteMiddleware(prisma));
       this.$use(sortMiddleware());
       this.$use(ExistMiddleware(prisma));
     } catch (error) {

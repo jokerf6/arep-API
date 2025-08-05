@@ -1,14 +1,17 @@
-import { Prisma } from '@prisma/client';
+import { PrismaClient, Prisma } from '@prisma/client';
 
 export function softDeleteMiddleware<
   T extends Prisma.BatchPayload = Prisma.BatchPayload,
->(): Prisma.Middleware {
+>(prisma: PrismaClient): Prisma.Middleware {
   return async (
     params: Prisma.MiddlewareParams,
     next: (params: Prisma.MiddlewareParams) => Promise<T>,
   ): Promise<T> => {
     const includeDeleted = params.args?.__includeDeleted;
     delete params.args.__includeDeleted;
+    const modelMeta = Prisma.dmmf?.datamodel?.models.find(
+      (m) => m.name === params.model,
+    );
 
     const dates = Prisma.dmmf?.datamodel?.models
       .find((m) => m.name === params.model)
@@ -18,8 +21,22 @@ export function softDeleteMiddleware<
       dates?.some((field) => field.name === 'deletedAt') ?? false;
 
     if (params.action === 'delete' && modelHasDeletedAt) {
+      const uniqueFields = modelMeta.fields.filter((f) => f.isUnique);
+      const record = await prisma[params.model.toLowerCase()].findUnique({
+        where: params.args.where,
+      });
+      const data: any = {
+        deletedAt: new Date(),
+      };
+
+      for (const field of uniqueFields) {
+        const value = record[field.name];
+        if (typeof value === 'string') {
+          data[field.name] = `deleted_${value}_${record.id}`;
+        }
+      }
       params.action = 'update';
-      params.args = { ...params?.args, data: { deletedAt: new Date() } };
+      params.args = { ...params?.args, data: data };
     }
     if (
       (params.action === 'findMany' ||
