@@ -149,5 +149,10 @@
   "Phone is required for customer login": "Phone is required for customer login",
   "Email is required": "Email is required",
   "Invalid notification token": "Invalid notification token",
-  "bio enabled successfully": "bio enabled successfully"
+  "bio enabled successfully": "bio enabled successfully",
+  "coupon created successfully": "coupon created successfully",
+  "coupon updated successfully": "coupon updated successfully",
+  "coupon fetched successfully": "coupon fetched successfully",
+  "delete coupon successfully": "delete coupon successfully",
+  "coupon returned successfully": "coupon returned successfully"
 }
