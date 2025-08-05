@@ -24,6 +24,7 @@ export class VerifyTokenStrategy extends PassportStrategy(Strategy, 'VERIFY') {
 
   async validate(payload: Payload) {
     const { id, jti } = payload;
+
     if (!id || !jti) return false;
 
     const userExist = await this.prisma.user.findUnique({

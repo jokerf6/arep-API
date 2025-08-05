@@ -139,16 +139,14 @@ export class BaseAuthenticationController {
     @Body() dto: VerifyOtpDTO,
     @CurrentUser() currentUser: CurrentUser,
   ) {
-    const { data, AccessToken, RefreshToken } = await this.service.verify(
-      ip,
-      currentUser.id,
-      dto,
-    );
+    const { user, unReadNotifications, AccessToken, RefreshToken } =
+      await this.service.verify(ip, currentUser.id, dto);
 
     res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
 
     return this.response.success(res, 'user verified successfully', {
-      user: data,
+      user,
+      unReadNotifications,
       AccessToken,
       RefreshToken,
     });

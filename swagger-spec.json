@@ -445,16 +445,20 @@
         ]
       }
     },
-    "/api/authentication/forget-password/{roleId}": {
+    "/api/authentication/forget-password/{roleKey}": {
       "post": {
         "operationId": "BaseAuthenticationController_forgetPassword",
         "parameters": [
           {
-            "name": "roleId",
+            "name": "roleKey",
             "required": true,
             "in": "path",
             "schema": {
-              "type": "number"
+              "enum": [
+                "Admin",
+                "Customer"
+              ],
+              "type": "string"
             }
           },
           {
@@ -1229,6 +1233,57 @@
                 }
               }
             },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Profile"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/users/me/enable-bio": {
+      "post": {
+        "operationId": "MeController_enableBio",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnableBioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
             "description": ""
           }
         },
@@ -2818,13 +2873,13 @@
       "ForgetPasswordDTO": {
         "type": "object",
         "properties": {
-          "email": {
+          "phone": {
             "type": "string",
-            "example": "test@test.com"
+            "example": "+966 0509999999"
           }
         },
         "required": [
-          "email"
+          "phone"
         ]
       },
       "VerifyOtpDTO": {
@@ -2899,6 +2954,17 @@
         },
         "required": [
           "name"
+        ]
+      },
+      "EnableBioDTO": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "deviceId"
         ]
       },
       "UpdateUserPasswordDTO": {

@@ -43,7 +43,7 @@ export class BaseAuthenticationService {
       message: 'invalid credentials',
       ...dto,
     });
-    await this.userHelper.userCanLogin(user);
+    await this.userHelper.userCanLogin(user, true, ip);
     const data = await this.userService.getProfile(user.id);
     const AccessToken = await this.tokenService.generateToken(
       user.id,
@@ -161,7 +161,12 @@ export class BaseAuthenticationService {
       undefined,
       SessionType.REFRESH,
     );
-    return { data, AccessToken, RefreshToken };
+    return {
+      user: data.user,
+      unReadNotifications: data.unReadNotifications,
+      AccessToken,
+      RefreshToken,
+    };
   }
 
   async verifyReset(userId: Id, dto: VerifyOtpDTO) {

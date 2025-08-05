@@ -4,8 +4,9 @@ import {
   PreconditionFailedException,
   UnprocessableEntityException,
 } from '@nestjs/common';
-import { SessionType, User } from '@prisma/client';
+import { OTPType, SessionType, User } from '@prisma/client';
 import { TokenService } from 'src/_modules/authentication/services/jwt.service';
+import { OTPService } from 'src/_modules/authentication/services/otp.service';
 import { validateUserPassword } from 'src/globals/helpers/password.helpers';
 
 import { PrismaService } from 'src/globals/services/prisma.service';
@@ -15,6 +16,7 @@ export class HelperService {
   constructor(
     private prisma: PrismaService,
     private Token: TokenService,
+    private OTPService: OTPService,
   ) {}
 
   async getUserById(id: Id) {
@@ -88,16 +90,19 @@ export class HelperService {
     if (isFound) throw new ConflictException('user_already_exist');
   }
 
-  async userCanLogin(user: User, checkVerified = true) {
+  async userCanLogin(user: User, checkVerified = true, ip?: string) {
     if (!user) {
       throw new UnprocessableEntityException('invalid credentials');
     }
     if (!user.verified && checkVerified) {
+      await this.OTPService.generateOTP(user.id, OTPType.EMAIL_VERIFICATION);
       const token = await this.Token.generateToken(
         user.id,
+        ip,
         undefined,
         SessionType.VERIFY,
       );
+
       throw new PreconditionFailedException('NOT_VERIFIED', {
         ...({
           data: {
