@@ -5,9 +5,10 @@ import { CustomerService } from './services/customer.service';
 import { CustomerCreateService } from './services/customer.create.service';
 import { OTPService } from 'src/_modules/authentication/services/otp.service';
 import { TokenService } from 'src/_modules/authentication/services/jwt.service';
+import { AddressModule } from './_modules/address/address.module';
 
 @Module({
-  imports: [],
+  imports: [AddressModule],
   controllers: [CustomerCreateController, CustomerController],
   providers: [CustomerService, CustomerCreateService, OTPService, TokenService],
   exports: [],
