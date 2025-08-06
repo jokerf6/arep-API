@@ -1,0 +1,18 @@
+model Banner {
+  id Int @id @default(autoincrement())
+
+  // Normal Fields
+  name       String
+  image      String
+  active     Boolean   @default(true)
+  randomSeed Float     @default(0) @map("random_seed")
+  // Default Fields
+  createdAt  DateTime  @default(now()) @map("created_at")
+  deletedAt  DateTime? @map("deleted_at")
+
+  // Direct Relations
+  Store   Store @relation(name: "BannerToStore", fields: [storeId], references: [id])
+  storeId Int
+
+  @@map("banners")
+}

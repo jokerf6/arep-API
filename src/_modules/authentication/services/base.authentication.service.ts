@@ -81,11 +81,9 @@ export class BaseAuthenticationService {
 
   async validateDto(dto: EmailPasswordLoginDTO) {
     const { phone, email, roleKey } = dto;
-    console.log('dto', dto);
     if (!phone && !email) {
       throw new NotFoundException('Phone or Email is required');
     }
-    console.log('roleKey', roleKey);
     if (roleKey === RolesKeys.CUSTOMER) {
       if (!phone) {
         throw new NotFoundException('Phone is required for customer login');

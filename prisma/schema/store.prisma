@@ -1,0 +1,8 @@
+model Store {
+  id      Int      @id @default(autoincrement())
+  name    String
+  image   String
+  banners Banner[] @relation("BannerToStore")
+
+  @@map("store")
+}

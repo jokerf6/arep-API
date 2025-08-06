@@ -151,5 +151,9 @@
   "Phone is required for customer login": "Phone is required for customer login",
   "Email is required": "Email is required",
   "Invalid notification token": "Invalid notification token",
-  "bio enabled successfully": "bio enabled successfully"
+  "bio enabled successfully": "bio enabled successfully",
+  "banner created successfully": "banner created successfully",
+  "banner updated successfully": "banner updated successfully",
+  "banner fetched successfully": "banner fetched successfully",
+  "delete banner successfully": "delete banner successfully"
 }
