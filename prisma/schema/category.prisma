@@ -3,13 +3,17 @@ model Category {
 
   // Normal Fields
   name  Json
-  image String
+  image String?
 
   // Default Fields
   createdAt DateTime  @default(now()) @map("created_at")
   deletedAt DateTime? @map("deleted_at")
 
   // Direct Relations
+
+  parentId Int?       @map("parent_id")
+  Parent   Category?  @relation("ParentChild", fields: [parentId], references: [id])
+  Children Category[] @relation("ParentChild")
 
   @@map("categories")
 }
