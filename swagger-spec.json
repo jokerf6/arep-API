@@ -3547,7 +3547,8 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
           "storeId": {
             "type": "number"
@@ -3567,7 +3568,8 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
           "storeId": {
             "type": "number"
