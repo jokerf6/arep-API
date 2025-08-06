@@ -4,13 +4,12 @@ declare global {
   interface CurrentUser {
     id: Id;
     jti: string;
-    Role: UserType;
+    Role: {
+      id: Id;
+      roleKey: string;
+    };
     permissions?: Permission[];
   }
-}
-
-declare module 'express' {
-  interface User extends CurrentUser {}
 }
 
 export {};

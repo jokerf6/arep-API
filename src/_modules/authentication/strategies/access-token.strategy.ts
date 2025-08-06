@@ -43,7 +43,12 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy, 'ACCESS') {
       where: { id },
       select: {
         id: true,
-        Role: true,
+        Role: {
+          select: {
+            id: true,
+            roleKey: true,
+          },
+        },
         Sessions: { where: { jti } },
         active: true,
       },

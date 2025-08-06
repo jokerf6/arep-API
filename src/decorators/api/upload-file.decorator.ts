@@ -24,6 +24,7 @@ export const uploadOptions = (
   type?: UploadTypes,
   fileType?: string,
   maxFileSize?: number, // Add max file size parameter (in bytes)
+  disallowedTypes?: string[], // Add disallowed types parameter
 ) => {
   let fileKey = '';
 
@@ -34,6 +35,14 @@ export const uploadOptions = (
       callback: (error: Error | null, acceptFile: boolean) => void,
     ) => {
       fileKey = file.fieldname;
+      if (disallowedTypes && disallowedTypes.includes(file.mimetype)) {
+        return callback(
+          new BadRequestException('invalidFileType', {
+            cause: { fieldname: file.fieldname },
+          }),
+          false,
+        );
+      }
       if (fileType && !file.mimetype.startsWith(fileType)) {
         return callback(
           new BadRequestException('File type is not supported'),
@@ -168,6 +177,7 @@ export const UploadMultipleFiles = (
 interface UploadOptions {
   allowedTypes?: string[]; // e.g., ['image/jpeg', 'image/png']
   maxSize?: number; // in bytes (e.g., 5 * 1024 * 1024 for 5MB)
+  disallowedTypes?: string[]; // e.g.,
   fileTypePrefix?: string; // e.g., 'image/' to allow all image types
 }
 
@@ -186,6 +196,7 @@ export const UploadFile = (
           undefined,
           options?.fileTypePrefix,
           options?.maxSize,
+          options?.disallowedTypes,
         ),
       ),
       MapUploadsInterceptor,

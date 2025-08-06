@@ -20,10 +20,7 @@ export function Auth({
 }: AuthOptions = {}) {
   const guards: any[] = [AuthGuard(type)];
   if (visitor) {
-    return applyDecorators(
-      ApiBearerAuth(`Access Token`),
-      UseGuards(OptionalAuthGuard),
-    );
+    return applyDecorators(OptionalAuth());
   }
   if (prefix) guards.push(PermissionAndTypeGuard);
 
@@ -42,7 +39,7 @@ export function WsAuth() {
 
 export function OptionalAuth() {
   return applyDecorators(
-    ApiBearerAuth(`Access Token`),
-    UseGuards(OptionalAuthGuard),
+    UseGuards(AuthGuard(SessionType.ACCESS), OptionalAuthGuard),
+    ApiBearerAuth(`${SessionType.ACCESS} Token`),
   );
 }

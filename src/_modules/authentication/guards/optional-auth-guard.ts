@@ -17,11 +17,14 @@ export class OptionalAuthGuard implements CanActivate {
     );
     const userPermissions =
       context.switchToHttp().getRequest().user?.permissions || [];
-
-    return this.validatePermissions(
-      `${requiredPermissions[0]}_${method.toLowerCase()}`,
-      userPermissions,
-    );
+    if (requiredPermissions && requiredPermissions.length >= 0) {
+      return this.validatePermissions(
+        `${requiredPermissions[0]}_${method.toLowerCase()}`,
+        userPermissions,
+      );
+    } else {
+      return true; // If no permissions are required, allow access
+    }
   }
 
   validatePermissions(
