@@ -4005,10 +4005,12 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
           "description": {
-            "type": "string"
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
           "image": {
             "type": "string",
@@ -4029,10 +4031,12 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
           "description": {
-            "type": "string"
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
           "image": {
             "type": "string",
