@@ -1,15 +1,21 @@
-
-import { Body, Controller, Get, Param, Patch, Post, Res,Delete} from '@nestjs/common';
-import { ApiQuery, ApiTags, PartialType,ApiOkResponse } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Res,
+  Delete,
+} from '@nestjs/common';
+import { ApiQuery, ApiTags, PartialType, ApiOkResponse } from '@nestjs/swagger';
 import { Response } from 'express';
 import { Auth } from 'src/_modules/authentication/decorators/auth.decorator';
 import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 import { Filter } from 'src/decorators/param/filter.decorator';
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { ResponseService } from 'src/globals/services/response.service';
-import {
-  buildExamples
-} from 'src/globals/helpers/generate-example.helper';
+import { buildExamples } from 'src/globals/helpers/generate-example.helper';
 import {
   CreateSubCategoryDTO,
   FilterSubCategoryDTO,
@@ -32,10 +38,7 @@ export class SubCategoryController {
   ) {}
 
   @Post('/')
-  async create(
-    @Res() res: Response,
-    @Body() body: CreateSubCategoryDTO
-  ) {
+  async create(@Res() res: Response, @Body() body: CreateSubCategoryDTO) {
     await this.service.create(body);
     return this.response.created(res, 'subcategory created successfully');
   }
@@ -47,11 +50,11 @@ export class SubCategoryController {
     @Param() { id }: RequiredIdParam,
     @Body() body: UpdateSubCategoryDTO,
   ) {
-    await this.service.update(id,  body);
+    await this.service.update(id, body);
     return this.response.created(res, 'subcategory updated successfully');
   }
   @Get(['/', '/:id'])
-    @ApiOkResponse(
+  @ApiOkResponse(
     buildExamples([
       {
         title: 'Get All SubCategories',
@@ -70,9 +73,7 @@ export class SubCategoryController {
     @Res() res: Response,
     @Filter({ dto: FilterSubCategoryDTO }) filters: FilterSubCategoryDTO,
   ) {
-
-
-    const  data = await this.service.findAll( filters);
+    const data = await this.service.findAll(filters);
     const total = isOne(filters?.id)
       ? undefined
       : await this.service.count(filters);
@@ -87,12 +88,8 @@ export class SubCategoryController {
 
   @Delete('/:id')
   @ApiRequiredIdParam()
-  async delete(@Res() res: Response,
-  @Param() { id }: RequiredIdParam) {
+  async delete(@Res() res: Response, @Param() { id }: RequiredIdParam) {
     await this.service.delete(id);
-    return this.response.success(
-      res,
-      'delete subcategory successfully',
-    );
+    return this.response.success(res, 'delete subcategory successfully');
   }
 }

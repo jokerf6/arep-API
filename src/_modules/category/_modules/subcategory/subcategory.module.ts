@@ -1,4 +1,3 @@
-
 import { Module } from '@nestjs/common';
 import { SubCategoryController } from './subcategory.controller';
 import { SubCategoryService } from './subcategory.service';
@@ -9,4 +8,3 @@ import { SubCategoryService } from './subcategory.service';
   providers: [SubCategoryService],
 })
 export class SubCategoryModule {}
-
