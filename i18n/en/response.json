@@ -155,5 +155,9 @@
   "banner created successfully": "banner created successfully",
   "banner updated successfully": "banner updated successfully",
   "banner fetched successfully": "banner fetched successfully",
-  "delete banner successfully": "delete banner successfully"
+  "delete banner successfully": "delete banner successfully",
+  "category created successfully": "category created successfully",
+  "category updated successfully": "category updated successfully",
+  "category fetched successfully": "category fetched successfully",
+  "delete category successfully": "delete category successfully"
 }
