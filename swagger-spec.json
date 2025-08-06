@@ -3178,6 +3178,429 @@
           }
         ]
       }
+    },
+    "/api/modules": {
+      "post": {
+        "operationId": "ModuleController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateModuleDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ModuleController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-modules": {
+                    "summary": "Get All Modules",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "description": "string",
+                          "image": "https://example.com/avatar.png",
+                          "active": true,
+                          "order": "string",
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-module": {
+                    "summary": "Single Module",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "description": "string",
+                        "image": "https://example.com/avatar.png",
+                        "active": true,
+                        "order": "string",
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/modules/{id}": {
+      "patch": {
+        "operationId": "ModuleController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateModuleDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ModuleController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-modules": {
+                    "summary": "Get All Modules",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "description": "string",
+                          "image": "https://example.com/avatar.png",
+                          "active": true,
+                          "order": "string",
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-module": {
+                    "summary": "Single Module",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "description": "string",
+                        "image": "https://example.com/avatar.png",
+                        "active": true,
+                        "order": "string",
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ModuleController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -3575,6 +3998,52 @@
           "image": {
             "type": "string",
             "format": "binary"
+          }
+        }
+      },
+      "CreateModuleDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "order": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "image",
+          "order"
+        ]
+      },
+      "UpdateModuleDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "order": {
+            "type": "number"
+          },
+          "active": {
+            "type": "boolean",
+            "example": true
           }
         }
       }

@@ -35,6 +35,12 @@ export const permissions = [
     default: false,
     methods: ['post', 'get', 'patch', 'delete'],
   },
+  {
+    name: { en: 'Modules', ar: 'الوحدات' },
+    prefix: 'modules',
+    default: false,
+    methods: ['post', 'get', 'patch', 'delete'],
+  },
 ];
 
 type Permission = (typeof permissions)[number];

@@ -28,6 +28,7 @@ import { NotificationQueueModule } from 'src/notification-queue/notification-que
 import { BullModule } from '@nestjs/bull';
 import { BannerModule } from 'src/_modules/banner/banner.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { ModuleModule } from 'src/_modules/module/module.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -68,6 +69,7 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     LanguagesModule,
     NotificationQueueModule,
     BannerModule,
+    ModuleModule,
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService],

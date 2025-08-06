@@ -155,5 +155,9 @@
   "banner created successfully": "banner created successfully",
   "banner updated successfully": "banner updated successfully",
   "banner fetched successfully": "banner fetched successfully",
-  "delete banner successfully": "delete banner successfully"
+  "delete banner successfully": "delete banner successfully",
+  "module created successfully": "module created successfully",
+  "module updated successfully": "module updated successfully",
+  "module fetched successfully": "module fetched successfully",
+  "delete module successfully": "delete module successfully"
 }
