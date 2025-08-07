@@ -13,6 +13,8 @@ model Category {
 
   parentId Int?       @map("parent_id")
   Parent   Category?  @relation("ParentChild", fields: [parentId], references: [id])
+  Module   Module @relation(fields: [moduleId], references: [id])
+  moduleId Int @map("module_id")
   Children Category[] @relation("ParentChild")
 
   @@map("categories")
