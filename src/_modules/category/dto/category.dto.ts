@@ -17,6 +17,11 @@ export class CreateCategoryDTO {
 
   @RequiredFile()
   image: string;
+
+  @Required()
+  @ValidateNumber({})
+  @ValidateExist<'module'>({ model: 'module' })
+  moduleId: Id;
 }
 export class UpdateCategoryDTO extends PartialType(CreateCategoryDTO) {}
 

@@ -1,0 +1,7 @@
+model Module{
+    id Int @id @default(autoincrement())
+    
+    // Normal Fields
+    Category Category[]
+    @@map("modules")
+}
