@@ -1985,7 +1985,7 @@
         ],
         "security": [
           {
-            "Access Token": []
+            "ACCESS Token": []
           }
         ]
       },
@@ -2743,6 +2743,1366 @@
           }
         ]
       }
+    },
+    "/api/stores/favourite/{id}": {
+      "patch": {
+        "operationId": "StoreFavouriteController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite store"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "StoreFavouriteController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "planId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "cityId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "temporarilyClosed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-stores-for-customers": {
+                    "summary": "Get All Stores For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": {
+                            "where": {
+                              "customerId": 1
+                            }
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-store-for-customers": {
+                    "summary": "Single Store For Customers",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Favorites": {
+                          "where": {
+                            "customerId": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite store"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          },
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/stores/favourite": {
+      "get": {
+        "operationId": "StoreFavouriteController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "planId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "cityId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "temporarilyClosed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-stores-for-customers": {
+                    "summary": "Get All Stores For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": {
+                            "where": {
+                              "customerId": 1
+                            }
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-store-for-customers": {
+                    "summary": "Single Store For Customers",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Favorites": {
+                          "where": {
+                            "customerId": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite store"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          },
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/stores": {
+      "post": {
+        "operationId": "StoreController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStoreDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "StoreController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "planId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "cityId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "temporarilyClosed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-stores-for-visitors": {
+                    "summary": "Get All Stores For Visitors",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "get-all-stores-for-customers": {
+                    "summary": "Get All Stores For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": {
+                            "where": {
+                              "customerId": 1
+                            }
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-store-for-visitors": {
+                    "summary": "Single Store For Visitors",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      }
+                    }
+                  },
+                  "single-store-for-customers": {
+                    "summary": "Single Store For Customers",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Favorites": {
+                          "where": {
+                            "customerId": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/stores/{id}": {
+      "patch": {
+        "operationId": "StoreController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStoreDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "StoreController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "planId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "cityId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "temporarilyClosed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-stores-for-visitors": {
+                    "summary": "Get All Stores For Visitors",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "get-all-stores-for-customers": {
+                    "summary": "Get All Stores For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": {
+                            "where": {
+                              "customerId": 1
+                            }
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-store-for-visitors": {
+                    "summary": "Single Store For Visitors",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      }
+                    }
+                  },
+                  "single-store-for-customers": {
+                    "summary": "Single Store For Customers",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Favorites": {
+                          "where": {
+                            "customerId": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "StoreController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -3105,6 +4465,115 @@
             "type": "string",
             "description": "Json only allowed",
             "format": "binary"
+          }
+        }
+      },
+      "CreateStoreDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "logo": {
+            "type": "string",
+            "format": "binary"
+          },
+          "cover": {
+            "type": "string",
+            "format": "binary"
+          },
+          "address": {
+            "type": "string"
+          },
+          "moduleId": {
+            "type": "number"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          },
+          "planId": {
+            "type": "number"
+          },
+          "cityId": {
+            "type": "number"
+          },
+          "verified": {
+            "type": "boolean",
+            "example": true
+          },
+          "phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "logo",
+          "cover",
+          "address",
+          "moduleId",
+          "lat",
+          "lng",
+          "planId",
+          "cityId",
+          "verified",
+          "phone"
+        ]
+      },
+      "UpdateStoreDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "logo": {
+            "type": "string",
+            "format": "binary"
+          },
+          "cover": {
+            "type": "string",
+            "format": "binary"
+          },
+          "address": {
+            "type": "string"
+          },
+          "moduleId": {
+            "type": "number"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          },
+          "planId": {
+            "type": "number"
+          },
+          "cityId": {
+            "type": "number"
+          },
+          "verified": {
+            "type": "boolean",
+            "example": true
+          },
+          "phone": {
+            "type": "string"
+          },
+          "temporarilyClosed": {
+            "type": "boolean",
+            "example": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "BLOCKED",
+              "NOT_VERIFIED"
+            ]
           }
         }
       }

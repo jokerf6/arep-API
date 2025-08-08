@@ -26,6 +26,7 @@ import { NotificationMiddleware } from 'src/globals/middlewares/notification.mid
 import { NotificationService } from 'src/globals/services/notification.service';
 import { NotificationQueueModule } from 'src/notification-queue/notification-queue.module';
 import { BullModule } from '@nestjs/bull';
+import { StoreModule } from 'src/_modules/store/store.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -64,6 +65,7 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     UserModule,
     LanguagesModule,
     NotificationQueueModule,
+    StoreModule,
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService],

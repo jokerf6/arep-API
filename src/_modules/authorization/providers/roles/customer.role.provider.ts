@@ -4,6 +4,7 @@ import { PermissionMap } from '../permissions.provider';
 const customerPermissions: PermissionMap = {
   languages: ['get'],
   profile: ['post', 'get', 'patch'],
+  'stores/favourite': ['get', 'patch'],
 } as const satisfies PermissionMap;
 
 export const CustomerRole = {

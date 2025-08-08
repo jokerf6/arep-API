@@ -21,6 +21,7 @@ model User {
   OTPs          OTP[]
   Sessions      Session[]
   Notifications Notification[]
+  Favorites     FavoriteStore[]
   Details       Details?
   Address       Address?
 
@@ -31,12 +32,6 @@ model User {
   @@map("users")
 }
 
-model Test {
-  id        Int       @id @default(autoincrement())
-  name      String    @unique
-  createdAt DateTime  @default(now()) @map("created_at")
-  deletedAt DateTime? @map("deleted_at")
-}
 
 model Details {
   userId Int  @id @unique @map("user_id")
@@ -52,10 +47,13 @@ model Details {
 model Address {
   userId Int  @id @unique @map("user_id")
   User   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  
   title String @map("title")
+  default Boolean @default(false)
   lat   Float  @map("lat")
   lng   Float  @map("lng")
 
+  @@index([lat, lng])
+  @@unique([userId, default])
   @@map("addresses")
 }
