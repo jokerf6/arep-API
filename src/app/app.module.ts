@@ -27,7 +27,6 @@ import { NotificationService } from 'src/globals/services/notification.service';
 import { NotificationQueueModule } from 'src/notification-queue/notification-queue.module';
 import { BullModule } from '@nestjs/bull';
 import { CouponModule } from 'src/_modules/coupon/coupon.module';
-import { BannerModule } from 'src/_modules/banner/banner.module';
 import { ScheduleModule } from '@nestjs/schedule';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');

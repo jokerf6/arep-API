@@ -2986,7 +2986,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T08:47:49.292Z",
+              "example": "2025-08-10T08:48:11.224Z",
               "type": "string"
             }
           },
@@ -2996,7 +2996,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T08:47:49.292Z",
+              "example": "2025-08-10T08:48:11.224Z",
               "type": "string"
             }
           },
@@ -3082,8 +3082,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-10T08:47:49.295Z",
-                          "endDate": "2025-08-10T08:47:49.295Z",
+                          "startDate": "2025-08-10T08:48:11.228Z",
+                          "endDate": "2025-08-10T08:48:11.228Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3106,8 +3106,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-10T08:47:49.295Z",
-                        "endDate": "2025-08-10T08:47:49.295Z",
+                        "startDate": "2025-08-10T08:48:11.228Z",
+                        "endDate": "2025-08-10T08:48:11.228Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3306,7 +3306,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T08:47:49.292Z",
+              "example": "2025-08-10T08:48:11.224Z",
               "type": "string"
             }
           },
@@ -3316,7 +3316,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T08:47:49.292Z",
+              "example": "2025-08-10T08:48:11.224Z",
               "type": "string"
             }
           },
@@ -3402,8 +3402,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-10T08:47:49.295Z",
-                          "endDate": "2025-08-10T08:47:49.295Z",
+                          "startDate": "2025-08-10T08:48:11.228Z",
+                          "endDate": "2025-08-10T08:48:11.228Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3426,8 +3426,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-10T08:47:49.295Z",
-                        "endDate": "2025-08-10T08:47:49.295Z",
+                        "startDate": "2025-08-10T08:48:11.228Z",
+                        "endDate": "2025-08-10T08:48:11.228Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3908,12 +3908,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T08:47:49.289Z"
+            "example": "2025-08-10T08:48:11.211Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T08:47:49.289Z"
+            "example": "2025-08-10T08:48:11.211Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -3991,12 +3991,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T08:47:49.289Z"
+            "example": "2025-08-10T08:48:11.211Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T08:47:49.289Z"
+            "example": "2025-08-10T08:48:11.211Z"
           },
           "minDiscountValue": {
             "type": "number"
