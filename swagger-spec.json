@@ -2986,7 +2986,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T09:24:25.945Z",
+              "example": "2025-08-10T09:25:25.058Z",
               "type": "string"
             }
           },
@@ -2996,7 +2996,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T09:24:25.945Z",
+              "example": "2025-08-10T09:25:25.058Z",
               "type": "string"
             }
           },
@@ -3082,8 +3082,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-10T09:24:25.948Z",
-                          "endDate": "2025-08-10T09:24:25.948Z",
+                          "startDate": "2025-08-10T09:25:25.062Z",
+                          "endDate": "2025-08-10T09:25:25.062Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3106,8 +3106,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-10T09:24:25.948Z",
-                        "endDate": "2025-08-10T09:24:25.948Z",
+                        "startDate": "2025-08-10T09:25:25.062Z",
+                        "endDate": "2025-08-10T09:25:25.062Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3306,7 +3306,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T09:24:25.945Z",
+              "example": "2025-08-10T09:25:25.058Z",
               "type": "string"
             }
           },
@@ -3316,7 +3316,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T09:24:25.945Z",
+              "example": "2025-08-10T09:25:25.058Z",
               "type": "string"
             }
           },
@@ -3402,8 +3402,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-10T09:24:25.948Z",
-                          "endDate": "2025-08-10T09:24:25.948Z",
+                          "startDate": "2025-08-10T09:25:25.062Z",
+                          "endDate": "2025-08-10T09:25:25.062Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3426,8 +3426,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-10T09:24:25.948Z",
-                        "endDate": "2025-08-10T09:24:25.948Z",
+                        "startDate": "2025-08-10T09:25:25.062Z",
+                        "endDate": "2025-08-10T09:25:25.062Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3489,405 +3489,6 @@
         },
         "tags": [
           "Coupons"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      }
-    },
-    "/api/categories": {
-      "post": {
-        "operationId": "CategoryController_create",
-        "summary": "",
-        "deprecated": true,
-        "parameters": [
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateCategoryDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Categories"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "get": {
-        "operationId": "CategoryController_findAll",
-        "parameters": [
-          {
-            "required": false,
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "required": false,
-            "name": "moduleId",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "array"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "get-all-categories": {
-                    "summary": "Get All Categories",
-                    "value": {
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "John Doe",
-                          "image": "https://example.com/avatar.png",
-                          "createdAt": "2025-06-26T18:17:10.000Z"
-                        }
-                      ],
-                      "total": 1
-                    }
-                  },
-                  "single-category": {
-                    "summary": "Single Category",
-                    "value": {
-                      "data": {
-                        "id": 1,
-                        "name": "John Doe",
-                        "image": "https://example.com/avatar.png",
-                        "createdAt": "2025-06-26T18:17:10.000Z"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "Categories"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      }
-    },
-    "/api/categories/{id}": {
-      "patch": {
-        "operationId": "CategoryController_update",
-        "summary": "",
-        "deprecated": true,
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateCategoryDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Categories"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "get": {
-        "operationId": "CategoryController_findAll",
-        "parameters": [
-          {
-            "required": false,
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "required": false,
-            "name": "moduleId",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "array"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "get-all-categories": {
-                    "summary": "Get All Categories",
-                    "value": {
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "John Doe",
-                          "image": "https://example.com/avatar.png",
-                          "createdAt": "2025-06-26T18:17:10.000Z"
-                        }
-                      ],
-                      "total": 1
-                    }
-                  },
-                  "single-category": {
-                    "summary": "Single Category",
-                    "value": {
-                      "data": {
-                        "id": 1,
-                        "name": "John Doe",
-                        "image": "https://example.com/avatar.png",
-                        "createdAt": "2025-06-26T18:17:10.000Z"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "Categories"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "CategoryController_delete",
-        "summary": "",
-        "deprecated": true,
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Categories"
         ],
         "security": [
           {
@@ -4307,12 +3908,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T09:24:25.941Z"
+            "example": "2025-08-10T09:25:25.057Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T09:24:25.942Z"
+            "example": "2025-08-10T09:25:25.057Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -4390,12 +3991,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T09:24:25.941Z"
+            "example": "2025-08-10T09:25:25.057Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T09:24:25.942Z"
+            "example": "2025-08-10T09:25:25.057Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -4407,43 +4008,6 @@
             "type": "number"
           },
           "storeId": {
-            "type": "number"
-          }
-        }
-      },
-      "CreateCategoryDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "object",
-            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
-          },
-          "image": {
-            "type": "string",
-            "format": "binary"
-          },
-          "moduleId": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "name",
-          "image",
-          "moduleId"
-        ]
-      },
-      "UpdateCategoryDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "object",
-            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
-          },
-          "image": {
-            "type": "string",
-            "format": "binary"
-          },
-          "moduleId": {
             "type": "number"
           }
         }

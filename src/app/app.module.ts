@@ -28,7 +28,6 @@ import { NotificationQueueModule } from 'src/notification-queue/notification-que
 import { BullModule } from '@nestjs/bull';
 import { CouponModule } from 'src/_modules/coupon/coupon.module';
 import { ScheduleModule } from '@nestjs/schedule';
-import { CategoryModule } from 'src/_modules/category/category.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -71,7 +70,7 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     CouponModule,
     // ModuleModule,
     // BannerModule,
-    CategoryModule,
+    // CategoryModule,
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService],
