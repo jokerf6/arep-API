@@ -39,7 +39,7 @@ export function WsAuth() {
 
 export function OptionalAuth() {
   return applyDecorators(
-    UseGuards(AuthGuard(SessionType.ACCESS), OptionalAuthGuard),
+    UseGuards(OptionalAuthGuard),
     ApiBearerAuth(`${SessionType.ACCESS} Token`),
   );
 }
