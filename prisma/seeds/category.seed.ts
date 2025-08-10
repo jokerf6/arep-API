@@ -16,6 +16,7 @@ export async function seedCategory(prisma: PrismaClient) {
       moduleId: i,
       createdAt: new Date(),
       deletedAt: null,
+      parentId: null,
     };
 
     const data2: Category = {
@@ -25,6 +26,7 @@ export async function seedCategory(prisma: PrismaClient) {
       moduleId: i,
       createdAt: new Date(),
       deletedAt: null,
+      parentId: null,
     };
 
     await prisma.category.upsert({

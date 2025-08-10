@@ -21,19 +21,20 @@ import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 import { Filter } from 'src/decorators/param/filter.decorator';
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { ResponseService } from 'src/globals/services/response.service';
+
+import { CategoryService } from './category.service';
+import { tag } from 'src/globals/helpers/tag.helper';
+import { isOne } from 'src/globals/helpers/first-or-many';
+import { buildExamples } from 'src/globals/helpers/generate-example.helper';
+import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 import {
   CreateCategoryDTO,
   FilterCategoryDTO,
   UpdateCategoryDTO,
 } from './dto/category.dto';
-import { CategoryService } from './category.service';
-import { tag } from 'src/globals/helpers/tag.helper';
-import { isOne } from 'src/globals/helpers/first-or-many';
-import { buildExamples } from 'src/globals/helpers/generate-example.helper';
 import { selectCategoryOBJ } from './prisma-args/category.prisma.args';
-import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 
-const prefix = 'categories';
+const prefix = 'subCategories';
 
 @Controller(prefix)
 @ApiTags(tag(prefix))

@@ -173,5 +173,9 @@
   "address fetched successfully": "address fetched successfully",
   "delete address successfully": "delete address successfully",
   "You are not allowed to take any action in this address": "You are not allowed to take any action in this address",
-  "coupon returned successfully": "coupon returned successfully"
+  "coupon returned successfully": "coupon returned successfully",
+  "subcategory created successfully": "subcategory created successfully",
+  "subcategory updated successfully": "subcategory updated successfully",
+  "subcategory fetched successfully": "subcategory fetched successfully",
+  "delete subcategory successfully": "delete subcategory successfully"
 }
