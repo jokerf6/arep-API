@@ -41,5 +41,10 @@ export class FilterCategoryDTO extends PaginationParamsDTO {
   name?: string;
 
   @Optional()
+  @ValidateNumber()
+  @ValidateExist<'module'>({ model: 'module' })
+  moduleId?: Id;
+
+  @Optional()
   orderBy?: SortCategoryDTO[];
 }

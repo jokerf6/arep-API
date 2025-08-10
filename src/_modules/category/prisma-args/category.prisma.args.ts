@@ -15,6 +15,7 @@ export const getCategoryArgs = (
   const searchArray = [
     filterKey<Category>(filter, 'id'),
     filterJsonKeyWithRawSQL<Category>(filter, 'name', languages),
+    filterKey<Category>(filter, 'moduleId'),
   ].filter(Boolean) as Prisma.CategoryWhereInput[];
 
   const orderArray = [orderKey('id', 'id', orderBy)].filter(

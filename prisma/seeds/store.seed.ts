@@ -1,5 +1,5 @@
 // prisma/seeds/notificationSettings.ts
-import { Banner, PrismaClient, Store } from '@prisma/client';
+import { PrismaClient, Store } from '@prisma/client';
 
 export async function seedStore(prisma: PrismaClient) {
   const count = await prisma.store.count({

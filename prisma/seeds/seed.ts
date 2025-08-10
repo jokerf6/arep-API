@@ -14,6 +14,7 @@ import { seedCoupon } from './coupon.seed';
 import { seedModule } from './module.seed';
 import { seedStore } from './store.seed';
 import { seedBanner } from './banner.seed';
+import { seedCategory } from './category.seed';
 
 const prisma = new PrismaClient();
 
@@ -26,6 +27,7 @@ async function main() {
   await seedAdmin(prisma);
   await seedNotification(prisma);
   await seedModule(prisma);
+  await seedCategory(prisma);
 
   // await seedLanguage(prisma);
   if (process.env.SEED === 'test') {
