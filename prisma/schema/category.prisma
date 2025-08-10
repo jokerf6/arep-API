@@ -1,0 +1,16 @@
+model Category {
+  id Int @id @default(autoincrement())
+
+  // Normal Fields
+  name  Json
+  image String
+
+  // Default Fields
+  createdAt DateTime  @default(now()) @map("created_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  // Direct Relations
+  Module   Module @relation(fields: [moduleId], references: [id])
+  moduleId Int @map("module_id")
+  @@map("categories")
+}

@@ -167,5 +167,9 @@
   "coupon updated successfully": "coupon updated successfully",
   "coupon fetched successfully": "coupon fetched successfully",
   "delete coupon successfully": "delete coupon successfully",
-  "coupon returned successfully": "coupon returned successfully"
+  "coupon returned successfully": "coupon returned successfully",
+  "category created successfully": "category created successfully",
+  "category updated successfully": "category updated successfully",
+  "category fetched successfully": "category fetched successfully",
+  "delete category successfully": "delete category successfully"
 }

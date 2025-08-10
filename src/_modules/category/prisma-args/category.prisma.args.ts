@@ -1,0 +1,46 @@
+import { Prisma, Category, Language } from '@prisma/client';
+import { paginateOrNot } from 'src/globals/helpers/pagination-params';
+import {
+  filterJsonKeyWithRawSQL,
+  filterKey,
+  orderKey,
+} from 'src/globals/helpers/prisma-filters';
+import { FilterCategoryDTO } from '../dto/category.dto';
+
+export const getCategoryArgs = (
+  query: FilterCategoryDTO,
+  languages: Language[],
+) => {
+  const { orderBy, page, limit, ...filter } = query;
+  const searchArray = [
+    filterKey<Category>(filter, 'id'),
+    filterJsonKeyWithRawSQL<Category>(filter, 'name', languages),
+  ].filter(Boolean) as Prisma.CategoryWhereInput[];
+
+  const orderArray = [orderKey('id', 'id', orderBy)].filter(
+    Boolean,
+  ) as Prisma.CategoryOrderByWithRelationInput[];
+
+  return {
+    ...paginateOrNot({ limit, page }, query?.id),
+    orderBy: orderArray,
+    where: {
+      AND: searchArray,
+    },
+  } as Prisma.CategoryFindManyArgs;
+};
+
+export const selectCategoryOBJ = () => {
+  const selectArgs: Prisma.CategorySelect = {
+    id: true,
+    name: true,
+    image: true,
+    createdAt: true,
+  };
+  return selectArgs;
+};
+export const getCategoryArgsWithSelect = () => {
+  return {
+    select: selectCategoryOBJ(),
+  } satisfies Prisma.CategoryFindManyArgs;
+};
