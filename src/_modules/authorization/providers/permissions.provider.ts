@@ -50,7 +50,7 @@ export const permissions = [
   {
     name: { en: 'Banners', ar: 'البانرات' },
     prefix: 'banners',
-    default: true,
+    default: false,
     methods: ['post', 'get', 'patch', 'delete'],
   },
 ];

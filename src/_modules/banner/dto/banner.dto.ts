@@ -9,11 +9,12 @@ import { PaginationParamsDTO } from 'src/dtos/params/pagination-params.dto';
 import { ValidateString } from 'src/decorators/dto/validators/validate-string.decorator';
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
 import { RequiredFile } from 'src/_modules/media/decorators/upload.decorator';
+import { ValidateName } from 'src/decorators/dto/validators/validate-json.decorator';
 
 export class CreateBannerDTO {
   @Required()
-  @ValidateString()
-  name: string;
+  @ValidateName()
+  name: Json;
 
   @Required()
   @ValidateNumber({ allowNegative: false })

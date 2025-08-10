@@ -2,7 +2,7 @@ model Banner {
   id Int @id @default(autoincrement())
 
   // Normal Fields
-  name       String
+  name       Json
   image      String
   active     Boolean   @default(true)
   randomSeed Float     @default(0) @map("random_seed")
