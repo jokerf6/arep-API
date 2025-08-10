@@ -70,7 +70,7 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     NotificationQueueModule,
     CouponModule,
     // ModuleModule,
-    BannerModule,
+    // BannerModule,
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService],

@@ -2986,7 +2986,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T08:23:36.382Z",
+              "example": "2025-08-10T08:47:49.292Z",
               "type": "string"
             }
           },
@@ -2996,7 +2996,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T08:23:36.382Z",
+              "example": "2025-08-10T08:47:49.292Z",
               "type": "string"
             }
           },
@@ -3082,8 +3082,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-10T08:23:36.385Z",
-                          "endDate": "2025-08-10T08:23:36.386Z",
+                          "startDate": "2025-08-10T08:47:49.295Z",
+                          "endDate": "2025-08-10T08:47:49.295Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3106,8 +3106,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-10T08:23:36.386Z",
-                        "endDate": "2025-08-10T08:23:36.386Z",
+                        "startDate": "2025-08-10T08:47:49.295Z",
+                        "endDate": "2025-08-10T08:47:49.295Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3306,7 +3306,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T08:23:36.382Z",
+              "example": "2025-08-10T08:47:49.292Z",
               "type": "string"
             }
           },
@@ -3316,7 +3316,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-10T08:23:36.382Z",
+              "example": "2025-08-10T08:47:49.292Z",
               "type": "string"
             }
           },
@@ -3402,8 +3402,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-10T08:23:36.385Z",
-                          "endDate": "2025-08-10T08:23:36.386Z",
+                          "startDate": "2025-08-10T08:47:49.295Z",
+                          "endDate": "2025-08-10T08:47:49.295Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3426,8 +3426,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-10T08:23:36.386Z",
-                        "endDate": "2025-08-10T08:23:36.386Z",
+                        "startDate": "2025-08-10T08:47:49.295Z",
+                        "endDate": "2025-08-10T08:47:49.295Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3489,441 +3489,6 @@
         },
         "tags": [
           "Coupons"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      }
-    },
-    "/api/banners": {
-      "post": {
-        "operationId": "BannerController_create",
-        "parameters": [
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateBannerDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Banners"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "get": {
-        "operationId": "BannerController_findAll",
-        "parameters": [
-          {
-            "required": false,
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "required": false,
-            "name": "storeId",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "active",
-            "in": "query",
-            "schema": {
-              "example": true,
-              "type": "boolean"
-            }
-          },
-          {
-            "required": false,
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "array"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "get-all-banners": {
-                    "summary": "Get All Banners",
-                    "value": {
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "John Doe",
-                          "image": "https://example.com/avatar.png",
-                          "active": true,
-                          "createdAt": "2025-06-26T18:17:10.000Z",
-                          "Store": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "image": "https://example.com/avatar.png"
-                          }
-                        }
-                      ],
-                      "total": 1
-                    }
-                  },
-                  "single-banner": {
-                    "summary": "Single Banner",
-                    "value": {
-                      "data": {
-                        "id": 1,
-                        "name": "John Doe",
-                        "image": "https://example.com/avatar.png",
-                        "active": true,
-                        "createdAt": "2025-06-26T18:17:10.000Z",
-                        "Store": {
-                          "id": 1,
-                          "name": "John Doe",
-                          "image": "https://example.com/avatar.png"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "Banners"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      }
-    },
-    "/api/banners/{id}": {
-      "patch": {
-        "operationId": "BannerController_update",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateBannerDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Banners"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "get": {
-        "operationId": "BannerController_findAll",
-        "parameters": [
-          {
-            "required": false,
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "required": false,
-            "name": "storeId",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "active",
-            "in": "query",
-            "schema": {
-              "example": true,
-              "type": "boolean"
-            }
-          },
-          {
-            "required": false,
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "array"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "get-all-banners": {
-                    "summary": "Get All Banners",
-                    "value": {
-                      "data": [
-                        {
-                          "id": 1,
-                          "name": "John Doe",
-                          "image": "https://example.com/avatar.png",
-                          "active": true,
-                          "createdAt": "2025-06-26T18:17:10.000Z",
-                          "Store": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "image": "https://example.com/avatar.png"
-                          }
-                        }
-                      ],
-                      "total": 1
-                    }
-                  },
-                  "single-banner": {
-                    "summary": "Single Banner",
-                    "value": {
-                      "data": {
-                        "id": 1,
-                        "name": "John Doe",
-                        "image": "https://example.com/avatar.png",
-                        "active": true,
-                        "createdAt": "2025-06-26T18:17:10.000Z",
-                        "Store": {
-                          "id": 1,
-                          "name": "John Doe",
-                          "image": "https://example.com/avatar.png"
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "Banners"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "BannerController_delete",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Banners"
         ],
         "security": [
           {
@@ -4343,12 +3908,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T08:23:36.378Z"
+            "example": "2025-08-10T08:47:49.289Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T08:23:36.378Z"
+            "example": "2025-08-10T08:47:49.289Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -4426,12 +3991,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T08:23:36.378Z"
+            "example": "2025-08-10T08:47:49.289Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-10T08:23:36.378Z"
+            "example": "2025-08-10T08:47:49.289Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -4444,43 +4009,6 @@
           },
           "storeId": {
             "type": "number"
-          }
-        }
-      },
-      "CreateBannerDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "object",
-            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
-          },
-          "storeId": {
-            "type": "number"
-          },
-          "image": {
-            "type": "string",
-            "format": "binary"
-          }
-        },
-        "required": [
-          "name",
-          "storeId",
-          "image"
-        ]
-      },
-      "UpdateBannerDTO": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "object",
-            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
-          },
-          "storeId": {
-            "type": "number"
-          },
-          "image": {
-            "type": "string",
-            "format": "binary"
           }
         }
       }

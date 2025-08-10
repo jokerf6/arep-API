@@ -93,14 +93,9 @@ export class BannerController {
       ? undefined
       : await this.service.count(filters);
 
-    return this.response.success(
-      res,
-      'banner fetched successfully',
-      { banners: data },
-      {
-        total,
-      },
-    );
+    return this.response.success(res, 'banner fetched successfully', data, {
+      total,
+    });
   }
 
   @Delete('/:id')
