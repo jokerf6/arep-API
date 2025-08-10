@@ -149,5 +149,10 @@
   "Phone is required for customer login": "Phone is required for customer login",
   "Email is required": "Email is required",
   "Invalid notification token": "Invalid notification token",
-  "bio enabled successfully": "bio enabled successfully"
+  "bio enabled successfully": "bio enabled successfully",
+  "address created successfully": "address created successfully",
+  "address updated successfully": "address updated successfully",
+  "address fetched successfully": "address fetched successfully",
+  "delete address successfully": "delete address successfully",
+  "You are not allowed to take any action in this address": "You are not allowed to take any action in this address"
 }

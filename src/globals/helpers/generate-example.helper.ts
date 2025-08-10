@@ -45,7 +45,8 @@ const getExampleValue = (key?: string, obj?: any): any => {
     lowerKey.includes('points')
   )
     return 1;
-  if (lowerKey.includes('male')) return true;
+
+  if (lowerKey.includes('male') || lowerKey.includes('default')) return true;
   if (lowerKey.includes('date')) return new Date().toISOString();
   if (lowerKey.includes('email')) return 'user@example.com';
   if (lowerKey.includes('verified')) return true;
