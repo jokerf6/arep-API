@@ -157,5 +157,15 @@
   "module created successfully": "module created successfully",
   "module updated successfully": "module updated successfully",
   "module fetched successfully": "module fetched successfully",
-  "delete module successfully": "delete module successfully"
+  "delete module successfully": "delete module successfully",
+  "address created successfully": "address created successfully",
+  "address updated successfully": "address updated successfully",
+  "address fetched successfully": "address fetched successfully",
+  "delete address successfully": "delete address successfully",
+  "You are not allowed to take any action in this address": "You are not allowed to take any action in this address",
+  "coupon created successfully": "coupon created successfully",
+  "coupon updated successfully": "coupon updated successfully",
+  "coupon fetched successfully": "coupon fetched successfully",
+  "delete coupon successfully": "delete coupon successfully",
+  "coupon returned successfully": "coupon returned successfully"
 }

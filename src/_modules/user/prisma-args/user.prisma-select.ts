@@ -1,5 +1,7 @@
-import { Prisma, User } from '@prisma/client';
+import { CouponType, Prisma, User } from '@prisma/client';
 import { grouped } from '../helpers/auth.groupBy.helper';
+import { paginateOrNot } from 'src/globals/helpers/pagination-params';
+import { FilterUserCouponDTO } from '../dto/filter.user.coupon.dto';
 
 export type FlattenedUser = {
   id: number;
@@ -167,4 +169,37 @@ export const selectFlattenedUserOBJ = () => {
     ] as FlattenedUser['Permissions'],
   };
   return selectArgs;
+};
+export const SelectUserCouponObj = () => {
+  const selectArgs: Prisma.CouponSelect = {
+    id: true,
+    code: true,
+    title: true,
+  };
+  return selectArgs;
+};
+
+export const getUserCouponArgs = (query: FilterUserCouponDTO, userId: Id) => {
+  const { page, limit } = query;
+
+  return {
+    ...paginateOrNot({ limit, page }, false),
+    select: SelectUserCouponObj(),
+    where: {
+      active: true,
+      OR: [
+        {
+          type: CouponType.USER_WISE,
+          UserCoupons: {
+            some: {
+              userId,
+            },
+          },
+        },
+        {
+          type: CouponType.ALL_USERS,
+        },
+      ],
+    },
+  } satisfies Prisma.CouponFindManyArgs;
 };

@@ -10,6 +10,7 @@ import {
 } from './permissionAndRoles.seed';
 import { seedCustomer } from './customer.seed';
 import { seedNotification } from './notification.seed';
+import { seedCoupon } from './coupon.seed';
 
 const prisma = new PrismaClient();
 
@@ -21,9 +22,11 @@ async function main() {
   await seedRolePermissions(prisma);
   await seedAdmin(prisma);
   await seedNotification(prisma);
+
   // await seedLanguage(prisma);
   if (process.env.SEED === 'test') {
     await seedCustomer(prisma);
+    await seedCoupon(prisma);
   }
   await prisma.$disconnect();
 }

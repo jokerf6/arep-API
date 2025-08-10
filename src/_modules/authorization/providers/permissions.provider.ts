@@ -41,6 +41,18 @@ export const permissions = [
     default: false,
     methods: ['post', 'get', 'patch', 'delete'],
   },
+  {
+    name: { en: 'Addresses', ar: 'العناوين' },
+    prefix: 'addresses',
+    default: true,
+    methods: ['post', 'get', 'patch', 'delete'],
+  },
+  {
+    name: { en: 'Banners', ar: 'البانرات' },
+    prefix: 'banners',
+    default: true,
+    methods: ['post', 'get', 'patch', 'delete'],
+  },
 ];
 
 type Permission = (typeof permissions)[number];

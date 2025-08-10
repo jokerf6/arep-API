@@ -7,7 +7,9 @@ import { OTPService } from 'src/_modules/authentication/services/otp.service';
 import { TokenService } from 'src/_modules/authentication/services/jwt.service';
 
 @Module({
-  imports: [],
+  imports: [
+    // AddressModule
+  ],
   controllers: [CustomerCreateController, CustomerController],
   providers: [CustomerService, CustomerCreateService, OTPService, TokenService],
   exports: [],

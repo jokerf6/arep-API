@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post, Res } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiQuery, ApiTags, PartialType } from '@nestjs/swagger';
 import { Response } from 'express';
 import { selectPermissionsOBJ } from 'src/_modules/authorization/prisma-args/permissions.prisma-select';
 import { UploadFile } from 'src/decorators/api/upload-file.decorator';
@@ -13,9 +13,14 @@ import {
   UpdateUserDTO,
   UpdateUserPasswordDTO,
 } from '../dto/create.user.dto';
-import { selectFlattenedUserOBJ } from '../prisma-args/user.prisma-select';
+import {
+  selectFlattenedUserOBJ,
+  SelectUserCouponObj,
+} from '../prisma-args/user.prisma-select';
 import { UserService } from '../services/user.service';
 import { LocaleHeader } from 'src/_modules/authentication/decorators/locale.decorator';
+import { FilterUserCouponDTO } from '../dto/filter.user.coupon.dto';
+import { Filter } from 'src/decorators/param/filter.decorator';
 
 const prefix = 'profile';
 @Controller('users/me')
@@ -56,6 +61,30 @@ export class MeController {
   ) {
     await this.userService.enableBio(currentUser.id, dto);
     return this.responses.success(res, 'bio enabled successfully');
+  }
+  @Get('/coupon')
+  @ApiOkResponse(
+    buildExamples([
+      {
+        title: 'Coupons',
+        paginated: true,
+        body: SelectUserCouponObj(),
+      },
+    ]),
+  )
+  @ApiQuery({ type: PartialType(FilterUserCouponDTO) })
+  async Coupons(
+    @Res() res: Response,
+    @CurrentUser() currentUser: CurrentUser,
+    @Filter({ dto: FilterUserCouponDTO }) filters: FilterUserCouponDTO,
+  ) {
+    const { data, total } = await this.userService.getCoupons(
+      currentUser.id,
+      filters,
+    );
+    return this.responses.success(res, 'coupon returned successfully', data, {
+      total,
+    });
   }
 
   @Get('/')

@@ -5,6 +5,8 @@ const customerPermissions: PermissionMap = {
   languages: ['get'],
   profile: ['post', 'get', 'patch'],
   modules: ['get'],
+  addresses: ['post', 'get', 'patch', 'delete'],
+  banners: ['get'],
 } as const satisfies PermissionMap;
 
 export const CustomerRole = {

@@ -3,6 +3,7 @@ model Store {
   name    String
   image   String
   banners Banner[] @relation("BannerToStore")
-
+  StoreCoupons StoreCoupons[]
+//
   @@map("store")
 }
