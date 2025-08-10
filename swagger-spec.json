@@ -1297,6 +1297,80 @@
         ]
       }
     },
+    "/api/users/me/coupon": {
+      "get": {
+        "operationId": "MeController_Coupons",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "coupons": {
+                    "summary": "Coupons",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "code": "string",
+                        "title": "string"
+                      },
+                      "total": 1
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Profile"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
     "/api/users/me": {
       "get": {
         "operationId": "MeController_Profile",
@@ -2743,6 +2817,685 @@
           }
         ]
       }
+    },
+    "/api/coupons": {
+      "post": {
+        "operationId": "CouponController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCouponDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CouponController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ALL_USERS",
+                "ALL_STORES",
+                "FIRST_ORDER",
+                "USER_WISE",
+                "STORE_WISE",
+                "FREE_DELIVERY"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "discountType",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "AMOUNT",
+                "PERCENTAGE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "discountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "maxUsage",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "usageCount",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "minOrderAmount",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "freeDelivery",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "example": "2025-08-10T07:38:26.814Z",
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "example": "2025-08-10T07:38:26.814Z",
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "minDiscountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "maxDiscountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-coupons": {
+                    "summary": "Get All Coupons",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "string",
+                          "code": "string",
+                          "type": "string",
+                          "discountType": 1,
+                          "discountValue": 1,
+                          "maxUsage": "string",
+                          "usageCount": 1,
+                          "minOrderAmount": 1,
+                          "freeDelivery": "string",
+                          "startDate": "2025-08-10T07:38:26.816Z",
+                          "endDate": "2025-08-10T07:38:26.816Z",
+                          "minDiscountValue": 1,
+                          "maxDiscountValue": 1,
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-coupon": {
+                    "summary": "Single Coupon",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "code": "string",
+                        "type": "string",
+                        "discountType": 1,
+                        "discountValue": 1,
+                        "maxUsage": "string",
+                        "usageCount": 1,
+                        "minOrderAmount": 1,
+                        "freeDelivery": "string",
+                        "startDate": "2025-08-10T07:38:26.816Z",
+                        "endDate": "2025-08-10T07:38:26.816Z",
+                        "minDiscountValue": 1,
+                        "maxDiscountValue": 1,
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/coupons/{id}": {
+      "patch": {
+        "operationId": "CouponController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCouponDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CouponController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ALL_USERS",
+                "ALL_STORES",
+                "FIRST_ORDER",
+                "USER_WISE",
+                "STORE_WISE",
+                "FREE_DELIVERY"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "discountType",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "AMOUNT",
+                "PERCENTAGE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "discountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "maxUsage",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "usageCount",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "minOrderAmount",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "freeDelivery",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "example": "2025-08-10T07:38:26.814Z",
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "example": "2025-08-10T07:38:26.814Z",
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "minDiscountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "maxDiscountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-coupons": {
+                    "summary": "Get All Coupons",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "string",
+                          "code": "string",
+                          "type": "string",
+                          "discountType": 1,
+                          "discountValue": 1,
+                          "maxUsage": "string",
+                          "usageCount": 1,
+                          "minOrderAmount": 1,
+                          "freeDelivery": "string",
+                          "startDate": "2025-08-10T07:38:26.816Z",
+                          "endDate": "2025-08-10T07:38:26.816Z",
+                          "minDiscountValue": 1,
+                          "maxDiscountValue": 1,
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-coupon": {
+                    "summary": "Single Coupon",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "code": "string",
+                        "type": "string",
+                        "discountType": 1,
+                        "discountValue": 1,
+                        "maxUsage": "string",
+                        "usageCount": 1,
+                        "minOrderAmount": 1,
+                        "freeDelivery": "string",
+                        "startDate": "2025-08-10T07:38:26.816Z",
+                        "endDate": "2025-08-10T07:38:26.816Z",
+                        "minDiscountValue": 1,
+                        "maxDiscountValue": 1,
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "CouponController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -3105,6 +3858,157 @@
             "type": "string",
             "description": "Json only allowed",
             "format": "binary"
+          }
+        }
+      },
+      "CreateCouponDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ALL_USERS",
+              "ALL_STORES",
+              "FIRST_ORDER",
+              "USER_WISE",
+              "STORE_WISE",
+              "FREE_DELIVERY"
+            ]
+          },
+          "discountType": {
+            "type": "string",
+            "enum": [
+              "AMOUNT",
+              "PERCENTAGE"
+            ]
+          },
+          "discountValue": {
+            "type": "number"
+          },
+          "maxUsage": {
+            "type": "number"
+          },
+          "usageCount": {
+            "type": "number"
+          },
+          "minOrderAmount": {
+            "type": "number"
+          },
+          "freeDelivery": {
+            "type": "boolean",
+            "example": true
+          },
+          "startDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-08-10T07:38:26.813Z"
+          },
+          "endDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-08-10T07:38:26.813Z"
+          },
+          "minDiscountValue": {
+            "type": "number"
+          },
+          "maxDiscountValue": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "storeId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "title",
+          "code",
+          "type",
+          "discountType",
+          "discountValue",
+          "maxUsage",
+          "usageCount",
+          "minOrderAmount",
+          "freeDelivery",
+          "startDate",
+          "endDate",
+          "minDiscountValue",
+          "maxDiscountValue"
+        ]
+      },
+      "UpdateCouponDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ALL_USERS",
+              "ALL_STORES",
+              "FIRST_ORDER",
+              "USER_WISE",
+              "STORE_WISE",
+              "FREE_DELIVERY"
+            ]
+          },
+          "discountType": {
+            "type": "string",
+            "enum": [
+              "AMOUNT",
+              "PERCENTAGE"
+            ]
+          },
+          "discountValue": {
+            "type": "number"
+          },
+          "maxUsage": {
+            "type": "number"
+          },
+          "usageCount": {
+            "type": "number"
+          },
+          "minOrderAmount": {
+            "type": "number"
+          },
+          "freeDelivery": {
+            "type": "boolean",
+            "example": true
+          },
+          "startDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-08-10T07:38:26.813Z"
+          },
+          "endDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-08-10T07:38:26.813Z"
+          },
+          "minDiscountValue": {
+            "type": "number"
+          },
+          "maxDiscountValue": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "storeId": {
+            "type": "number"
           }
         }
       }

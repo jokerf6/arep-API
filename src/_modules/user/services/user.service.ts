@@ -22,10 +22,12 @@ import { FilterUserDTO } from '../dto/filter.user.dto';
 import { getUserArgs } from '../prisma-args/user.prisma-ags';
 import {
   FlattenedUser,
+  getUserCouponArgs,
   selectUserWithRoleAndPermissionsOBJ,
   transformFlattenUser,
 } from '../prisma-args/user.prisma-select';
 import { HelperService } from './helper.service';
+import { FilterUserCouponDTO } from '../dto/filter.user.coupon.dto';
 
 @Injectable()
 export class UserService {
@@ -192,5 +194,17 @@ export class UserService {
       where: { jti },
       data: { languageId: locale },
     });
+  }
+
+  async getCoupons(userId: Id, filters?: FilterUserCouponDTO) {
+    const args = getUserCouponArgs(filters, userId);
+    const data = await this.prisma.coupon.findMany({
+      ...args,
+    });
+    const total = await this.prisma.coupon.count({
+      where: args.where,
+    });
+
+    return { data, total };
   }
 }

@@ -21,6 +21,7 @@ model User {
   OTPs          OTP[]
   Sessions      Session[]
   Notifications Notification[]
+  UserCoupons   UserCoupons[]
   Details       Details?
   Address       Address[]
 
