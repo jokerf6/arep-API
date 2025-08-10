@@ -11,6 +11,7 @@ import {
 import { seedCustomer } from './customer.seed';
 import { seedNotification } from './notification.seed';
 import { seedCoupon } from './coupon.seed';
+import { seedModule } from './module.seed';
 
 const prisma = new PrismaClient();
 
@@ -22,6 +23,7 @@ async function main() {
   await seedRolePermissions(prisma);
   await seedAdmin(prisma);
   await seedNotification(prisma);
+  await seedModule(prisma);
 
   // await seedLanguage(prisma);
   if (process.env.SEED === 'test') {

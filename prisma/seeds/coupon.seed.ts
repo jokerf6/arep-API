@@ -11,7 +11,7 @@ export async function seedCoupon(prisma: PrismaClient) {
   for (let i = 1; i <= 1; i += 1) {
     const data: Coupon = {
       id: i,
-      title: `coupon${i}`,
+      title: { en: `Coupon ${i}`, ar: ` الخصم ${i}` },
       code: `COUPON${i}`,
       type: CouponType.ALL_USERS,
       discountType: DiscountType.PERCENTAGE,
