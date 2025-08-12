@@ -8,6 +8,9 @@ const customerPermissions: PermissionMap = {
   addresses: ['post', 'get', 'patch', 'delete'],
   banners: ['get'],
   categories: ['get'],
+  subcategories: ['get'],
+  stores: ['get'],
+  'stores/favourite': ['get', 'patch'],
 } as const satisfies PermissionMap;
 
 export const CustomerRole = {

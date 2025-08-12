@@ -12,7 +12,22 @@ export async function seedStore(prisma: PrismaClient) {
     const data: Store = {
       id: i,
       name: `Store ${i}`,
-      image: `https://example.com/banner${i}`,
+      logo: `uploads/store-logo-${i}.png`,
+      cover: `https://example.com/banner${i}`,
+      address: `Address ${i}`,
+      lat: 0,
+      lng: 0,
+      rating: 0,
+      review: 0,
+      closed: true,
+      temporarilyClosed: false,
+      phone: `123-456-7890`,
+      status: 'NOT_VERIFIED',
+      moduleId: 1,
+      planId: 1,
+      cityId: 1,
+      createdAt: new Date(),
+      deletedAt: null,
     };
     await prisma.store.upsert({
       where: {

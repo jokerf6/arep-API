@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Patch, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { ApiOkResponse, ApiQuery, ApiTags, PartialType } from '@nestjs/swagger';
 import { Response } from 'express';
 import { selectPermissionsOBJ } from 'src/_modules/authorization/prisma-args/permissions.prisma-select';
@@ -134,5 +142,13 @@ export class MeController {
   ) {
     await this.userService.updateCurrentUser(dto, user.id, user.jti);
     return this.responses.success(res, 'password updated successfully');
+  }
+  @Delete('/')
+  async deleteCurrentUser(
+    @Res() res: Response,
+    @CurrentUser() user: CurrentUser,
+  ) {
+    await this.userService.delete(user.id);
+    return this.responses.success(res, 'user deleted successfully');
   }
 }

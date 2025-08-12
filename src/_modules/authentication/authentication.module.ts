@@ -11,6 +11,7 @@ import { AccessTokenStrategy } from './strategies/access-token.strategy';
 import { RefreshTokenStrategy } from './strategies/refresh-token.strategy';
 import { ResetPasswordTokenStrategy } from './strategies/reset-password-token.strategy';
 import { VerifyTokenStrategy } from './strategies/verify-token.strategy';
+import { VisitorStrategy } from './strategies/visitor.strategy';
 
 @Module({
   // imports: [forwardRef(() => UserModule)],
@@ -20,6 +21,7 @@ import { VerifyTokenStrategy } from './strategies/verify-token.strategy';
     EmailService,
     BaseAuthenticationService,
     AccessTokenStrategy,
+    VisitorStrategy,
     ResetPasswordTokenStrategy,
     RefreshTokenStrategy,
     VerifyTokenStrategy,

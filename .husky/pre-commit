@@ -1,12 +1,12 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-git pull
+# #!/usr/bin/env sh
+# . "$(dirname -- "$0")/_/husky.sh"
+# git pull
 
-node translate.ts
-CHANGES=$(git diff --name-only)
-if [ -n "$CHANGES" ]; then
-  echo "$CHANGES"
-  git add .
-fi
+# node translate.ts
+# CHANGES=$(git diff --name-only)
+# if [ -n "$CHANGES" ]; then
+#   echo "$CHANGES"
+#   git add .
+# fi
 
 

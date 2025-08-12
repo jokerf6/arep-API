@@ -18,12 +18,13 @@ export function Auth({
   prefix,
   visitor = false,
 }: AuthOptions = {}) {
-  const guards: any[] = [AuthGuard(type)];
+  const guards: any[] = [];
+
   if (visitor) {
     return applyDecorators(OptionalAuth());
   }
+  guards.push(AuthGuard(type));
   if (prefix) guards.push(PermissionAndTypeGuard);
-
   const decorators = [
     RequiredPermissions(prefix),
     UseGuards(...guards),

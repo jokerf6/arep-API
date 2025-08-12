@@ -22,5 +22,6 @@ enum SessionType {
     ACCESS
     REFRESH
     VERIFY
+    VISITOR
     PASSWORD_RESET
 }

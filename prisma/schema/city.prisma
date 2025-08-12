@@ -1,0 +1,7 @@
+model City {
+  id Int @id @default(autoincrement())
+  name Json
+  Store  Store[]
+
+  @@map("city")
+}

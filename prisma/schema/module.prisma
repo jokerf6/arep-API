@@ -13,5 +13,8 @@ model Module {
 
   // Direct Relations
   Category Category[] 
+  stores Store[] 
+
   @@map("modules")
+
 }

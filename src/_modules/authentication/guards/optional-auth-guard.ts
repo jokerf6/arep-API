@@ -1,50 +1,17 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
-import { Reflector } from '@nestjs/core';
+import { ExecutionContext, Injectable } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
-export class OptionalAuthGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
-  canActivate(context: ExecutionContext): boolean {
-    const user = context.switchToHttp().getRequest().user;
-    if (!user) {
-      return true;
-    }
-    const request = context.switchToHttp().getRequest();
-    const method = request.method;
-    const requiredPermissions = this.reflector.getAllAndOverride(
-      env('PERMISSION_METADATA_KEY') as string,
-      [context.getClass(), context.getHandler()],
-    );
-    const userPermissions =
-      context.switchToHttp().getRequest().user?.permissions || [];
-    if (requiredPermissions && requiredPermissions.length >= 0) {
-      return this.validatePermissions(
-        `${requiredPermissions[0]}_${method.toLowerCase()}`,
-        userPermissions,
-      );
-    } else {
-      return true; // If no permissions are required, allow access
-    }
+export class OptionalAuthGuard extends AuthGuard('ACCESS') {
+  canActivate(context: ExecutionContext) {
+    return super.canActivate(context);
   }
 
-  validatePermissions(
-    requiredPermissions: string,
-    userPermissions: {
-      name: { en: string; ar?: string };
-      prefix: string;
-      method: string;
-    }[],
-  ): boolean {
-    if (!requiredPermissions || requiredPermissions.length === 0) {
-      return true;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleRequest(err, user, info, context: ExecutionContext) {
+    if (err || info || !user) {
+      return null;
     }
-    const hasPermission = userPermissions.some(
-      (perm) => `${perm.prefix}_${perm.method}` === requiredPermissions,
-    );
-    if (hasPermission) {
-      return true;
-    }
-
-    return false;
+    return user;
   }
 }

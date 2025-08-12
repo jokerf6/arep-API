@@ -59,6 +59,25 @@ export const permissions = [
     default: false,
     methods: ['post', 'get', 'patch', 'delete'],
   },
+
+  {
+    name: { en: 'SubCategories', ar: 'الفئات الفرعية' },
+    prefix: 'subcategories',
+    default: false,
+    methods: ['post', 'get', 'patch', 'delete'],
+  },
+  {
+    name: { en: 'Stores', ar: 'المتاجر' },
+    prefix: 'stores',
+    default: false,
+    methods: ['post', 'get', 'patch', 'delete'],
+  },
+  {
+    name: { en: 'Store Favourite', ar: 'المتجر المفضل' },
+    prefix: 'stores/favourite',
+    default: false,
+    methods: ['get', 'patch'],
+  },
 ];
 
 type Permission = (typeof permissions)[number];

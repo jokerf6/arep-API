@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  NestMiddleware,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 import { PrismaService } from '../services/prisma.service';
 import * as jwt from 'jsonwebtoken';
@@ -81,7 +77,7 @@ export class NotificationMiddleware implements NestMiddleware {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (_: any) {
         // console.log('ssssss');
-        throw new UnauthorizedException('Invalid notification token');
+        return {};
       }
     }
     const user = await this.prisma.user.findUnique({

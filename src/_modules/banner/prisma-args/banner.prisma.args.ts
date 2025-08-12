@@ -46,7 +46,8 @@ export const selectBannerOBJ = () => {
       select: {
         id: true,
         name: true,
-        image: true,
+        logo: true,
+        cover: true,
       },
     },
   };
