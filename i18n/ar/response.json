@@ -193,5 +193,10 @@
   "store fetched successfully": "store fetched successfully",
   "delete store successfully": "delete store successfully",
   "favourite store updated successfully": "favourite store updated successfully",
-  "User has no default address": "User has no default address"
+  "User has no default address": "User has no default address",
+  "service fetched successfully": "service fetched successfully",
+  "favourite service updated successfully": "favourite service updated successfully",
+  "lat and lng are required for visitors and customers that not has default address to find stores": "lat and lng are required for visitors and customers that not has default address to find stores",
+  "lat and lng are required for visitors to find stores": "lat and lng are required for visitors to find stores",
+  "user deleted successfully": "user deleted successfully"
 }
