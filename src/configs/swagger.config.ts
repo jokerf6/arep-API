@@ -12,9 +12,6 @@ export const swaggerConfig = (app: INestApplication) => {
     .setTitle(getEnv('PROJECT_NAME'))
     .setDescription(getEnv('PROJECT_DESCRIPTION'))
     .setVersion('1.0')
-    .addServer(`http://127.0.0.1:3030`, 'Local')
-    .addServer(env('SANDBOX_URL'), 'Sandbox')
-    .addServer(env('PRODUCTION_URL'), 'Production')
     .setContact(
       getEnv('PROJECT_CONTACT_NAME'),
       getEnv('PROJECT_CONTACT_URL'),
