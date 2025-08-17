@@ -22,7 +22,9 @@ model User {
   Sessions      Session[]
   Notifications Notification[]
   UserCoupons   UserCoupons[]
-  Favorites     FavoriteStore[]
+  FavoriteStores     FavoriteStore[]
+  FavoriteServices FavoriteService[]
+
   Details       Details?
   Address       Address[]
 

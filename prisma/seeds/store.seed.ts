@@ -11,7 +11,7 @@ export async function seedStore(prisma: PrismaClient) {
   for (let i = 1; i <= 1; i += 1) {
     const data: Store = {
       id: i,
-      name: `Store ${i}`,
+      name: {en: `Store ${i}`, ar: `متجر ${i}`},
       logo: `uploads/store-logo-${i}.png`,
       cover: `https://example.com/banner${i}`,
       address: `Address ${i}`,

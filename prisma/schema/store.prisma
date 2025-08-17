@@ -32,6 +32,7 @@ model Store {
 
   Banner Banner[] @relation(name: "BannerToStore")
   Favorites FavoriteStore[]
+  Services Service[]
   StoreCoupons StoreCoupons[]
   @@map("stores")
 }

@@ -1,0 +1,73 @@
+import {
+  Controller,
+  Get,
+  Res,
+  UseInterceptors,
+} from '@nestjs/common';
+import { ApiOkResponse, ApiQuery, ApiTags, PartialType } from '@nestjs/swagger';
+import { Response } from 'express';
+import { Auth } from 'src/_modules/authentication/decorators/auth.decorator';
+import { Filter } from 'src/decorators/param/filter.decorator';
+import { ResponseService } from 'src/globals/services/response.service';
+import { buildExamples } from 'src/globals/helpers/generate-example.helper';
+import { tag } from 'src/globals/helpers/tag.helper';
+import { isOne } from 'src/globals/helpers/first-or-many';
+import { ServiceModuleService } from '../services/storeModule.service';
+import { selectServiceOBJ } from '../prisma-args/service.prisma.args';
+import { FilterServiceDTO } from '../dto/service.dto';
+import { AuthServiceInterceptor } from '../interceptors/auth.aervice.interceptor';
+
+const prefix = 'services';
+
+@Controller(prefix)
+@ApiTags(tag(prefix))
+export class ServiceModuleController {
+  constructor(
+    private readonly service: ServiceModuleService,
+    private readonly response: ResponseService,
+  ) {}
+
+  @Get(['/', '/:id'])
+  @Auth({ prefix, visitor: true })
+  @ApiOkResponse(
+    buildExamples([
+      {
+        title: 'Get All Services For Visitors',
+        paginated: true,
+        body: [selectServiceOBJ()],
+      },
+      {
+        title: 'Get All Services For Customers',
+        paginated: true,
+        body: [{...selectServiceOBJ(), Favorites: [] }],
+      },
+      {
+        title: 'Single Service For Visitors',
+        paginated: false,
+        body: selectServiceOBJ(),
+      },
+      {
+        title: 'Single Service For Customers',
+        paginated: false,
+        body: [{...selectServiceOBJ(), Favorites: [] }],
+      },
+    ]),
+  )
+  @UseInterceptors(AuthServiceInterceptor)
+  @ApiQuery({ type: PartialType(FilterServiceDTO) })
+  async findAll(
+    @Res() res: Response,
+    @Filter({ dto: FilterServiceDTO }) filters: FilterServiceDTO,
+  ) {
+    const data = await this.service.findAll(filters);
+    const total = isOne(filters?.id)
+      ? undefined
+      : await this.service.count(filters);
+
+    return this.response.success(res, 'service fetched successfully', data, {
+      total,
+    });
+  }
+
+  
+}

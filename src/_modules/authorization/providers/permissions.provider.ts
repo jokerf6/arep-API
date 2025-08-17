@@ -75,9 +75,25 @@ export const permissions = [
   {
     name: { en: 'Store Favourite', ar: 'المتجر المفضل' },
     prefix: 'stores/favourite',
-    default: false,
+    default: true,
     methods: ['get', 'patch'],
   },
+
+  {
+    name: { en: 'Service', ar: 'الخدمات' },
+    prefix: 'services',
+    default: false,
+    methods: ['post', 'get', 'patch', 'delete'],
+  },
+  {
+    name: { en: 'Service Favourite', ar: 'الخدمات المفضلة' },
+    prefix: 'services/favourite',
+    default: true,
+    methods: ['get', 'patch'],
+  },
+
+
+  
 ];
 
 type Permission = (typeof permissions)[number];
