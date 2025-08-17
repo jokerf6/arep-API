@@ -15,3 +15,5 @@ import { CustomerModule } from './_modules/customer/customer.module';
   exports: [UserService],
 })
 export class UserModule {}
+
+
