@@ -23,9 +23,12 @@ const prefix = 'authentication';
 export class BaseAuthenticationController {
   constructor(
     private readonly service: BaseAuthenticationService,
+
     private readonly response: ResponseService,
   ) {}
 
+
+  
   @Post('refresh-token')
   @ApiDefaultOkResponse(null)
   @Auth({ type: SessionType.REFRESH })

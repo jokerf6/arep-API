@@ -2437,6 +2437,457 @@
         ]
       }
     },
+    "/api/addresses": {
+      "post": {
+        "operationId": "AddressController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAddressDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "AddressController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "default",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-addresses": {
+                    "summary": "Get All Addresses",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "string",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "default": true,
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-address": {
+                    "summary": "Single Address",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "default": true,
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/addresses/{id}": {
+      "patch": {
+        "operationId": "AddressController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAddressDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "AddressController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "default",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-addresses": {
+                    "summary": "Get All Addresses",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "string",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "default": true,
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-address": {
+                    "summary": "Single Address",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "default": true,
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "AddressController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Addresses"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
     "/api/languages": {
       "post": {
         "operationId": "LanguagesController_create",
@@ -2856,6 +3307,4812 @@
           }
         ]
       }
+    },
+    "/api/coupons": {
+      "post": {
+        "operationId": "CouponController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCouponDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CouponController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ALL_USERS",
+                "ALL_STORES",
+                "FIRST_ORDER",
+                "USER_WISE",
+                "STORE_WISE",
+                "FREE_DELIVERY"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "discountType",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "AMOUNT",
+                "PERCENTAGE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "discountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "maxUsage",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "usageCount",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "minOrderAmount",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "freeDelivery",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "example": "2025-08-19T13:28:39.455Z",
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "example": "2025-08-19T13:28:39.455Z",
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "minDiscountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "maxDiscountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-coupons": {
+                    "summary": "Get All Coupons",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "string",
+                          "code": "string",
+                          "type": "string",
+                          "discountType": 1,
+                          "discountValue": 1,
+                          "maxUsage": "string",
+                          "usageCount": 1,
+                          "minOrderAmount": 1,
+                          "freeDelivery": "string",
+                          "startDate": "2025-08-19T13:28:39.457Z",
+                          "endDate": "2025-08-19T13:28:39.458Z",
+                          "minDiscountValue": 1,
+                          "maxDiscountValue": 1,
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-coupon": {
+                    "summary": "Single Coupon",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "code": "string",
+                        "type": "string",
+                        "discountType": 1,
+                        "discountValue": 1,
+                        "maxUsage": "string",
+                        "usageCount": 1,
+                        "minOrderAmount": 1,
+                        "freeDelivery": "string",
+                        "startDate": "2025-08-19T13:28:39.458Z",
+                        "endDate": "2025-08-19T13:28:39.458Z",
+                        "minDiscountValue": 1,
+                        "maxDiscountValue": 1,
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/coupons/{id}": {
+      "patch": {
+        "operationId": "CouponController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCouponDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CouponController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "title",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ALL_USERS",
+                "ALL_STORES",
+                "FIRST_ORDER",
+                "USER_WISE",
+                "STORE_WISE",
+                "FREE_DELIVERY"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "discountType",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "AMOUNT",
+                "PERCENTAGE"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "discountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "maxUsage",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "usageCount",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "minOrderAmount",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "freeDelivery",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "startDate",
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "example": "2025-08-19T13:28:39.455Z",
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "format": "date-time",
+              "example": "2025-08-19T13:28:39.455Z",
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "minDiscountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "maxDiscountValue",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-coupons": {
+                    "summary": "Get All Coupons",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "title": "string",
+                          "code": "string",
+                          "type": "string",
+                          "discountType": 1,
+                          "discountValue": 1,
+                          "maxUsage": "string",
+                          "usageCount": 1,
+                          "minOrderAmount": 1,
+                          "freeDelivery": "string",
+                          "startDate": "2025-08-19T13:28:39.457Z",
+                          "endDate": "2025-08-19T13:28:39.458Z",
+                          "minDiscountValue": 1,
+                          "maxDiscountValue": 1,
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-coupon": {
+                    "summary": "Single Coupon",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "code": "string",
+                        "type": "string",
+                        "discountType": 1,
+                        "discountValue": 1,
+                        "maxUsage": "string",
+                        "usageCount": 1,
+                        "minOrderAmount": 1,
+                        "freeDelivery": "string",
+                        "startDate": "2025-08-19T13:28:39.458Z",
+                        "endDate": "2025-08-19T13:28:39.458Z",
+                        "minDiscountValue": 1,
+                        "maxDiscountValue": 1,
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "CouponController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Coupons"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/modules": {
+      "post": {
+        "operationId": "ModuleController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateModuleDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ModuleController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-modules": {
+                    "summary": "Get All Modules",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "description": "string",
+                          "image": "https://example.com/avatar.png",
+                          "active": true,
+                          "order": "string",
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-module": {
+                    "summary": "Single Module",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "description": "string",
+                        "image": "https://example.com/avatar.png",
+                        "active": true,
+                        "order": "string",
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/modules/{id}": {
+      "patch": {
+        "operationId": "ModuleController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateModuleDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ModuleController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-modules": {
+                    "summary": "Get All Modules",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "description": "string",
+                          "image": "https://example.com/avatar.png",
+                          "active": true,
+                          "order": "string",
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-module": {
+                    "summary": "Single Module",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "description": "string",
+                        "image": "https://example.com/avatar.png",
+                        "active": true,
+                        "order": "string",
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ModuleController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Modules"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/banners": {
+      "post": {
+        "operationId": "BannerController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBannerDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banners"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "BannerController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-banners": {
+                    "summary": "Get All Banners",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "image": "https://example.com/avatar.png",
+                          "active": true,
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "Store": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "logo": "string",
+                            "cover": "string"
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-banner": {
+                    "summary": "Single Banner",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "image": "https://example.com/avatar.png",
+                        "active": true,
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "Store": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banners"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/banners/{id}": {
+      "patch": {
+        "operationId": "BannerController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBannerDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banners"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "BannerController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-banners": {
+                    "summary": "Get All Banners",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "image": "https://example.com/avatar.png",
+                          "active": true,
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "Store": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "logo": "string",
+                            "cover": "string"
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-banner": {
+                    "summary": "Single Banner",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "image": "https://example.com/avatar.png",
+                        "active": true,
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "Store": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banners"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "BannerController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banners"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/subCategories": {
+      "post": {
+        "operationId": "CategoryController_create",
+        "summary": "",
+        "deprecated": true,
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCategoryDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CategoryController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-categories": {
+                    "summary": "Get All Categories",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "image": "https://example.com/avatar.png",
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-category": {
+                    "summary": "Single Category",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "image": "https://example.com/avatar.png",
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/subCategories/{id}": {
+      "patch": {
+        "operationId": "CategoryController_update",
+        "summary": "",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCategoryDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CategoryController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-categories": {
+                    "summary": "Get All Categories",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "image": "https://example.com/avatar.png",
+                          "createdAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-category": {
+                    "summary": "Single Category",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "image": "https://example.com/avatar.png",
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "CategoryController_delete",
+        "summary": "",
+        "deprecated": true,
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/subcategories/{id}": {
+      "patch": {
+        "operationId": "SubCategoryController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSubCategoryDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "SubCategoryController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "parentId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-subcategories": {
+                    "summary": "Get All SubCategories",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "image": "https://example.com/avatar.png",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "Parent": {
+                            "id": 1,
+                            "name": "John Doe"
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-subcategory": {
+                    "summary": "Single SubCategory",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "image": "https://example.com/avatar.png",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "Parent": {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "SubCategoryController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/subcategories": {
+      "get": {
+        "operationId": "SubCategoryController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "parentId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-subcategories": {
+                    "summary": "Get All SubCategories",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "image": "https://example.com/avatar.png",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "Parent": {
+                            "id": 1,
+                            "name": "John Doe"
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-subcategory": {
+                    "summary": "Single SubCategory",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "image": "https://example.com/avatar.png",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "Parent": {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Subcategories"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/stores/favourite/{id}": {
+      "patch": {
+        "operationId": "StoreFavouriteController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite store"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "StoreFavouriteController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "planId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "cityId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "temporarilyClosed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-stores-for-customers": {
+                    "summary": "Get All Stores For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": {
+                            "where": {
+                              "customerId": 1
+                            }
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-store-for-customers": {
+                    "summary": "Single Store For Customers",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Favorites": {
+                          "where": {
+                            "customerId": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite store"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          },
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/stores/favourite": {
+      "get": {
+        "operationId": "StoreFavouriteController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "planId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "cityId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "temporarilyClosed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-stores-for-customers": {
+                    "summary": "Get All Stores For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": {
+                            "where": {
+                              "customerId": 1
+                            }
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-store-for-customers": {
+                    "summary": "Single Store For Customers",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Favorites": {
+                          "where": {
+                            "customerId": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite store"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          },
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/stores": {
+      "post": {
+        "operationId": "StoreController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStoreDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "StoreController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "planId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "cityId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "temporarilyClosed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-stores-for-visitors": {
+                    "summary": "Get All Stores For Visitors",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "get-all-stores-for-customers": {
+                    "summary": "Get All Stores For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": [
+                            "string"
+                          ]
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-store-for-visitors": {
+                    "summary": "Single Store For Visitors",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      }
+                    }
+                  },
+                  "single-store-for-customers": {
+                    "summary": "Single Store For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": [
+                            "string"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/stores/{id}": {
+      "patch": {
+        "operationId": "StoreController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStoreDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "StoreController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lat",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "lng",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "planId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "cityId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "closed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "temporarilyClosed",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-stores-for-visitors": {
+                    "summary": "Get All Stores For Visitors",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "get-all-stores-for-customers": {
+                    "summary": "Get All Stores For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": [
+                            "string"
+                          ]
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-store-for-visitors": {
+                    "summary": "Single Store For Visitors",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "logo": "string",
+                        "cover": "string",
+                        "address": "123 Main St",
+                        "lat": -53.349,
+                        "lng": 6.2603,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "closed": "string",
+                        "temporarilyClosed": "string",
+                        "phone": "+123456789",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "City": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Plan": {
+                          "id": 1,
+                          "name": "John Doe"
+                        },
+                        "Module": {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      }
+                    }
+                  },
+                  "single-store-for-customers": {
+                    "summary": "Single Store For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "logo": "string",
+                          "cover": "string",
+                          "address": "123 Main St",
+                          "lat": -53.349,
+                          "lng": 6.2603,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "closed": "string",
+                          "temporarilyClosed": "string",
+                          "phone": "+123456789",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "City": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Plan": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Module": {
+                            "id": 1,
+                            "name": "John Doe"
+                          },
+                          "Favorites": [
+                            "string"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "StoreController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Stores"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/services/favourite/{id}": {
+      "patch": {
+        "operationId": "ServiceModuleFavouriteController_updateFav",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite service"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ServiceModuleFavouriteController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "subCategoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "bestRated",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "mostSeller",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-service-for-customers": {
+                    "summary": "Get All Service For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "description": "string",
+                          "image": "https://example.com/avatar.png",
+                          "durationMinutes": "2025-06-26T18:17:10.000Z",
+                          "availableFrom": "string",
+                          "availableTo": "string",
+                          "price": 1,
+                          "priceAfterDiscount": 1,
+                          "discount": 1,
+                          "discountType": 1,
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "totalOrders": 1,
+                          "totalAmountSold": 1,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "bestRated": "2025-06-26T18:17:10.000Z",
+                          "mostSeller": "string",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "Variation": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "required": "string",
+                            "maxQuantity": "string",
+                            "minQuantity": "string",
+                            "single": "string",
+                            "VariationOption": {
+                              "name": "John Doe",
+                              "price": 1,
+                              "default": true
+                            }
+                          },
+                          "SubCategory": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "Parent": {
+                              "id": 1,
+                              "name": "John Doe",
+                              "Module": {
+                                "id": 1,
+                                "name": "John Doe"
+                              }
+                            }
+                          },
+                          "Store": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "cover": "string",
+                            "logo": "string"
+                          },
+                          "Favorites": {
+                            "where": {
+                              "customerId": 1
+                            }
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-service-for-customers": {
+                    "summary": "Single Service For Customers",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "description": "string",
+                        "image": "https://example.com/avatar.png",
+                        "durationMinutes": "2025-06-26T18:17:10.000Z",
+                        "availableFrom": "string",
+                        "availableTo": "string",
+                        "price": 1,
+                        "priceAfterDiscount": 1,
+                        "discount": 1,
+                        "discountType": 1,
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "totalOrders": 1,
+                        "totalAmountSold": 1,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "bestRated": "2025-06-26T18:17:10.000Z",
+                        "mostSeller": "string",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "Variation": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "required": "string",
+                          "maxQuantity": "string",
+                          "minQuantity": "string",
+                          "single": "string",
+                          "VariationOption": {
+                            "name": "John Doe",
+                            "price": 1,
+                            "default": true
+                          }
+                        },
+                        "SubCategory": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "Parent": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "Module": {
+                              "id": 1,
+                              "name": "John Doe"
+                            }
+                          }
+                        },
+                        "Store": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "cover": "string",
+                          "logo": "string"
+                        },
+                        "Favorites": {
+                          "where": {
+                            "customerId": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite service"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          },
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/services/favourite": {
+      "get": {
+        "operationId": "ServiceModuleFavouriteController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "subCategoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "bestRated",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "mostSeller",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-service-for-customers": {
+                    "summary": "Get All Service For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe",
+                          "description": "string",
+                          "image": "https://example.com/avatar.png",
+                          "durationMinutes": "2025-06-26T18:17:10.000Z",
+                          "availableFrom": "string",
+                          "availableTo": "string",
+                          "price": 1,
+                          "priceAfterDiscount": 1,
+                          "discount": 1,
+                          "discountType": 1,
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "totalOrders": 1,
+                          "totalAmountSold": 1,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string",
+                          "bestRated": "2025-06-26T18:17:10.000Z",
+                          "mostSeller": "string",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "Variation": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "required": "string",
+                            "maxQuantity": "string",
+                            "minQuantity": "string",
+                            "single": "string",
+                            "VariationOption": {
+                              "name": "John Doe",
+                              "price": 1,
+                              "default": true
+                            }
+                          },
+                          "SubCategory": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "Parent": {
+                              "id": 1,
+                              "name": "John Doe",
+                              "Module": {
+                                "id": 1,
+                                "name": "John Doe"
+                              }
+                            }
+                          },
+                          "Store": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "cover": "string",
+                            "logo": "string"
+                          },
+                          "Favorites": {
+                            "where": {
+                              "customerId": 1
+                            }
+                          }
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-service-for-customers": {
+                    "summary": "Single Service For Customers",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe",
+                        "description": "string",
+                        "image": "https://example.com/avatar.png",
+                        "durationMinutes": "2025-06-26T18:17:10.000Z",
+                        "availableFrom": "string",
+                        "availableTo": "string",
+                        "price": 1,
+                        "priceAfterDiscount": 1,
+                        "discount": 1,
+                        "discountType": 1,
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "totalOrders": 1,
+                        "totalAmountSold": 1,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "review": "string",
+                        "bestRated": "2025-06-26T18:17:10.000Z",
+                        "mostSeller": "string",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "Variation": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "required": "string",
+                          "maxQuantity": "string",
+                          "minQuantity": "string",
+                          "single": "string",
+                          "VariationOption": {
+                            "name": "John Doe",
+                            "price": 1,
+                            "default": true
+                          }
+                        },
+                        "SubCategory": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "Parent": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "Module": {
+                              "id": 1,
+                              "name": "John Doe"
+                            }
+                          }
+                        },
+                        "Store": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "cover": "string",
+                          "logo": "string"
+                        },
+                        "Favorites": {
+                          "where": {
+                            "customerId": 1
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Favourite service"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          },
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/services": {
+      "get": {
+        "operationId": "ServiceModuleController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "subCategoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "bestRated",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "mostSeller",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-services-for-visitors": {
+                    "summary": "Get All Services For Visitors",
+                    "value": {
+                      "data": [
+                        {}
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "get-all-services-for-customers": {
+                    "summary": "Get All Services For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "Favorites": [
+                            "string"
+                          ]
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-service-for-visitors": {
+                    "summary": "Single Service For Visitors",
+                    "value": {
+                      "data": {}
+                    }
+                  },
+                  "single-service-for-customers": {
+                    "summary": "Single Service For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "Favorites": [
+                            "string"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/services/{id}": {
+      "get": {
+        "operationId": "ServiceModuleController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "description",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "subCategoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "bestRated",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "mostSeller",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "ACTIVE",
+                "BLOCKED",
+                "NOT_VERIFIED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-services-for-visitors": {
+                    "summary": "Get All Services For Visitors",
+                    "value": {
+                      "data": [
+                        {}
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "get-all-services-for-customers": {
+                    "summary": "Get All Services For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "Favorites": [
+                            "string"
+                          ]
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-service-for-visitors": {
+                    "summary": "Single Service For Visitors",
+                    "value": {
+                      "data": {}
+                    }
+                  },
+                  "single-service-for-customers": {
+                    "summary": "Single Service For Customers",
+                    "value": {
+                      "data": [
+                        {
+                          "Favorites": [
+                            "string"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/filters/price-range": {
+      "get": {
+        "operationId": "FilterController_priceRange",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Filters"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/filters/km-max-range": {
+      "get": {
+        "operationId": "FilterController_kmMaxRange",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Filters"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/filters/slots": {
+      "get": {
+        "operationId": "FilterController_findSlots",
+        "parameters": [
+          {
+            "required": false,
+            "name": "slots",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Filters"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -2869,20 +8126,7 @@
     }
   },
   "tags": [],
-  "servers": [
-    {
-      "url": "http://127.0.0.1:3030",
-      "description": "Local"
-    },
-    {
-      "url": "http://127.0.0.1:3000",
-      "description": "Sandbox"
-    },
-    {
-      "url": "http://127.0.0.1:3000",
-      "description": "Production"
-    }
-  ],
+  "servers": [],
   "components": {
     "securitySchemes": {
       "ACCESS Token": {
@@ -3178,6 +8422,43 @@
           }
         }
       },
+      "CreateAddressDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "title",
+          "lat",
+          "lng"
+        ]
+      },
+      "UpdateAddressDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          },
+          "default": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
       "CreateLanguagesDTO": {
         "type": "object",
         "properties": {
@@ -3223,6 +8504,402 @@
             "type": "string",
             "description": "Json only allowed",
             "format": "binary"
+          }
+        }
+      },
+      "CreateCouponDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ALL_USERS",
+              "ALL_STORES",
+              "FIRST_ORDER",
+              "USER_WISE",
+              "STORE_WISE",
+              "FREE_DELIVERY"
+            ]
+          },
+          "discountType": {
+            "type": "string",
+            "enum": [
+              "AMOUNT",
+              "PERCENTAGE"
+            ]
+          },
+          "discountValue": {
+            "type": "number"
+          },
+          "maxUsage": {
+            "type": "number"
+          },
+          "usageCount": {
+            "type": "number"
+          },
+          "minOrderAmount": {
+            "type": "number"
+          },
+          "freeDelivery": {
+            "type": "boolean",
+            "example": true
+          },
+          "startDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-08-19T13:28:39.451Z"
+          },
+          "endDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-08-19T13:28:39.451Z"
+          },
+          "minDiscountValue": {
+            "type": "number"
+          },
+          "maxDiscountValue": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "storeId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "title",
+          "code",
+          "type",
+          "discountType",
+          "discountValue",
+          "maxUsage",
+          "usageCount",
+          "minOrderAmount",
+          "freeDelivery",
+          "startDate",
+          "endDate",
+          "minDiscountValue",
+          "maxDiscountValue"
+        ]
+      },
+      "UpdateCouponDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "code": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ALL_USERS",
+              "ALL_STORES",
+              "FIRST_ORDER",
+              "USER_WISE",
+              "STORE_WISE",
+              "FREE_DELIVERY"
+            ]
+          },
+          "discountType": {
+            "type": "string",
+            "enum": [
+              "AMOUNT",
+              "PERCENTAGE"
+            ]
+          },
+          "discountValue": {
+            "type": "number"
+          },
+          "maxUsage": {
+            "type": "number"
+          },
+          "usageCount": {
+            "type": "number"
+          },
+          "minOrderAmount": {
+            "type": "number"
+          },
+          "freeDelivery": {
+            "type": "boolean",
+            "example": true
+          },
+          "startDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-08-19T13:28:39.451Z"
+          },
+          "endDate": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-08-19T13:28:39.451Z"
+          },
+          "minDiscountValue": {
+            "type": "number"
+          },
+          "maxDiscountValue": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          },
+          "storeId": {
+            "type": "number"
+          }
+        }
+      },
+      "CreateModuleDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "description": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "order": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "image",
+          "order"
+        ]
+      },
+      "UpdateModuleDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "description": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "order": {
+            "type": "number"
+          },
+          "active": {
+            "type": "boolean",
+            "example": true
+          }
+        }
+      },
+      "CreateBannerDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "storeId": {
+            "type": "number"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "required": [
+          "name",
+          "storeId",
+          "image"
+        ]
+      },
+      "UpdateBannerDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "storeId": {
+            "type": "number"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          }
+        }
+      },
+      "CreateCategoryDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "moduleId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "image",
+          "moduleId"
+        ]
+      },
+      "UpdateCategoryDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "moduleId": {
+            "type": "number"
+          }
+        }
+      },
+      "UpdateSubCategoryDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "parentId": {
+            "type": "number"
+          }
+        }
+      },
+      "CreateStoreDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "logo": {
+            "type": "string",
+            "format": "binary"
+          },
+          "cover": {
+            "type": "string",
+            "format": "binary"
+          },
+          "address": {
+            "type": "string"
+          },
+          "moduleId": {
+            "type": "number"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          },
+          "planId": {
+            "type": "number"
+          },
+          "cityId": {
+            "type": "number"
+          },
+          "verified": {
+            "type": "boolean",
+            "example": true
+          },
+          "phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "logo",
+          "cover",
+          "address",
+          "moduleId",
+          "lat",
+          "lng",
+          "planId",
+          "cityId",
+          "verified",
+          "phone"
+        ]
+      },
+      "UpdateStoreDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "logo": {
+            "type": "string",
+            "format": "binary"
+          },
+          "cover": {
+            "type": "string",
+            "format": "binary"
+          },
+          "address": {
+            "type": "string"
+          },
+          "moduleId": {
+            "type": "number"
+          },
+          "lat": {
+            "type": "number"
+          },
+          "lng": {
+            "type": "number"
+          },
+          "planId": {
+            "type": "number"
+          },
+          "cityId": {
+            "type": "number"
+          },
+          "verified": {
+            "type": "boolean",
+            "example": true
+          },
+          "phone": {
+            "type": "string"
+          },
+          "temporarilyClosed": {
+            "type": "boolean",
+            "example": true
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "BLOCKED",
+              "NOT_VERIFIED"
+            ]
           }
         }
       }

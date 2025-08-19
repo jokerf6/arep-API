@@ -198,5 +198,7 @@
   "favourite service updated successfully": "favourite service updated successfully",
   "lat and lng are required for visitors and customers that not has default address to find stores": "lat and lng are required for visitors and customers that not has default address to find stores",
   "lat and lng are required for visitors to find stores": "lat and lng are required for visitors to find stores",
-  "user deleted successfully": "user deleted successfully"
+  "user deleted successfully": "user deleted successfully",
+  "range fetched successfully": "range fetched successfully",
+  "slots fetched successfully": "slots fetched successfully"
 }

@@ -33,6 +33,9 @@ model Service {
 
     Favorites FavoriteService[]
     Variation Variation[]
+
+  @@map("services")
+
 }
 
 model FavoriteService {
@@ -60,6 +63,8 @@ model Variation {
     deletedAt DateTime? @map("deleted_at")
 
     VariationOption VariationOption[]
+
+  @@map("variations")
 }
 
 model VariationOption {
@@ -72,6 +77,8 @@ model VariationOption {
     Variation   Variation @relation(fields: [variationId], references: [id], onDelete: Cascade)
 
     deletedAt DateTime? @map("deleted_at")
+
+ @@map("variation_options")
 }
 
 enum ServiceStatus {

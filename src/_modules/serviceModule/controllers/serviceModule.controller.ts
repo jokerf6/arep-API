@@ -16,6 +16,7 @@ import { ServiceModuleService } from '../services/storeModule.service';
 import { selectServiceOBJ } from '../prisma-args/service.prisma.args';
 import { FilterServiceDTO } from '../dto/service.dto';
 import { AuthServiceInterceptor } from '../interceptors/auth.aervice.interceptor';
+import { ServiceDTO } from '../interfaces/service.interface';
 
 const prefix = 'services';
 
@@ -34,22 +35,22 @@ export class ServiceModuleController {
       {
         title: 'Get All Services For Visitors',
         paginated: true,
-        body: [selectServiceOBJ()],
+        body: [new ServiceDTO()],
       },
       {
         title: 'Get All Services For Customers',
         paginated: true,
-        body: [{...selectServiceOBJ(), Favorites: [] }],
+        body: [{...new ServiceDTO(), Favorites: [] }],
       },
       {
         title: 'Single Service For Visitors',
         paginated: false,
-        body: selectServiceOBJ(),
+        body: new ServiceDTO(),
       },
       {
         title: 'Single Service For Customers',
         paginated: false,
-        body: [{...selectServiceOBJ(), Favorites: [] }],
+        body: [{...new ServiceDTO(), Favorites: [] }],
       },
     ]),
   )
