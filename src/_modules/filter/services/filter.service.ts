@@ -3,6 +3,7 @@ import { PrismaService } from 'src/globals/services/prisma.service';
 import { FilterSlotsDTO } from '../dto/filter.dto';
 
 
+
 @Injectable()
 export class FilterService {
   constructor(
@@ -28,11 +29,9 @@ async getPriceSlots(dto: FilterSlotsDTO) {
 
   const slots = dto?.slots && dto.slots > 0 ? dto.slots : 10;
 
-  // استخدم ceil علشان نتجنب بن زيادة لـ max
   const rawStep = (max - min) / slots;
   const step = rawStep > 0 ? Math.ceil(rawStep) : 1;
 
-  // هنجمع بالـ bin_index فقط
   const raw = await this.prisma.$queryRaw<
     {
       bin_index: bigint;
@@ -54,13 +53,11 @@ async getPriceSlots(dto: FilterSlotsDTO) {
     ORDER BY bin_index ASC;
   `;
 
-  // خريطة بالـ index → التجميع
   const byIndex = new Map<number, {
     count: number; avg: number|null; min: number|null; max: number|null;
   }>();
 
   for (const r of raw) {
-    // في حالات نادرة جداً ممكن يبقى index = slots بسبب الحدود، فنقصّه
     const i = Math.min(Math.max(Number(r.bin_index), 0), slots - 1);
     byIndex.set(i, {
       count: Number(r.count),
@@ -70,7 +67,6 @@ async getPriceSlots(dto: FilterSlotsDTO) {
     });
   }
 
-  // نبني كل ال slots: أول row يبدأ بـ min، وآخر row ينتهي بـ max
   const all = Array.from({ length: slots }, (_, i) => {
     const slot_from = min + i * step;
     const slot_to = (i === slots - 1) ? max : (min + (i + 1) * step);
@@ -81,7 +77,7 @@ async getPriceSlots(dto: FilterSlotsDTO) {
       slot_from,
       slot_to,
       count: agg?.count ?? 0,
-      avg_price: agg?.avg ?? Number(((slot_from + slot_to) / 2).toFixed(2)), // تقدر تخليها null لو تحب
+      avg_price: agg?.avg ?? Number(((slot_from + slot_to) / 2).toFixed(2)),
     };
   });
 
@@ -94,5 +90,7 @@ async getKmMaxRange(){
   const maxKm = 50;
   return {maxKm}; 
 }
+
+
 
 }

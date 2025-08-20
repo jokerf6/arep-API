@@ -28,6 +28,14 @@ export const getStoreArgs = (
     filterKey<Store>(filter, 'closed'),
     filterKey<Store>(filter, 'temporarilyClosed'),
     filterKey<Store>(filter, 'status'),
+    filter.price && {
+      Service: {
+        price: {
+          gte: filter.price.min,
+          lte: filter.price.max,
+        },
+      },
+    },
     stores.length > 0 && {
       id: {
         in: stores.map((store) => store.id),
@@ -42,7 +50,7 @@ export const getStoreArgs = (
     },
   ].filter(Boolean) as Prisma.StoreWhereInput[];
 
-  const orderArray = [orderKey('id', 'id', orderBy)].filter(
+  const orderArray = [orderKey('id', 'id', orderBy), orderKey('rating', 'rating', orderBy), ].filter(
     Boolean,
   ) as Prisma.StoreOrderByWithRelationInput[];
 

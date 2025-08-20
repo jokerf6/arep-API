@@ -35,7 +35,7 @@ export class StoreService {
   async findAll(filters: FilterStoreDTO) {
     const customerId = filters?.customerId;
     const languages = await this.Language.getCashedLanguages();
-    const stores = await this.nearestService.getNearestStores(50, 10, filters);
+    const stores = await this.nearestService.getNearestStores(filters?.km || 50, filters?.limit || 10, filters);
     const args = getStoreArgs(filters, languages, stores);
     const argsWithSelect = getStoreArgsWithSelect(customerId);
 
@@ -43,14 +43,14 @@ export class StoreService {
       ...argsWithSelect,
       ...args,
     });
-    return data;
+    return {data, nearest: stores};
   }
 
   async count(filters: FilterStoreDTO) {
     const customerId = filters?.customerId;
     let stores = [];
     if (customerId) {
-      stores = await this.nearestService.getNearestStores(50, 10, filters);
+      stores = await this.nearestService.getNearestStores(filters?.km || 50, filters?.limit || 10, filters);
     }
     const languages = await this.Language.getCashedLanguages();
     const args = getStoreArgs(filters, languages, stores);

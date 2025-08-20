@@ -14,6 +14,8 @@ import { Max, Min } from 'class-validator';
 import { ValidateEnum } from 'src/decorators/dto/enum.decorator';
 import { StoreStatus } from '@prisma/client';
 import { OptionalSwagger } from 'src/decorators/dto/validators/optional-swagger.decorator';
+import { ValidateObject } from 'src/decorators/dto/validators/validate-nested.decorator';
+import { PriceRangeDTO } from 'src/_modules/filter/dto/filter.dto';
 
 export class CreateStoreDTO {
   @Required()
@@ -95,6 +97,10 @@ export class FilterStoreDTO extends PaginationParamsDTO {
 
   @Optional()
   @ValidateNumber()
+  rating?: number;
+
+  @Optional()
+  @ValidateNumber()
   @ValidateExist<'module'>({ model: 'module' })
   moduleId?: Id;
 
@@ -134,6 +140,14 @@ export class FilterStoreDTO extends PaginationParamsDTO {
 
   @OptionalSwagger()
   favouriteCustomerId: Id;
+
+  @Optional()
+  @ValidateNumber()
+   km:number;
+
+  @Optional({type:PriceRangeDTO})
+  @ValidateObject(PriceRangeDTO)
+  price?: PriceRangeDTO;
 
   @OptionalSwagger()
   @ValidateNumber()

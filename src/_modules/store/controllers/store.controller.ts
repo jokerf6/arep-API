@@ -91,7 +91,7 @@ export class StoreController {
     @Res() res: Response,
     @Filter({ dto: FilterStoreDTO }) filters: FilterStoreDTO,
   ) {
-    const data = await this.service.findAll(filters);
+    const {data} = await this.service.findAll(filters);
     const total = isOne(filters?.id)
       ? undefined
       : await this.service.count(filters);

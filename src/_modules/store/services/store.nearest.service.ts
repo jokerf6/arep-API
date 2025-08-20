@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/globals/services/prisma.service';
 import { FilterStoreDTO } from '../dto/store.dto';
+import { FilterDataDTO } from 'src/_modules/filter/dto/filter.dto';
 @Injectable()
 export class StoreNearestService {
   constructor(private readonly prisma: PrismaService) {}
@@ -17,13 +18,17 @@ export class StoreNearestService {
     return address;
   }
 
-  private buildWhere(filter: FilterStoreDTO) {
+  private buildWhere(filter: FilterStoreDTO ) {
     const whereParts: string[] = [];
     const params: any[] = [];
 
     if (filter?.address) {
       whereParts.push(`s.address LIKE ?`);
       params.push(`%${filter.address}%`);
+    }
+    if (filter?.rating) {
+      whereParts.push(`s.rating = ?`);
+      params.push(filter.rating);
     }
     if (filter?.moduleId) {
       whereParts.push(`s.module_id = ?`);
@@ -55,7 +60,7 @@ export class StoreNearestService {
     };
   }
 
-  async getNearestStores(radiusKm = 50, limit = 10, filter?: FilterStoreDTO) {
+  async getNearestStores(radiusKm = 50, limit = 10, filter?: FilterStoreDTO ) {
     const address = filter?.customerId
       ? await this.getUserAddress(filter?.customerId)
       : undefined;
