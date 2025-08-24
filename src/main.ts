@@ -16,6 +16,7 @@ import { globalValidationPipeOptions } from './configs/pipes.config';
 import { swaggerConfig } from './configs/swagger.config';
 import { GlobalExceptionFilter } from './globals/filters/global.exception.filter';
 import { ResponseService } from './globals/services/response.service';
+import { MaintenanceInterceptor } from './globals/interceptors/maintance.interceptor';
 // import './instrument.ts';
 
 const environment = env('NODE_ENV') || 'development';
@@ -47,6 +48,9 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionFilter(i18nService, responseService));
 
   app.useGlobalPipes(new ValidationPipe(globalValidationPipeOptions));
+
+ 
+
   app.use(swStats.getMiddleware());
   app.set('trust proxy', true);
 

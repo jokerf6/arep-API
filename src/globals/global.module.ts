@@ -11,6 +11,7 @@ import { ModelHelperService } from './services/modelHelper.service';
 import { PrismaService } from './services/prisma.service';
 import { ResponseService } from './services/response.service';
 import { SMSService } from './services/sms.service';
+import { PrivateSettingService } from './services/settings.service';
 
 @Global()
 @Module({
@@ -48,6 +49,7 @@ import { SMSService } from './services/sms.service';
     ModelHelperService,
     LanguagesService,
     MediaService,
+    PrivateSettingService
   ],
   exports: [
     ResponseService,
@@ -58,6 +60,7 @@ import { SMSService } from './services/sms.service';
     ModelHelperService,
     LanguagesService,
     MediaService,
+    PrivateSettingService
   ],
 })
 export class GlobalModule {

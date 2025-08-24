@@ -3476,7 +3476,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-20T09:14:22.934Z",
+              "example": "2025-08-24T08:05:16.494Z",
               "type": "string"
             }
           },
@@ -3486,7 +3486,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-20T09:14:22.934Z",
+              "example": "2025-08-24T08:05:16.494Z",
               "type": "string"
             }
           },
@@ -3572,8 +3572,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-20T09:14:22.936Z",
-                          "endDate": "2025-08-20T09:14:22.937Z",
+                          "startDate": "2025-08-24T08:05:16.496Z",
+                          "endDate": "2025-08-24T08:05:16.497Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3596,8 +3596,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-20T09:14:22.937Z",
-                        "endDate": "2025-08-20T09:14:22.937Z",
+                        "startDate": "2025-08-24T08:05:16.497Z",
+                        "endDate": "2025-08-24T08:05:16.497Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3796,7 +3796,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-20T09:14:22.934Z",
+              "example": "2025-08-24T08:05:16.494Z",
               "type": "string"
             }
           },
@@ -3806,7 +3806,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-20T09:14:22.934Z",
+              "example": "2025-08-24T08:05:16.494Z",
               "type": "string"
             }
           },
@@ -3892,8 +3892,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-20T09:14:22.936Z",
-                          "endDate": "2025-08-20T09:14:22.937Z",
+                          "startDate": "2025-08-24T08:05:16.496Z",
+                          "endDate": "2025-08-24T08:05:16.497Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3916,8 +3916,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-20T09:14:22.937Z",
-                        "endDate": "2025-08-20T09:14:22.937Z",
+                        "startDate": "2025-08-24T08:05:16.497Z",
+                        "endDate": "2025-08-24T08:05:16.497Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -8736,6 +8736,243 @@
           }
         ]
       }
+    },
+    "/api/system-notifications/{id}": {
+      "patch": {
+        "operationId": "SystemNotificationController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSystemNotificationDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "System-notifications"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "SystemNotificationController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-systemnotification": {
+                    "summary": "Get All SystemNotification",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "body": "string",
+                        "email": "user@example.com",
+                        "sms": "string",
+                        "notification": "2025-06-26T18:17:10.000Z",
+                        "Receiver": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "roleKey": "string"
+                        },
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "System-notifications"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/system-notifications": {
+      "get": {
+        "operationId": "SystemNotificationController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-systemnotification": {
+                    "summary": "Get All SystemNotification",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "title": "string",
+                        "body": "string",
+                        "email": "user@example.com",
+                        "sms": "string",
+                        "notification": "2025-06-26T18:17:10.000Z",
+                        "Receiver": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "roleKey": "string"
+                        },
+                        "createdAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "System-notifications"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -9177,12 +9414,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-20T09:14:22.933Z"
+            "example": "2025-08-24T08:05:16.491Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-20T09:14:22.933Z"
+            "example": "2025-08-24T08:05:16.491Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -9260,12 +9497,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-20T09:14:22.933Z"
+            "example": "2025-08-24T08:05:16.491Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-20T09:14:22.933Z"
+            "example": "2025-08-24T08:05:16.491Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -9637,6 +9874,35 @@
           "isActive": {
             "type": "boolean",
             "example": true
+          }
+        }
+      },
+      "UpdateSystemNotificationDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "enum": [
+              "DISABLED",
+              "ACTIVE",
+              "IN_ACTIVE"
+            ]
+          },
+          "sms": {
+            "type": "string",
+            "enum": [
+              "DISABLED",
+              "ACTIVE",
+              "IN_ACTIVE"
+            ]
+          },
+          "notification": {
+            "type": "string",
+            "enum": [
+              "DISABLED",
+              "ACTIVE",
+              "IN_ACTIVE"
+            ]
           }
         }
       }

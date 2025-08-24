@@ -4,7 +4,7 @@ import { Setting, settingTypes } from 'src/_modules/settings/settings';
 
 export async function seedSettings(prisma: PrismaClient) {
 for (const setting of settingTypes as readonly Setting[]) {
-      await this.prisma.settings.upsert({
+      await prisma.settings.upsert({
         where: { setting: setting.setting },
         update: {},
         create: {

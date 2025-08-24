@@ -37,6 +37,8 @@ import { FilterModule } from 'src/_modules/filter/filter.modules';
 import { SocialMediaModule } from 'src/_modules/social-media/social-media.module';
 import { SettingsModule } from 'src/_modules/settings/settings.module';
 import { SystemNotificationModule } from 'src/_modules/system-notification/system-notification.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { MaintenanceInterceptor } from 'src/globals/interceptors/maintance.interceptor';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -88,7 +90,12 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
      SystemNotificationModule
   ],
   controllers: [AppController, SwaggerDiffController],
-  providers: [AppService, NotificationService],
+  providers: [AppService, NotificationService,
+   {
+      provide: APP_INTERCEPTOR,
+      useClass: MaintenanceInterceptor, // يشتغل Global بشكل أوتوماتيك
+    },
+  ],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
