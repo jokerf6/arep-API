@@ -91,9 +91,32 @@ export const permissions = [
     default: true,
     methods: ['get', 'patch'],
   },
-
-
+  {
+    name: { en: 'filters', ar: 'الفلاتر' },
+    prefix: 'filters',
+    default: true,
+    methods: ['get'],
+  },
+  {
+    name: { en: 'settings', ar: 'الإعدادات' },
+    prefix: 'settings',
+    default: false,
+    methods: ['get', 'patch'],
+  },
+  {
+    name: { en: 'Social Media', ar: 'وسائل التواصل الاجتماعي' },
+    prefix: 'social-media',
+    default: false,
+    methods: ['post', 'get', 'patch', 'delete'],
+  },
+    {
+    name: { en: 'System Notifications', ar: 'إشعارات النظام' },
+    prefix: 'system-notifications',
+    default: false,
+    methods: ['get', 'patch',],
+  },
   
+
 ];
 
 type Permission = (typeof permissions)[number];

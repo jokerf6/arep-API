@@ -1,0 +1,17 @@
+model SocialMedia {
+  id Int @id @default(autoincrement())
+
+  // Normal Fields
+  platform String  @unique
+  link     String
+  image    String
+  isActive Boolean @map("is_active")
+
+  // Default Fields
+  createdAt DateTime  @default(now()) @map("created_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  // Direct Relations
+
+  @@map("social_medias")
+}

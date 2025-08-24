@@ -13,6 +13,8 @@ const customerPermissions: PermissionMap = {
   'stores/favourite': ['get', 'patch'],
   services: ['get'],
   'services/favourite': ['get', 'patch'],
+  filters:['get'],
+  'social-media': ['get']
 } as const satisfies PermissionMap;
 
 export const CustomerRole = {

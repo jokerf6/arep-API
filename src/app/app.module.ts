@@ -34,6 +34,9 @@ import { BannerModule } from 'src/_modules/banner/banner.module';
 import { CategoryModule } from 'src/_modules/category/category.module';
 import { StoreModule } from 'src/_modules/store/store.module';
 import { FilterModule } from 'src/_modules/filter/filter.modules';
+import { SocialMediaModule } from 'src/_modules/social-media/social-media.module';
+import { SettingsModule } from 'src/_modules/settings/settings.module';
+import { SystemNotificationModule } from 'src/_modules/system-notification/system-notification.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -79,7 +82,10 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
      CategoryModule,
      StoreModule,
      ServiceModule,
-     FilterModule
+     FilterModule,
+     SettingsModule,
+     SocialMediaModule,
+     SystemNotificationModule
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService],

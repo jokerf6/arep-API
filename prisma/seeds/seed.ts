@@ -19,6 +19,7 @@ import { seedCity } from './city.seed';
 import { seedPlan } from './plan.seed';
 import { seedSubcategory } from './subCategory.seed';
 import { seedService } from './service.seed';
+import { seedSettings } from './settings.seed';
 
 const prisma = new PrismaClient();
 
@@ -32,6 +33,7 @@ async function main() {
   await seedNotification(prisma);
   await seedModule(prisma);
   await seedCategory(prisma);
+  await seedSettings(prisma);
 
 
   // await seedLanguage(prisma);

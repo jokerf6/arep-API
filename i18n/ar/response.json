@@ -200,5 +200,11 @@
   "lat and lng are required for visitors to find stores": "lat and lng are required for visitors to find stores",
   "user deleted successfully": "user deleted successfully",
   "range fetched successfully": "range fetched successfully",
-  "slots fetched successfully": "slots fetched successfully"
+  "slots fetched successfully": "slots fetched successfully",
+  "SocialMedia created successfully": "SocialMedia created successfully",
+  "SocialMedia updated successfully": "SocialMedia updated successfully",
+  "SocialMedia fetched successfully": "SocialMedia fetched successfully",
+  "delete SocialMedia successfully": "delete SocialMedia successfully",
+  "system-notification updated successfully": "system-notification updated successfully",
+  "system-notification fetched successfully": "system-notification fetched successfully"
 }
