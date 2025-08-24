@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/globals/services/prisma.service';
 import { FilterSlotsDTO } from '../dto/filter.dto';
+import { PrivateSettingService } from 'src/globals/services/settings.service';
 
 
 
@@ -8,6 +9,7 @@ import { FilterSlotsDTO } from '../dto/filter.dto';
 export class FilterService {
   constructor(
     private readonly prisma: PrismaService,
+    private readonly settingService: PrivateSettingService,
   ) {}
 
 
@@ -85,10 +87,8 @@ async getPriceSlots(dto: FilterSlotsDTO) {
 }
 
 async getKmMaxRange(){
-
-  //back again
-  const maxKm = 50;
-  return {maxKm}; 
+  const maxKm = await this.settingService.getSettings(['storeNearestByKM']);
+  return {maxKm:maxKm.shippingKMCharge}; 
 }
 
 

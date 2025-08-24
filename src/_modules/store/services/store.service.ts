@@ -14,12 +14,14 @@ import {
 } from '../prisma-args/store.prisma.args';
 import { LanguagesService } from '../../languages/languages.service';
 import { StoreNearestService } from './store.nearest.service';
+import { PrivateSettingService } from 'src/globals/services/settings.service';
 @Injectable()
 export class StoreService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly nearestService: StoreNearestService,
     private readonly Language: LanguagesService,
+    private readonly settingService: PrivateSettingService,
   ) {}
 
   async create(data: CreateStoreDTO) {
@@ -35,7 +37,8 @@ export class StoreService {
   async findAll(filters: FilterStoreDTO) {
     const customerId = filters?.customerId;
     const languages = await this.Language.getCashedLanguages();
-    const stores = await this.nearestService.getNearestStores(filters?.km || 50, filters?.limit || 10, filters);
+    const maxKm = await this.settingService.getSettings(['storeNearestByKM']);
+    const stores = await this.nearestService.getNearestStores(filters?.km || maxKm.shippingKMCharge, filters?.limit || 10, filters);
     const args = getStoreArgs(filters, languages, stores);
     const argsWithSelect = getStoreArgsWithSelect(customerId);
 
@@ -50,7 +53,8 @@ export class StoreService {
     const customerId = filters?.customerId;
     let stores = [];
     if (customerId) {
-      stores = await this.nearestService.getNearestStores(filters?.km || 50, filters?.limit || 10, filters);
+          const maxKm = await this.settingService.getSettings(['storeNearestByKM']);
+      stores = await this.nearestService.getNearestStores(filters?.km || maxKm.shippingKMCharge, filters?.limit || 10, filters);
     }
     const languages = await this.Language.getCashedLanguages();
     const args = getStoreArgs(filters, languages, stores);

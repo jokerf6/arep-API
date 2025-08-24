@@ -33,8 +33,21 @@ model Store {
   Banner Banner[] @relation(name: "BannerToStore")
   Favorites FavoriteStore[]
   Services Service[]
+    StoreSchedule          StoreSchedule[]
   StoreCoupons StoreCoupons[]
   @@map("stores")
+}
+
+model StoreSchedule {
+  id          Int      @id @default(autoincrement())
+  storeId     Int      @map("store_id")
+  openingTime DateTime @map("opening_time") @db.Time()
+  closingTime DateTime @map("closing_time") @db.Time()
+  day         Days
+  Store       Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  @@index([storeId])
+  @@map("store_schedule")
 }
 
 
@@ -53,4 +66,13 @@ enum StoreStatus {
   ACTIVE
   BLOCKED
   NOT_VERIFIED
+}
+enum Days {
+  SUNDAY
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
 }
