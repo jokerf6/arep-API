@@ -25,6 +25,7 @@ import { ModuleService } from './module.service';
 import { tag } from 'src/globals/helpers/tag.helper';
 import { isOne } from 'src/globals/helpers/first-or-many';
 import { selectModuleOBJ } from './prisma-args/module.prisma.args';
+import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 
 const prefix = 'modules';
 
@@ -37,6 +38,7 @@ export class ModuleController {
   ) {}
 
   @Post('/')
+  @UploadFile("image")
   @Auth({ prefix })
   async create(@Res() res: Response, @Body() body: CreateModuleDTO) {
     await this.service.create(body);
@@ -45,6 +47,7 @@ export class ModuleController {
 
   @Patch('/:id')
   @Auth({ prefix })
+  @UploadFile("image")
   @ApiRequiredIdParam()
   async update(
     @Res() res: Response,

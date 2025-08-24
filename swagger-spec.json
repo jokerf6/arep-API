@@ -3476,7 +3476,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-24T08:05:16.494Z",
+              "example": "2025-08-24T08:45:44.373Z",
               "type": "string"
             }
           },
@@ -3486,7 +3486,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-24T08:05:16.494Z",
+              "example": "2025-08-24T08:45:44.373Z",
               "type": "string"
             }
           },
@@ -3572,8 +3572,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-24T08:05:16.496Z",
-                          "endDate": "2025-08-24T08:05:16.497Z",
+                          "startDate": "2025-08-24T08:45:44.375Z",
+                          "endDate": "2025-08-24T08:45:44.375Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3596,8 +3596,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-24T08:05:16.497Z",
-                        "endDate": "2025-08-24T08:05:16.497Z",
+                        "startDate": "2025-08-24T08:45:44.375Z",
+                        "endDate": "2025-08-24T08:45:44.375Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3796,7 +3796,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-24T08:05:16.494Z",
+              "example": "2025-08-24T08:45:44.373Z",
               "type": "string"
             }
           },
@@ -3806,7 +3806,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-24T08:05:16.494Z",
+              "example": "2025-08-24T08:45:44.373Z",
               "type": "string"
             }
           },
@@ -3892,8 +3892,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-24T08:05:16.496Z",
-                          "endDate": "2025-08-24T08:05:16.497Z",
+                          "startDate": "2025-08-24T08:45:44.375Z",
+                          "endDate": "2025-08-24T08:45:44.375Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3916,8 +3916,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-24T08:05:16.497Z",
-                        "endDate": "2025-08-24T08:05:16.497Z",
+                        "startDate": "2025-08-24T08:45:44.375Z",
+                        "endDate": "2025-08-24T08:45:44.375Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4016,7 +4016,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/CreateModuleDTO"
               }
@@ -4208,7 +4208,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateModuleDTO"
               }
@@ -9414,12 +9414,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-24T08:05:16.491Z"
+            "example": "2025-08-24T08:45:44.370Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-24T08:05:16.491Z"
+            "example": "2025-08-24T08:45:44.370Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -9497,12 +9497,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-24T08:05:16.491Z"
+            "example": "2025-08-24T08:45:44.370Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-24T08:05:16.491Z"
+            "example": "2025-08-24T08:45:44.370Z"
           },
           "minDiscountValue": {
             "type": "number"
