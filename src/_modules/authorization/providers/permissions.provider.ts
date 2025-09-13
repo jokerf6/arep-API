@@ -115,6 +115,12 @@ export const permissions = [
     default: false,
     methods: ['get', 'patch',],
   },
+   {
+    name: { en: 'Fund', ar: 'رصيد المحفظة' },
+    prefix: 'fund',
+    default: false,
+    methods: ['post', 'get'],
+  },
   
 
 ];

@@ -1,0 +1,9 @@
+model Order {
+    id  Int     @id @default(autoincrement())
+     // direct relations
+  Customer    User   @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  customerId  Int
+
+
+  priceAfterDiscount Float @default(0)
+}

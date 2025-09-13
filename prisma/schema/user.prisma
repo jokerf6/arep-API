@@ -18,15 +18,18 @@ model User {
   roleKey String @map("role_key")
 
   // relations
-  OTPs          OTP[]
-  Sessions      Session[]
-  Notifications Notification[]
-  UserCoupons   UserCoupons[]
-  FavoriteStores     FavoriteStore[]
+  OTPs             OTP[]
+  Sessions         Session[]
+  Notifications    Notification[]
+  UserCoupons      UserCoupons[]
+  FavoriteStores   FavoriteStore[]
   FavoriteServices FavoriteService[]
 
-  Details       Details?
-  Address       Address[]
+  Details     Details?
+  Address     Address[]
+  Orders      Order[]
+  Fund        Fund[]
+  Transaction Transaction[]
 
   @@unique([email, roleKey])
   @@unique([phone, roleKey])

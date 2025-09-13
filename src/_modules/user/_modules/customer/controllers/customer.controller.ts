@@ -39,11 +39,11 @@ export class CustomerController {
   @ApiQuery({ type: FilterCustomerDTO })
   @ApiOkResponse(
     buildExamples([
-      { title: 'Get All Customer', paginated: true, body: [selectUserOBJ()] },
+      { title: 'Get All Customer', paginated: true, body: [{...selectUserOBJ(),  totalOrders: 0, totalSpent: 0}] },
       {
         title: 'Get Customer with id',
         paginated: false,
-        body: selectUserOBJ(),
+        body: {...selectUserOBJ(),  totalOrders: 0, totalSpent: 0}
       },
     ]),
   )

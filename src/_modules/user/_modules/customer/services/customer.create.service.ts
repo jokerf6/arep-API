@@ -28,12 +28,19 @@ export class CustomerCreateService {
 
       __includeDeleted: true as never,
     });
+    
     if (existingCustomer && existingCustomer.verified)
       throw new ConflictException('customer already exists');
 
     const hashedPassword = hashPassword(rest.password);
     rest.password = hashedPassword;
-
+    if(existingCustomer && existingCustomer.email !== rest.email){
+      await this.prisma.user.update({
+        where: { id: existingCustomer.id },
+        data: { email: rest.email, name: rest.name },
+      });
+      return existingCustomer;
+    }
     const response =
       existingCustomer && !existingCustomer.verified
         ? existingCustomer

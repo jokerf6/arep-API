@@ -207,5 +207,7 @@
   "delete SocialMedia successfully": "delete SocialMedia successfully",
   "system-notification updated successfully": "system-notification updated successfully",
   "system-notification fetched successfully": "system-notification fetched successfully",
-  "The system is currently under maintenance. Please try again later.": "The system is currently under maintenance. Please try again later."
+  "The system is currently under maintenance. Please try again later.": "The system is currently under maintenance. Please try again later.",
+  "fund created successfully": "fund created successfully",
+  "Funds returned successfully": "Funds returned successfully"
 }

@@ -2130,6 +2130,56 @@
             }
           },
           {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "phone",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "header",
             "required": false,
             "name": "Locale",
@@ -2174,7 +2224,9 @@
                             "male": true
                           },
                           "createdAt": "2025-06-26T18:17:10.000Z",
-                          "deletedAt": "2025-06-26T18:17:10.000Z"
+                          "deletedAt": "2025-06-26T18:17:10.000Z",
+                          "totalOrders": 1,
+                          "totalSpent": 1
                         }
                       ],
                       "total": 1
@@ -2197,7 +2249,9 @@
                           "male": true
                         },
                         "createdAt": "2025-06-26T18:17:10.000Z",
-                        "deletedAt": "2025-06-26T18:17:10.000Z"
+                        "deletedAt": "2025-06-26T18:17:10.000Z",
+                        "totalOrders": 1,
+                        "totalSpent": 1
                       }
                     }
                   }
@@ -2246,6 +2300,56 @@
             }
           },
           {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "phone",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "verified",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
             "in": "header",
             "required": false,
             "name": "Locale",
@@ -2290,7 +2394,9 @@
                             "male": true
                           },
                           "createdAt": "2025-06-26T18:17:10.000Z",
-                          "deletedAt": "2025-06-26T18:17:10.000Z"
+                          "deletedAt": "2025-06-26T18:17:10.000Z",
+                          "totalOrders": 1,
+                          "totalSpent": 1
                         }
                       ],
                       "total": 1
@@ -2313,7 +2419,9 @@
                           "male": true
                         },
                         "createdAt": "2025-06-26T18:17:10.000Z",
-                        "deletedAt": "2025-06-26T18:17:10.000Z"
+                        "deletedAt": "2025-06-26T18:17:10.000Z",
+                        "totalOrders": 1,
+                        "totalSpent": 1
                       }
                     }
                   }
@@ -2880,6 +2988,303 @@
         },
         "tags": [
           "Addresses"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/fund": {
+      "post": {
+        "operationId": "FundController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFundDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Fund"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "FundController_getAll",
+        "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-fund": {
+                    "summary": "Get All Fund",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "Customer": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com",
+                            "image": "https://example.com/avatar.png"
+                          },
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "deletedAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "get-fund-with-id": {
+                    "summary": "Get Fund with id",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "Customer": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "phone": "+123456789",
+                          "email": "user@example.com",
+                          "image": "https://example.com/avatar.png"
+                        },
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "deletedAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Fund"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/fund/{id}": {
+      "get": {
+        "operationId": "FundController_getAll",
+        "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-fund": {
+                    "summary": "Get All Fund",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "Customer": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com",
+                            "image": "https://example.com/avatar.png"
+                          },
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "deletedAt": "2025-06-26T18:17:10.000Z"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "get-fund-with-id": {
+                    "summary": "Get Fund with id",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "Customer": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "phone": "+123456789",
+                          "email": "user@example.com",
+                          "image": "https://example.com/avatar.png"
+                        },
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "deletedAt": "2025-06-26T18:17:10.000Z"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Fund"
         ],
         "security": [
           {
@@ -3476,7 +3881,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-24T08:45:44.373Z",
+              "example": "2025-09-13T19:49:40.701Z",
               "type": "string"
             }
           },
@@ -3486,7 +3891,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-24T08:45:44.373Z",
+              "example": "2025-09-13T19:49:40.701Z",
               "type": "string"
             }
           },
@@ -3572,8 +3977,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-24T08:45:44.375Z",
-                          "endDate": "2025-08-24T08:45:44.375Z",
+                          "startDate": "2025-09-13T19:49:40.703Z",
+                          "endDate": "2025-09-13T19:49:40.704Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3596,8 +4001,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-24T08:45:44.375Z",
-                        "endDate": "2025-08-24T08:45:44.375Z",
+                        "startDate": "2025-09-13T19:49:40.704Z",
+                        "endDate": "2025-09-13T19:49:40.704Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3796,7 +4201,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-24T08:45:44.373Z",
+              "example": "2025-09-13T19:49:40.701Z",
               "type": "string"
             }
           },
@@ -3806,7 +4211,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-08-24T08:45:44.373Z",
+              "example": "2025-09-13T19:49:40.701Z",
               "type": "string"
             }
           },
@@ -3892,8 +4297,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-08-24T08:45:44.375Z",
-                          "endDate": "2025-08-24T08:45:44.375Z",
+                          "startDate": "2025-09-13T19:49:40.703Z",
+                          "endDate": "2025-09-13T19:49:40.704Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -3916,8 +4321,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-08-24T08:45:44.375Z",
-                        "endDate": "2025-08-24T08:45:44.375Z",
+                        "startDate": "2025-09-13T19:49:40.704Z",
+                        "endDate": "2025-09-13T19:49:40.704Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -9279,6 +9684,10 @@
           "male": {
             "type": "boolean",
             "example": true
+          },
+          "active": {
+            "type": "boolean",
+            "example": true
           }
         }
       },
@@ -9318,6 +9727,21 @@
             "example": true
           }
         }
+      },
+      "CreateFundDTO": {
+        "type": "object",
+        "properties": {
+          "customerId": {
+            "type": "number"
+          },
+          "price": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "customerId",
+          "price"
+        ]
       },
       "CreateLanguagesDTO": {
         "type": "object",
@@ -9414,12 +9838,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-24T08:45:44.370Z"
+            "example": "2025-09-13T19:49:40.700Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-24T08:45:44.370Z"
+            "example": "2025-09-13T19:49:40.700Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -9497,12 +9921,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-24T08:45:44.370Z"
+            "example": "2025-09-13T19:49:40.700Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-08-24T08:45:44.370Z"
+            "example": "2025-09-13T19:49:40.700Z"
           },
           "minDiscountValue": {
             "type": "number"

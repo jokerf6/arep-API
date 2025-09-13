@@ -42,7 +42,9 @@ const getExampleValue = (key?: string, obj?: any): any => {
     lowerKey.includes('total') ||
     lowerKey.includes('price') ||
     lowerKey.includes('wallet') ||
-    lowerKey.includes('points')
+    lowerKey.includes('points') ||
+    lowerKey.includes('orders') 
+
   )
     return 1;
 

@@ -39,6 +39,7 @@ import { SettingsModule } from 'src/_modules/settings/settings.module';
 import { SystemNotificationModule } from 'src/_modules/system-notification/system-notification.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MaintenanceInterceptor } from 'src/globals/interceptors/maintance.interceptor';
+import { TransactionModule } from 'src/_modules/transaction/transaction.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -87,13 +88,14 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
      FilterModule,
      SettingsModule,
      SocialMediaModule,
-     SystemNotificationModule
+     SystemNotificationModule,
+     TransactionModule
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService,
    {
       provide: APP_INTERCEPTOR,
-      useClass: MaintenanceInterceptor, // يشتغل Global بشكل أوتوماتيك
+      useClass: MaintenanceInterceptor, 
     },
   ],
 })

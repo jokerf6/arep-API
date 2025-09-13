@@ -6,6 +6,7 @@ import {
   filterKey,
 } from 'src/globals/helpers/prisma-filters';
 import { FilterCustomerDTO } from '../dto/filter.customer.dto';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 
 export const getCustomerArgs = (query: FilterCustomerDTO) => {
   const { page, limit, ...filter } = query;
@@ -13,16 +14,22 @@ export const getCustomerArgs = (query: FilterCustomerDTO) => {
     containsInFields(['name'], filter?.name),
     containsInFields(['email'], filter?.email),
     containsInFields(['phone'], filter?.phone),
+    filterKey<User>(filter, 'active'),
+    filterKey<User>(filter, 'verified'),
     filterKey<User>(filter, 'id'),
+    {
+      roleKey:RolesKeys.CUSTOMER
+    }
   ]
     .filter((x) => x)
     .flat();
 
   return {
     ...paginateOrNot({ limit, page }, query?.id),
-    select: selectUserOBJ(),
+    select: {...selectUserOBJ()},
     where: {
       AND: searchArray,
     },
   } satisfies Prisma.UserFindManyArgs;
 };
+
