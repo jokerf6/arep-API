@@ -18,6 +18,8 @@ const adminPermissions: PermissionMap = {
   'social-media': ['post', 'get', 'patch', 'delete'],
   'system-notifications': ['get', 'patch'],
   fund: ['post', 'get'],
+  coupons: ['post', 'get', 'patch', 'delete'],
+
 
 
 

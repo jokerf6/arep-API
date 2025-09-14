@@ -121,8 +121,13 @@ export const permissions = [
     default: false,
     methods: ['post', 'get'],
   },
+     {
+    name: { en: 'Coupons', ar: 'القسائم' },
+    prefix: 'coupons',
+    default: false,
+    methods: ['post', 'get', 'patch', 'delete'],
+  },
   
-
 ];
 
 type Permission = (typeof permissions)[number];

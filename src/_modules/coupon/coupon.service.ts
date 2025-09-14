@@ -9,8 +9,8 @@ import {
   UpdateCouponDTO,
 } from './dto/coupon.dto';
 
-import { getCouponArgs, getCouponArgsWithSelect } from './prisma-args/coupon.prisma.args';
 import { LanguagesService } from '../languages/languages.service';
+import { getCouponArgs, getCouponArgsWithSelect } from './prisma-args/coupon.prisma.args';
 @Injectable()
 export class CouponService {
   constructor(
@@ -18,16 +18,35 @@ export class CouponService {
     private readonly Language:LanguagesService
   ) {}
 
-  async create(data: CreateCouponDTO) {
-      // Convert title from JSON (class) to plain object if necessary
+  async create(body: CreateCouponDTO) {
+    const {userId,storeId,...data} = body;
       await this.prisma.coupon.create({
-        data
+        data:{
+          ...data,
+          ...(storeId && {StoreCoupons:{
+            connect:{id:storeId}
+          }})
+          ,
+          ...(userId && {UserCoupons:{
+            connect:{id:userId}
+          }})
+        }
       });
   }
 
   async update(id:Id, body: UpdateCouponDTO) {
+    const {userId,storeId,...data} = body;
    
-    await this.prisma.coupon.update({ where: { id }, data: body });
+    await this.prisma.coupon.update({ where: { id }, data: {
+      ...data,
+      ...(storeId && {StoreCoupons:{
+        connect:{id:storeId}
+      }})
+      ,
+      ...(userId && {UserCoupons:{
+        connect:{id:userId}
+      }}) 
+    } });
    
   }
 

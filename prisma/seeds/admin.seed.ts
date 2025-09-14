@@ -8,7 +8,7 @@ export async function seedAdmin(prisma: PrismaClient) {
     name: `admin`,
     email: process.env.EMAIL,
     phone: `+966 050999999`,
-    roleKey: RolesKeys.CUSTOMER,
+    roleKey: RolesKeys.ADMIN,
     verified: true,
     password: bcrypt.hashSync(process.env.PASSWORD, +process.env.HASH_SALT),
   };
@@ -18,7 +18,9 @@ export async function seedAdmin(prisma: PrismaClient) {
       id: 1,
     },
     create: createData,
-    update: {},
+    update: {
+      roleKey: RolesKeys.ADMIN,
+    },
   });
 
   // eslint-disable-next-line no-console

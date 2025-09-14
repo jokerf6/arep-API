@@ -1,16 +1,15 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
   Post,
   Res,
-  Delete,
 } from '@nestjs/common';
 import {
   ApiOkResponse,
-  ApiOperation,
   ApiQuery,
   ApiTags,
   PartialType,
@@ -22,11 +21,11 @@ import { Filter } from 'src/decorators/param/filter.decorator';
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { ResponseService } from 'src/globals/services/response.service';
 
-import { CategoryService } from './category.service';
-import { tag } from 'src/globals/helpers/tag.helper';
+import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 import { isOne } from 'src/globals/helpers/first-or-many';
 import { buildExamples } from 'src/globals/helpers/generate-example.helper';
-import { UploadFile } from 'src/decorators/api/upload-file.decorator';
+import { tag } from 'src/globals/helpers/tag.helper';
+import { CategoryService } from './category.service';
 import {
   CreateCategoryDTO,
   FilterCategoryDTO,
@@ -34,7 +33,7 @@ import {
 } from './dto/category.dto';
 import { selectCategoryOBJ } from './prisma-args/category.prisma.args';
 
-const prefix = 'subCategories';
+const prefix = 'categories';
 
 @Controller(prefix)
 @ApiTags(tag(prefix))
@@ -45,7 +44,6 @@ export class CategoryController {
   ) {}
 
   @Post('/')
-  @ApiOperation({ deprecated: true })
   @Auth({ prefix })
   @UploadFile('image')
   async create(@Res() res: Response, @Body() body: CreateCategoryDTO) {
@@ -56,7 +54,6 @@ export class CategoryController {
   @Patch('/:id')
   @Auth({ prefix })
   @UploadFile('image')
-  @ApiOperation({ deprecated: true })
   @ApiRequiredIdParam()
   async update(
     @Res() res: Response,
@@ -98,7 +95,6 @@ export class CategoryController {
   }
 
   @Delete('/:id')
-  @ApiOperation({ deprecated: true })
   @ApiRequiredIdParam()
   @Auth({ prefix })
   async delete(@Res() res: Response, @Param() { id }: RequiredIdParam) {

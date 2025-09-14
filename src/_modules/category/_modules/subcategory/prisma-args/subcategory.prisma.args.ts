@@ -1,4 +1,4 @@
-import { Prisma, Category, Language } from '@prisma/client';
+import { Category, Language, Prisma } from '@prisma/client';
 import { paginateOrNot } from 'src/globals/helpers/pagination-params';
 import {
   filterJsonKeyWithRawSQL,
@@ -16,6 +16,8 @@ export const getSubCategoryArgs = (
     filterKey<Category>(filter, 'id'),
     filterJsonKeyWithRawSQL<Category>(filter, 'name', languages),
     filterKey<Category>(filter, 'parentId'),
+    filterKey<Category>(filter, 'moduleId'),
+
   ].filter(Boolean) as Prisma.CategoryWhereInput[];
 
   const orderArray = [orderKey('id', 'id', orderBy)].filter(
@@ -26,7 +28,12 @@ export const getSubCategoryArgs = (
     ...paginateOrNot({ limit, page }, query?.id),
     orderBy: orderArray,
     where: {
-      AND: searchArray,
+      AND: [
+        ...searchArray,
+        {
+          parentId: { not: null },
+        }
+      ],
     },
   } as Prisma.CategoryFindManyArgs;
 };

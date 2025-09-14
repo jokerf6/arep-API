@@ -1,17 +1,18 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/globals/services/prisma.service';
 
 import { firstOrMany } from 'src/globals/helpers/first-or-many';
 import {
+  CreateSubCategoryDTO,
   FilterSubCategoryDTO,
   UpdateSubCategoryDTO,
 } from './dto/subcategory.dto';
 
+import { LanguagesService } from 'src/_modules/languages/languages.service';
 import {
   getSubCategoryArgs,
   getSubCategoryArgsWithSelect,
 } from './prisma-args/subcategory.prisma.args';
-import { LanguagesService } from 'src/_modules/languages/languages.service';
 @Injectable()
 export class SubCategoryService {
   constructor(
@@ -19,11 +20,23 @@ export class SubCategoryService {
     private readonly prisma: PrismaService,
   ) {}
 
-  // async create(data: CreateSubCategoryDTO) {
-  //   await this.prisma.category.create({
-  //     data,
-  //   });
-  // }
+  async create(data: CreateSubCategoryDTO) {
+    const parentCategory = await this.prisma.category.findUnique({
+      where: {
+        id: data.parentId,
+        parentId: null
+      },
+    });
+    if(!parentCategory){
+      throw new NotFoundException('Invalid parent category');
+    }
+    await this.prisma.category.create({
+      data:{
+        ...data,
+        moduleId:parentCategory.moduleId,
+      },
+    });
+  }
 
   async update(id: Id, body: UpdateSubCategoryDTO) {
     await this.prisma.category.update({ where: { id }, data: body });
