@@ -14,7 +14,6 @@ const BLOCK_DURATION_SECONDS = env('BLOCK_DURATION_SECONDS'); // 1 hour
 @Injectable()
 export class RateLimitMiddleware implements NestMiddleware {
   async use(req: Request, _: Response, next: NextFunction) {
-    next();
 
     if (req.baseUrl === '/media') {
       // Skip rate limiting for media requests
@@ -26,10 +25,10 @@ export class RateLimitMiddleware implements NestMiddleware {
 
     const isBlocked = await redisClient.get(blockKey);
     if (isBlocked) {
-      throw new HttpException(
-        'Too many requests - try again later',
-        HttpStatus.TOO_MANY_REQUESTS,
-      );
+      // throw new HttpException(
+      //   'Too many requests - try again later',
+      //   HttpStatus.TOO_MANY_REQUESTS,
+      // );
     }
 
     const current = await redisClient.incr(key);
