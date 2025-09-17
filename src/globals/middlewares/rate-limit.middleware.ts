@@ -37,10 +37,11 @@ export class RateLimitMiddleware implements NestMiddleware {
     }
     if (current > MAX_REQUESTS) {
       await redisClient.set(blockKey, '1', 'EX', BLOCK_DURATION_SECONDS);
-      throw new HttpException(
-        'Too many requests - you are blocked for 1 hour',
-        HttpStatus.TOO_MANY_REQUESTS,
-      );
+      // TODO remove comment when we on production
+      // throw new HttpException(
+      //   'Too many requests - you are blocked for 1 hour',
+      //   HttpStatus.TOO_MANY_REQUESTS,
+      // );
     }
 
     next();
