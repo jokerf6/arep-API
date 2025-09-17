@@ -14,6 +14,8 @@ const BLOCK_DURATION_SECONDS = env('BLOCK_DURATION_SECONDS'); // 1 hour
 @Injectable()
 export class RateLimitMiddleware implements NestMiddleware {
   async use(req: Request, _: Response, next: NextFunction) {
+    next();
+
     if (req.baseUrl === '/media') {
       // Skip rate limiting for media requests
       return next();
