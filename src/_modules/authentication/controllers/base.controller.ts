@@ -3,6 +3,7 @@ import { ApiParam, ApiTags } from '@nestjs/swagger';
 import { SessionType } from '@prisma/client';
 import { Response } from 'express';
 import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 import { cookieConfig } from 'src/configs/cookie.config';
 import { ApiDefaultOkResponse } from 'src/globals/helpers/generate-example.helper';
 import { tag } from 'src/globals/helpers/tag.helper';
@@ -13,9 +14,8 @@ import { ForgetPasswordDTO } from '../dto/forgot-password.dto';
 import { BioLoginDTO, EmailPasswordLoginDTO } from '../dto/login.dto';
 import { ResetPasswordDTO } from '../dto/reset-password.dto';
 import { VerifyOtpDTO } from '../dto/verify-otp.dto';
-import { BaseAuthenticationService } from '../services/base.authentication.service';
-import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 import { RoleInterceptor } from '../interceptor/role.interceptor';
+import { BaseAuthenticationService } from '../services/base.authentication.service';
 
 const prefix = 'authentication';
 @Controller(prefix)
@@ -46,6 +46,7 @@ export class BaseAuthenticationController {
       AccessToken,
     });
   }
+
 
   @Post('bio')
   async loginWithBIO(
@@ -158,11 +159,12 @@ export class BaseAuthenticationController {
   @Post('verify-reset-password')
   @Auth({ type: SessionType.VERIFY })
   async verifyOtp(
+    @IpAddress() ip: string,
     @Res() res: Response,
     @Body() dto: VerifyOtpDTO,
     @CurrentUser() currentUser: CurrentUser,
   ) {
-    const { user, token } = await this.service.verifyReset(currentUser.id, dto);
+    const { user, token } = await this.service.verifyReset(currentUser.id, dto,ip);
 
     res.cookie(env('RESET_PASSWORD_TOKEN_COOKIE_KEY'), token, cookieConfig);
 

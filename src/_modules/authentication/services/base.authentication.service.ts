@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { OTPType, SessionType, User } from '@prisma/client';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 import { HelperService } from 'src/_modules/user/services/helper.service';
 import { UserService } from 'src/_modules/user/services/user.service';
 import { hashPassword } from 'src/globals/helpers/password.helpers';
@@ -10,7 +11,6 @@ import { ResetPasswordDTO } from '../dto/reset-password.dto';
 import { VerifyOtpDTO } from '../dto/verify-otp.dto';
 import { TokenService } from './jwt.service';
 import { OTPService } from './otp.service';
-import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 
 @Injectable()
 export class BaseAuthenticationService {
@@ -167,11 +167,12 @@ export class BaseAuthenticationService {
     };
   }
 
-  async verifyReset(userId: Id, dto: VerifyOtpDTO) {
+  async verifyReset(userId: Id, dto: VerifyOtpDTO,ip: string) { 
     const user = await this.userHelper.userExist({ id: userId });
     await this.otpService.verifyOTP(userId, dto.otp, OTPType.PASSWORD_RESET);
     const token = await this.tokenService.generateToken(
       userId,
+      ip,
       undefined,
       SessionType.PASSWORD_RESET,
     );
@@ -191,4 +192,5 @@ export class BaseAuthenticationService {
     );
     return { user: data, AccessToken };
   }
+ 
 }
