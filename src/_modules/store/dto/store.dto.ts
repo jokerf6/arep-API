@@ -45,8 +45,8 @@ export class CreateStoreDTO {
 
   @Required()
   @ValidateNumber({ allowNegative: true })
-  @Min(-90)
-  @Max(90)
+  @Min(-180)
+  @Max(180)
   lng: number;
 
   @Required()

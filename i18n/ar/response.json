@@ -209,5 +209,6 @@
   "system-notification fetched successfully": "system-notification fetched successfully",
   "The system is currently under maintenance. Please try again later.": "The system is currently under maintenance. Please try again later.",
   "fund created successfully": "fund created successfully",
-  "Funds returned successfully": "Funds returned successfully"
+  "Funds returned successfully": "Funds returned successfully",
+  "Invalid parent category": "Invalid parent category"
 }
