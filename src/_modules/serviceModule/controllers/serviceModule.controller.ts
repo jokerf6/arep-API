@@ -1,6 +1,8 @@
 import {
+  Body,
   Controller,
   Get,
+  Post,
   Res,
   UseInterceptors,
 } from '@nestjs/common';
@@ -14,9 +16,11 @@ import { tag } from 'src/globals/helpers/tag.helper';
 import { isOne } from 'src/globals/helpers/first-or-many';
 import { ServiceModuleService } from '../services/storeModule.service';
 import { selectServiceOBJ } from '../prisma-args/service.prisma.args';
-import { FilterServiceDTO } from '../dto/service.dto';
+import { CreateServiceDTO, FilterServiceDTO } from '../dto/service.dto';
 import { AuthServiceInterceptor } from '../interceptors/auth.aervice.interceptor';
 import { ServiceDTO } from '../interfaces/service.interface';
+import { UploadFile } from 'src/decorators/api/upload-file.decorator';
+import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
 
 const prefix = 'services';
 
@@ -69,6 +73,13 @@ export class ServiceModuleController {
       total,
     });
   }
-
+ @Post('/')
+  @Auth({ prefix })
+  @UploadFile('image', 'service', )
+  @AttachStoreId()
+  async create(@Res() res: Response, @Body() body: CreateServiceDTO) {
+    await this.service.create(body);
+    return this.response.created(res, 'service created successfully');
+  }
   
 }

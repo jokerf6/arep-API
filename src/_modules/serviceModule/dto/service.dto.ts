@@ -54,7 +54,7 @@ export class CreateServiceDTO {
   @ValidateEnum(DiscountServiceType)
   discountType: DiscountServiceType;
 
-  @Required()
+  @Optional()
   @ValidateNumber()
   @ValidateExist<'store'>({ model: 'store' })
   storeId: Id;
