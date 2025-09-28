@@ -15,6 +15,8 @@ import {
 import { LanguagesService } from '../../languages/languages.service';
 import { StoreNearestService } from './store.nearest.service';
 import { PrivateSettingService } from 'src/globals/services/settings.service';
+import { HelpersService } from './helpers.service';
+
 @Injectable()
 export class StoreService {
   constructor(
@@ -22,12 +24,21 @@ export class StoreService {
     private readonly nearestService: StoreNearestService,
     private readonly Language: LanguagesService,
     private readonly settingService: PrivateSettingService,
+    private readonly helpersService:HelpersService
   ) {}
 
   async create(data: CreateStoreDTO) {
-    await this.prisma.store.create({
-      data,
+    const {User,...storeData}=data
+  const existingUser=  await this.helpersService.isUserExist(User)
+    await this.prisma.$transaction(async(tx)=>{
+    await tx.store.create({
+      data:{
+        ...storeData
+      },
     });
+    await this.helpersService.createUser(User,existingUser,tx)
+    })
+
   }
 
   async update(id: Id, body: UpdateStoreDTO) {

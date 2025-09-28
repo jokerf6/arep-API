@@ -24,8 +24,8 @@ model Store {
   Module   Module @relation(fields: [moduleId], references: [id])
   moduleId Int
 
-  Plan   Plan @relation(fields: [planId], references: [id])
-  planId Int
+  Plan   Plan? @relation(fields: [planId], references: [id])
+  planId Int?
 
   City   City @relation(fields: [cityId], references: [id])
   cityId Int

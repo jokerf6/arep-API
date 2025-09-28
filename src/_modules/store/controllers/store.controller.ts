@@ -42,7 +42,6 @@ export class StoreController {
   ) {}
 
   @Post('/')
-  @Auth({ prefix })
   async create(@Res() res: Response, @Body() body: CreateStoreDTO) {
     await this.service.create(body);
     return this.response.created(res, 'store created successfully');

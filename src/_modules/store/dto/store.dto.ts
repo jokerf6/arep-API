@@ -16,27 +16,46 @@ import { StoreStatus } from '@prisma/client';
 import { OptionalSwagger } from 'src/decorators/dto/validators/optional-swagger.decorator';
 import { ValidateObject } from 'src/decorators/dto/validators/validate-nested.decorator';
 import { PriceRangeDTO } from 'src/_modules/filter/dto/filter.dto';
+import { ValidatePassword } from 'src/decorators/dto/validators/validate-password.decorator';
+import { ValidatePhone } from 'src/decorators/dto/validators/validate-phone.decorator';
+import { ValidateEmail } from 'src/decorators/dto/validators/validate-email.decorator';
+export class CreateStoreUserDTO {
+  @Required()
+  @ValidateString()
+  name: string;
 
+  @Required()
+  @ValidateEmail()
+  email: string;
+
+  @Required()
+  @ValidatePhone()
+  phone: string;
+
+  @Required()
+  @ValidatePassword()
+  password: string;
+
+
+}
 export class CreateStoreDTO {
   @Required()
   @ValidateName()
   name: Json;
+ @Required()
+  @ValidateNumber()
+  @ValidateExist<'module'>({ model: 'module' })
+  moduleId: Id;
 
+  @Required()
+  @ValidateNumber()
+  @ValidateExist<'city'>({ model: 'city' })
+  cityId: Id;
   @RequiredFile()
   logo: string;
 
   @RequiredFile()
   cover: string;
-
-  @Required()
-  @ValidateString()
-  address: string;
-
-  @Required()
-  @ValidateNumber()
-  @ValidateExist<'module'>({ model: 'module' })
-  moduleId: Id;
-
   @Required()
   @Min(-90)
   @Max(90)
@@ -48,23 +67,14 @@ export class CreateStoreDTO {
   @Min(-180)
   @Max(180)
   lng: number;
-
   @Required()
-  @ValidateNumber()
-  @ValidateExist<'plan'>({ model: 'plan' })
-  planId: Id;
-
-  @Required()
-  @ValidateNumber()
-  @ValidateExist<'city'>({ model: 'city' })
-  cityId: Id;
-
-  @Required()
-  @ValidateBoolean()
-  verified: boolean;
-
+  @ValidateString()
+  address: string;
   @Required()
   phone: string;
+  @Required()
+  @ValidateObject(CreateStoreUserDTO)
+  User:CreateStoreUserDTO
 }
 export class UpdateStoreDTO extends PartialType(CreateStoreDTO) {
   @Optional()
