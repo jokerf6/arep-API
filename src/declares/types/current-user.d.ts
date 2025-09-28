@@ -9,6 +9,7 @@ declare global {
       roleKey: string;
     };
     permissions?: Permission[];
+    storeId?: Id;
   }
 }
 

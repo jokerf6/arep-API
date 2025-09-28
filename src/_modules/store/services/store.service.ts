@@ -31,18 +31,19 @@ export class StoreService {
     const {User,...storeData}=data
   const existingUser=  await this.helpersService.isUserExist(User)
     await this.prisma.$transaction(async(tx)=>{
-    await tx.store.create({
+   const store= await tx.store.create({
       data:{
         ...storeData
       },
     });
-    await this.helpersService.createUser(User,existingUser,tx)
+    await this.helpersService.createUser(User,existingUser,tx,store.id);
     })
 
   }
 
   async update(id: Id, body: UpdateStoreDTO) {
-    await this.prisma.store.update({ where: { id }, data: body });
+    const {User,...storeData}=body
+    await this.prisma.store.update({ where: { id }, data: storeData });
   }
 
   async findAll(filters: FilterStoreDTO) {

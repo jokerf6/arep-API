@@ -2,9 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/globals/services/prisma.service';
 import { firstOrMany } from 'src/globals/helpers/first-or-many';
 import { LanguagesService } from '../../languages/languages.service';
-import { FilterServiceDTO } from '../dto/service.dto';
+import { CreateServiceDTO, FilterServiceDTO } from '../dto/service.dto';
 import { getServiceArgs, getServiceArgsWithSelect } from '../prisma-args/service.prisma.args';
 import { ServiceModuleHelper } from './serviceModule.helper.service';
+import { calcPriceAfterDiscount } from 'src/globals/helpers/discountCalc.helper';
 @Injectable()
 export class ServiceModuleService {
   constructor(
@@ -12,7 +13,16 @@ export class ServiceModuleService {
     private readonly Language: LanguagesService,
     private readonly helper: ServiceModuleHelper
   ) {}
+async create(data:CreateServiceDTO,){
+  const priceAfterDiscount=calcPriceAfterDiscount(data.discount,data.discountType,data.price);
+  await this.prisma.service.create({
+    data: {
+      ...data,
+      priceAfterDiscount,
 
+    },
+  });
+}
   async findAll(filters: FilterServiceDTO) {
     const languages = await this.Language.getCashedLanguages();
     const args = getServiceArgs(filters, languages);

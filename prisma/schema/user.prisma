@@ -8,7 +8,8 @@ model User {
   active   Boolean @default(true)
   deviceId String? @unique @map("device_id")
   image    String  @default("uploads/default.png")
-
+storeId Int? @unique
+Store   Store? @relation(fields: [storeId], references: [id], onDelete: Cascade)
   // default columns
   createdAt DateTime  @default(now()) @map("created_at")
   deletedAt DateTime? @map("deleted_at")

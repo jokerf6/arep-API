@@ -3883,7 +3883,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-09-28T10:37:05.671Z",
+              "example": "2025-09-28T12:06:31.166Z",
               "type": "string"
             }
           },
@@ -3893,7 +3893,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-09-28T10:37:05.671Z",
+              "example": "2025-09-28T12:06:31.167Z",
               "type": "string"
             }
           },
@@ -3979,8 +3979,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-09-28T10:37:05.675Z",
-                          "endDate": "2025-09-28T10:37:05.675Z",
+                          "startDate": "2025-09-28T12:06:31.172Z",
+                          "endDate": "2025-09-28T12:06:31.172Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4003,8 +4003,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-09-28T10:37:05.675Z",
-                        "endDate": "2025-09-28T10:37:05.675Z",
+                        "startDate": "2025-09-28T12:06:31.172Z",
+                        "endDate": "2025-09-28T12:06:31.172Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4203,7 +4203,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-09-28T10:37:05.671Z",
+              "example": "2025-09-28T12:06:31.166Z",
               "type": "string"
             }
           },
@@ -4213,7 +4213,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-09-28T10:37:05.671Z",
+              "example": "2025-09-28T12:06:31.167Z",
               "type": "string"
             }
           },
@@ -4299,8 +4299,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-09-28T10:37:05.675Z",
-                          "endDate": "2025-09-28T10:37:05.675Z",
+                          "startDate": "2025-09-28T12:06:31.172Z",
+                          "endDate": "2025-09-28T12:06:31.172Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4323,8 +4323,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-09-28T10:37:05.675Z",
-                        "endDate": "2025-09-28T10:37:05.675Z",
+                        "startDate": "2025-09-28T12:06:31.172Z",
+                        "endDate": "2025-09-28T12:06:31.172Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -9894,12 +9894,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-09-28T10:37:05.669Z"
+            "example": "2025-09-28T12:06:31.163Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-09-28T10:37:05.669Z"
+            "example": "2025-09-28T12:06:31.163Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -9977,12 +9977,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-09-28T10:37:05.669Z"
+            "example": "2025-09-28T12:06:31.163Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-09-28T10:37:05.669Z"
+            "example": "2025-09-28T12:06:31.163Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -10173,12 +10173,45 @@
           "max"
         ]
       },
+      "CreateStoreUserDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@test.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+966 0509999999"
+          },
+          "password": {
+            "type": "string",
+            "example": "Default@123",
+            "description": "Password must be: 8+ characters, 1 uppercase, 1 lowercase, 1 number, 1 special character"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "phone",
+          "password"
+        ]
+      },
       "CreateStoreDTO": {
         "type": "object",
         "properties": {
           "name": {
             "type": "object",
             "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "moduleId": {
+            "type": "number"
+          },
+          "cityId": {
+            "type": "number"
           },
           "logo": {
             "type": "string",
@@ -10188,44 +10221,33 @@
             "type": "string",
             "format": "binary"
           },
-          "address": {
-            "type": "string"
-          },
-          "moduleId": {
-            "type": "number"
-          },
           "lat": {
             "type": "number"
           },
           "lng": {
             "type": "number"
           },
-          "planId": {
-            "type": "number"
-          },
-          "cityId": {
-            "type": "number"
-          },
-          "verified": {
-            "type": "boolean",
-            "example": true
+          "address": {
+            "type": "string"
           },
           "phone": {
             "type": "string"
+          },
+          "User": {
+            "$ref": "#/components/schemas/CreateStoreUserDTO"
           }
         },
         "required": [
           "name",
+          "moduleId",
+          "cityId",
           "logo",
           "cover",
-          "address",
-          "moduleId",
           "lat",
           "lng",
-          "planId",
-          "cityId",
-          "verified",
-          "phone"
+          "address",
+          "phone",
+          "User"
         ]
       },
       "UpdateStoreDTO": {
@@ -10235,6 +10257,12 @@
             "type": "object",
             "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           },
+          "moduleId": {
+            "type": "number"
+          },
+          "cityId": {
+            "type": "number"
+          },
           "logo": {
             "type": "string",
             "format": "binary"
@@ -10243,30 +10271,20 @@
             "type": "string",
             "format": "binary"
           },
-          "address": {
-            "type": "string"
-          },
-          "moduleId": {
-            "type": "number"
-          },
           "lat": {
             "type": "number"
           },
           "lng": {
             "type": "number"
           },
-          "planId": {
-            "type": "number"
-          },
-          "cityId": {
-            "type": "number"
-          },
-          "verified": {
-            "type": "boolean",
-            "example": true
+          "address": {
+            "type": "string"
           },
           "phone": {
             "type": "string"
+          },
+          "User": {
+            "$ref": "#/components/schemas/CreateStoreUserDTO"
           },
           "temporarilyClosed": {
             "type": "boolean",

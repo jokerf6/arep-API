@@ -39,13 +39,13 @@ export class HelpersService {
       name:true,
       verified:true
     }
-  }>,tx:Prisma.TransactionClient){
+  }>,tx:Prisma.TransactionClient,storeId:Id){
         const hashedPassword = hashPassword(data.password);
         data.password = hashedPassword;
         if(existingUser && existingUser.email !== data.email){
           await tx.user.update({
             where: { id: existingUser.id },
-            data: { email: data.email, name: data.name },
+            data: { email: data.email, name: data.name , storeId,},
           });
           return existingUser;
         }
@@ -56,6 +56,7 @@ export class HelpersService {
                 data: {
                   ...data,
                   roleKey: RolesKeys.STORE,
+                  storeId,
            verified:true
                 },
                 select: { email: true, phone: true, id: true, name: true },
