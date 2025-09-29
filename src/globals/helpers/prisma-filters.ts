@@ -35,7 +35,7 @@ export function filterKey<T>(
       : undefined;
   }
 }
-export async function filterJsonKeyWithRawSQL<T>(
+export  function filterJsonKeyWithRawSQL<T>(
   filters: Partial<{
     [key in keyof T]: string | any[] | number | boolean | Date;
   }>,

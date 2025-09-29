@@ -40,6 +40,8 @@ import { SystemNotificationModule } from 'src/_modules/system-notification/syste
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MaintenanceInterceptor } from 'src/globals/interceptors/maintance.interceptor';
 import { TransactionModule } from 'src/_modules/transaction/transaction.module';
+import { BankAccountModule } from 'src/_modules/bankAccount/bankAccount.module';
+import { BankModule } from 'src/_modules/bank/bank.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -89,7 +91,9 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
      SettingsModule,
      SocialMediaModule,
      SystemNotificationModule,
-     TransactionModule
+     TransactionModule,
+     BankModule,
+     BankAccountModule
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService,

@@ -15,7 +15,6 @@ export const getBannerArgs = (
   const searchArray = [
     filterKey<Banner>(filter, 'id'),
     filterJsonKeyWithRawSQL(filter, 'name', languages),
-    filterKey<Banner>(filter, 'name'),
     filterKey<Banner>(filter, 'storeId'),
     filterKey<Banner>(filter, 'active'),
   ].filter(Boolean) as Prisma.BannerWhereInput[];
@@ -25,7 +24,6 @@ export const getBannerArgs = (
       randomSeed: 'desc',
     },
   ].filter(Boolean) as Prisma.BannerOrderByWithRelationInput[];
-
   return {
     ...paginateOrNot({ limit, page }, query?.id),
     orderBy: orderArray,

@@ -22,7 +22,6 @@ export class UpdateBankDTO extends PartialType(CreateBankDTO) {}
 export class FilterBankDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'bank'>({ model: 'bank' })
   id?: Id;
 
   @Optional()

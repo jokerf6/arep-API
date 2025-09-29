@@ -49,7 +49,6 @@ export class SortBannerDTO {
 export class FilterBannerDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'banner'>({ model: 'banner' })
   id?: Id;
 
   @Optional()

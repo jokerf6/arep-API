@@ -16,7 +16,6 @@ export const getBankArgs = (
     filterKey<Bank>(filter, 'id'),
     filterJsonKeyWithRawSQL<Bank>(filter, 'name', languages),
   ].filter(Boolean) as Prisma.BankWhereInput[];
-
   return {
     ...paginateOrNot({ limit, page }, query?.id),
     where: {
