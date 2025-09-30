@@ -3,7 +3,7 @@ import { PermissionMap } from '../permissions.provider';
 
 const customerPermissions: PermissionMap = {
   languages: ['get'],
-  profile: ['post', 'get', 'patch'],
+  profile: ['post', 'get','delete', 'patch',],
   modules: ['get'],
   addresses: ['post', 'get', 'patch', 'delete'],
   banners: ['get'],
@@ -16,7 +16,6 @@ const customerPermissions: PermissionMap = {
   filters:['get'],
   'social-media': ['get'],
   coupons: [ 'get',],
-  users: [ 'delete',],
 
 } as const satisfies PermissionMap;
 

@@ -1,6 +1,8 @@
 import { OmitType, PartialType } from '@nestjs/swagger';
+import { OptionalFile } from 'src/_modules/media/decorators/upload.decorator';
 import { Optional } from 'src/decorators/dto/optional-input.decorator';
 import { Required } from 'src/decorators/dto/required-input.decorator';
+import { ValidateBoolean } from 'src/decorators/dto/validators/validate-boolean.decorator';
 import { ValidateEmail } from 'src/decorators/dto/validators/validate-email.decorator';
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
 import { ValidateNumber } from 'src/decorators/dto/validators/validate-number.decorator';
@@ -46,6 +48,14 @@ export class UpdateUserDTO extends OmitType(PartialType(CreateUserDTO), [
   @Optional()
   @ValidateString()
   fcm: string;
+  @OptionalFile()
+  image: string;
+  @Optional()
+  @ValidateBoolean()
+  allowNotification: boolean;
+  @Optional()
+  @ValidateBoolean()
+  male: boolean;
 }
 
 export class UpdateUserPasswordDTO {

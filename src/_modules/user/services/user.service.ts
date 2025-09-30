@@ -1,3 +1,4 @@
+import { Details } from './../../../../node_modules/.prisma/client/index.d';
 import {
   BadRequestException,
   Injectable,
@@ -111,7 +112,7 @@ export class UserService {
   }
 
   async updateCurrentUser(dto: UpdateUserDTO, userId: Id, jti: string) {
-    const { fcm, ...data } = dto;
+    const { fcm,male, ...data } = dto;
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
     });
@@ -133,6 +134,11 @@ export class UserService {
       where: { id: userId },
       data: {
         ...data,
+        Details:{
+          update:{
+            male
+          }
+        }
       },
     });
   }
