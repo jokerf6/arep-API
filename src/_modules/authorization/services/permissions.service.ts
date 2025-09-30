@@ -9,7 +9,7 @@ export class PermissionService {
 
   async get() {
     return grouped(
-      this.prisma.permission.findMany({ where: { default: false } }),
+  await    this.prisma.permission.findMany({ where: { default: false } }),
     );
   }
 

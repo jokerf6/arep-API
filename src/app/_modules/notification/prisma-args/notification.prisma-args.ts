@@ -16,7 +16,6 @@ export const getNotificationArgs = (query: FilterNotificationDTO) => {
     },
     orderBy: {
       createdAt: 'desc',
-      read: 'asc',
     },
   } as Prisma.NotificationFindManyArgs;
 };
