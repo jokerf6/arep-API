@@ -158,7 +158,7 @@ export class UserService {
     const user = await this.prisma.user.findUnique({ where: { id } });
   validateUserPassword(password, user.password)
     const hashedPassword = hashPassword(newPassword);
-    this.prisma.user.update({
+   await this.prisma.user.update({
       where: { id },
       data: {
         password: hashedPassword,
