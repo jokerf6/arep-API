@@ -12,6 +12,7 @@ export type FlattenedUser = {
   active: boolean;
   image: string;
   createdAt: Date;
+  allowNotification: boolean;
   deletedAt: Date | null;
   Details?: {
     wallet: number;
@@ -67,6 +68,7 @@ export const transformFlattenUser = (data: any | any[]): any => {
       image: user.image,
       createdAt: user.createdAt,
       deletedAt: user.deletedAt,
+      allowNotification:user.allowNotification,
     };
 
     if (user?.Role) {
