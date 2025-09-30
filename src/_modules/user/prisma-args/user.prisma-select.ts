@@ -100,6 +100,7 @@ export const selectUserOBJ = () => {
   const selectArgs: Prisma.UserSelect = {
     id: true,
     name: true,
+    allowNotification:true,
     email: true,
     phone: true,
     verified: true,

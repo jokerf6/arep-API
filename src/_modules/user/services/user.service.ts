@@ -9,7 +9,7 @@ import { PrismaService } from '../../../globals/services/prisma.service';
 
 import { OTPType, SessionType } from '@prisma/client';
 import { firstOrMany } from 'src/globals/helpers/first-or-many';
-import { hashPassword } from 'src/globals/helpers/password.helpers';
+import { hashPassword, validateUserPassword } from 'src/globals/helpers/password.helpers';
 import { VerifyResetOtpDTO } from '../../authentication/dto/reset-password.dto';
 import { TokenService } from '../../authentication/services/jwt.service';
 import { OTPService } from '../../authentication/services/otp.service';
@@ -156,9 +156,7 @@ export class UserService {
   async updatePassword(id: Id, data: UpdateUserPasswordDTO) {
     const { password, newPassword } = data;
     const user = await this.prisma.user.findUnique({ where: { id } });
-    if (user.password !== hashPassword(password)) {
-      throw new BadRequestException('INVALID_CREDENTIALS');
-    }
+  validateUserPassword(password, user.password)
     const hashedPassword = hashPassword(newPassword);
     this.prisma.user.update({
       where: { id },
