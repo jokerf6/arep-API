@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  Patch,
   Post,
   Res,
   UseInterceptors,
@@ -16,11 +18,13 @@ import { tag } from 'src/globals/helpers/tag.helper';
 import { isOne } from 'src/globals/helpers/first-or-many';
 import { ServiceModuleService } from '../services/storeModule.service';
 import { selectServiceOBJ } from '../prisma-args/service.prisma.args';
-import { CreateServiceDTO, FilterServiceDTO } from '../dto/service.dto';
+import { CreateServiceDTO, FilterServiceDTO, UpdateServiceDTO } from '../dto/service.dto';
 import { AuthServiceInterceptor } from '../interceptors/auth.aervice.interceptor';
 import { ServiceDTO } from '../interfaces/service.interface';
 import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
+import { StripFieldsIfNoPermission } from 'src/decorators/api/permissionStripInterceptor.decorator';
+import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 
 const prefix = 'services';
 
@@ -79,6 +83,20 @@ export class ServiceModuleController {
   @AttachStoreId()
   async create(@Res() res: Response, @Body() body: CreateServiceDTO) {
     await this.service.create(body);
+    return this.response.created(res, 'service created successfully');
+  }
+   @Patch('/')
+  @Auth({ prefix })
+  @UploadFile('image', 'service', )
+  @AttachStoreId()
+  @StripFieldsIfNoPermission({
+    prefix,
+    restrictedFields:['status']
+  })
+  @ApiRequiredIdParam('id')
+  async update(@Res() res: Response, @Body() body: UpdateServiceDTO,@Param('id') id: Id) {
+    // await this.service.create(body);
+    console.log(body)
     return this.response.created(res, 'service created successfully');
   }
   

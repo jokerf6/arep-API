@@ -30,6 +30,9 @@ import {
   selectStoreOBJWithFavourite,
 } from '../prisma-args/store.prisma.args';
 import { AuthStoreInterceptor } from '../interceptors/auth.store.interceptor';
+import { UploadMultipleFiles } from 'src/decorators/api/upload-file.decorator';
+import { StripFieldsIfNoPermission } from 'src/decorators/api/permissionStripInterceptor.decorator';
+import { CanUserAccessModelRowId, CanUserAccessModelRowIdInterceptor } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
 
 const prefix = 'stores';
 
@@ -42,7 +45,19 @@ export class StoreController {
   ) {}
 
   @Post('/')
-  async create(@Res() res: Response, @Body() body: CreateStoreDTO) {
+  @UploadMultipleFiles([
+    {
+      name: 'logo',
+      fileType: 'image',
+      required: false,
+    },
+    {
+      name: 'cover',
+      fileType: 'image',
+      required: false,
+    },
+  ]) 
+   async create(@Res() res: Response, @Body() body: CreateStoreDTO) {
     await this.service.create(body);
     return this.response.created(res, 'store created successfully');
   }
@@ -50,6 +65,31 @@ export class StoreController {
   @Patch('/:id')
   @ApiRequiredIdParam()
   @Auth({ prefix })
+
+     @CanUserAccessModelRowId({
+    prefix,
+    modelName: 'store',
+    indirectRelation:true
+   })
+ @StripFieldsIfNoPermission({
+     prefix,
+     restrictedFields:['status'],
+     method:'manage'
+   })
+       @UploadMultipleFiles([
+    {
+      name: 'logo',
+      fileType: 'image',
+      required: false,
+    },
+    {
+      name: 'cover',
+      fileType: 'image',
+      required: false,
+    },
+  ]) 
+
+
   async update(
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,
