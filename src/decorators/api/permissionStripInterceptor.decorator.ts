@@ -13,7 +13,6 @@ import { validatePermissions } from 'src/globals/helpers/validatePermissions.hel
 
 function deleteByPath(obj: any, path: string) {
   if (!obj || typeof obj !== 'object') return;
-
   const parts = path.split('.');
   if (parts.length === 1) {
     delete obj[parts[0]];
@@ -42,8 +41,7 @@ export class PermissionStripInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context.switchToHttp().getRequest();
     const user = req.user as CurrentUser | undefined;
-    const reqMethod = (this.method || req.method || '').toUpperCase();
-
+    const reqMethod = (this.method || req.method || '').toLowerCase();
     // derive prefix if not passed
     let prefix = this.prefix;
     if (!prefix) {
@@ -69,7 +67,7 @@ export class PermissionStripInterceptor implements NestInterceptor {
     //     perm.method.toUpperCase() === reqMethod,
     // );
     const hasPermission=validatePermissions(
-      `${this.prefix}_${this.method.toLowerCase()}`,
+      `${this.prefix}_${reqMethod}`,
       user.permissions as any[],
     );
 

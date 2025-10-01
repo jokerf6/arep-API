@@ -60,6 +60,7 @@ export function CanUserAccessModelRowId(parameters: {
         parameters?.idParamName || 'id',
         parameters?.ownerFieldName ,
         parameters?.ownerCurrentUserField ,
+        parameters?.indirectRelation
         
       ),
     ),

@@ -43,6 +43,7 @@ export class GlobalHelpers {
         }
       })
       if(!userModel){
+
         throw new ForbiddenException('You do not have access to this resource');
       }
       if(userModel?.[`${String(modelName)}Id`]!==resourceId){
