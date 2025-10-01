@@ -7,7 +7,9 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
+import { PermissionMethod } from 'src/_modules/authorization/providers/permissions.provider';
 import { RolesKeys } from 'src/_modules/authorization/providers/roles';
+import { validatePermissions } from 'src/globals/helpers/validatePermissions.helper';
 
 function deleteByPath(obj: any, path: string) {
   if (!obj || typeof obj !== 'object') return;
@@ -32,10 +34,11 @@ function deleteByPath(obj: any, path: string) {
 export class PermissionStripInterceptor implements NestInterceptor {
   constructor(
     private readonly prefix?: string,
-    private readonly method?: string,
+    private readonly method?: PermissionMethod,
     private readonly restrictedFields: string[] = [],
   ) {}
 
+ 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context.switchToHttp().getRequest();
     const user = req.user as CurrentUser | undefined;
@@ -60,10 +63,14 @@ export class PermissionStripInterceptor implements NestInterceptor {
     }
 
     // Check if user has permission
-    const hasPermission = user?.permissions?.some(
-      (perm) =>
-        perm.prefix.toLowerCase() === prefix &&
-        perm.method.toUpperCase() === reqMethod,
+    // const hasPermission = user?.permissions?.some(
+    //   (perm) =>
+    //     perm.prefix.toLowerCase() === prefix &&
+    //     perm.method.toUpperCase() === reqMethod,
+    // );
+    const hasPermission=validatePermissions(
+      `${this.prefix}_${this.method.toLowerCase()}`,
+      user.permissions as any[],
     );
 
     if (!hasPermission) {
@@ -87,7 +94,7 @@ export class PermissionStripInterceptor implements NestInterceptor {
 
 export function StripFieldsIfNoPermission(params: {
   prefix?: string;
-  method?: string;
+  method?: PermissionMethod;
   restrictedFields: string[];
 }) {
   return applyDecorators(

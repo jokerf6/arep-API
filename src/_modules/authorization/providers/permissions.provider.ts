@@ -83,7 +83,7 @@ export const permissions = [
     name: { en: 'Service', ar: 'الخدمات' },
     prefix: 'services',
     default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
+    methods: ['post', 'get', 'patch', 'delete','manage'],
   },
   {
     name: { en: 'Service Favourite', ar: 'الخدمات المفضلة' },
@@ -132,6 +132,6 @@ export const permissions = [
 
 type Permission = (typeof permissions)[number];
 
-export type PermissionMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
+export type PermissionMethod = 'get' | 'post' | 'put' | 'patch' | 'delete'|'manage';
 
 export type PermissionMap = Record<Permission['prefix'], PermissionMethod[]>;
