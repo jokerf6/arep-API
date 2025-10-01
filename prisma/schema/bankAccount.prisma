@@ -5,5 +5,7 @@ model BankAccount{
     phone String
     ibn String
     Bank   Bank @relation(fields: [bankId], references: [id], onDelete: Cascade)
+deletedAt DateTime? @map("deleted_at")
+
     @@map("bank_accounts")
 }

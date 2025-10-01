@@ -2,6 +2,6 @@ model City {
   id Int @id @default(autoincrement())
   name Json
   Store  Store[]
-
+deletedAt DateTime? @map("deleted_at")
   @@map("city")
 }
