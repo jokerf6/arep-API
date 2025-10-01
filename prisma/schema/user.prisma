@@ -9,7 +9,7 @@ model User {
   deviceId String? @unique @map("device_id")
   image    String  @default("uploads/default.png")
   allowNotification Boolean @default(true) @map("allow_notification")
-storeId Int? @unique
+storeId Int? 
 Store   Store? @relation(fields: [storeId], references: [id], onDelete: Cascade)
   // default columns
   createdAt DateTime  @default(now()) @map("created_at")
