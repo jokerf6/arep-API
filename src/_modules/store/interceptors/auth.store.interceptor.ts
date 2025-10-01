@@ -49,7 +49,7 @@ export class AuthStoreInterceptor implements NestInterceptor {
         });
       }
     }
-    if (!filters.customerId && !filters?.lat && !filters?.lng) {
+    if (!user && !filters?.lat && !filters?.lng) {
       throw new BadRequestException(
         'lat and lng are required for visitors to find stores',
       );
