@@ -9,7 +9,7 @@ export async function seedCity(prisma: PrismaClient) {
     return;
   }
   for (let i = 1; i <= 1; i += 1) {
-    const data: City = {
+    const data = {
       id: i,
       name: `City ${i}`,
     };
