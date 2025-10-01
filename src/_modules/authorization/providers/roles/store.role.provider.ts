@@ -27,7 +27,7 @@ const storePermissions: PermissionMap = {
 export const StoreRole = {
   id: 3,
   name: { en: 'Store', ar: 'مركز' },
-  key: 'store',
+  key: 'Store',
   default: true,
   permissions: mapPermissionConfigToRole(storePermissions),
 };
