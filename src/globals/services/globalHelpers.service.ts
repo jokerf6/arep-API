@@ -39,7 +39,7 @@ export class GlobalHelpers {
     if(indirectRelation){
       const userModel=await this.prisma.user.findUnique({
         where:{
-          id:user?.id
+          id:user.id
         }
       })
       if(!userModel){
