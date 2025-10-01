@@ -106,6 +106,7 @@ export const selectUserOBJ = () => {
     email: true,
     phone: true,
     verified: true,
+    roleKey: true,
     active: true,
     image: true,
     Details: {
