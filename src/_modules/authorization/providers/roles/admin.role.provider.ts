@@ -19,6 +19,7 @@ const adminPermissions: PermissionMap = {
   'system-notifications': ['get', 'patch'],
   fund: ['post', 'get'],
   coupons: ['post', 'get', 'patch', 'delete'],
+  addresses:['post','get','patch','delete'],
 
 
 
