@@ -4,17 +4,31 @@ import { firstOrMany } from 'src/globals/helpers/first-or-many';
 import { PrismaService } from 'src/globals/services/prisma.service';
 import { CreateRoleDTO, UpdateRoleDTO } from '../dto/role.dto';
 import { selectAllRolesOBJ } from '../prisma-args/role.prisma-select';
+import { RolesKeys } from '../providers/roles';
+import { HelpersService } from './helpers.service';
 
 @Injectable()
 export class RoleService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService,private readonly helpers:HelpersService) {} 
 
   async getRoles(user:CurrentUser,id?: Id) {
     const selectArgs = selectAllRolesOBJ();
     const roles = await this.prisma.role[firstOrMany(id)]({
       select: selectArgs,
       where:{
+        OR:[
+          {
         storeId:user?.storeId||undefined
+
+          },
+          {
+            Users:{
+              some:{
+                id:user.Role.roleKey!==RolesKeys.ADMIN?user.id:undefined
+              }
+            }
+          }
+        ]
       }
     });
     let data = undefined;
@@ -32,22 +46,25 @@ export class RoleService {
     return data;
   }
 
-  async update(id: Id, data: UpdateRoleDTO) {
+  async update(id: Id, data: UpdateRoleDTO,user:CurrentUser) {
+    await this.helpers.canUserAccessRoleId(user,id);
     const { permissionIds, ...rest } = data;
     await this.prisma.role.update({
       where: { id },
       data: rest,
     });
-    await this.prisma.rolePermission.deleteMany({ where: { roleId: id } });
-    await this.prisma.rolePermission.createMany({
-      data: permissionIds.map((permissionId: Id) => ({
-        roleId: id,
-        permissionId,
-      })),
-    });
+    // await this.prisma.rolePermission.deleteMany({ where: { roleId: id } });
+    // await this.prisma.rolePermission.createMany({
+    //   data: permissionIds.map((permissionId: Id) => ({
+    //     roleId: id,
+    //     permissionId,
+    //   })),
+    // });
   }
 
-  async delete(id: Id) {
+  async delete(id: Id,user:CurrentUser) {
+    await this.helpers.canUserAccessRoleId(user,id);
+
     await this.prisma.role.delete({ where: { id } });
   }
 

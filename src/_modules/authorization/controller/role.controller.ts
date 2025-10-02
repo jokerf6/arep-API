@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
+import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
 import {
   ApiOptionalIdParam,
   ApiRequiredIdParam,
@@ -25,7 +26,6 @@ import {
   selectRoleOBJ,
 } from '../prisma-args/role.prisma-select';
 import { RoleService } from '../services/roles.service';
-import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
 
 const prefix = 'roles';
 @Controller(prefix)
@@ -53,8 +53,12 @@ export class RoleController {
       },
     ]),
   )
-  async get(@Res() res: Response, @Param() { id }: OptionalIdParam,@CurrentUser() user:CurrentUser) {
-    const roles = await this.service.getRoles(user,id);
+  async get(
+    @Res() res: Response,
+    @Param() { id }: OptionalIdParam,
+    @CurrentUser() user: CurrentUser,
+  ) {
+    const roles = await this.service.getRoles(user, id);
     return this.responses.success(res, 'Roles retrieved successfully', roles);
   }
 
@@ -64,15 +68,20 @@ export class RoleController {
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,
     @Body() dto: UpdateRoleDTO,
+    @CurrentUser() user: CurrentUser,
   ) {
-    await this.service.update(id, dto);
+    await this.service.update(id, dto, user);
     return this.responses.success(res, 'Role updated successfully');
   }
 
   @Delete('/:id')
   @ApiRequiredIdParam()
-  async delete(@Res() res: Response, @Param() { id }: RequiredIdParam) {
-    await this.service.delete(id);
+  async delete(
+    @Res() res: Response,
+    @Param() { id }: RequiredIdParam,
+    @CurrentUser() user: CurrentUser,
+  ) {
+    await this.service.delete(id, user);
     return this.responses.success(res, 'Role deleted successfully');
   }
 
