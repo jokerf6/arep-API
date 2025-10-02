@@ -65,7 +65,6 @@ model Address {
   lat     Float   @map("lat")
   lng     Float   @map("lng")
 
-  @@unique([userId, default])
   @@index([lat, lng])
   @@map("addresses")
 }
