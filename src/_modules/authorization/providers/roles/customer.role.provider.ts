@@ -16,6 +16,7 @@ const customerPermissions: PermissionMap = {
   filters:['get'],
   'social-media': ['get'],
   coupons: [ 'get',],
+  employees: ['post', 'get','delete', 'patch',],
 
 } as const satisfies PermissionMap;
 

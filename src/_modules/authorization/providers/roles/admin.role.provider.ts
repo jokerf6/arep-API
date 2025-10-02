@@ -20,6 +20,7 @@ const adminPermissions: PermissionMap = {
   fund: ['post', 'get'],
   coupons: ['post', 'get', 'patch', 'delete'],
   addresses:['post','get','patch','delete'],
+  employees:['post','get','patch','delete','manage'],
 
 
 

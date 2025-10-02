@@ -1410,9 +1410,11 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
+                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
                         "Details": {
@@ -1738,9 +1740,11 @@
                         {
                           "id": 1,
                           "name": "John Doe",
+                          "allowNotification": "2025-06-26T18:17:10.000Z",
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
+                          "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
                           "Details": {
@@ -1761,9 +1765,11 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
+                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
                         "Details": {
@@ -1894,9 +1900,11 @@
                         {
                           "id": 1,
                           "name": "John Doe",
+                          "allowNotification": "2025-06-26T18:17:10.000Z",
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
+                          "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
                           "Details": {
@@ -1917,9 +1925,11 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
+                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
                         "Details": {
@@ -2215,9 +2225,11 @@
                         {
                           "id": 1,
                           "name": "John Doe",
+                          "allowNotification": "2025-06-26T18:17:10.000Z",
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
+                          "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
                           "Details": {
@@ -2240,9 +2252,11 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
+                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
                         "Details": {
@@ -2385,9 +2399,11 @@
                         {
                           "id": 1,
                           "name": "John Doe",
+                          "allowNotification": "2025-06-26T18:17:10.000Z",
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
+                          "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
                           "Details": {
@@ -2410,9 +2426,11 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
+                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
                         "Details": {
@@ -3883,7 +3901,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-09-28T12:06:31.166Z",
+              "example": "2025-10-02T06:25:31.153Z",
               "type": "string"
             }
           },
@@ -3893,7 +3911,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-09-28T12:06:31.167Z",
+              "example": "2025-10-02T06:25:31.153Z",
               "type": "string"
             }
           },
@@ -3979,8 +3997,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-09-28T12:06:31.172Z",
-                          "endDate": "2025-09-28T12:06:31.172Z",
+                          "startDate": "2025-10-02T06:25:31.154Z",
+                          "endDate": "2025-10-02T06:25:31.154Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4003,8 +4021,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-09-28T12:06:31.172Z",
-                        "endDate": "2025-09-28T12:06:31.172Z",
+                        "startDate": "2025-10-02T06:25:31.154Z",
+                        "endDate": "2025-10-02T06:25:31.154Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4203,7 +4221,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-09-28T12:06:31.166Z",
+              "example": "2025-10-02T06:25:31.153Z",
               "type": "string"
             }
           },
@@ -4213,7 +4231,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-09-28T12:06:31.167Z",
+              "example": "2025-10-02T06:25:31.153Z",
               "type": "string"
             }
           },
@@ -4299,8 +4317,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-09-28T12:06:31.172Z",
-                          "endDate": "2025-09-28T12:06:31.172Z",
+                          "startDate": "2025-10-02T06:25:31.154Z",
+                          "endDate": "2025-10-02T06:25:31.154Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4323,8 +4341,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-09-28T12:06:31.172Z",
-                        "endDate": "2025-09-28T12:06:31.172Z",
+                        "startDate": "2025-10-02T06:25:31.154Z",
+                        "endDate": "2025-10-02T06:25:31.154Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -6712,7 +6730,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/CreateStoreDTO"
               }
@@ -7109,7 +7127,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateStoreDTO"
               }
@@ -8340,6 +8358,112 @@
             "ACCESS Token": []
           }
         ]
+      },
+      "post": {
+        "operationId": "ServiceModuleController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ServiceModuleController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
       }
     },
     "/api/services/{id}": {
@@ -9434,6 +9558,728 @@
           }
         ]
       }
+    },
+    "/api/banks": {
+      "post": {
+        "operationId": "BankController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBankDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banks"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "BankController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-banks": {
+                    "summary": "Get All banks",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-bank": {
+                    "summary": "Single Bank",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banks"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/banks/{id}": {
+      "patch": {
+        "operationId": "BankController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBankDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banks"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "BankController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-banks": {
+                    "summary": "Get All banks",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-bank": {
+                    "summary": "Single Bank",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banks"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "BankController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Banks"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/bankAccounts": {
+      "post": {
+        "operationId": "BankAccountController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBankAccountDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Bankaccounts"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "BankAccountController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-bankaccounts": {
+                    "summary": "Get All BankAccounts",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "accountName": 1,
+                          "bankId": 1,
+                          "phone": "+123456789",
+                          "ibn": "string",
+                          "Bank": "string"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-bankaccount": {
+                    "summary": "Single BankAccount",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "accountName": 1,
+                        "bankId": 1,
+                        "phone": "+123456789",
+                        "ibn": "string",
+                        "Bank": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Bankaccounts"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/bankAccounts/{id}": {
+      "patch": {
+        "operationId": "BankAccountController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBankAccountDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Bankaccounts"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "BankAccountController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-bankaccounts": {
+                    "summary": "Get All BankAccounts",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "accountName": 1,
+                          "bankId": 1,
+                          "phone": "+123456789",
+                          "ibn": "string",
+                          "Bank": "string"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-bankaccount": {
+                    "summary": "Single BankAccount",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "accountName": 1,
+                        "bankId": 1,
+                        "phone": "+123456789",
+                        "ibn": "string",
+                        "Bank": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Bankaccounts"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "BankAccountController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Bankaccounts"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -9688,6 +10534,18 @@
           },
           "fcm": {
             "type": "string"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "allowNotification": {
+            "type": "boolean",
+            "example": true
+          },
+          "male": {
+            "type": "boolean",
+            "example": true
           }
         }
       },
@@ -9894,12 +10752,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-09-28T12:06:31.163Z"
+            "example": "2025-10-02T06:25:31.151Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-09-28T12:06:31.163Z"
+            "example": "2025-10-02T06:25:31.151Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -9977,12 +10835,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-09-28T12:06:31.163Z"
+            "example": "2025-10-02T06:25:31.151Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-09-28T12:06:31.163Z"
+            "example": "2025-10-02T06:25:31.151Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -10300,6 +11158,126 @@
           }
         }
       },
+      "CreateServiceDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "description": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "durationMinutes": {
+            "type": "number"
+          },
+          "availableFrom": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-10-02T06:25:31.137Z"
+          },
+          "availableTo": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-10-02T06:25:31.137Z"
+          },
+          "price": {
+            "type": "number"
+          },
+          "discount": {
+            "type": "number"
+          },
+          "discountType": {
+            "type": "string",
+            "enum": [
+              "PERCENTAGE",
+              "AMOUNT",
+              "NONE"
+            ]
+          },
+          "storeId": {
+            "type": "number"
+          },
+          "subCategoryId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name",
+          "description",
+          "image",
+          "durationMinutes",
+          "availableFrom",
+          "availableTo",
+          "price",
+          "discount",
+          "discountType",
+          "subCategoryId"
+        ]
+      },
+      "UpdateServiceDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "description": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          },
+          "durationMinutes": {
+            "type": "number"
+          },
+          "availableFrom": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-10-02T06:25:31.137Z"
+          },
+          "availableTo": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-10-02T06:25:31.137Z"
+          },
+          "price": {
+            "type": "number"
+          },
+          "discount": {
+            "type": "number"
+          },
+          "discountType": {
+            "type": "string",
+            "enum": [
+              "PERCENTAGE",
+              "AMOUNT",
+              "NONE"
+            ]
+          },
+          "storeId": {
+            "type": "number"
+          },
+          "subCategoryId": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ACTIVE",
+              "BLOCKED",
+              "NOT_VERIFIED"
+            ]
+          }
+        }
+      },
       "CreateSettingDTO": {
         "type": "object",
         "properties": {
@@ -10425,6 +11403,71 @@
               "ACTIVE",
               "IN_ACTIVE"
             ]
+          }
+        }
+      },
+      "CreateBankDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UpdateBankDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          }
+        }
+      },
+      "CreateBankAccountDTO": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "bankId": {
+            "type": "number"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+966 0509999999"
+          },
+          "ibn": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "accountName",
+          "bankId",
+          "phone",
+          "ibn"
+        ]
+      },
+      "UpdateBankAccountDTO": {
+        "type": "object",
+        "properties": {
+          "accountName": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "bankId": {
+            "type": "number"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+966 0509999999"
+          },
+          "ibn": {
+            "type": "string"
           }
         }
       }

@@ -5,6 +5,12 @@ export const permissions = [
     default: false,
     methods: ['post', 'get', 'delete', 'patch'],
   },
+    {
+    name: { en: 'Employees', ar: 'الموظفين' },
+    prefix: 'employees',
+    default: false,
+    methods: ['post', 'get', 'delete', 'patch','manage'],
+  },
   {
     name: { en: 'Users', ar: 'المستخدمين' },
     prefix: 'users',

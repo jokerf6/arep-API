@@ -3,7 +3,7 @@ model Role {
   name    Json?   @db.Json
   roleKey String  @unique @map("key")
   default Boolean @default(false)
-
+  storeId Int?   @map("store_id")
   // default columns
   createdAt DateTime  @default(now()) @map("created_at")
   deletedAt DateTime? @map("deleted_at")
