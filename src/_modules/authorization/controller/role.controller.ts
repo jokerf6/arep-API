@@ -25,6 +25,7 @@ import {
   selectRoleOBJ,
 } from '../prisma-args/role.prisma-select';
 import { RoleService } from '../services/roles.service';
+import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
 
 const prefix = 'roles';
 @Controller(prefix)
@@ -52,8 +53,8 @@ export class RoleController {
       },
     ]),
   )
-  async get(@Res() res: Response, @Param() { id }: OptionalIdParam) {
-    const roles = await this.service.getRoles(id);
+  async get(@Res() res: Response, @Param() { id }: OptionalIdParam,@CurrentUser() user:CurrentUser) {
+    const roles = await this.service.getRoles(user,id);
     return this.responses.success(res, 'Roles retrieved successfully', roles);
   }
 

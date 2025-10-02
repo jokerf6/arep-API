@@ -10,6 +10,7 @@ import { ResponseService } from 'src/globals/services/response.service';
 import { UpdatePermissionDTO } from '../dto/permission.dto';
 import { selectPermissionsOBJ } from '../prisma-args/permissions.prisma-select';
 import { PermissionService } from '../services/permissions.service';
+import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
 
 const prefix = 'permissions';
 @Controller(prefix)
@@ -31,8 +32,8 @@ export class PermissionController {
       },
     ]),
   )
-  async getPermissions(@Res() res: Response) {
-    const permissions = await this.service.get();
+  async getPermissions(@Res() res: Response,@CurrentUser() user:CurrentUser) {
+    const permissions = await this.service.get(user);
     return this.responses.success(
       res,
       'Permissions retrieved successfully',

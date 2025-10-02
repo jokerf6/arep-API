@@ -9,10 +9,13 @@ import { selectAllRolesOBJ } from '../prisma-args/role.prisma-select';
 export class RoleService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getRoles(id?: Id) {
+  async getRoles(user:CurrentUser,id?: Id) {
     const selectArgs = selectAllRolesOBJ();
     const roles = await this.prisma.role[firstOrMany(id)]({
       select: selectArgs,
+      where:{
+        storeId:user?.storeId||undefined
+      }
     });
     let data = undefined;
     if (id) {

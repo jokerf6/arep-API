@@ -7,9 +7,15 @@ import { UpdatePermissionDTO } from '../dto/permission.dto';
 export class PermissionService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async get() {
+  async get(user:CurrentUser) {
     return grouped(
-  await    this.prisma.permission.findMany({ where: { default: false } }),
+  await    this.prisma.permission.findMany({ where: { RolePermission:{
+    some:{
+      Role:{
+        storeId:user.storeId
+      }
+    }
+  }} }),
     );
   }
 

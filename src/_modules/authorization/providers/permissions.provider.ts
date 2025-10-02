@@ -2,13 +2,13 @@ export const permissions = [
   {
     name: { en: 'Languages', ar: 'اللغات' },
     prefix: 'languages',
-    default: false,
+    default: true,
     methods: ['post', 'get', 'delete', 'patch'],
   },
     {
     name: { en: 'Employees', ar: 'الموظفين' },
     prefix: 'employees',
-    default: false,
+    default: true,
     methods: ['post', 'get', 'delete', 'patch','manage'],
   },
   {
@@ -20,7 +20,7 @@ export const permissions = [
   {
     name: { en: 'Roles', ar: 'الادوار' },
     prefix: 'roles',
-    default: false,
+    default: true,
     methods: ['post', 'get', 'delete', 'patch'],
   },
   {
