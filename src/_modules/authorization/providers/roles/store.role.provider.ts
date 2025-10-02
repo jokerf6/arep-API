@@ -19,7 +19,8 @@ const storePermissions: PermissionMap = {
   fund: ['post', 'get'],
   coupons: ['get', ],
 
-  employees:['post','get','patch','delete'],
+  employees: ['post', 'get','delete', 'patch',],
+
 
 
 
