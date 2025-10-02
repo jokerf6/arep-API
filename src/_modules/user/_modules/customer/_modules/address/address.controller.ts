@@ -31,6 +31,7 @@ import { isOne } from 'src/globals/helpers/first-or-many';
 import { AddressInterceptor } from './interceptors/address.interceptor';
 import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
 import { selectAddressOBJ } from './prisma-args/address.prisma.args';
+import { AttachUserId } from 'src/decorators/api/attachUserIdInterceptor.decorator';
 
 const prefix = 'addresses';
 
@@ -45,12 +46,12 @@ export class AddressController {
   ) {}
 
   @Post('/')
+  @AttachUserId()
   async create(
     @Res() res: Response,
     @Body() body: CreateAddressDTO,
     @CurrentUser('id') userId: Id,
   ) {
-    body.userId = userId;
     await this.service.create(body);
     return this.response.created(res, 'address created successfully');
   }
