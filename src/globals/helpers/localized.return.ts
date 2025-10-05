@@ -1,69 +1,56 @@
 export function localizedObject(obj: any, locale: string): unknown {
-  // Normalize the incoming locale to lowercase for consistent comparison
   const targetLanguage = locale?.toLowerCase();
 
-  // Special case for 'admin' locale: return object as is without localization
-  if (targetLanguage === 'admin') {
-    return obj;
-  }
+  // Special case: 'admin' locale returns the object as-is
+  if (targetLanguage === 'admin') return obj;
 
-  // Base case 1: If the input is not an object, or is null, return it as is
+  // Base case 1: if not an object or null, return directly
   if (typeof obj !== 'object' || obj === null) {
-    if (typeof obj === 'bigint') {
-      return obj.toString(); // Handle BigInt
-    }
+    if (typeof obj === 'bigint') return obj.toString(); // Handle BigInt
     return obj;
   }
 
-  // Base case 2: If the object itself is a potential localized string object
-  // This handles structures like { en: 'John', ar: 'جون', es: 'Juan' }
-  // We check if it has keys that look like language codes (e.g., 'en', 'ar')
-  // And try to retrieve the value for the targetLanguage
-  const objAsAny = obj as any; // Cast to any to access properties dynamically
-  const isLocalizedObjectCandidate = Object.keys(objAsAny).every(
-    (key) => key.length === 2 && /^[a-z]{2}$/.test(key),
-  ); // Check if all keys are 2-letter language codes
+  // Base case 2: handle localized objects like { en: 'John', ar: 'جون' }
+  const objAsAny = obj as any;
+  const isLocalizedObjectCandidate =
+    !Array.isArray(objAsAny) && // prevent arrays from being treated as localized objects
+    Object.keys(objAsAny).every(
+      (key) => key.length === 2 && /^[a-z]{2}$/.test(key)
+    );
 
   if (isLocalizedObjectCandidate) {
     if (typeof objAsAny[targetLanguage] !== 'undefined') {
-      return objAsAny[targetLanguage]; // Return the value for the target language
+      return objAsAny[targetLanguage];
     } else {
-      // Fallback to 'en' if target language not found
-      return '';
+      return ''; // fallback when target language not found
     }
   }
 
-  // If it's an array, process each item recursively
+  // Handle arrays recursively
   if (Array.isArray(obj)) {
     return obj.map((item) => localizedObject(item, targetLanguage));
   }
 
-  // Process each key in the object (for regular objects and nested structures)
-  const newObj: { [key: string]: unknown } = {};
+  // Handle regular objects and nested structures
+  const newObj: Record<string, unknown> = {};
   for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      const value = objAsAny[key]; // Access value using objAsAny
-      let newKey = key;
+    if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
 
-      // Handle properties like "nameEn" or "nameAr" (if you still want to support this format)
-      // This part handles the older format, ensuring it also supports dynamic language codes
-      const suffixMatch = key.match(/([A-Z][a-z]{1,2})$/); // e.g., 'En', 'Ar', 'Es' (up to 3 letters for common codes like 'Eng')
+    const value = objAsAny[key];
+    let newKey = key;
 
-      if (suffixMatch) {
-        const suffix = suffixMatch[1].toLowerCase(); // e.g., 'en', 'ar', 'es'
-        const baseKey = key.slice(0, -suffix.length);
-
-        if (suffix === targetLanguage) {
-          newKey = baseKey; // Remove the suffix if it matches the target language
-          newObj[newKey] = localizedObject(value, targetLanguage);
-        } else {
-          // If it's a language-specific key for a *different* language, skip it
-          continue;
-        }
-      } else {
-        // Recursively process nested objects/arrays/values for non-language-specific keys
+    // Support keys like "nameEn", "nameAr", etc.
+    const suffixMatch = key.match(/([A-Z][a-z]{1,2})$/); // e.g., 'En', 'Ar', 'Es'
+    if (suffixMatch) {
+      const suffix = suffixMatch[1].toLowerCase();
+      const baseKey = key.slice(0, -suffix.length);
+      if (suffix === targetLanguage) {
+        newKey = baseKey;
         newObj[newKey] = localizedObject(value, targetLanguage);
       }
+      // Skip keys for other languages
+    } else {
+      newObj[newKey] = localizedObject(value, targetLanguage);
     }
   }
 
