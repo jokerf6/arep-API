@@ -1,4 +1,5 @@
 import { PartialType } from '@nestjs/swagger';
+import { Optional } from 'src/decorators/dto/optional-input.decorator';
 import { Required } from 'src/decorators/dto/required-input.decorator';
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
 import { ValidateName } from 'src/decorators/dto/validators/validate-json.decorator';
@@ -15,10 +16,11 @@ export class CreateRoleDTO {
   @ValidateString()
   @ValidateUnique<'role'>({ model: 'role' })
   roleKey: string;
-}
-export class UpdateRoleDTO extends PartialType(CreateRoleDTO) {
-  @Required({ type: 'number', isArray: true })
+    @Optional({ type: 'number', isArray: true })
   @ValidateNumber()
   @ValidateExist<'permission'>({ model: 'permission', isArray: true })
   permissionIds: number[];
+}
+export class UpdateRoleDTO extends PartialType(CreateRoleDTO) {
+
 }

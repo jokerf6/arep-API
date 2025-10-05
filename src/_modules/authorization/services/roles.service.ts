@@ -49,17 +49,23 @@ export class RoleService {
   async update(id: Id, data: UpdateRoleDTO,user:CurrentUser) {
     await this.helpers.canUserAccessRoleId(user,id);
     const { permissionIds, ...rest } = data;
-    await this.prisma.role.update({
+    await this.prisma.$transaction(async (tx) => {
+        await tx.role.update({
       where: { id },
       data: rest,
     });
-    // await this.prisma.rolePermission.deleteMany({ where: { roleId: id } });
-    // await this.prisma.rolePermission.createMany({
-    //   data: permissionIds.map((permissionId: Id) => ({
-    //     roleId: id,
-    //     permissionId,
-    //   })),
-    // });
+    await tx.rolePermission.deleteMany({ where: { roleId: id } });
+    if(permissionIds?.length){
+  await tx.rolePermission.createMany({
+      data: permissionIds.map((permissionId: Id) => ({
+        roleId: id,
+        permissionId,
+      })),
+    });
+    }
+  
+    });
+
   }
 
   async delete(id: Id,user:CurrentUser) {
@@ -69,8 +75,22 @@ export class RoleService {
   }
 
   async post(data: CreateRoleDTO) {
-    await this.prisma.role.create({
-      data,
+    const { permissionIds, ...rest } = data;
+await this.prisma.$transaction(async (tx) => {
+ const role=   await tx.role.create({
+      data:{
+        ...rest
+      },
     });
+    if(permissionIds?.length){
+  await tx.rolePermission.createMany({
+      data: permissionIds.map((permissionId: Id) => ({
+        roleId: role.id,
+        permissionId,
+      })),
+    });
+    }
+})
+
   }
 }
