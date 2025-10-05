@@ -11,6 +11,7 @@ model Store {
   lng               Float
   rating            Float @default(0)
   review            Float @default(0)
+  isStoreAccepted   Boolean @default(false)
   closed            Boolean @default(true)
   temporarilyClosed Boolean @map("temporarily_closed") @default(false)
   phone             String

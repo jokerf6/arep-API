@@ -33,6 +33,10 @@ import { AuthStoreInterceptor } from '../interceptors/auth.store.interceptor';
 import { UploadMultipleFiles } from 'src/decorators/api/upload-file.decorator';
 import { StripFieldsIfNoPermission } from 'src/decorators/api/permissionStripInterceptor.decorator';
 import { CanUserAccessModelRowId, CanUserAccessModelRowIdInterceptor } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
+import { IpAddress } from 'src/_modules/authentication/decorators/ip.decorator';
+import { OTPType, SessionType } from '@prisma/client';
+import { OTPService } from 'src/_modules/authentication/services/otp.service';
+import { TokenService } from 'src/_modules/authentication/services/jwt.service';
 
 const prefix = 'stores';
 
@@ -42,6 +46,8 @@ export class StoreController {
   constructor(
     private readonly service: StoreService,
     private readonly response: ResponseService,
+    private readonly OTPService: OTPService,
+    private readonly tokenService: TokenService,
   ) {}
 
   @Post('/')
@@ -57,9 +63,20 @@ export class StoreController {
       required: false,
     },
   ]) 
-   async create(@Res() res: Response, @Body() body: CreateStoreDTO) {
-    await this.service.create(body);
-    return this.response.created(res, 'store created successfully');
+   async create(@Res() res: Response, @Body() body: CreateStoreDTO,   @IpAddress() ip: string,) {
+ const user=   await this.service.create(body);
+     await this.OTPService.generateOTP(user.id, OTPType.EMAIL_VERIFICATION);
+  const token = 
+        await this.tokenService.generateToken(
+           user.id,
+           ip,
+           undefined,
+           SessionType.VERIFY,
+         )
+ return this.response.success(res, 'store created successfully', {
+      user,
+      token,
+    });
   }
 
   @Patch('/:id')

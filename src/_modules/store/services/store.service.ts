@@ -30,15 +30,16 @@ export class StoreService {
   async create(data: CreateStoreDTO) {
     const {User,...storeData}=data
   const existingUser=  await this.helpersService.isUserExist(User)
-    await this.prisma.$transaction(async(tx)=>{
+   const user= await this.prisma.$transaction(async(tx)=>{
    const store= await tx.store.create({
       data:{
         ...storeData
       },
     });
-    await this.helpersService.createUser(User,existingUser,tx,store.id);
+   const user= await this.helpersService.createUser(User,existingUser,tx,store.id);
+   return user;
     })
-
+return user;
   }
 
   async update(id: Id, body: UpdateStoreDTO) {

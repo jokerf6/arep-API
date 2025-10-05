@@ -57,7 +57,6 @@ export class HelpersService {
                   ...data,
                   roleKey: RolesKeys.STORE,
                   storeId,
-           verified:true
                 },
                 select: { email: true, phone: true, id: true, name: true },
               });
