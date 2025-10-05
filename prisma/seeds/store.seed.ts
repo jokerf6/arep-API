@@ -28,6 +28,7 @@ export async function seedStore(prisma: PrismaClient) {
       cityId: 1,
       createdAt: new Date(),
       deletedAt: null,
+      isStoreAccepted:true
     };
     await prisma.store.upsert({
       where: {
