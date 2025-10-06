@@ -79,16 +79,16 @@ export class ServiceModuleController {
   }
  @Post('/')
   @Auth({ prefix })
-  @UploadFile('image', 'service', )
   @AttachStoreId()
+  @UploadFile('image', 'service', )
   async create(@Res() res: Response, @Body() body: CreateServiceDTO) {
     await this.service.create(body);
     return this.response.created(res, 'service created successfully');
   }
    @Patch('/')
   @Auth({ prefix })
-  @UploadFile('image', 'service', )
   @AttachStoreId()
+  @UploadFile('image', 'service', )
   @StripFieldsIfNoPermission({
     prefix,
     restrictedFields:['status']

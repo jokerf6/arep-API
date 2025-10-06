@@ -17,6 +17,8 @@ import {
 } from '@prisma/client';
 import { ValidateDate } from 'src/decorators/dto/validators/validate-date.decorator';
 import { OptionalSwagger } from 'src/decorators/dto/validators/optional-swagger.decorator';
+import { ValidateObject } from 'src/decorators/dto/validators/validate-nested.decorator';
+import { VariantDTO } from './variant.dto';
 
 export class CreateServiceDTO {
   @Required()
@@ -66,6 +68,9 @@ export class CreateServiceDTO {
     extraConditions: { parentId: { not: null } },
   })
   subCategoryId: Id;
+  @Optional({type:VariantDTO,isArray:true})
+  @ValidateObject(VariantDTO,true)
+  Variants: VariantDTO[];
 }
 export class UpdateServiceDTO extends PartialType(CreateServiceDTO) {
   @Optional()

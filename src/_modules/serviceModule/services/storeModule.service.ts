@@ -13,15 +13,34 @@ export class ServiceModuleService {
     private readonly Language: LanguagesService,
     private readonly helper: ServiceModuleHelper
   ) {}
-async create(data:CreateServiceDTO,){
+async create(body:CreateServiceDTO,){
+  const {Variants,...data}=body
   const priceAfterDiscount=calcPriceAfterDiscount(data.discount,data.discountType,data.price);
-  await this.prisma.service.create({
+  await this.prisma.$transaction(async(tx)=>{
+ const service=await tx.service.create({
     data: {
       ...data,
       priceAfterDiscount,
 
     },
   });
+   for (const variant of Variants) {
+      const { Options, ...variantData } = variant;
+
+      await tx.variation.create({
+        data: {
+          ...variantData,
+          serviceId: service.id,
+          VariationOption: {
+            create: Options.map((option) => ({
+              ...option,
+            })),
+          },
+        },
+      });
+    }
+  });
+ 
 }
   async findAll(filters: FilterServiceDTO) {
     const languages = await this.Language.getCashedLanguages();
