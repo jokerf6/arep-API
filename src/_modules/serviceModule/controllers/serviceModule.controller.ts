@@ -25,6 +25,7 @@ import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
 import { StripFieldsIfNoPermission } from 'src/decorators/api/permissionStripInterceptor.decorator';
 import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
+import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 
 const prefix = 'services';
 
@@ -85,19 +86,19 @@ export class ServiceModuleController {
     await this.service.create(body);
     return this.response.created(res, 'service created successfully');
   }
-   @Patch('/')
+   @Patch('/:id')
   @Auth({ prefix })
+  @ApiRequiredIdParam('id')
+
   @AttachStoreId()
   @UploadFile('image', 'service', )
   @StripFieldsIfNoPermission({
     prefix,
     restrictedFields:['status']
   })
-  @ApiRequiredIdParam('id')
-  async update(@Res() res: Response, @Body() body: UpdateServiceDTO,@Param('id') id: Id) {
-    // await this.service.create(body);
-    console.log(body)
-    return this.response.created(res, 'service created successfully');
+  async update(@Res() res: Response, @Body() body: UpdateServiceDTO,    @Param() { id }: RequiredIdParam,) {
+    await this.service.update(id,body);
+    return this.response.created(res, 'service updated successfully');
   }
   
 }

@@ -13,6 +13,7 @@ import { ValidateExist } from 'src/decorators/dto/validators/validate-found-numb
 import { ValidateEnum } from 'src/decorators/dto/enum.decorator';
 import {
   DiscountServiceType,
+  ServiceStatus,
   StoreStatus,
 } from '@prisma/client';
 import { ValidateDate } from 'src/decorators/dto/validators/validate-date.decorator';
@@ -74,8 +75,19 @@ export class CreateServiceDTO {
 }
 export class UpdateServiceDTO extends PartialType(CreateServiceDTO) {
   @Optional()
-  @ValidateEnum(StoreStatus)
-  status: StoreStatus;
+  @ValidateEnum(ServiceStatus)
+  status: ServiceStatus;
+   @Required()
+  @ValidateNumber()
+  price: number;
+
+  @Required()
+  @ValidateNumber()
+  discount: number;
+
+  @Required()
+  @ValidateEnum(DiscountServiceType)
+  discountType: DiscountServiceType;
 }
 
 export class SortServiceDTO {
