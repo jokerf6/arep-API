@@ -26,6 +26,7 @@ import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decor
 import { StripFieldsIfNoPermission } from 'src/decorators/api/permissionStripInterceptor.decorator';
 import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
+import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
 
 const prefix = 'services';
 
@@ -88,6 +89,12 @@ export class ServiceModuleController {
   }
    @Patch('/:id')
   @Auth({ prefix })
+     @CanUserAccessModelRowId({
+    prefix,
+    modelName: 'service',
+    ownerCurrentUserField:'storeId',
+    ownerFieldName:'storeId',
+   })
   @ApiRequiredIdParam('id')
 
   @AttachStoreId()
@@ -96,6 +103,8 @@ export class ServiceModuleController {
     prefix,
     restrictedFields:['status']
   })
+
+  
   async update(@Res() res: Response, @Body() body: UpdateServiceDTO,    @Param() { id }: RequiredIdParam,) {
     await this.service.update(id,body);
     return this.response.created(res, 'service updated successfully');
