@@ -107,5 +107,11 @@ async update(id:Id,body:UpdateServiceDTO){
  
   });
 }
-  
+  async delete(id:Id){
+ await this.prisma.service.delete({
+  where:{
+    id
+  }
+})
+}
 }

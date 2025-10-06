@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -109,5 +110,19 @@ export class ServiceModuleController {
     await this.service.update(id,body);
     return this.response.created(res, 'service updated successfully');
   }
+    @Delete('/:id')
+  @Auth({ prefix })
+     @CanUserAccessModelRowId({
+    prefix,
+    modelName: 'service',
+    ownerCurrentUserField:'storeId',
+    ownerFieldName:'storeId',
+   })
+  @ApiRequiredIdParam('id')
+
   
+  async delete(@Res() res: Response,   @Param() { id }: RequiredIdParam,) {
+    await this.service.delete(id);
+    return this.response.created(res, 'service deleted successfully');
+  }
 }
