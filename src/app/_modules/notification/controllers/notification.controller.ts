@@ -1,4 +1,4 @@
-import { Controller, Get, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
 import { ApiQuery, ApiTags, PartialType } from '@nestjs/swagger';
 import { Response } from 'express';
 import { Auth } from 'src/_modules/authentication/decorators/auth.decorator';
@@ -7,6 +7,8 @@ import { tag } from 'src/globals/helpers/tag.helper';
 import { ResponseService } from 'src/globals/services/response.service';
 import { FilterNotificationDTO } from '../dto/notification.dto';
 import { NotificationService } from '../services/notification.service';
+import { UploadFile } from 'src/decorators/api/upload-file.decorator';
+import { CreateNotificationDTO } from '../dto/notification.create.dto';
 
 const prefix = 'notification';
 @Controller(prefix)
@@ -36,4 +38,12 @@ export class NotificationController {
       },
     );
   }
+    @Post('/')
+    @Auth({ prefix })
+    @UploadFile('image')
+    async create(@Res() res: Response, @Body() body: CreateNotificationDTO) {
+      await this.service.create(body);
+      return this.response.created(res, 'category created successfully');
+    }
+  
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/globals/services/prisma.service';
 import { FilterNotificationDTO } from '../dto/notification.dto';
 import { getNotificationArgs } from '../prisma-args/notification.prisma-args';
+import { CreateNotificationDTO } from '../dto/notification.create.dto';
 
 @Injectable()
 export class NotificationService {
@@ -18,4 +19,10 @@ export class NotificationService {
 
     return { data, total };
   }
+    async create(data: CreateNotificationDTO) {
+      await this.prisma.notification.create({
+        data,
+      });
+    }
+  
 }
