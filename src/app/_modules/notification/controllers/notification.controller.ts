@@ -39,7 +39,6 @@ export class NotificationController {
     );
   }
     @Post('/')
-    @Auth({ prefix })
     @UploadFile('image')
     async create(@Res() res: Response, @Body() body: CreateNotificationDTO) {
       await this.service.create(body);
