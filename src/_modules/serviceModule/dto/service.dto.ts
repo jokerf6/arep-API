@@ -144,7 +144,7 @@ export class FilterServiceDTO extends PaginationParamsDTO {
   mostSeller?: boolean;
 
   @Optional()
-  @ValidateEnum(StoreStatus)
+  @ValidateEnum(ServiceStatus)
   status?: string;
 
   @Optional()
