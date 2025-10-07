@@ -57,9 +57,10 @@ export class FilterBannerDTO extends PaginationParamsDTO {
 
   @Optional()
   @ValidateNumber({ allowNegative: false })
-  @ValidateExist<'store'>({ model: 'store' })
   storeId?: Id;
-
+  @Optional()
+  @ValidateNumber({ allowNegative: false })
+  moduleId?: Id;
   @Optional()
   @ValidateBoolean()
   active?: boolean;

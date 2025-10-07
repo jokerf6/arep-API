@@ -28,7 +28,14 @@ export const getBannerArgs = (
     ...paginateOrNot({ limit, page }, query?.id),
     orderBy: orderArray,
     where: {
-      AND: searchArray,
+      AND: [
+        ...searchArray,
+        filter?.moduleId && {
+          Store: {
+                moduleId: filter?.moduleId,
+          },
+        }
+      ],
     },
   } as Prisma.BannerFindManyArgs;
 };
