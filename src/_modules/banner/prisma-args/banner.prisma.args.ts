@@ -35,7 +35,7 @@ export const getBannerArgs = (
                 moduleId: filter?.moduleId,
           },
         }
-      ],
+      ].filter(Boolean),
     },
   } as Prisma.BannerFindManyArgs;
 };

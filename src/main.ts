@@ -32,7 +32,9 @@ async function bootstrap() {
   });
 
   const port = +env('PORT') || 3000;
-  await lens({ app });
+  await lens({ app ,
+    exceptionWatcherEnabled: true,
+  });
 
   app.use(morganMiddleware);
 
