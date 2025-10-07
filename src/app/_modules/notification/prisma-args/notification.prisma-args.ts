@@ -14,8 +14,19 @@ export const getNotificationArgs = (query: FilterNotificationDTO) => {
     where: {
       AND: searchArray,
     },
+     select:{
+      id:true,
+      title:true,
+      image:true,
+      body:true,
+      read:true,
+      createdAt:true,
+      userId:true,
+      groupId:true,
+    },
     orderBy: {
       createdAt: 'desc',
     },
+   
   } as Prisma.NotificationFindManyArgs;
 };
