@@ -24,5 +24,26 @@ export class NotificationService {
         data,
       });
     }
-  
+  async markAllAsRead(userId: Id) {
+
+    await this.prisma.notification.updateMany({
+      where:{
+        userId,
+        read:false
+      },
+      data:{
+        read:true
+      }
+    })
+  }
+  async markNotificationAsRead(id:Id) {
+    await this.prisma.notification.update({
+      where:{
+        id
+      },
+      data:{
+        read:true
+      }
+    })
+  }
 }
