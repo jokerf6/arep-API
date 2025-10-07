@@ -245,6 +245,147 @@
         ]
       }
     },
+    "/api/notification": {
+      "post": {
+        "operationId": "NotificationController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNotificationDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Notification"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/notification/mark-read": {
+      "patch": {
+        "operationId": "NotificationController_markAllAsRead",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Notification"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/notification/{id}/mark-read": {
+      "patch": {
+        "operationId": "NotificationController_mark",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Notification"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
     "/api/media": {
       "get": {
         "operationId": "MediaController_returnMedia",
@@ -3901,7 +4042,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-02T06:25:31.153Z",
+              "example": "2025-10-07T08:37:25.757Z",
               "type": "string"
             }
           },
@@ -3911,7 +4052,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-02T06:25:31.153Z",
+              "example": "2025-10-07T08:37:25.757Z",
               "type": "string"
             }
           },
@@ -3997,8 +4138,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-10-02T06:25:31.154Z",
-                          "endDate": "2025-10-02T06:25:31.154Z",
+                          "startDate": "2025-10-07T08:37:25.761Z",
+                          "endDate": "2025-10-07T08:37:25.761Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4021,8 +4162,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-10-02T06:25:31.154Z",
-                        "endDate": "2025-10-02T06:25:31.154Z",
+                        "startDate": "2025-10-07T08:37:25.761Z",
+                        "endDate": "2025-10-07T08:37:25.761Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4221,7 +4362,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-02T06:25:31.153Z",
+              "example": "2025-10-07T08:37:25.757Z",
               "type": "string"
             }
           },
@@ -4231,7 +4372,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-02T06:25:31.153Z",
+              "example": "2025-10-07T08:37:25.757Z",
               "type": "string"
             }
           },
@@ -4317,8 +4458,8 @@
                           "usageCount": 1,
                           "minOrderAmount": 1,
                           "freeDelivery": "string",
-                          "startDate": "2025-10-02T06:25:31.154Z",
-                          "endDate": "2025-10-02T06:25:31.154Z",
+                          "startDate": "2025-10-07T08:37:25.761Z",
+                          "endDate": "2025-10-07T08:37:25.761Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4341,8 +4482,8 @@
                         "usageCount": 1,
                         "minOrderAmount": 1,
                         "freeDelivery": "string",
-                        "startDate": "2025-10-02T06:25:31.154Z",
-                        "endDate": "2025-10-02T06:25:31.154Z",
+                        "startDate": "2025-10-07T08:37:25.761Z",
+                        "endDate": "2025-10-07T08:37:25.761Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4930,6 +5071,14 @@
           },
           {
             "required": false,
+            "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
             "name": "active",
             "in": "query",
             "schema": {
@@ -5123,6 +5272,14 @@
           {
             "required": false,
             "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "moduleId",
             "in": "query",
             "schema": {
               "type": "number"
@@ -6201,6 +6358,22 @@
           },
           {
             "required": false,
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "subCategoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
             "name": "lat",
             "in": "query",
             "schema": {
@@ -6475,6 +6648,22 @@
           {
             "required": false,
             "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "subCategoryId",
             "in": "query",
             "schema": {
               "type": "number"
@@ -6800,6 +6989,22 @@
           {
             "required": false,
             "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "subCategoryId",
             "in": "query",
             "schema": {
               "type": "number"
@@ -7202,6 +7407,22 @@
           {
             "required": false,
             "name": "moduleId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "categoryId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "subCategoryId",
             "in": "query",
             "schema": {
               "type": "number"
@@ -8407,63 +8628,6 @@
             "ACCESS Token": []
           }
         ]
-      },
-      "patch": {
-        "operationId": "ServiceModuleController_update",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateServiceDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Services"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
       }
     },
     "/api/services/{id}": {
@@ -8651,6 +8815,110 @@
                 }
               }
             },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "ServiceModuleController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Services"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ServiceModuleController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
             "description": ""
           }
         },
@@ -10351,6 +10619,27 @@
           "value"
         ]
       },
+      "CreateNotificationDTO": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "body": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary"
+          }
+        },
+        "required": [
+          "title",
+          "body"
+        ]
+      },
       "BioLoginDTO": {
         "type": "object",
         "properties": {
@@ -10452,10 +10741,7 @@
               "type": "number"
             }
           }
-        },
-        "required": [
-          "permissionIds"
-        ]
+        }
       },
       "CreateRoleDTO": {
         "type": "object",
@@ -10466,6 +10752,12 @@
           },
           "roleKey": {
             "type": "string"
+          },
+          "permissionIds": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
           }
         },
         "required": [
@@ -10752,12 +11044,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-02T06:25:31.151Z"
+            "example": "2025-10-07T08:37:25.755Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-02T06:25:31.151Z"
+            "example": "2025-10-07T08:37:25.755Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -10835,12 +11127,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-02T06:25:31.151Z"
+            "example": "2025-10-07T08:37:25.755Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-02T06:25:31.151Z"
+            "example": "2025-10-07T08:37:25.755Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11158,6 +11450,57 @@
           }
         }
       },
+      "VariantOption": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "default": {
+            "type": "boolean",
+            "example": true
+          }
+        },
+        "required": [
+          "name",
+          "price"
+        ]
+      },
+      "VariantDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean",
+            "example": true
+          },
+          "minQuantity": {
+            "type": "number"
+          },
+          "maxQuantity": {
+            "type": "number"
+          },
+          "single": {
+            "type": "boolean",
+            "example": true
+          },
+          "Options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VariantOption"
+            }
+          }
+        },
+        "required": [
+          "name",
+          "Options"
+        ]
+      },
       "CreateServiceDTO": {
         "type": "object",
         "properties": {
@@ -11179,12 +11522,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-02T06:25:31.137Z"
+            "example": "2025-10-07T08:37:25.734Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-02T06:25:31.137Z"
+            "example": "2025-10-07T08:37:25.734Z"
           },
           "price": {
             "type": "number"
@@ -11205,6 +11548,12 @@
           },
           "subCategoryId": {
             "type": "number"
+          },
+          "Variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VariantDTO"
+            }
           }
         },
         "required": [
@@ -11241,12 +11590,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-02T06:25:31.137Z"
+            "example": "2025-10-07T08:37:25.734Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-02T06:25:31.137Z"
+            "example": "2025-10-07T08:37:25.734Z"
           },
           "price": {
             "type": "number"
@@ -11268,12 +11617,19 @@
           "subCategoryId": {
             "type": "number"
           },
+          "Variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VariantDTO"
+            }
+          },
           "status": {
             "type": "string",
             "enum": [
+              "PENDING",
               "ACTIVE",
-              "BLOCKED",
-              "NOT_VERIFIED"
+              "INACTIVE",
+              "REJECTED"
             ]
           }
         }

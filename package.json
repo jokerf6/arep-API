@@ -38,6 +38,8 @@
     "@faker-js/faker": "^9.8.0",
     "@google-cloud/translate": "^8.5.0",
     "@google/generative-ai": "^0.21.0",
+    "@lensjs/express": "^1.4.0",
+    "@lensjs/nestjs": "^2.1.0",
     "@nestjs-modules/mailer": "^2.0.2",
     "@nestjs/axios": "^3.1.2",
     "@nestjs/bull": "^11.0.3",
