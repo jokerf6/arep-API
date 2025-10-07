@@ -48,6 +48,29 @@ export const getStoreArgs = (
         },
       },
     },
+     filter?.categoryId && {
+   Module:{
+          Category:{
+            some:{
+              id:filter?.categoryId
+            }
+          }
+        },
+    },
+        filter?.subCategoryId && {
+           Module:{
+          Category:{
+            some:{
+              Children:{
+                some:{
+                  id:filter?.subCategoryId
+                }
+              }
+            }
+          }
+        },
+        
+    },
   ].filter(Boolean) as Prisma.StoreWhereInput[];
 
   const orderArray = [orderKey('id', 'id', orderBy), orderKey('rating', 'rating', orderBy), ].filter(

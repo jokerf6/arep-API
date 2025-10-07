@@ -111,9 +111,13 @@ export class FilterStoreDTO extends PaginationParamsDTO {
 
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'module'>({ model: 'module' })
   moduleId?: Id;
-
+    @Optional()
+  @ValidateNumber()
+  categoryId?: Id;
+    @Optional()
+  @ValidateNumber()
+   subCategoryId?: Id;
   @Optional()
   @ValidateNumber({ allowNegative: true })
   lat?: number;
