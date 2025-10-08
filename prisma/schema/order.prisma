@@ -1,9 +1,63 @@
 model Order {
-    id  Int     @id @default(autoincrement())
-     // direct relations
-  Customer    User   @relation(fields: [customerId], references: [id], onDelete: Cascade)
-  customerId  Int
+  id        Int      @id @default(autoincrement())
+  price     Float
+  note      String?  @db.Text
+  couponId  Int?
+  Coupon    Coupon?  @relation(fields: [couponId], references: [id])
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
 
+  addressId               Int?  @map("address_id")
+  customerId              Int  @map("customer_id")
+  quantity                Int   @default(0)
+  totalPriceAfterDiscount Float @default(0) @map("total_price_after_discount")
+  discountAmount          Int   @default(0)
+  serviceId               Int?  @map("service_Id")
+  paidWithWallet          Int   @default(0) @map("paid_with_wallet")
 
-  priceAfterDiscount Float @default(0)
+  acceptedAt    DateTime? @map("accepted_at")
+  cancelledAt   DateTime? @map("cancelled_at")
+  rejectedAt    DateTime? @map("rejected_at")
+  in_progressAt DateTime? @map("in_progress_at")
+  deletedAt     DateTime? @map("deleted_at")
+  completedAt   DateTime? @map("completed_at")
+
+  shipping        Float         @default(0)
+  tax             Float         @default(0)
+  paymentStatus   PaymentStatus @default(UNPAID)
+  paymentMethod   PaymentMethod @default(VISA)
+  status          OrderStatus   @default(PENDING)
+
+  Customer   User  @relation(fields: [customerId], references: [id])
+  Service    Service?    @relation(fields: [serviceId], references: [id])
+  Address    Address?    @relation(fields: [addressId], references: [id])
+
+  OrderVariation OrderVariation[]
+
+  @@map("order")
+}
+
+model OrderVariation {
+  id      Int   @id @default(autoincrement())
+  orderId Int   @map("order_id")
+  Order   Order @relation(fields: [orderId], references: [id], onUpdate: Cascade)
+
+  variationId Int       @map("variation_id")
+  Variation   Variation @relation(fields: [variationId], references: [id], onUpdate: Cascade)
+
+  OrderVariationOptions OrderVariationOptions[]
+
+  @@map("order_variation")
+}
+
+model OrderVariationOptions {
+  id Int @id @default(autoincrement())
+
+  variationOptionId Int             @map("variation_option_id")
+  VariationOption   VariationOption @relation(fields: [variationOptionId], references: [id])
+
+  OrderVariation   OrderVariation @relation(fields: [orderVariationId], references: [id])
+  orderVariationId Int            @map("order_variation_id")
+
+  @@map("order_variation_options")
 }

@@ -67,4 +67,5 @@ model Address {
 
   @@index([lat, lng])
   @@map("addresses")
+  Order Order[]
 }

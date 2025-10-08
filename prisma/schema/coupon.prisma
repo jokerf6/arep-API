@@ -26,6 +26,7 @@ model Coupon {
   StoreCoupons StoreCoupons[]
 
   @@map("coupons")
+  Orders Order[]
 }
 
 model UserCoupons {
