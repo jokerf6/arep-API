@@ -133,6 +133,12 @@ export const permissions = [
     default: false,
     methods: ['post', 'get', 'patch', 'delete'],
   },
+       {
+    name: { en: 'Schedule', ar: 'جدول الجدولة' },
+    prefix: 'schedule',
+    default: false,
+    methods: ['post', 'get', 'patch', 'delete','manage'],
+  },
   
 ];
 

@@ -21,6 +21,7 @@ const adminPermissions: PermissionMap = {
   coupons: ['post', 'get', 'patch', 'delete'],
   addresses:['post','get','patch','delete'],
   employees:['post','get','patch','delete','manage'],
+  schedule:['post','get','patch','delete','manage'],
 
 
 

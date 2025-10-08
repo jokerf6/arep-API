@@ -8,10 +8,13 @@ import { LanguagesService } from '../languages/languages.service';
 import { HelpersService } from './services/helpers.service';
 import { OTPService } from '../authentication/services/otp.service';
 import { TokenService } from '../authentication/services/jwt.service';
+import { StoreScheduleController } from './controllers/store.schedule.controller';
+import { ScheduleHelpersService } from './services/store.schedule.helper.service';
+import { ScheduleService } from './services/store.schedule.service';
 
 @Module({
   imports: [],
-  controllers: [StoreFavouriteController, StoreController],
-  providers: [StoreService, StoreFavouriteService,StoreNearestService,LanguagesService,HelpersService,OTPService,TokenService],
+  controllers: [StoreFavouriteController, StoreController,StoreScheduleController],
+  providers: [StoreService, StoreFavouriteService,StoreNearestService,LanguagesService,HelpersService,OTPService,TokenService,ScheduleHelpersService,ScheduleService],
 })
 export class StoreModule {}

@@ -20,6 +20,8 @@ const storePermissions: PermissionMap = {
   coupons: ['get', ],
 
   employees: ['post', 'get','delete', 'patch',],
+  schedule:['post','get','patch','delete',],
+
 
 
 
