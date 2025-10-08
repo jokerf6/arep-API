@@ -3977,8 +3977,7 @@
                 "ALL_STORES",
                 "FIRST_ORDER",
                 "USER_WISE",
-                "STORE_WISE",
-                "FREE_DELIVERY"
+                "STORE_WISE"
               ],
               "type": "string"
             }
@@ -4029,20 +4028,11 @@
           },
           {
             "required": false,
-            "name": "freeDelivery",
-            "in": "query",
-            "schema": {
-              "example": true,
-              "type": "boolean"
-            }
-          },
-          {
-            "required": false,
             "name": "startDate",
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-08T08:09:42.066Z",
+              "example": "2025-10-08T13:26:15.316Z",
               "type": "string"
             }
           },
@@ -4052,7 +4042,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-08T08:09:42.066Z",
+              "example": "2025-10-08T13:26:15.316Z",
               "type": "string"
             }
           },
@@ -4137,9 +4127,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "freeDelivery": "string",
-                          "startDate": "2025-10-08T08:09:42.067Z",
-                          "endDate": "2025-10-08T08:09:42.067Z",
+                          "startDate": "2025-10-08T13:26:15.319Z",
+                          "endDate": "2025-10-08T13:26:15.319Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4161,9 +4150,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "freeDelivery": "string",
-                        "startDate": "2025-10-08T08:09:42.068Z",
-                        "endDate": "2025-10-08T08:09:42.068Z",
+                        "startDate": "2025-10-08T13:26:15.319Z",
+                        "endDate": "2025-10-08T13:26:15.319Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4297,8 +4285,7 @@
                 "ALL_STORES",
                 "FIRST_ORDER",
                 "USER_WISE",
-                "STORE_WISE",
-                "FREE_DELIVERY"
+                "STORE_WISE"
               ],
               "type": "string"
             }
@@ -4349,20 +4336,11 @@
           },
           {
             "required": false,
-            "name": "freeDelivery",
-            "in": "query",
-            "schema": {
-              "example": true,
-              "type": "boolean"
-            }
-          },
-          {
-            "required": false,
             "name": "startDate",
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-08T08:09:42.066Z",
+              "example": "2025-10-08T13:26:15.316Z",
               "type": "string"
             }
           },
@@ -4372,7 +4350,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-08T08:09:42.066Z",
+              "example": "2025-10-08T13:26:15.316Z",
               "type": "string"
             }
           },
@@ -4457,9 +4435,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "freeDelivery": "string",
-                          "startDate": "2025-10-08T08:09:42.067Z",
-                          "endDate": "2025-10-08T08:09:42.067Z",
+                          "startDate": "2025-10-08T13:26:15.319Z",
+                          "endDate": "2025-10-08T13:26:15.319Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4481,9 +4458,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "freeDelivery": "string",
-                        "startDate": "2025-10-08T08:09:42.068Z",
-                        "endDate": "2025-10-08T08:09:42.068Z",
+                        "startDate": "2025-10-08T13:26:15.319Z",
+                        "endDate": "2025-10-08T13:26:15.319Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -7858,6 +7834,53 @@
             "ACCESS Token": []
           }
         ]
+      },
+      "get": {
+        "operationId": "StoreScheduleController_getServiceSchedule",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Schedule"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
       }
     },
     "/api/services/favourite/{id}": {
@@ -11118,8 +11141,7 @@
               "ALL_STORES",
               "FIRST_ORDER",
               "USER_WISE",
-              "STORE_WISE",
-              "FREE_DELIVERY"
+              "STORE_WISE"
             ]
           },
           "discountType": {
@@ -11141,19 +11163,15 @@
           "minOrderAmount": {
             "type": "number"
           },
-          "freeDelivery": {
-            "type": "boolean",
-            "example": true
-          },
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.064Z"
+            "example": "2025-10-08T13:26:15.313Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.064Z"
+            "example": "2025-10-08T13:26:15.313Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11177,7 +11195,6 @@
           "maxUsage",
           "usageCount",
           "minOrderAmount",
-          "freeDelivery",
           "startDate",
           "endDate",
           "minDiscountValue",
@@ -11201,8 +11218,7 @@
               "ALL_STORES",
               "FIRST_ORDER",
               "USER_WISE",
-              "STORE_WISE",
-              "FREE_DELIVERY"
+              "STORE_WISE"
             ]
           },
           "discountType": {
@@ -11224,19 +11240,15 @@
           "minOrderAmount": {
             "type": "number"
           },
-          "freeDelivery": {
-            "type": "boolean",
-            "example": true
-          },
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.064Z"
+            "example": "2025-10-08T13:26:15.313Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.064Z"
+            "example": "2025-10-08T13:26:15.313Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11573,12 +11585,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.132Z"
+            "example": "2025-10-08T13:26:15.380Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.132Z"
+            "example": "2025-10-08T13:26:15.381Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -11665,12 +11677,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.044Z"
+            "example": "2025-10-08T13:26:15.294Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.044Z"
+            "example": "2025-10-08T13:26:15.294Z"
           },
           "price": {
             "type": "number"
@@ -11733,12 +11745,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.044Z"
+            "example": "2025-10-08T13:26:15.294Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-08T08:09:42.044Z"
+            "example": "2025-10-08T13:26:15.294Z"
           },
           "price": {
             "type": "number"

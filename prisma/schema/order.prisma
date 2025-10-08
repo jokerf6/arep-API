@@ -7,13 +7,14 @@ model Order {
   date      DateTime @default(now())
   createdAt DateTime @default(now())
 
-  addressId               Int?  @map("address_id")
-  customerId              Int  @map("customer_id")
+  addressId               Int  @map("address_id")
+  userId              Int  @map("customer_id")
   quantity                Int   @default(0)
   totalPriceAfterDiscount Float @default(0) @map("total_price_after_discount")
   discountAmount          Int   @default(0)
-  serviceId               Int?  @map("service_Id")
+  serviceId               Int  @map("service_Id")
   paidWithWallet          Int   @default(0) @map("paid_with_wallet")
+  adminCommission Float         @default(0)
 
   acceptedAt    DateTime? @map("accepted_at")
   cancelledAt   DateTime? @map("cancelled_at")
@@ -28,9 +29,9 @@ model Order {
   paymentMethod   PaymentMethod @default(VISA)
   status          OrderStatus   @default(PENDING)
 
-  Customer   User  @relation(fields: [customerId], references: [id])
-  Service    Service?    @relation(fields: [serviceId], references: [id])
-  Address    Address?    @relation(fields: [addressId], references: [id])
+  Customer   User  @relation(fields: [userId], references: [id])
+  Service    Service    @relation(fields: [serviceId], references: [id])
+  Address    Address    @relation(fields: [addressId], references: [id])
 
   OrderVariation OrderVariation[]
 

@@ -21,7 +21,6 @@ export async function seedCoupon(prisma: PrismaClient) {
       startDate: new Date(),
       endDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
       minOrderAmount: 100,
-      freeDelivery: false,
       active: true,
       minDiscountValue: 0,
       maxDiscountValue: 100,

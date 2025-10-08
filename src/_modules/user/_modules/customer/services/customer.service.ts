@@ -66,10 +66,10 @@ export class CustomerService {
 private async statistics(users: any): Promise<CustomerStats[]> {
   
   const stats = await this.prisma.order.groupBy({
-    by: ['customerId'],
-    where: { customerId: { in: users.map((u: any) => u.id) } },
+    by: ['userId'],
+    where: { userId: { in: users.map((u: any) => u.id) } },
     _count: { _all: true },
-    _sum: { priceAfterDiscount: true },
+    _sum: { totalPriceAfterDiscount: true },
   });
 
   const enrichedUsers: CustomerStats[] = users.map((u: any) => {
@@ -78,7 +78,7 @@ private async statistics(users: any): Promise<CustomerStats[]> {
     return {
       ...u,
       totalOrders: stat?._count._all ?? 0,
-      totalSpent: stat?._sum.priceAfterDiscount ?? 0,
+      totalSpent: stat?._sum.totalPriceAfterDiscount ?? 0,
     };
   });
 

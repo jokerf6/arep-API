@@ -10,7 +10,6 @@ model Coupon {
   maxUsage         Int          @map("max_usage")
   usageCount       Int          @map("usage_count")
   minOrderAmount   Int          @map("min_order_amount")
-  freeDelivery     Boolean      @map("free_delivery")
   active           Boolean      @default(true)
   startDate        DateTime     @map("start_date")
   endDate          DateTime     @map("end_date")
@@ -59,7 +58,6 @@ enum CouponType {
   FIRST_ORDER
   USER_WISE
   STORE_WISE
-  FREE_DELIVERY
 }
 
 enum DiscountType {

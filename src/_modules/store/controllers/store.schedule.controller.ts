@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Param, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { tag } from 'src/globals/helpers/tag.helper';
 import { ResponseService } from 'src/globals/services/response.service';
@@ -43,6 +43,13 @@ await this.helpers.scheduleOverlap(body.storeId,body);
     })
      async delete(@Res() res: Response, @Param() { id }: RequiredIdParam) {
     const schedule = await this.service.deleteSchedule(id);
+   return this.response.success(res, 'store schedule deleted successfully', schedule);
+    }
+            @Get('/:id')
+    @ApiRequiredIdParam('id')
+   
+     async getServiceSchedule(@Res() res: Response, @Param() { id }: RequiredIdParam) {
+    const schedule = await this.service.getServiceSchedule(id);
    return this.response.success(res, 'store schedule deleted successfully', schedule);
     }
 }

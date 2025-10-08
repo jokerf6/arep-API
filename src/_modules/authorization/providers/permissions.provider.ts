@@ -139,6 +139,12 @@ export const permissions = [
     default: false,
     methods: ['post', 'get', 'patch', 'delete','manage'],
   },
+    {
+    name: { en: 'Orders', ar: 'الطلبات' },
+    prefix: 'orders',
+    default: false,
+    methods: ['post', 'get', 'patch', 'delete','manage'],
+  },
   
 ];
 

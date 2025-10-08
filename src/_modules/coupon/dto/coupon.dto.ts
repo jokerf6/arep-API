@@ -49,9 +49,8 @@ export class CreateCouponDTO {
   @ValidateNumber()
   minOrderAmount: number;
 
-  @Required()
-  @ValidateBoolean()
-  freeDelivery: boolean;
+
+  
 
   @Required()
   @ValidateDate()
@@ -113,8 +112,7 @@ export class SortCouponDTO {
   @SortProp()
   minOrderAmount?: SortOptions;
 
-  @SortProp()
-  freeDelivery?: SortOptions;
+
 
   @SortProp()
   startDate?: SortOptions;
@@ -173,9 +171,7 @@ export class FilterCouponDTO extends PaginationParamsDTO {
   @ValidateNumber()
   minOrderAmount?: number;
 
-  @Optional()
-  @ValidateBoolean()
-  freeDelivery?: boolean;
+
 
   @Optional()
   @ValidateDate()
