@@ -4032,7 +4032,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:44:38.276Z",
+              "example": "2025-10-12T12:55:35.765Z",
               "type": "string"
             }
           },
@@ -4042,7 +4042,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:44:38.276Z",
+              "example": "2025-10-12T12:55:35.765Z",
               "type": "string"
             }
           },
@@ -4127,8 +4127,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-12T12:44:38.278Z",
-                          "endDate": "2025-10-12T12:44:38.278Z",
+                          "startDate": "2025-10-12T12:55:35.767Z",
+                          "endDate": "2025-10-12T12:55:35.767Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4150,8 +4150,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-12T12:44:38.278Z",
-                        "endDate": "2025-10-12T12:44:38.278Z",
+                        "startDate": "2025-10-12T12:55:35.767Z",
+                        "endDate": "2025-10-12T12:55:35.767Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4340,7 +4340,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:44:38.276Z",
+              "example": "2025-10-12T12:55:35.765Z",
               "type": "string"
             }
           },
@@ -4350,7 +4350,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:44:38.276Z",
+              "example": "2025-10-12T12:55:35.765Z",
               "type": "string"
             }
           },
@@ -4435,8 +4435,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-12T12:44:38.278Z",
-                          "endDate": "2025-10-12T12:44:38.278Z",
+                          "startDate": "2025-10-12T12:55:35.767Z",
+                          "endDate": "2025-10-12T12:55:35.767Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4458,8 +4458,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-12T12:44:38.278Z",
-                        "endDate": "2025-10-12T12:44:38.278Z",
+                        "startDate": "2025-10-12T12:55:35.767Z",
+                        "endDate": "2025-10-12T12:55:35.767Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -7854,7 +7854,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:44:38.333Z",
+              "example": "2025-10-12T12:55:35.821Z",
               "type": "string"
             }
           },
@@ -10737,6 +10737,232 @@
             "ACCESS Token": []
           }
         ]
+      },
+      "get": {
+        "operationId": "OrderController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-categories": {
+                    "summary": "Get All Categories",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-order": {
+                    "summary": "Single Order",
+                    "value": {
+                      "data": {
+                        "id": 1
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/orders/{id}": {
+      "get": {
+        "operationId": "OrderController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "orderBy",
+            "in": "query",
+            "schema": {
+              "type": "array"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-categories": {
+                    "summary": "Get All Categories",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-order": {
+                    "summary": "Single Order",
+                    "value": {
+                      "data": {
+                        "id": 1
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
       }
     }
   },
@@ -11229,12 +11455,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.274Z"
+            "example": "2025-10-12T12:55:35.764Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.274Z"
+            "example": "2025-10-12T12:55:35.764Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11306,12 +11532,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.274Z"
+            "example": "2025-10-12T12:55:35.764Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.274Z"
+            "example": "2025-10-12T12:55:35.764Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11648,12 +11874,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.332Z"
+            "example": "2025-10-12T12:55:35.821Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.333Z"
+            "example": "2025-10-12T12:55:35.821Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -11740,12 +11966,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.254Z"
+            "example": "2025-10-12T12:55:35.744Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.254Z"
+            "example": "2025-10-12T12:55:35.744Z"
           },
           "price": {
             "type": "number"
@@ -11808,12 +12034,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.254Z"
+            "example": "2025-10-12T12:55:35.744Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.254Z"
+            "example": "2025-10-12T12:55:35.744Z"
           },
           "price": {
             "type": "number"
@@ -12069,7 +12295,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:44:38.386Z"
+            "example": "2025-10-12T12:55:35.864Z"
           },
           "userId": {
             "type": "number"

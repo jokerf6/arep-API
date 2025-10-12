@@ -2,8 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/globals/services/prisma.service';
 
 import { LanguagesService } from '../languages/languages.service';
-import { CreateOrderDTO } from './dto/order.dto';
+import { CreateOrderDTO, FilterOrderDTO } from './dto/order.dto';
 import { HelpersService } from './services/helpers.service';
+import { getOrderArgs, getOrderArgsWithSelect } from './prisma-args/order.prisma.args';
+import { firstOrMany } from 'src/globals/helpers/first-or-many';
 @Injectable()
 export class OrderService {
   constructor(
@@ -13,7 +15,7 @@ export class OrderService {
   ) {}
   async create(data: CreateOrderDTO) {
     const {userId,addressId,serviceId,variantOptionIds,couponCode,date,quantity}=data;
-    await this.helpers.validateUserAddress(userId,addressId);
+    // await this.helpers.validateUserAddress(userId,addressId);
    const service= await this.helpers.validateServiceAvailability(serviceId,date);
    const selectedVariants= await this.helpers.validateVariants(serviceId,variantOptionIds,quantity);
    const totalPrice=(service.priceAfterDiscount+selectedVariants.totalPrice)*quantity
@@ -54,4 +56,24 @@ if (variantOptionIds?.length) {
 }
     })
   }
+    async findAll(filters: FilterOrderDTO) {
+      const languages = await this.languages.getCashedLanguages();
+      const args = getOrderArgs(filters, languages);
+      const argsWithSelect = getOrderArgsWithSelect();
+  
+      const data = await this.prisma.order[firstOrMany(filters?.id)]({
+        ...argsWithSelect,
+        ...args,
+      });
+      return data;
+    }
+
+      async count(filters: FilterOrderDTO) {
+        const languages = await this.languages.getCashedLanguages();
+        const args = getOrderArgs(filters, languages);
+        const total = await this.prisma.order.count({ where: args.where });
+    
+        return total;
+      }
+    
 }

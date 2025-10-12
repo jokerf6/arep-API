@@ -52,7 +52,13 @@ export class FilterOrderDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
   id?: Id;
-
+@Optional()
+@ValidateNumber()
+userId:Id;
+@Optional()
+@ValidateNumber()
+storeId:Id;
   @Optional()
   orderBy?: SortOrderDTO[];
 }
+

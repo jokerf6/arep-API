@@ -24,7 +24,21 @@ export const getOrderArgs = (
     ...paginateOrNot({ limit, page }, query?.id),
     orderBy: orderArray,
     where: {
-      AND: searchArray,
+      AND: [
+        ...searchArray,
+        {
+          OR:[
+            {
+              userId:query?.userId
+            },
+            {
+              Service:{
+                storeId:query?.storeId
+              }
+            }
+          ]
+        }
+      ],
     },
   } as Prisma.OrderFindManyArgs;
 };
@@ -38,6 +52,6 @@ export const selectOrderOBJ = () => {
 };
 export const getOrderArgsWithSelect = () => {
   return {
-    select: selectOrderOBJ(),
+    // select: selectOrderOBJ(),
   } satisfies Prisma.OrderFindManyArgs;
 };

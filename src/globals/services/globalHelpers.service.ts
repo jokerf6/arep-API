@@ -68,7 +68,7 @@ async getServiceSchedule(
     }[];
   }[]
 > {
-  if(date<new Date()) throw new BadRequestException('Date cannot be in the past');
+  // if(date<new Date()) throw new BadRequestException('Date cannot be in the past');
   const store = await this.prisma.store.findFirst({
     where: {
       Services: {
@@ -125,7 +125,6 @@ async getServiceSchedule(
       date: true,
     },
   });
-
   const bookedTimes = bookedOrders.map((o) => new Date(o.date));
 
   const result: {
