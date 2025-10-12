@@ -26,7 +26,12 @@ export const getCategoryArgs = (
     ...paginateOrNot({ limit, page }, query?.id),
     orderBy: orderArray,
     where: {
-      AND: searchArray,
+      AND: [
+        ...searchArray,
+          {
+          parentId: { is: null },
+        }
+      ],
     },
   } as Prisma.CategoryFindManyArgs;
 };
