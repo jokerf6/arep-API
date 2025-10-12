@@ -15,7 +15,7 @@ export class OrderService {
   ) {}
   async create(data: CreateOrderDTO) {
     const {userId,addressId,serviceId,variantOptionIds,couponCode,date,quantity}=data;
-    // await this.helpers.validateUserAddress(userId,addressId);
+    await this.helpers.validateUserAddress(userId,addressId);
    const service= await this.helpers.validateServiceAvailability(serviceId,date);
    const selectedVariants= await this.helpers.validateVariants(serviceId,variantOptionIds,quantity);
    const totalPrice=(service.priceAfterDiscount+selectedVariants.totalPrice)*quantity
