@@ -26,3 +26,12 @@ export class CreateScheduleDTO {
   @ValidateExist<'store'>({model:'store'})
   storeId:Id;
 }
+
+export class RequiredIdDateParam {
+  @Required()
+  @ValidateNumber()
+  id: Id;
+  @Required()
+  @ValidateDate()
+  date: Date;
+}

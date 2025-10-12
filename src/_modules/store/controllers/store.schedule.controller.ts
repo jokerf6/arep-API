@@ -1,16 +1,17 @@
 import { Body, Controller, Delete, Get, Param, Post, Res } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiParam, ApiTags } from '@nestjs/swagger';
 import { tag } from 'src/globals/helpers/tag.helper';
 import { ResponseService } from 'src/globals/services/response.service';
 import { ScheduleService } from '../services/store.schedule.service';
 import { Response } from 'express';
-import { CreateScheduleDTO } from '../dto/store.schedule.dto';
+import { CreateScheduleDTO, RequiredIdDateParam } from '../dto/store.schedule.dto';
 import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
 import { ScheduleHelpersService } from '../services/store.schedule.helper.service';
 import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
 import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { Auth } from 'src/_modules/authentication/decorators/auth.decorator';
+import { GlobalHelpers } from 'src/globals/services/globalHelpers.service';
 
 const prefix = 'schedule';
 
@@ -22,6 +23,7 @@ export class StoreScheduleController {
     private readonly service: ScheduleService,
     private readonly response: ResponseService,
     private readonly helpers: ScheduleHelpersService,
+    private readonly globalHelpers: GlobalHelpers,
   ) {}
 
     @Post('/')
@@ -45,11 +47,15 @@ await this.helpers.scheduleOverlap(body.storeId,body);
     const schedule = await this.service.deleteSchedule(id);
    return this.response.success(res, 'store schedule deleted successfully', schedule);
     }
-            @Get('/:id')
+            @Get('/:id/:date')
     @ApiRequiredIdParam('id')
-   
-     async getServiceSchedule(@Res() res: Response, @Param() { id }: RequiredIdParam) {
-    const schedule = await this.service.getServiceSchedule(id);
+   @ApiParam({
+    name:'date',
+    type:Date,
+    required:true,
+   })
+     async getServiceSchedule(@Res() res: Response, @Param() { id,date }: RequiredIdDateParam) {
+    const schedule = await this.globalHelpers.getServiceSchedule(id,date);
    return this.response.success(res, 'store schedule deleted successfully', schedule);
     }
 }

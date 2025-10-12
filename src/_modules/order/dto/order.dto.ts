@@ -28,7 +28,7 @@ export class CreateOrderDTO {
   variantOptionIds: Id[];
   @Required()
   @ValidateDate()
-  data:Date
+  date:Date
   @Required()
   @ValidateNumber()
   @ValidateExist({model:'user'})

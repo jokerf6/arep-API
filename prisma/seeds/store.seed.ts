@@ -15,6 +15,8 @@ export async function seedStore(prisma: PrismaClient) {
       logo: `uploads/store-logo-${i}.png`,
       cover: `https://example.com/banner${i}`,
       address: `Address ${i}`,
+      tax: 0,
+      commission: 0,
       lat: 0,
       lng: 0,
       rating: 0,

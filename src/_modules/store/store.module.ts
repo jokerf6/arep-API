@@ -11,10 +11,11 @@ import { TokenService } from '../authentication/services/jwt.service';
 import { StoreScheduleController } from './controllers/store.schedule.controller';
 import { ScheduleHelpersService } from './services/store.schedule.helper.service';
 import { ScheduleService } from './services/store.schedule.service';
+import { GlobalHelpers } from 'src/globals/services/globalHelpers.service';
 
 @Module({
   imports: [],
   controllers: [StoreFavouriteController, StoreController,StoreScheduleController],
-  providers: [StoreService, StoreFavouriteService,StoreNearestService,LanguagesService,HelpersService,OTPService,TokenService,ScheduleHelpersService,ScheduleService],
+  providers: [StoreService, StoreFavouriteService,StoreNearestService,LanguagesService,HelpersService,OTPService,TokenService,ScheduleHelpersService,ScheduleService,GlobalHelpers],
 })
 export class StoreModule {}
