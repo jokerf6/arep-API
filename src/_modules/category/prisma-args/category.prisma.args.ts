@@ -28,8 +28,8 @@ export const getCategoryArgs = (
     where: {
       AND: [
         ...searchArray,
-          {
-          parentId: { is: null },
+        {
+          parentId:null
         }
       ],
     },
