@@ -14,6 +14,7 @@ export const getOrderArgs = (
   const { orderBy, page, limit, ...filter } = query;
   const searchArray = [
     filterKey<Order>(filter, 'id'),
+    filterKey<Order>(filter, 'status'),
   ].filter(Boolean) as Prisma.OrderWhereInput[];
 
   const orderArray = [orderKey('id', 'id', orderBy)].filter(

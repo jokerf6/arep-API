@@ -1,5 +1,5 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { PaymentMethod } from '@prisma/client';
+import { OrderStatus, PaymentMethod } from '@prisma/client';
 import { ValidateEnum } from 'src/decorators/dto/enum.decorator';
 import { Optional } from 'src/decorators/dto/optional-input.decorator';
 import { Required } from 'src/decorators/dto/required-input.decorator';
@@ -60,5 +60,8 @@ userId:Id;
 storeId:Id;
   @Optional()
   orderBy?: SortOrderDTO[];
+  @Optional()
+  @ValidateEnum(OrderStatus)
+  status:OrderStatus;
 }
 
