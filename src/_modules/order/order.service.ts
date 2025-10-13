@@ -7,6 +7,8 @@ import { HelpersService } from './services/helpers.service';
 import { getOrderArgs, getOrderArgsWithSelect } from './prisma-args/order.prisma.args';
 import { firstOrMany } from 'src/globals/helpers/first-or-many';
 import { OrderStatus } from '@prisma/client';
+import { getOrderStatusCountFilterArgs } from './prisma-args/orderStatusCountFilter.prisma.args';
+import { OrderStatusCountFilterDTO } from './dto/order.countStatus.filter.dto';
 @Injectable()
 export class OrderService {
   constructor(
@@ -87,5 +89,13 @@ await this.prisma.order.update({
     status:status
   }
 })
+    }
+    async getOrderStatusCount(filters:OrderStatusCountFilterDTO){
+        const languages = await this.languages.getCashedLanguages();
+      const count=await this.prisma.order.groupBy({
+        by:['status'],
+...getOrderStatusCountFilterArgs(filters,languages)
+      })
+      return count
     }
 }
