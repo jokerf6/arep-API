@@ -4032,7 +4032,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:55:35.765Z",
+              "example": "2025-10-13T08:25:53.595Z",
               "type": "string"
             }
           },
@@ -4042,7 +4042,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:55:35.765Z",
+              "example": "2025-10-13T08:25:53.595Z",
               "type": "string"
             }
           },
@@ -4127,8 +4127,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-12T12:55:35.767Z",
-                          "endDate": "2025-10-12T12:55:35.767Z",
+                          "startDate": "2025-10-13T08:25:53.597Z",
+                          "endDate": "2025-10-13T08:25:53.597Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4150,8 +4150,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-12T12:55:35.767Z",
-                        "endDate": "2025-10-12T12:55:35.767Z",
+                        "startDate": "2025-10-13T08:25:53.597Z",
+                        "endDate": "2025-10-13T08:25:53.597Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4340,7 +4340,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:55:35.765Z",
+              "example": "2025-10-13T08:25:53.595Z",
               "type": "string"
             }
           },
@@ -4350,7 +4350,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:55:35.765Z",
+              "example": "2025-10-13T08:25:53.595Z",
               "type": "string"
             }
           },
@@ -4435,8 +4435,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-12T12:55:35.767Z",
-                          "endDate": "2025-10-12T12:55:35.767Z",
+                          "startDate": "2025-10-13T08:25:53.597Z",
+                          "endDate": "2025-10-13T08:25:53.597Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4458,8 +4458,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-12T12:55:35.767Z",
-                        "endDate": "2025-10-12T12:55:35.767Z",
+                        "startDate": "2025-10-13T08:25:53.597Z",
+                        "endDate": "2025-10-13T08:25:53.597Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -7854,7 +7854,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-12T12:55:35.821Z",
+              "example": "2025-10-13T08:25:53.648Z",
               "type": "string"
             }
           },
@@ -10790,6 +10790,22 @@
             }
           },
           {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "PENDING",
+                "ACCEPTED",
+                "SCHEDULED",
+                "COMPLETED",
+                "CANCELLED",
+                "REJECTED"
+              ],
+              "type": "string"
+            }
+          },
+          {
             "in": "header",
             "required": false,
             "name": "Locale",
@@ -10816,8 +10832,8 @@
             "content": {
               "application/json": {
                 "examples": {
-                  "get-all-categories": {
-                    "summary": "Get All Categories",
+                  "get-all-orders": {
+                    "summary": "Get All Orders",
                     "value": {
                       "data": [
                         {
@@ -10838,6 +10854,71 @@
                 }
               }
             },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/orders/{id}/{status}": {
+      "patch": {
+        "operationId": "OrderController_changeStatus",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "status",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "enum": [
+                "PENDING",
+                "ACCEPTED",
+                "SCHEDULED",
+                "COMPLETED",
+                "CANCELLED",
+                "REJECTED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
             "description": ""
           }
         },
@@ -10904,6 +10985,22 @@
             }
           },
           {
+            "required": false,
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "enum": [
+                "PENDING",
+                "ACCEPTED",
+                "SCHEDULED",
+                "COMPLETED",
+                "CANCELLED",
+                "REJECTED"
+              ],
+              "type": "string"
+            }
+          },
+          {
             "in": "header",
             "required": false,
             "name": "Locale",
@@ -10930,8 +11027,8 @@
             "content": {
               "application/json": {
                 "examples": {
-                  "get-all-categories": {
-                    "summary": "Get All Categories",
+                  "get-all-orders": {
+                    "summary": "Get All Orders",
                     "value": {
                       "data": [
                         {
@@ -11455,12 +11552,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.764Z"
+            "example": "2025-10-13T08:25:53.593Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.764Z"
+            "example": "2025-10-13T08:25:53.593Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11532,12 +11629,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.764Z"
+            "example": "2025-10-13T08:25:53.593Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.764Z"
+            "example": "2025-10-13T08:25:53.593Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11874,12 +11971,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.821Z"
+            "example": "2025-10-13T08:25:53.648Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.821Z"
+            "example": "2025-10-13T08:25:53.648Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -11966,12 +12063,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.744Z"
+            "example": "2025-10-13T08:25:53.573Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.744Z"
+            "example": "2025-10-13T08:25:53.573Z"
           },
           "price": {
             "type": "number"
@@ -12034,12 +12131,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.744Z"
+            "example": "2025-10-13T08:25:53.573Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.744Z"
+            "example": "2025-10-13T08:25:53.573Z"
           },
           "price": {
             "type": "number"
@@ -12295,7 +12392,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-12T12:55:35.864Z"
+            "example": "2025-10-13T08:25:53.691Z"
           },
           "userId": {
             "type": "number"

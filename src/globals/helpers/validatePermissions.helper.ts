@@ -1,7 +1,6 @@
   export  function validatePermissions(
     requiredPermissions: string,
     userPermissions: {
-      name: { en: string; ar?: string };
       prefix: string;
       method: string;
     }[],

@@ -6,6 +6,7 @@ import { CreateOrderDTO, FilterOrderDTO } from './dto/order.dto';
 import { HelpersService } from './services/helpers.service';
 import { getOrderArgs, getOrderArgsWithSelect } from './prisma-args/order.prisma.args';
 import { firstOrMany } from 'src/globals/helpers/first-or-many';
+import { OrderStatus } from '@prisma/client';
 @Injectable()
 export class OrderService {
   constructor(
@@ -75,5 +76,16 @@ if (variantOptionIds?.length) {
     
         return total;
       }
-    
+    async changeStatus(id:Id,status:OrderStatus,user:CurrentUser){
+const order=await this.helpers.getOrderById(id);
+await this.helpers.canUserAccessOrderId(user,order);
+await this.prisma.order.update({
+  where:{
+    id:id
+  },
+  data:{
+    status:status
+  }
+})
+    }
 }

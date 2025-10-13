@@ -1,8 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
 import {
   Coupon,
   CouponType,
   DiscountType,
+  Order,
   ServiceStatus,
 } from '@prisma/client';
 import { GlobalHelpers } from 'src/globals/services/globalHelpers.service';
@@ -11,6 +12,8 @@ import {
   selectCouponOBJ,
   SelectCouponObjType,
 } from '../prisma-args/coupon.prisma.args';
+import { validatePermissions } from 'src/globals/helpers/validatePermissions.helper';
+import { selectOrderByIdForValidationOBJ, selectOrderByIdForValidationOBJType } from '../prisma-args/order.helpers.prisma.arg';
 
 @Injectable()
 export class HelpersService {
@@ -313,5 +316,29 @@ if(!StoreTaxForAll||StoreTaxForAll.value==='false'){
     priceAfterTax:price
   } 
 }
+}
+async getOrderById(id:Id){
+  const order=await this.prisma.order.findUnique({
+    where:{
+      id:id
+    },
+    select:{
+      ...selectOrderByIdForValidationOBJ() 
+    }
+  })
+  return order
+}
+async canUserAccessOrderId(user:CurrentUser,order:selectOrderByIdForValidationOBJType){
+const canUserManageOrder=validatePermissions(
+      `orders_manage`,
+     user.permissions,
+    );
+    if(canUserManageOrder){
+      return true;
+    }
+    if(order.Service.storeId===user.storeId){
+      return true;
+    }
+    throw new ForbiddenException('You do not have access to this order');
 }
 }

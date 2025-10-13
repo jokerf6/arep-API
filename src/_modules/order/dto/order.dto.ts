@@ -8,6 +8,7 @@ import { ValidateDate } from 'src/decorators/dto/validators/validate-date.decora
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
 import { ValidateNumber, ValidateNumberArray } from 'src/decorators/dto/validators/validate-number.decorator';
 import { ValidateString } from 'src/decorators/dto/validators/validate-string.decorator';
+import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { PaginationParamsDTO } from 'src/dtos/params/pagination-params.dto';
 
 export class CreateOrderDTO {
@@ -65,3 +66,9 @@ storeId:Id;
   status:OrderStatus;
 }
 
+
+export class ChangeOrderStatusParam extends RequiredIdParam {
+  @Required()
+  @ValidateEnum(OrderStatus)
+  status: OrderStatus;
+}
