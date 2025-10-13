@@ -24,6 +24,7 @@ const storePermissions: PermissionMap = {
 
   orders:['post','get','patch','delete',],
 
+  cities:['get',],
 
 
 

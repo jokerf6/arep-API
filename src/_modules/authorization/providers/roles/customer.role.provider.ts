@@ -18,6 +18,7 @@ const customerPermissions: PermissionMap = {
   coupons: [ 'get',],
   schedule:['get'],
   orders:['post','get','patch'],
+  cities:['get',],
 
 
 } as const satisfies PermissionMap;

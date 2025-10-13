@@ -23,6 +23,7 @@ const adminPermissions: PermissionMap = {
   employees:['post','get','patch','delete','manage'],
   schedule:['post','get','patch','delete','manage'],
   orders:['post','get','patch','delete','manage'],
+  cities:['post','get','patch','delete','manage'],
 
 
 

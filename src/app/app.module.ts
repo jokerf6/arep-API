@@ -43,6 +43,7 @@ import { TransactionModule } from 'src/_modules/transaction/transaction.module';
 import { BankAccountModule } from 'src/_modules/bankAccount/bankAccount.module';
 import { BankModule } from 'src/_modules/bank/bank.module';
 import { OrderModule } from 'src/_modules/order/order.module';
+import { CityModule } from 'src/_modules/city/city.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -95,7 +96,8 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
      TransactionModule,
      BankModule,
      BankAccountModule,
-     OrderModule
+     OrderModule,
+     CityModule
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService,

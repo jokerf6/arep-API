@@ -145,6 +145,13 @@ export const permissions = [
     default: false,
     methods: ['post', 'get', 'patch', 'delete','manage'],
   },
+    {
+    name: { en: 'Cities', ar: 'المدن' },
+    prefix: 'cities',
+    default: true,
+    methods: ['post', 'get', 'patch', 'delete','manage'],
+  },
+  
   
 ];
 
