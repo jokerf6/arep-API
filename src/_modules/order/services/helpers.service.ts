@@ -116,6 +116,7 @@ export class HelpersService {
     if (!service) throw new BadRequestException('Service not found');
     if (service.status !== ServiceStatus.ACTIVE)
       throw new BadRequestException('Service is not active');
+    if(service.Store.temporarilyClosed) throw new BadRequestException('Store is temporarily closed');
     await this.isServiceAvailable(serviceId, date);
 
     return service;
