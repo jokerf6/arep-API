@@ -31,7 +31,7 @@ export class StoreNearestService {
       params.push(filter.rating);
     }
     if (filter?.moduleId) {
-      whereParts.push(`s.module_id = ?`);
+      whereParts.push(`s.moduleId = ?`);
       params.push(filter.moduleId);
     }
     if (filter?.closed) {
