@@ -25,6 +25,7 @@ const adminPermissions: PermissionMap = {
   orders:['post','get','patch','delete','manage'],
   cities:['post','get','patch','delete','manage'],
 servicerating:['get',],
+storerating:['get',],
 
 
 

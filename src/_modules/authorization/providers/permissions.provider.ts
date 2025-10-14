@@ -152,13 +152,17 @@ export const permissions = [
     methods: ['post', 'get', 'patch', 'delete','manage'],
   },
       {
-    name: { en: 'Service Rating', ar: 'التقييم' },
+    name: { en: 'Service Rating', ar: 'تقييم الخدمات' },
     prefix: 'servicerating',
     default: true,
     methods: ['post', 'get', 'patch', 'delete','manage'],
   },
-  
-  
+        {
+    name: { en: 'Store Rating', ar: 'تقييم المتجر' },
+    prefix: 'storerating',
+    default: true,
+    methods: ['post', 'get', 'patch', 'delete','manage'],
+  },
 ];
 
 type Permission = (typeof permissions)[number];

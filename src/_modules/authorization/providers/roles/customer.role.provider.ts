@@ -20,6 +20,7 @@ const customerPermissions: PermissionMap = {
   orders:['post','get','patch'],
   cities:['get',],
 servicerating:['post','get','patch','delete',],
+storerating:['post','get','patch','delete',],
 
 
 } as const satisfies PermissionMap;
