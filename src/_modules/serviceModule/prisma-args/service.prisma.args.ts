@@ -125,7 +125,9 @@ export const selectServiceOBJ = () => {
         id:true,
         name:true,
         cover:true,
-        logo:true
+        logo:true,
+        address:true,
+        rating:true,
       }
     }
  

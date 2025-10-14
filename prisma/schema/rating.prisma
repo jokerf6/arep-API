@@ -1,0 +1,26 @@
+model ServiceRating {
+  id Int @id @default(autoincrement())
+  serviceId Int @map("service_id")
+  userId Int @map("customer_id")
+  Service Service @relation(fields: [serviceId], references: [id])
+  Customer User @relation(fields: [userId], references: [id])
+  rating Float @map("rating")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  @@unique([serviceId, userId])
+  @@map("service_rating")
+}
+model StoreRating {
+    id Int @id @default(autoincrement())
+    storeId Int @map("store_id")
+    userId Int @map("customer_id")
+    Store Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
+    Customer User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    rating Float @map("rating")
+    createdAt DateTime  @default(now()) @map("created_at")
+    updatedAt DateTime? @map("updated_at")
+    deletedAt DateTime? @map("deleted_at")
+    @@unique([storeId, userId])
+    @@map("store_rating")
+}

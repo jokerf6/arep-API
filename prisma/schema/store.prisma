@@ -10,7 +10,7 @@ model Store {
   lat               Float
   lng               Float
   rating            Float @default(0)
-  review            Float @default(0)
+  review            Int @default(0)
   commission        Float @default(0)
   tax        Float @default(0)
   isStoreAccepted   Boolean @default(false)
@@ -40,6 +40,7 @@ model Store {
   @@map("stores")
   User User[]
   Categories Category[] @relation("StoreCategory")
+  StoreRating StoreRating[]
 }
 
 model StoreSchedule {

@@ -4032,7 +4032,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:43:37.582Z",
+              "example": "2025-10-14T10:08:45.714Z",
               "type": "string"
             }
           },
@@ -4042,7 +4042,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:43:37.582Z",
+              "example": "2025-10-14T10:08:45.714Z",
               "type": "string"
             }
           },
@@ -4127,8 +4127,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-14T07:43:37.584Z",
-                          "endDate": "2025-10-14T07:43:37.584Z",
+                          "startDate": "2025-10-14T10:08:45.716Z",
+                          "endDate": "2025-10-14T10:08:45.716Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4150,8 +4150,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-14T07:43:37.584Z",
-                        "endDate": "2025-10-14T07:43:37.584Z",
+                        "startDate": "2025-10-14T10:08:45.716Z",
+                        "endDate": "2025-10-14T10:08:45.716Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4340,7 +4340,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:43:37.582Z",
+              "example": "2025-10-14T10:08:45.714Z",
               "type": "string"
             }
           },
@@ -4350,7 +4350,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:43:37.582Z",
+              "example": "2025-10-14T10:08:45.714Z",
               "type": "string"
             }
           },
@@ -4435,8 +4435,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-14T07:43:37.584Z",
-                          "endDate": "2025-10-14T07:43:37.584Z",
+                          "startDate": "2025-10-14T10:08:45.716Z",
+                          "endDate": "2025-10-14T10:08:45.716Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4458,8 +4458,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-14T07:43:37.584Z",
-                        "endDate": "2025-10-14T07:43:37.584Z",
+                        "startDate": "2025-10-14T10:08:45.716Z",
+                        "endDate": "2025-10-14T10:08:45.716Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -7859,7 +7859,7 @@
         ]
       },
       "get": {
-        "operationId": "StoreScheduleController_getStoreSchedule",
+        "operationId": "StoreScheduleController_getStoreAvailableDays",
         "parameters": [
           {
             "name": "id",
@@ -7924,7 +7924,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:43:37.636Z",
+              "example": "2025-10-14T10:08:45.786Z",
               "type": "string"
             }
           },
@@ -8208,7 +8208,9 @@
                             "id": 1,
                             "name": "John Doe",
                             "cover": "string",
-                            "logo": "string"
+                            "logo": "string",
+                            "address": "123 Main St",
+                            "rating": "2025-06-26T18:17:10.000Z"
                           },
                           "Favorites": {
                             "where": {
@@ -8272,7 +8274,9 @@
                           "id": 1,
                           "name": "John Doe",
                           "cover": "string",
-                          "logo": "string"
+                          "logo": "string",
+                          "address": "123 Main St",
+                          "rating": "2025-06-26T18:17:10.000Z"
                         },
                         "Favorites": {
                           "where": {
@@ -8497,7 +8501,9 @@
                             "id": 1,
                             "name": "John Doe",
                             "cover": "string",
-                            "logo": "string"
+                            "logo": "string",
+                            "address": "123 Main St",
+                            "rating": "2025-06-26T18:17:10.000Z"
                           },
                           "Favorites": {
                             "where": {
@@ -8561,7 +8567,9 @@
                           "id": 1,
                           "name": "John Doe",
                           "cover": "string",
-                          "logo": "string"
+                          "logo": "string",
+                          "address": "123 Main St",
+                          "rating": "2025-06-26T18:17:10.000Z"
                         },
                         "Favorites": {
                           "where": {
@@ -11132,7 +11140,58 @@
         ]
       }
     },
-    "/api/orders/status-count": {
+    "/api/orders/calculate/order": {
+      "get": {
+        "operationId": "OrderController_calculateOrder",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CalculateOrderDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Orders"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/orders/statistics/status-count": {
       "get": {
         "operationId": "OrderController_getOrderStatusCount",
         "parameters": [
@@ -11142,7 +11201,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:43:37.672Z",
+              "example": "2025-10-14T10:08:45.845Z",
               "type": "string"
             }
           },
@@ -11152,7 +11211,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:43:37.672Z",
+              "example": "2025-10-14T10:08:45.845Z",
               "type": "string"
             }
           },
@@ -11555,6 +11614,391 @@
         },
         "tags": [
           "Cities"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/ServiceRatings": {
+      "post": {
+        "operationId": "ServiceRatingController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceRatingDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Serviceratings"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ServiceRatingController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "serviceId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-serviceratings": {
+                    "summary": "Get All ServiceRatings",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "serviceId": 1,
+                          "userId": 1,
+                          "Service": "string",
+                          "Customer": "string"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-servicerating": {
+                    "summary": "Single ServiceRating",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "serviceId": 1,
+                        "userId": 1,
+                        "Service": "string",
+                        "Customer": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Serviceratings"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/ServiceRatings/{id}": {
+      "patch": {
+        "operationId": "ServiceRatingController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceRatingDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Serviceratings"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ServiceRatingController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "serviceId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-serviceratings": {
+                    "summary": "Get All ServiceRatings",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "serviceId": 1,
+                          "userId": 1,
+                          "Service": "string",
+                          "Customer": "string"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-servicerating": {
+                    "summary": "Single ServiceRating",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "rating": "2025-06-26T18:17:10.000Z",
+                        "serviceId": 1,
+                        "userId": 1,
+                        "Service": "string",
+                        "Customer": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Serviceratings"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "ServiceRatingController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Serviceratings"
         ],
         "security": [
           {
@@ -12053,12 +12497,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.580Z"
+            "example": "2025-10-14T10:08:45.713Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.580Z"
+            "example": "2025-10-14T10:08:45.713Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -12130,12 +12574,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.580Z"
+            "example": "2025-10-14T10:08:45.713Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.580Z"
+            "example": "2025-10-14T10:08:45.713Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -12484,12 +12928,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.636Z"
+            "example": "2025-10-14T10:08:45.785Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.636Z"
+            "example": "2025-10-14T10:08:45.785Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -12576,12 +13020,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.565Z"
+            "example": "2025-10-14T10:08:45.693Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.565Z"
+            "example": "2025-10-14T10:08:45.693Z"
           },
           "price": {
             "type": "number"
@@ -12644,12 +13088,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.565Z"
+            "example": "2025-10-14T10:08:45.693Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.565Z"
+            "example": "2025-10-14T10:08:45.693Z"
           },
           "price": {
             "type": "number"
@@ -12884,14 +13328,8 @@
       "CreateOrderDTO": {
         "type": "object",
         "properties": {
-          "note": {
-            "type": "string"
-          },
           "couponCode": {
             "type": "string"
-          },
-          "addressId": {
-            "type": "number"
           },
           "serviceId": {
             "type": "number"
@@ -12902,15 +13340,21 @@
               "type": "string"
             }
           },
+          "quantity": {
+            "type": "number"
+          },
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:43:37.668Z"
+            "example": "2025-10-14T10:08:45.836Z"
           },
           "userId": {
             "type": "number"
           },
-          "quantity": {
+          "note": {
+            "type": "string"
+          },
+          "addressId": {
             "type": "number"
           },
           "paymentMethod": {
@@ -12923,13 +13367,48 @@
           }
         },
         "required": [
-          "addressId",
           "serviceId",
           "variantOptionIds",
+          "quantity",
           "date",
           "userId",
-          "quantity",
+          "addressId",
           "paymentMethod"
+        ]
+      },
+      "CalculateOrderDTO": {
+        "type": "object",
+        "properties": {
+          "couponCode": {
+            "type": "string"
+          },
+          "serviceId": {
+            "type": "number"
+          },
+          "variantOptionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quantity": {
+            "type": "number"
+          },
+          "date": {
+            "format": "date-time",
+            "type": "string",
+            "example": "2025-10-14T10:08:45.836Z"
+          },
+          "userId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "serviceId",
+          "variantOptionIds",
+          "quantity",
+          "date",
+          "userId"
         ]
       },
       "CreateCityDTO": {
@@ -12952,6 +13431,38 @@
             "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
           }
         }
+      },
+      "CreateServiceRatingDTO": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "number"
+          },
+          "serviceId": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "rating",
+          "serviceId"
+        ]
+      },
+      "UpdateServiceRatingDTO": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "number"
+          },
+          "userId": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "rating"
+        ]
       }
     }
   }

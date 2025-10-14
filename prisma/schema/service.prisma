@@ -15,7 +15,7 @@ model Service {
     // statistics
     totalOrders     Int      @default(0) @map("total_orders")
     totalAmountSold Int      @default(0) @map("total_amount_sold")
-    rating          Int      @default(0)
+    rating          Float      @default(0)
     review          Int      @default(0)
     bestRated       Boolean? @default(false) @map("best_rated")
     mostSeller      Boolean? @default(false) @map("most_seller")
@@ -37,6 +37,7 @@ model Service {
   @@map("services")
 
     Order Order[]
+    ServiceRating ServiceRating[]
 }
 
 model FavoriteService {

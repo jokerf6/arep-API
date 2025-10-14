@@ -38,6 +38,8 @@ Store   Store? @relation(fields: [storeId], references: [id], onDelete: Cascade)
   @@index([phone, roleKey])
   @@index([email, roleKey])
   @@map("users")
+  ServiceRating ServiceRating[]
+  StoreRating StoreRating[]
 }
 
 model Details {
