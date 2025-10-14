@@ -84,7 +84,7 @@ export class BaseAuthenticationService {
     if (!phone && !email) {
       throw new NotFoundException('Phone or Email is required');
     }
-    if (roleKey === RolesKeys.CUSTOMER) {
+    if (roleKey === RolesKeys.CUSTOMER||roleKey==RolesKeys.STORE) {
       if (!phone) {
         throw new NotFoundException('Phone is required for customer login');
       }
