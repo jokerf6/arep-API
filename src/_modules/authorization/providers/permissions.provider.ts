@@ -151,6 +151,12 @@ export const permissions = [
     default: true,
     methods: ['post', 'get', 'patch', 'delete','manage'],
   },
+      {
+    name: { en: 'Service Rating', ar: 'التقييم' },
+    prefix: 'servicerating',
+    default: true,
+    methods: ['post', 'get', 'patch', 'delete','manage'],
+  },
   
   
 ];

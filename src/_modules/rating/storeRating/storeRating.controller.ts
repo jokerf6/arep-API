@@ -25,30 +25,30 @@ import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 import { isOne } from 'src/globals/helpers/first-or-many';
 import { buildExamples } from 'src/globals/helpers/generate-example.helper';
 import { tag } from 'src/globals/helpers/tag.helper';
-import { ServiceRatingService } from './serviceRating.service';
+import { StoreRatingService } from './storeRating.service';
 import {
-  CreateServiceRatingDTO,
-  FilterServiceRatingDTO,
-  UpdateServiceRatingDTO,
-} from './dto/serviceRating.dto';
-import { selectServiceRatingOBJ } from './prisma-args/serviceRating.prisma.args';
+  CreateStoreRatingDTO,
+  FilterStoreRatingDTO,
+  UpdateStoreRatingDTO,
+} from './dto/storeRating.dto';
+import { selectStoreRatingOBJ } from './prisma-args/storeRating.prisma.args';
 import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
 
-const prefix = 'servicerating';
+const prefix = 'storerating';
 
 @Controller(prefix)
 @ApiTags(tag(prefix))
-export class ServiceRatingController {
+export class StoreRatingController {
   constructor(
-    private readonly service: ServiceRatingService,
+    private readonly service: StoreRatingService,
     private readonly response: ResponseService,
   ) {}
 
   @Post('/')
   @Auth({ prefix })
-  async create(@Res() res: Response, @Body() body: CreateServiceRatingDTO) {
+  async create(@Res() res: Response, @Body() body: CreateStoreRatingDTO) {
     await this.service.create(body);
-    return this.response.created(res, 'ServiceRating created successfully');
+    return this.response.created(res, 'StoreRating created successfully');
   }
 
   @Patch('/:id')
@@ -57,40 +57,40 @@ export class ServiceRatingController {
   async update(
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,
-    @Body() body: UpdateServiceRatingDTO,
+    @Body() body: UpdateStoreRatingDTO,
     @CurrentUser() user: CurrentUser,
   ) {
     body.userId=user.id;
     await this.service.update(id, body);
-    return this.response.created(res, 'ServiceRating updated successfully');
+    return this.response.created(res, 'StoreRating updated successfully');
   }
   @Get(['/', '/:id'])
   @ApiOkResponse(
     buildExamples([
       {
-        title: 'Get All ServiceRatings',
+        title: 'Get All StoreRatings',
         paginated: true,
-        body: [selectServiceRatingOBJ()],
+        body: [selectStoreRatingOBJ()],
       },
       {
-        title: 'Single ServiceRating',
+        title: 'Single StoreRating',
         paginated: false,
-        body: selectServiceRatingOBJ(),
+        body: selectStoreRatingOBJ(),
       },
     ]),
   )
   @Auth({ prefix, visitor: true })
-  @ApiQuery({ type: PartialType(FilterServiceRatingDTO) })
+  @ApiQuery({ type: PartialType(FilterStoreRatingDTO) })
   async findAll(
     @Res() res: Response,
-    @Filter({ dto: FilterServiceRatingDTO }) filters: FilterServiceRatingDTO,
+    @Filter({ dto: FilterStoreRatingDTO }) filters: FilterStoreRatingDTO,
   ) {
     const data = await this.service.findAll(filters);
     const total = isOne(filters?.id)
       ? undefined
       : await this.service.count(filters);
 
-    return this.response.success(res, 'ServiceRating fetched successfully', data, {
+    return this.response.success(res, 'StoreRating fetched successfully', data, {
       total,
     });
   }
@@ -100,6 +100,6 @@ export class ServiceRatingController {
   @Auth({ prefix })
   async delete(@Res() res: Response, @Param() { id }: RequiredIdParam,@CurrentUser() user: CurrentUser) {
     await this.service.delete(id,user.id);
-    return this.response.success(res, 'delete ServiceRating successfully');
+    return this.response.success(res, 'delete StoreRating successfully');
   }
 }

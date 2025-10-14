@@ -3,5 +3,9 @@
         "activityBar.background": "#093241",
         "titleBar.activeBackground": "#0D455B",
         "titleBar.activeForeground": "#F6FCFE"
-    }
+    },
+    "cSpell.words": [
+        "servicerating",
+        "storerating"
+    ]
 }
