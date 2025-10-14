@@ -10,33 +10,39 @@ import { ValidateNumber, ValidateNumberArray } from 'src/decorators/dto/validato
 import { ValidateString } from 'src/decorators/dto/validators/validate-string.decorator';
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { PaginationParamsDTO } from 'src/dtos/params/pagination-params.dto';
-
-export class CreateOrderDTO {
-  @Optional()
-  @ValidateString()
-  note?: string;
-  @Optional()
+export class CalculateOrderDTO{
+@Optional()
   @ValidateString()
   couponCode?: string;
-  @Required()
-  @ValidateNumber()
-  addressId: Id;
-  @Required()
+    @Required()
   @ValidateNumber()
   serviceId: Id;
   @Required()
   @ValidateNumberArray({allowNegative:false})
   variantOptionIds: Id[];
-  @Required()
+    @Required()
+  @ValidateNumber({allowNegative:false})
+  quantity:number;
+    @Required()
   @ValidateDate()
   date:Date
+
   @Required()
   @ValidateNumber()
   @ValidateExist({model:'user'})
   userId:Id;
+
+}
+export class CreateOrderDTO extends CalculateOrderDTO {
+  @Optional()
+  @ValidateString()
+  note?: string;
+  
   @Required()
-  @ValidateNumber({allowNegative:false})
-  quantity:number;
+  @ValidateNumber()
+  addressId: Id;
+
+
   @Required()
   @ValidateEnum(PaymentMethod)
   paymentMethod:PaymentMethod;
