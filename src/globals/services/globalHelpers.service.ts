@@ -189,7 +189,7 @@ export class GlobalHelpers {
 
     return result;
   }
-  async getStoreSchedule(storeId: Id) {
+  async getStoreAvailableDays(storeId: Id) {
     const schedule=await this.prisma.storeSchedule.groupBy({
       by:['day'],
       where:{

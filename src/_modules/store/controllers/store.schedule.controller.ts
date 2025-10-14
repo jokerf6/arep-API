@@ -61,8 +61,8 @@ await this.helpers.scheduleOverlap(body.storeId,body);
                 @Get('/:id')
     @ApiRequiredIdParam('id')
 
-     async getStoreSchedule(@Res() res: Response, @Param() { id }: RequiredIdParam) {
-    const schedule = await this.globalHelpers.getStoreSchedule(id);
+     async getStoreAvailableDays(@Res() res: Response, @Param() { id }: RequiredIdParam) {
+    const schedule = await this.globalHelpers.getStoreAvailableDays(id);
    return this.response.success(res, 'store schedule returned successfully', schedule);
     }
 }
