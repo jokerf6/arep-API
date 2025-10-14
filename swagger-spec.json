@@ -1555,6 +1555,7 @@
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
@@ -1885,6 +1886,7 @@
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
+                          "storeId": 1,
                           "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
@@ -1910,6 +1912,7 @@
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
@@ -2045,6 +2048,7 @@
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
+                          "storeId": 1,
                           "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
@@ -2070,6 +2074,7 @@
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
@@ -2370,6 +2375,7 @@
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
+                          "storeId": 1,
                           "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
@@ -2397,6 +2403,7 @@
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
@@ -2544,6 +2551,7 @@
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
+                          "storeId": 1,
                           "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
@@ -2571,6 +2579,7 @@
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
+                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
@@ -4032,7 +4041,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T10:32:46.841Z",
+              "example": "2025-10-14T12:49:31.512Z",
               "type": "string"
             }
           },
@@ -4042,7 +4051,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T10:32:46.842Z",
+              "example": "2025-10-14T12:49:31.512Z",
               "type": "string"
             }
           },
@@ -4127,8 +4136,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-14T10:32:46.845Z",
-                          "endDate": "2025-10-14T10:32:46.845Z",
+                          "startDate": "2025-10-14T12:49:31.514Z",
+                          "endDate": "2025-10-14T12:49:31.514Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4150,8 +4159,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-14T10:32:46.845Z",
-                        "endDate": "2025-10-14T10:32:46.845Z",
+                        "startDate": "2025-10-14T12:49:31.514Z",
+                        "endDate": "2025-10-14T12:49:31.514Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4340,7 +4349,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T10:32:46.841Z",
+              "example": "2025-10-14T12:49:31.512Z",
               "type": "string"
             }
           },
@@ -4350,7 +4359,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T10:32:46.842Z",
+              "example": "2025-10-14T12:49:31.512Z",
               "type": "string"
             }
           },
@@ -4435,8 +4444,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-14T10:32:46.845Z",
-                          "endDate": "2025-10-14T10:32:46.845Z",
+                          "startDate": "2025-10-14T12:49:31.514Z",
+                          "endDate": "2025-10-14T12:49:31.514Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4458,8 +4467,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-14T10:32:46.845Z",
-                        "endDate": "2025-10-14T10:32:46.845Z",
+                        "startDate": "2025-10-14T12:49:31.514Z",
+                        "endDate": "2025-10-14T12:49:31.514Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -7924,7 +7933,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T10:32:46.919Z",
+              "example": "2025-10-14T12:49:31.585Z",
               "type": "string"
             }
           },
@@ -8210,7 +8219,8 @@
                             "cover": "string",
                             "logo": "string",
                             "address": "123 Main St",
-                            "rating": "2025-06-26T18:17:10.000Z"
+                            "rating": "2025-06-26T18:17:10.000Z",
+                            "review": "string"
                           },
                           "Favorites": {
                             "where": {
@@ -8276,7 +8286,8 @@
                           "cover": "string",
                           "logo": "string",
                           "address": "123 Main St",
-                          "rating": "2025-06-26T18:17:10.000Z"
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string"
                         },
                         "Favorites": {
                           "where": {
@@ -8503,7 +8514,8 @@
                             "cover": "string",
                             "logo": "string",
                             "address": "123 Main St",
-                            "rating": "2025-06-26T18:17:10.000Z"
+                            "rating": "2025-06-26T18:17:10.000Z",
+                            "review": "string"
                           },
                           "Favorites": {
                             "where": {
@@ -8569,7 +8581,8 @@
                           "cover": "string",
                           "logo": "string",
                           "address": "123 Main St",
-                          "rating": "2025-06-26T18:17:10.000Z"
+                          "rating": "2025-06-26T18:17:10.000Z",
+                          "review": "string"
                         },
                         "Favorites": {
                           "where": {
@@ -11201,7 +11214,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T10:32:46.981Z",
+              "example": "2025-10-14T12:49:31.632Z",
               "type": "string"
             }
           },
@@ -11211,7 +11224,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T10:32:46.981Z",
+              "example": "2025-10-14T12:49:31.632Z",
               "type": "string"
             }
           },
@@ -12882,12 +12895,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.838Z"
+            "example": "2025-10-14T12:49:31.510Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.838Z"
+            "example": "2025-10-14T12:49:31.511Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -12959,12 +12972,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.838Z"
+            "example": "2025-10-14T12:49:31.510Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.838Z"
+            "example": "2025-10-14T12:49:31.511Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -13313,12 +13326,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.918Z"
+            "example": "2025-10-14T12:49:31.585Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.919Z"
+            "example": "2025-10-14T12:49:31.585Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -13405,12 +13418,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.816Z"
+            "example": "2025-10-14T12:49:31.487Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.816Z"
+            "example": "2025-10-14T12:49:31.487Z"
           },
           "price": {
             "type": "number"
@@ -13473,12 +13486,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.816Z"
+            "example": "2025-10-14T12:49:31.487Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.816Z"
+            "example": "2025-10-14T12:49:31.487Z"
           },
           "price": {
             "type": "number"
@@ -13731,7 +13744,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.975Z"
+            "example": "2025-10-14T12:49:31.627Z"
           },
           "userId": {
             "type": "number"
@@ -13782,7 +13795,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T10:32:46.975Z"
+            "example": "2025-10-14T12:49:31.627Z"
           },
           "userId": {
             "type": "number"

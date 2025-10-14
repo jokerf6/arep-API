@@ -128,6 +128,7 @@ export const selectServiceOBJ = () => {
         logo:true,
         address:true,
         rating:true,
+        review:true,
       }
     }
  

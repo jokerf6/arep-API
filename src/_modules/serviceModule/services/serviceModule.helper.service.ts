@@ -32,6 +32,8 @@ export class ServiceModuleHelper {
           name: JSON.stringify(service.Store.name),
           cover: service.Store.cover,
           logo: service.Store.logo,
+          rating: service.Store.rating,
+          review: service.Store.review,
         }
       : null;
 

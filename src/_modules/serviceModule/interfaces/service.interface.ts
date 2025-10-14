@@ -34,6 +34,8 @@ export class StoreDTO {
   name: string | Json;;
   cover: string;
   logo: string;
+  rating: number;
+  review: number;
 }
 
 export class ServiceDTO {
