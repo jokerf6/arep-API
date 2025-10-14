@@ -92,7 +92,7 @@ export class OrderController {
       total,
     });
   }
-   @Get('/status-count')
+   @Get('/statistics/status-count')
   @ApiOkResponse(
     buildExamples([
       {
