@@ -4032,7 +4032,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-13T09:04:05.398Z",
+              "example": "2025-10-14T07:20:58.994Z",
               "type": "string"
             }
           },
@@ -4042,7 +4042,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-13T09:04:05.398Z",
+              "example": "2025-10-14T07:20:58.995Z",
               "type": "string"
             }
           },
@@ -4127,8 +4127,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-13T09:04:05.400Z",
-                          "endDate": "2025-10-13T09:04:05.400Z",
+                          "startDate": "2025-10-14T07:20:58.997Z",
+                          "endDate": "2025-10-14T07:20:58.997Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4150,8 +4150,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-13T09:04:05.400Z",
-                        "endDate": "2025-10-13T09:04:05.400Z",
+                        "startDate": "2025-10-14T07:20:58.997Z",
+                        "endDate": "2025-10-14T07:20:58.997Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4340,7 +4340,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-13T09:04:05.398Z",
+              "example": "2025-10-14T07:20:58.994Z",
               "type": "string"
             }
           },
@@ -4350,7 +4350,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-13T09:04:05.398Z",
+              "example": "2025-10-14T07:20:58.995Z",
               "type": "string"
             }
           },
@@ -4435,8 +4435,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-13T09:04:05.400Z",
-                          "endDate": "2025-10-13T09:04:05.400Z",
+                          "startDate": "2025-10-14T07:20:58.997Z",
+                          "endDate": "2025-10-14T07:20:58.997Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4458,8 +4458,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-13T09:04:05.400Z",
-                        "endDate": "2025-10-13T09:04:05.400Z",
+                        "startDate": "2025-10-14T07:20:58.997Z",
+                        "endDate": "2025-10-14T07:20:58.997Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -5502,6 +5502,14 @@
           },
           {
             "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
             "name": "orderBy",
             "in": "query",
             "schema": {
@@ -5543,7 +5551,8 @@
                           "id": 1,
                           "name": "John Doe",
                           "image": "https://example.com/avatar.png",
-                          "createdAt": "2025-06-26T18:17:10.000Z"
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "storeId": 1
                         }
                       ],
                       "total": 1
@@ -5556,7 +5565,8 @@
                         "id": 1,
                         "name": "John Doe",
                         "image": "https://example.com/avatar.png",
-                        "createdAt": "2025-06-26T18:17:10.000Z"
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "storeId": 1
                       }
                     }
                   }
@@ -5679,6 +5689,14 @@
           },
           {
             "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
             "name": "orderBy",
             "in": "query",
             "schema": {
@@ -5720,7 +5738,8 @@
                           "id": 1,
                           "name": "John Doe",
                           "image": "https://example.com/avatar.png",
-                          "createdAt": "2025-06-26T18:17:10.000Z"
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "storeId": 1
                         }
                       ],
                       "total": 1
@@ -5733,7 +5752,8 @@
                         "id": 1,
                         "name": "John Doe",
                         "image": "https://example.com/avatar.png",
-                        "createdAt": "2025-06-26T18:17:10.000Z"
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "storeId": 1
                       }
                     }
                   }
@@ -7854,7 +7874,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-13T09:04:05.451Z",
+              "example": "2025-10-14T07:20:59.040Z",
               "type": "string"
             }
           },
@@ -11072,7 +11092,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-13T09:04:05.492Z",
+              "example": "2025-10-14T07:20:59.077Z",
               "type": "string"
             }
           },
@@ -11082,7 +11102,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-13T09:04:05.492Z",
+              "example": "2025-10-14T07:20:59.077Z",
               "type": "string"
             }
           },
@@ -11132,6 +11152,359 @@
         },
         "tags": [
           "Orders"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/Cities": {
+      "post": {
+        "operationId": "CityController_create",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCityDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cities"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CityController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-citys": {
+                    "summary": "Get All Citys",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-city": {
+                    "summary": "Single City",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cities"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/Cities/{id}": {
+      "patch": {
+        "operationId": "CityController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCityDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cities"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CityController_findAll",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "examples": {
+                  "get-all-citys": {
+                    "summary": "Get All Citys",
+                    "value": {
+                      "data": [
+                        {
+                          "id": 1,
+                          "name": "John Doe"
+                        }
+                      ],
+                      "total": 1
+                    }
+                  },
+                  "single-city": {
+                    "summary": "Single City",
+                    "value": {
+                      "data": {
+                        "id": 1,
+                        "name": "John Doe"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cities"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "CityController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Cities"
         ],
         "security": [
           {
@@ -11630,12 +12003,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.396Z"
+            "example": "2025-10-14T07:20:58.993Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.396Z"
+            "example": "2025-10-14T07:20:58.993Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11707,12 +12080,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.396Z"
+            "example": "2025-10-14T07:20:58.993Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.396Z"
+            "example": "2025-10-14T07:20:58.993Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -11828,6 +12201,9 @@
           },
           "moduleId": {
             "type": "number"
+          },
+          "storeId": {
+            "type": "number"
           }
         },
         "required": [
@@ -11848,6 +12224,9 @@
             "format": "binary"
           },
           "moduleId": {
+            "type": "number"
+          },
+          "storeId": {
             "type": "number"
           }
         }
@@ -12049,12 +12428,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.450Z"
+            "example": "2025-10-14T07:20:59.040Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.450Z"
+            "example": "2025-10-14T07:20:59.040Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -12141,12 +12520,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.381Z"
+            "example": "2025-10-14T07:20:58.978Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.381Z"
+            "example": "2025-10-14T07:20:58.978Z"
           },
           "price": {
             "type": "number"
@@ -12209,12 +12588,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.381Z"
+            "example": "2025-10-14T07:20:58.978Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.381Z"
+            "example": "2025-10-14T07:20:58.978Z"
           },
           "price": {
             "type": "number"
@@ -12470,7 +12849,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-13T09:04:05.488Z"
+            "example": "2025-10-14T07:20:59.072Z"
           },
           "userId": {
             "type": "number"
@@ -12496,6 +12875,27 @@
           "quantity",
           "paymentMethod"
         ]
+      },
+      "CreateCityDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "UpdateCityDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "object",
+            "example": "{\"en\": \"John\", \"ar\": \"جون\"}"
+          }
+        }
       }
     }
   }

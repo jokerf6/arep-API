@@ -22,6 +22,10 @@ export class CreateCategoryDTO {
   @ValidateNumber({})
   @ValidateExist<'module'>({ model: 'module' })
   moduleId: Id;
+  @Optional()
+  @ValidateNumber({allowNegative:false})
+  @ValidateExist<'store'>({ model: 'store' })
+  storeId?: Id;
 }
 export class UpdateCategoryDTO extends PartialType(CreateCategoryDTO) {}
 
@@ -42,9 +46,10 @@ export class FilterCategoryDTO extends PaginationParamsDTO {
 
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'module'>({ model: 'module' })
   moduleId?: Id;
-
+       @Optional()
+  @ValidateNumber()
+  storeId?: Id;
   @Optional()
   orderBy?: SortCategoryDTO[];
 }

@@ -26,7 +26,6 @@ model Store {
   // Direct Relations
   Module   Module @relation(fields: [moduleId], references: [id])
   moduleId Int
-
   Plan   Plan? @relation(fields: [planId], references: [id])
   planId Int?
 
@@ -40,6 +39,7 @@ model Store {
   StoreCoupons StoreCoupons[]
   @@map("stores")
   User User[]
+  Categories Category[] @relation("StoreCategory")
 }
 
 model StoreSchedule {

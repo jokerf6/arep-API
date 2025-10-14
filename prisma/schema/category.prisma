@@ -15,7 +15,8 @@ model Category {
 
   parentId Int?       @map("parent_id")
   Parent   Category?  @relation("ParentChild", fields: [parentId], references: [id])
-  
+   storeId Int?       @map("store_id")
+   Store   Store?  @relation("StoreCategory", fields: [storeId], references: [id])
   Children Category[] @relation("ParentChild")
   Service Service[]
 

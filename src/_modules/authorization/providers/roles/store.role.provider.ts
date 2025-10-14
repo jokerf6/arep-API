@@ -10,7 +10,7 @@ const storePermissions: PermissionMap = {
   customers: ['get',],
   modules: [ 'get', ],
   banners: ['get', ],
-  categories: [ 'get', ],
+  categories: [ 'get','post','patch' ],
   subcategories: [ 'get',],
   stores: [ 'get', 'patch', ],
   services: ['post', 'get', 'patch', 'delete'],

@@ -21,6 +21,7 @@ export async function seedSubcategory(prisma: PrismaClient) {
       deletedAt: null,
       moduleId: 1,
       parentId: 1,
+      storeId:null
     };
     await prisma.category.upsert({
       where: {

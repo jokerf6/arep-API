@@ -63,7 +63,7 @@ export const permissions = [
     name: { en: 'Categories', ar: 'الفئات' },
     prefix: 'categories',
     default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
+    methods: ['post', 'get', 'patch', 'delete','manage'],
   },
 
   {

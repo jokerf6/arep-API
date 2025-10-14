@@ -32,6 +32,8 @@ import {
   UpdateCategoryDTO,
 } from './dto/category.dto';
 import { selectCategoryOBJ } from './prisma-args/category.prisma.args';
+import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
+import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
 
 const prefix = 'categories';
 
@@ -45,16 +47,29 @@ export class CategoryController {
 
   @Post('/')
   @Auth({ prefix })
+  @AttachStoreId({
+    storeIdOptionalForManagementUser: true
+  })
   @UploadFile('image')
   async create(@Res() res: Response, @Body() body: CreateCategoryDTO) {
+    console.log(body)
     await this.service.create(body);
     return this.response.created(res, 'category created successfully');
   }
 
-  @Patch('/:id')
+@Patch('/:id')
   @Auth({ prefix })
   @UploadFile('image')
   @ApiRequiredIdParam()
+    @AttachStoreId()
+  @CanUserAccessModelRowId({
+    prefix,
+    modelName:'category',
+    ownerCurrentUserField:'storeId',
+    ownerFieldName:'storeId'
+
+  })
+    @AttachStoreId()
   async update(
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,
@@ -97,6 +112,13 @@ export class CategoryController {
   @Delete('/:id')
   @ApiRequiredIdParam()
   @Auth({ prefix })
+    @CanUserAccessModelRowId({
+    prefix,
+    modelName:'category',
+    ownerCurrentUserField:'storeId',
+    ownerFieldName:'storeId'
+
+  })
   async delete(@Res() res: Response, @Param() { id }: RequiredIdParam) {
     await this.service.delete(id);
     return this.response.success(res, 'delete category successfully');
