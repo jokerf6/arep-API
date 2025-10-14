@@ -26,6 +26,8 @@ import {
 } from './dto/subcategory.dto';
 import { selectSubCategoryOBJ } from './prisma-args/subcategory.prisma.args';
 import { SubCategoryService } from './subcategory.service';
+import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
+import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
 
 const prefix = 'subcategories';
 
@@ -39,17 +41,28 @@ export class SubCategoryController {
   ) {}
 
   @Post('/')
+   @AttachStoreId({
+      storeIdOptionalForManagementUser: true
+    })
   @UploadFile('image')
 
   async create(@Res() res: Response, @Body() body: CreateSubCategoryDTO) {
     await this.service.create(body);
     return this.response.created(res, 'subcategory created successfully');
   }
+@Patch('/:id')
+  @Auth({ prefix })
+    @AttachStoreId()
 
-  @Patch('/:id')
+  @UploadFile('image')
   @ApiRequiredIdParam()
-    @UploadFile('image')
-  
+  @CanUserAccessModelRowId({
+    prefix,
+    modelName:'category',
+    ownerCurrentUserField:'storeId',
+    ownerFieldName:'storeId'
+
+  })
   async update(
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,
@@ -93,6 +106,13 @@ export class SubCategoryController {
 
   @Delete('/:id')
   @ApiRequiredIdParam()
+      @CanUserAccessModelRowId({
+    prefix,
+    modelName:'category',
+    ownerCurrentUserField:'storeId',
+    ownerFieldName:'storeId'
+
+  })
   async delete(@Res() res: Response, @Param() { id }: RequiredIdParam) {
     await this.service.delete(id);
     return this.response.success(res, 'delete subcategory successfully');

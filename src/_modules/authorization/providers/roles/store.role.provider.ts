@@ -11,7 +11,7 @@ const storePermissions: PermissionMap = {
   modules: [ 'get', ],
   banners: ['get', ],
   categories: [ 'get','post','patch' ],
-  subcategories: [ 'get',],
+  subcategories: [ 'get','post','patch' ],
   stores: [ 'get', 'patch', ],
   services: ['post', 'get', 'patch', 'delete'],
   'social-media': [ 'get',],

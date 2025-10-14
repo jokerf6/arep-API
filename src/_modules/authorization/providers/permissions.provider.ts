@@ -70,7 +70,7 @@ export const permissions = [
     name: { en: 'SubCategories', ar: 'الفئات الفرعية' },
     prefix: 'subcategories',
     default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
+    methods: ['post', 'get', 'patch', 'delete','manage'],
   },
   {
     name: { en: 'Stores', ar: 'المتاجر' },

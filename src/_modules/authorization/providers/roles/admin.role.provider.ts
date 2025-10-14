@@ -11,7 +11,7 @@ const adminPermissions: PermissionMap = {
   modules: ['post', 'get', 'patch', 'delete'],
   banners: ['post', 'get', 'patch', 'delete'],
   categories: ['post', 'get', 'patch', 'delete','manage'],
-  subcategories: ['post', 'get', 'patch', 'delete'],
+  subcategories: ['post', 'get', 'patch', 'delete','manage'],
   stores: ['post', 'get', 'patch', 'delete'],
   services: ['post', 'get', 'patch', 'delete'],
   settings: ['get', 'patch'],

@@ -52,16 +52,16 @@ export class CategoryController {
   })
   @UploadFile('image')
   async create(@Res() res: Response, @Body() body: CreateCategoryDTO) {
-    console.log(body)
     await this.service.create(body);
     return this.response.created(res, 'category created successfully');
   }
 
 @Patch('/:id')
   @Auth({ prefix })
+    @AttachStoreId()
+
   @UploadFile('image')
   @ApiRequiredIdParam()
-    @AttachStoreId()
   @CanUserAccessModelRowId({
     prefix,
     modelName:'category',
@@ -69,7 +69,6 @@ export class CategoryController {
     ownerFieldName:'storeId'
 
   })
-    @AttachStoreId()
   async update(
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,

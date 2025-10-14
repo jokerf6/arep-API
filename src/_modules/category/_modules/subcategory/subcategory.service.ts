@@ -30,6 +30,9 @@ export class SubCategoryService {
     if(!parentCategory){
       throw new NotFoundException('Invalid parent category');
     }
+    if(data.storeId&& parentCategory.storeId!==data.storeId){
+      throw new NotFoundException('Store Can`t use this Parent Category');
+    }
     await this.prisma.category.create({
       data:{
         ...data,
@@ -39,6 +42,28 @@ export class SubCategoryService {
   }
 
   async update(id: Id, body: UpdateSubCategoryDTO) {
+if(body.parentId){
+     const existingSubCategory = await this.prisma.category.findUnique({
+      where: {
+        id,
+      },
+    });
+    if(!existingSubCategory){
+      throw new NotFoundException('SubCategory not found');
+    }
+    if(existingSubCategory.storeId){
+      const parent=await this.prisma.category.findUnique({
+        where:{
+          id:body.parentId,
+          storeId:existingSubCategory.storeId,
+        parentId:null
+        }
+      });
+      if(!parent){
+        throw new NotFoundException('Parent category not found');
+      }
+    }
+}
     await this.prisma.category.update({ where: { id }, data: body });
   }
 

@@ -18,8 +18,11 @@ export class CreateSubCategoryDTO {
   image: string;
   @Required()
   @ValidateNumber({allowNegative:false})
-  @ValidateExist<'category'>({ model: 'category', extraConditions: { parentId: null } })
   parentId: Id;
+    @Optional()
+  @ValidateNumber({allowNegative:false})
+  @ValidateExist<'store'>({ model: 'store', })
+  storeId: Id;
 }
 export class UpdateSubCategoryDTO extends PartialType(CreateSubCategoryDTO) {}
 
