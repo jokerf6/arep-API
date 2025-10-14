@@ -20,6 +20,7 @@ import { tag } from 'src/globals/helpers/tag.helper';
 import { Auth } from '../authentication/decorators/auth.decorator';
 import { CurrentUser } from '../authentication/decorators/current-user.decorator';
 import {
+  CalculateOrderDTO,
   ChangeOrderStatusParam,
   CreateOrderDTO,
   FilterOrderDTO,
@@ -91,6 +92,20 @@ export class OrderController {
     return this.response.success(res, 'Order fetched successfully', data, {
       total,
     });
+  }
+   @Get('/calculate/order')
+  @Auth({ prefix,})
+  async calculateOrder(
+    @Res() res: Response,
+       @CurrentUser() user: CurrentUser,
+@Body() body: CalculateOrderDTO
+  ) {
+    const data = await this.service.calculateOrder({
+      ...body,
+      userId:user.id
+    });
+
+    return this.response.success(res, 'Order calculation fetched successfully', data, );
   }
    @Get('/statistics/status-count')
   @ApiOkResponse(
