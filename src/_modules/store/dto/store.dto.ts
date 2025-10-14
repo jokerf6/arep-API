@@ -94,7 +94,6 @@ export class SortStoreDTO {
 export class FilterStoreDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'store'>({ model: 'store' })
   id?: Id;
 
   @Optional()
