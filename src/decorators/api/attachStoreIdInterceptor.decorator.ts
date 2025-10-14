@@ -16,7 +16,7 @@ export class AttachStoreIdInterceptor implements NestInterceptor {
     private readonly ignoreGet: boolean = false,
     private readonly ignorePost: boolean = false,
     private readonly ignorePatch: boolean = false,
-    private readonly prefix?: string,
+    private readonly storeIdOptionalForManagementUser: boolean = false,
   ) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -29,7 +29,7 @@ export class AttachStoreIdInterceptor implements NestInterceptor {
 
     if (method === 'POST' && !this.ignorePost) {
       if (user.Role.roleKey !== RolesKeys.STORE) {
-        if (!body.storeId) {
+        if (!body.storeId&& !this.storeIdOptionalForManagementUser) {
           throw new BadRequestException('storeId is required for admin user');
         }
       } else {
@@ -57,8 +57,7 @@ export function AttachStoreId(parameters?: {
   ignoreGet?: boolean;
   ignorePost?: boolean;
   ignorePatch?: boolean;
-      prefix?: string,
-
+  storeIdOptionalForManagementUser?: boolean;
 }) {
   return applyDecorators(
     UseInterceptors(
@@ -66,6 +65,7 @@ export function AttachStoreId(parameters?: {
         parameters?.ignoreGet,
         parameters?.ignorePost,
         parameters?.ignorePatch,
+        parameters?.storeIdOptionalForManagementUser,
       ),
     ),
   );
