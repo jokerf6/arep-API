@@ -4032,7 +4032,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:33:20.486Z",
+              "example": "2025-10-14T07:43:37.582Z",
               "type": "string"
             }
           },
@@ -4042,7 +4042,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:33:20.486Z",
+              "example": "2025-10-14T07:43:37.582Z",
               "type": "string"
             }
           },
@@ -4127,8 +4127,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-14T07:33:20.490Z",
-                          "endDate": "2025-10-14T07:33:20.490Z",
+                          "startDate": "2025-10-14T07:43:37.584Z",
+                          "endDate": "2025-10-14T07:43:37.584Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4150,8 +4150,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-14T07:33:20.490Z",
-                        "endDate": "2025-10-14T07:33:20.490Z",
+                        "startDate": "2025-10-14T07:43:37.584Z",
+                        "endDate": "2025-10-14T07:43:37.584Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4340,7 +4340,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:33:20.486Z",
+              "example": "2025-10-14T07:43:37.582Z",
               "type": "string"
             }
           },
@@ -4350,7 +4350,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:33:20.486Z",
+              "example": "2025-10-14T07:43:37.582Z",
               "type": "string"
             }
           },
@@ -4435,8 +4435,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-14T07:33:20.490Z",
-                          "endDate": "2025-10-14T07:33:20.490Z",
+                          "startDate": "2025-10-14T07:43:37.584Z",
+                          "endDate": "2025-10-14T07:43:37.584Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4458,8 +4458,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-14T07:33:20.490Z",
-                        "endDate": "2025-10-14T07:33:20.490Z",
+                        "startDate": "2025-10-14T07:43:37.584Z",
+                        "endDate": "2025-10-14T07:43:37.584Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -7857,6 +7857,53 @@
             "ACCESS Token": []
           }
         ]
+      },
+      "get": {
+        "operationId": "StoreScheduleController_getStoreSchedule",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Schedule"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
       }
     },
     "/api/schedule/{id}/{date}": {
@@ -7877,7 +7924,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:33:20.553Z",
+              "example": "2025-10-14T07:43:37.636Z",
               "type": "string"
             }
           },
@@ -11095,7 +11142,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:33:20.598Z",
+              "example": "2025-10-14T07:43:37.672Z",
               "type": "string"
             }
           },
@@ -11105,7 +11152,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-14T07:33:20.599Z",
+              "example": "2025-10-14T07:43:37.672Z",
               "type": "string"
             }
           },
@@ -12006,12 +12053,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.484Z"
+            "example": "2025-10-14T07:43:37.580Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.484Z"
+            "example": "2025-10-14T07:43:37.580Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -12083,12 +12130,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.484Z"
+            "example": "2025-10-14T07:43:37.580Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.484Z"
+            "example": "2025-10-14T07:43:37.580Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -12437,12 +12484,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.552Z"
+            "example": "2025-10-14T07:43:37.636Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.552Z"
+            "example": "2025-10-14T07:43:37.636Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -12529,12 +12576,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.465Z"
+            "example": "2025-10-14T07:43:37.565Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.465Z"
+            "example": "2025-10-14T07:43:37.565Z"
           },
           "price": {
             "type": "number"
@@ -12597,12 +12644,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.465Z"
+            "example": "2025-10-14T07:43:37.565Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.465Z"
+            "example": "2025-10-14T07:43:37.565Z"
           },
           "price": {
             "type": "number"
@@ -12858,7 +12905,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-14T07:33:20.594Z"
+            "example": "2025-10-14T07:43:37.668Z"
           },
           "userId": {
             "type": "number"

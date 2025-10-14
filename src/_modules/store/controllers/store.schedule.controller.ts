@@ -56,6 +56,13 @@ await this.helpers.scheduleOverlap(body.storeId,body);
    })
      async getServiceSchedule(@Res() res: Response, @Param() { id,date }: RequiredIdDateParam) {
     const schedule = await this.globalHelpers.getServiceSchedule(id,date);
-   return this.response.success(res, 'store schedule deleted successfully', schedule);
+   return this.response.success(res, 'store schedule returned successfully', schedule);
+    }
+                @Get('/:id')
+    @ApiRequiredIdParam('id')
+
+     async getStoreSchedule(@Res() res: Response, @Param() { id }: RequiredIdParam) {
+    const schedule = await this.globalHelpers.getStoreSchedule(id);
+   return this.response.success(res, 'store schedule returned successfully', schedule);
     }
 }
