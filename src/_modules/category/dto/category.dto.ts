@@ -18,16 +18,17 @@ export class CreateCategoryDTO {
   @RequiredFile()
   image: string;
 
-  @Required()
+  @Optional()
   @ValidateNumber({})
   @ValidateExist<'module'>({ model: 'module' })
-  moduleId: Id;
+  moduleId?: Id;
+
   @Optional()
-  @ValidateNumber({allowNegative:false})
+  @ValidateNumber({ allowNegative: false })
   @ValidateExist<'store'>({ model: 'store' })
   storeId?: Id;
 }
-export class UpdateCategoryDTO extends PartialType(CreateCategoryDTO) {}
+export class UpdateCategoryDTO extends PartialType(CreateCategoryDTO) { }
 
 export class SortCategoryDTO {
   @SortProp()
@@ -47,7 +48,7 @@ export class FilterCategoryDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
   moduleId?: Id;
-       @Optional()
+  @Optional()
   @ValidateNumber()
   storeId?: Id;
   @Optional()
