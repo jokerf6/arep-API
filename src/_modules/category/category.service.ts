@@ -18,11 +18,22 @@ export class CategoryService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly languages: LanguagesService, // Assuming languages is injected or available
-  ) {}
+  ) { }
 
   async create(data: CreateCategoryDTO) {
+    if (data.storeId) {
+      const isFound = await this.prisma.store.findUnique({
+        where: { id: data.storeId },
+      });
+      data.moduleId = isFound?.moduleId;
+    }
     await this.prisma.category.create({
-      data,
+      data: {
+        name: data.name,
+        image: data.image,
+        moduleId: data.moduleId,
+        storeId: data.storeId,
+      },
     });
   }
 
