@@ -27,6 +27,8 @@ const storePermissions: PermissionMap = {
   cities:['get',],
 servicerating:['get',],
 storerating:['get',],
+  banks:['get',],
+  bankAccounts:['post','get','patch','delete',],
 
 
 } as const satisfies PermissionMap;

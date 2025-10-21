@@ -24,8 +24,11 @@ const adminPermissions: PermissionMap = {
   schedule:['post','get','patch','delete','manage'],
   orders:['post','get','patch','delete','manage'],
   cities:['post','get','patch','delete','manage'],
+
 servicerating:['get',],
 storerating:['get',],
+  banks:['post','get','patch','delete','manage'],
+  bankAccounts:['post','get','patch','delete','manage'],
 
 
 
