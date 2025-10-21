@@ -32,7 +32,6 @@ export class UpdateSocialMediaDTO extends PartialType(CreateSocialMediaDTO) {}
 export class FilterSocialMediaDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'socialMedia'>({ model: 'socialMedia' })
   id?: Id;
 
   @Optional()

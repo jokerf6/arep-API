@@ -51,13 +51,11 @@ export class FilterTransactionDTO extends PaginationParamsDTO {
 
   @Optional()
   @ValidateNumber()
-  @ValidateExist<"module">({model:"module"})
   moduleId:Id;
 
 
   @Optional()
   @ValidateNumber()
-  @ValidateExist<"store">({model:"store"})
   storeId:Id;
 
   @Optional()

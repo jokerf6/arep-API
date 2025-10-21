@@ -98,7 +98,6 @@ export class SortServiceDTO {
 export class FilterServiceDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'service'>({ model: 'service' })
   id?: Id;
 
   @Optional()

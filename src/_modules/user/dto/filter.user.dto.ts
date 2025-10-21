@@ -22,6 +22,5 @@ export class FilterUserDTO extends PaginationParamsDTO {
   phone?: string;
 
   @Optional()
-  @ValidateExist<'role'>({ model: 'role' })
   roleId?: Id;
 }

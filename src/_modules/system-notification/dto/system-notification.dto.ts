@@ -26,6 +26,5 @@ export class UpdateSystemNotificationDTO extends PartialType(
 export class FilterSystemNotificationDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'systemNotification'>({ model: 'systemNotification' })
   id?: Id;  
 }

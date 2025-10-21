@@ -41,7 +41,6 @@ export class SortModuleDTO {
 export class FilterModuleDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'module'>({ model: 'module' })
   id?: Id;
 
   @Optional()

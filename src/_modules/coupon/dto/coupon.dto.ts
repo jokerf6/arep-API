@@ -135,12 +135,10 @@ export class SortCouponDTO {
 export class FilterCouponDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'coupon'>({ model: 'coupon' })
   id?: Id;
 
   @Optional()
   @ValidateString()
-  @ValidateExist<'coupon'>({ model: 'coupon' })
   code?: string;
 
   @Optional()

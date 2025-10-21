@@ -52,7 +52,6 @@ export class SortAddressDTO {
 export class FilterAddressDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'address'>({ model: 'address' })
   id?: Id;
 
   @Optional()

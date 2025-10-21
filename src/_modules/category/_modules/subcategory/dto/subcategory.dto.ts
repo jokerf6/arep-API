@@ -34,7 +34,6 @@ export class SortCategoryDTO {
 export class FilterSubCategoryDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateNumber()
-  @ValidateExist<'category'>({ model: 'category' })
   id?: Id;
 
   @Optional()

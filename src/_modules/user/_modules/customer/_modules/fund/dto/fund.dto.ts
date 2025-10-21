@@ -22,6 +22,5 @@ export class FilterFundDTO extends PaginationParamsDTO {
 
   @Optional()
   @ValidateNumber()
-  @ValidateExist<"user">({model:"user"})
   customerId: number;
 }
