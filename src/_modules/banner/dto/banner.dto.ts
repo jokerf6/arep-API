@@ -24,7 +24,11 @@ export class CreateBannerDTO {
   @RequiredFile()
   image: string;
 }
-export class UpdateBannerDTO extends PartialType(CreateBannerDTO) {}
+export class UpdateBannerDTO extends PartialType(CreateBannerDTO) {
+  @Optional()
+  @ValidateBoolean()
+  active: boolean;
+}
 
 export class SortBannerDTO {
   @SortProp()
