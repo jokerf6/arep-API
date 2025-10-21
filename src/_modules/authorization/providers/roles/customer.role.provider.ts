@@ -21,6 +21,7 @@ const customerPermissions: PermissionMap = {
   cities:['get',],
 servicerating:['post','get','patch','delete',],
 storerating:['post','get','patch','delete',],
+  notification:['get',],
 
 
 } as const satisfies PermissionMap;

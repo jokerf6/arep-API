@@ -181,6 +181,12 @@ export const permissions = [
     default: true,
     methods: ['post', 'get', 'patch', 'delete','manage'],
   },
+      {
+    name: { en: 'notification', ar: 'الإشعارات' },
+    prefix: 'notification',
+    default: true,
+    methods: ['post', 'get', 'patch', 'delete','manage'],
+  },
 ];
 
 type Permission = (typeof permissions)[number];
