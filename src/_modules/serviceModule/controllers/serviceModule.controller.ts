@@ -25,7 +25,7 @@ import { ServiceDTO } from '../interfaces/service.interface';
 import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
 import { StripFieldsIfNoPermission } from 'src/decorators/api/permissionStripInterceptor.decorator';
-import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
+import { ApiOptionalIdParam, ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
 
@@ -67,6 +67,7 @@ export class ServiceModuleController {
   )
   @UseInterceptors(AuthServiceInterceptor)
   @ApiQuery({ type: PartialType(FilterServiceDTO) })
+  @ApiOptionalIdParam('id')
   async findAll(
     @Res() res: Response,
     @Filter({ dto: FilterServiceDTO }) filters: FilterServiceDTO,

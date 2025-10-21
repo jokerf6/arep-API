@@ -3937,6 +3937,14 @@
         "operationId": "CouponController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -4041,7 +4049,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.736Z",
+              "example": "2025-10-21T07:30:45.409Z",
               "type": "string"
             }
           },
@@ -4051,7 +4059,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.736Z",
+              "example": "2025-10-21T07:30:45.409Z",
               "type": "string"
             }
           },
@@ -4136,8 +4144,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-21T07:09:17.738Z",
-                          "endDate": "2025-10-21T07:09:17.738Z",
+                          "startDate": "2025-10-21T07:30:45.410Z",
+                          "endDate": "2025-10-21T07:30:45.410Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4159,8 +4167,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-21T07:09:17.738Z",
-                        "endDate": "2025-10-21T07:09:17.739Z",
+                        "startDate": "2025-10-21T07:30:45.410Z",
+                        "endDate": "2025-10-21T07:30:45.410Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4245,6 +4253,14 @@
         "operationId": "CouponController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -4349,7 +4365,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.736Z",
+              "example": "2025-10-21T07:30:45.409Z",
               "type": "string"
             }
           },
@@ -4359,7 +4375,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.736Z",
+              "example": "2025-10-21T07:30:45.409Z",
               "type": "string"
             }
           },
@@ -4444,8 +4460,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-21T07:09:17.738Z",
-                          "endDate": "2025-10-21T07:09:17.738Z",
+                          "startDate": "2025-10-21T07:30:45.410Z",
+                          "endDate": "2025-10-21T07:30:45.410Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4467,8 +4483,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-21T07:09:17.738Z",
-                        "endDate": "2025-10-21T07:09:17.739Z",
+                        "startDate": "2025-10-21T07:30:45.410Z",
+                        "endDate": "2025-10-21T07:30:45.410Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4591,6 +4607,14 @@
       "get": {
         "operationId": "ModuleController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -4783,6 +4807,14 @@
       "get": {
         "operationId": "ModuleController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -5015,6 +5047,14 @@
         "operationId": "BannerController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -5222,6 +5262,14 @@
       "get": {
         "operationId": "BannerController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -5470,6 +5518,14 @@
         "operationId": "CategoryController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -5656,6 +5712,14 @@
       "get": {
         "operationId": "CategoryController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -5883,6 +5947,14 @@
         "operationId": "SubCategoryController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -6078,6 +6150,14 @@
       "get": {
         "operationId": "SubCategoryController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -6308,6 +6388,14 @@
       "get": {
         "operationId": "StoreFavouriteController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -6605,6 +6693,14 @@
       "get": {
         "operationId": "StoreFavouriteController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -6946,6 +7042,14 @@
       "get": {
         "operationId": "StoreController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -7364,6 +7468,14 @@
       "get": {
         "operationId": "StoreController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -7933,7 +8045,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.812Z",
+              "example": "2025-10-21T07:30:45.466Z",
               "type": "string"
             }
           },
@@ -8025,6 +8137,14 @@
       "get": {
         "operationId": "ServiceModuleFavouriteController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -8321,6 +8441,14 @@
         "operationId": "ServiceModuleFavouriteController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -8616,6 +8744,14 @@
         "operationId": "ServiceModuleController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -8863,6 +8999,14 @@
       "get": {
         "operationId": "ServiceModuleController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -9487,6 +9631,14 @@
         "operationId": "SocialMediaController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -9660,6 +9812,14 @@
       "get": {
         "operationId": "SocialMediaController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -9882,6 +10042,14 @@
         "operationId": "SystemNotificationController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -9971,6 +10139,14 @@
       "get": {
         "operationId": "SystemNotificationController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -10110,6 +10286,14 @@
       "get": {
         "operationId": "BankController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -10267,6 +10451,14 @@
       "get": {
         "operationId": "BankController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -10464,6 +10656,14 @@
         "operationId": "BankAccountController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -10628,6 +10828,14 @@
       "get": {
         "operationId": "BankAccountController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -10833,6 +11041,14 @@
         "operationId": "OrderController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -11028,6 +11244,14 @@
         "operationId": "OrderController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -11214,7 +11438,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.861Z",
+              "example": "2025-10-21T07:30:45.500Z",
               "type": "string"
             }
           },
@@ -11224,7 +11448,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.861Z",
+              "example": "2025-10-21T07:30:45.500Z",
               "type": "string"
             }
           },
@@ -11335,6 +11559,14 @@
       "get": {
         "operationId": "CityController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -11492,6 +11724,14 @@
       "get": {
         "operationId": "CityController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -11689,6 +11929,14 @@
         "operationId": "ServiceRatingController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -11861,6 +12109,14 @@
       "get": {
         "operationId": "ServiceRatingController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -12074,6 +12330,14 @@
         "operationId": "StoreRatingController_findAll",
         "parameters": [
           {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "required": false,
             "name": "page",
             "in": "query",
@@ -12246,6 +12510,14 @@
       "get": {
         "operationId": "StoreRatingController_findAll",
         "parameters": [
+          {
+            "name": "id",
+            "required": false,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
           {
             "required": false,
             "name": "page",
@@ -12431,7 +12703,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.886Z",
+              "example": "2025-10-21T07:30:45.523Z",
               "type": "string"
             }
           },
@@ -12441,7 +12713,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-21T07:09:17.887Z",
+              "example": "2025-10-21T07:30:45.523Z",
               "type": "string"
             }
           },
@@ -12972,12 +13244,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.734Z"
+            "example": "2025-10-21T07:30:45.407Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.734Z"
+            "example": "2025-10-21T07:30:45.407Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -13049,12 +13321,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.734Z"
+            "example": "2025-10-21T07:30:45.407Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.734Z"
+            "example": "2025-10-21T07:30:45.407Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -13402,12 +13674,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.812Z"
+            "example": "2025-10-21T07:30:45.466Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.812Z"
+            "example": "2025-10-21T07:30:45.466Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -13494,12 +13766,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.711Z"
+            "example": "2025-10-21T07:30:45.390Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.711Z"
+            "example": "2025-10-21T07:30:45.390Z"
           },
           "price": {
             "type": "number"
@@ -13562,12 +13834,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.711Z"
+            "example": "2025-10-21T07:30:45.390Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.711Z"
+            "example": "2025-10-21T07:30:45.390Z"
           },
           "price": {
             "type": "number"
@@ -13820,7 +14092,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.857Z"
+            "example": "2025-10-21T07:30:45.495Z"
           },
           "userId": {
             "type": "number"
@@ -13871,7 +14143,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-21T07:09:17.857Z"
+            "example": "2025-10-21T07:30:45.495Z"
           },
           "userId": {
             "type": "number"

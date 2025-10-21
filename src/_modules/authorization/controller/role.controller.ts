@@ -53,6 +53,7 @@ export class RoleController {
       },
     ]),
   )
+  @ApiOptionalIdParam('id')
   async get(
     @Res() res: Response,
     @Param() { id }: OptionalIdParam,

@@ -12,7 +12,7 @@ import { OrderStatus } from '@prisma/client';
 import { Response } from 'express';
 import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
 import { AttachUserId } from 'src/decorators/api/attachUserIdInterceptor.decorator';
-import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
+import { ApiOptionalIdParam, ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 import { Filter } from 'src/decorators/param/filter.decorator';
 import { isOne } from 'src/globals/helpers/first-or-many';
 import { buildExamples } from 'src/globals/helpers/generate-example.helper';
@@ -80,6 +80,7 @@ export class OrderController {
   @AttachStoreId()
   @AttachUserId()
   @ApiQuery({ type: PartialType(FilterOrderDTO) })
+  @ApiOptionalIdParam('id')
   async findAll(
     @Res() res: Response,
     @Filter({ dto: FilterOrderDTO }) filters: FilterOrderDTO,

@@ -2,7 +2,7 @@ import { Controller, Get, Param, Patch, Res } from '@nestjs/common';
 import { ApiOkResponse, ApiQuery, ApiTags, PartialType } from '@nestjs/swagger';
 import { Response } from 'express';
 import { Auth } from 'src/_modules/authentication/decorators/auth.decorator';
-import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
+import { ApiOptionalIdParam, ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 import { Filter } from 'src/decorators/param/filter.decorator';
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { ResponseService } from 'src/globals/services/response.service';
@@ -53,6 +53,7 @@ export class StoreFavouriteController {
     ]),
   )
   @ApiQuery({ type: PartialType(FilterStoreDTO) })
+  @ApiOptionalIdParam('id')
   async findAll(
     @Res() res: Response,
     @CurrentUser() user: CurrentUser,
