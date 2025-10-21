@@ -175,6 +175,12 @@ export const permissions = [
     default: true,
     methods: ['post', 'get', 'patch', 'delete','manage'],
   },
+     {
+    name: { en: 'statistics', ar: 'الإحصائيات' },
+    prefix: 'statistics',
+    default: true,
+    methods: ['post', 'get', 'patch', 'delete','manage'],
+  },
 ];
 
 type Permission = (typeof permissions)[number];

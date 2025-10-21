@@ -29,7 +29,7 @@ servicerating:['get',],
 storerating:['get',],
   banks:['post','get','patch','delete','manage'],
   bankAccounts:['post','get','patch','delete','manage'],
-
+statistics:['get',],
 
 
 } as const satisfies PermissionMap;
