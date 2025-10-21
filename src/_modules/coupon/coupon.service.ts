@@ -20,35 +20,66 @@ export class CouponService {
 
   async create(body: CreateCouponDTO) {
     const {userId,storeId,...data} = body;
-      await this.prisma.coupon.create({
+    await this.prisma.$transaction(async (tx) => {
+const coupon=  await tx.coupon.create({
         data:{
           ...data,
-          ...(storeId && {StoreCoupons:{
-            connect:{id:storeId}
-          }})
-          ,
-          ...(userId && {UserCoupons:{
-            connect:{id:userId}
-          }})
+    
+       
         }
       });
+      if(storeId){
+   
+        await tx.storeCoupons.create({
+          data:{
+            storeId,
+            couponId:coupon.id
+          }
+        })
+      }
+      if(userId){
+    
+        await tx.userCoupons.create({
+          data:{
+            userId,
+            couponId:coupon.id
+          }
+        })
+      }
+    })
+   
   }
 
   async update(id:Id, body: UpdateCouponDTO) {
     const {userId,storeId,...data} = body;
    
-    await this.prisma.coupon.update({ where: { id }, data: {
-      ...data,
-      ...(storeId && {StoreCoupons:{
-        connect:{id:storeId}
-      }})
-      ,
-      ...(userId && {UserCoupons:{
-        connect:{id:userId}
-      }}) 
-    } });
-   
-  }
+  await this.prisma.$transaction(async (tx) => {
+    // ✅ Step 1 — Update coupon main fields
+    const coupon = await tx.coupon.update({
+      where: { id },
+      data,
+    });
+
+    // ✅ Step 2 — Handle Store Relation
+    // If storeId exists → ensure it is the only related store
+    if (storeId) {
+      await tx.storeCoupons.deleteMany({ where: { couponId: id } });
+      await tx.storeCoupons.create({
+        data: { storeId, couponId: id },
+      });
+    }
+
+    // ✅ Step 3 — Handle User Relation
+    if (userId) {
+      await tx.userCoupons.deleteMany({ where: { couponId: id } });
+      await tx.userCoupons.create({
+        data: { userId, couponId: id },
+      });
+    } 
+
+    return coupon;
+  });
+}
 
   async findAll( filters: FilterCouponDTO) {
     const languages = await this.Language.getCashedLanguages();
