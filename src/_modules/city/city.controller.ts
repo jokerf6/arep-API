@@ -33,7 +33,7 @@ import {
 } from './dto/city.dto';
 import { selectCityOBJ } from './prisma-args/city.prisma.args';
 
-const prefix = 'Cities';
+const prefix = 'cities';
 
 @Controller(prefix)
 @ApiTags(tag(prefix))
