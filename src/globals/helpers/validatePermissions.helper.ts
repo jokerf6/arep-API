@@ -9,7 +9,7 @@
       return true;
     }
     const hasPermission = userPermissions.some(
-      (perm) => `${perm.prefix}_${perm.method}` === requiredPermissions,
+      (perm) => `${perm.prefix?.toLowerCase()}_${perm.method}` === requiredPermissions?.toLowerCase(),
     );
     if (hasPermission) {
       return true;
