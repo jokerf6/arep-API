@@ -34,6 +34,7 @@ export class ServiceModuleHelper {
           logo: service.Store.logo,
           rating: service.Store.rating,
           review: service.Store.review,
+          address: service.Store.address,
         }
       : null;
 

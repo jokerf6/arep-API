@@ -102,6 +102,7 @@ export const selectServiceOBJById = () => {
         single:true,
         VariationOption:{
           select:{
+            id:true,
             name:true,
             price:true,
             default:true

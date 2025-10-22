@@ -36,6 +36,7 @@ export class StoreDTO {
   logo: string;
   rating: number;
   review: number;
+  address?:string
 }
 
 export class ServiceDTO {
