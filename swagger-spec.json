@@ -4049,7 +4049,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:04.962Z",
+              "example": "2025-10-22T10:26:52.359Z",
               "type": "string"
             }
           },
@@ -4059,7 +4059,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:04.962Z",
+              "example": "2025-10-22T10:26:52.359Z",
               "type": "string"
             }
           },
@@ -4144,8 +4144,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-22T09:13:04.964Z",
-                          "endDate": "2025-10-22T09:13:04.964Z",
+                          "startDate": "2025-10-22T10:26:52.361Z",
+                          "endDate": "2025-10-22T10:26:52.361Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4167,8 +4167,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-22T09:13:04.964Z",
-                        "endDate": "2025-10-22T09:13:04.964Z",
+                        "startDate": "2025-10-22T10:26:52.361Z",
+                        "endDate": "2025-10-22T10:26:52.361Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4365,7 +4365,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:04.962Z",
+              "example": "2025-10-22T10:26:52.359Z",
               "type": "string"
             }
           },
@@ -4375,7 +4375,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:04.962Z",
+              "example": "2025-10-22T10:26:52.359Z",
               "type": "string"
             }
           },
@@ -4460,8 +4460,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-22T09:13:04.964Z",
-                          "endDate": "2025-10-22T09:13:04.964Z",
+                          "startDate": "2025-10-22T10:26:52.361Z",
+                          "endDate": "2025-10-22T10:26:52.361Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4483,8 +4483,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-22T09:13:04.964Z",
-                        "endDate": "2025-10-22T09:13:04.964Z",
+                        "startDate": "2025-10-22T10:26:52.361Z",
+                        "endDate": "2025-10-22T10:26:52.361Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -8045,7 +8045,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:05.038Z",
+              "example": "2025-10-22T10:26:52.436Z",
               "type": "string"
             }
           },
@@ -8308,40 +8308,6 @@
                           "bestRated": "2025-06-26T18:17:10.000Z",
                           "mostSeller": "string",
                           "createdAt": "2025-06-26T18:17:10.000Z",
-                          "Variation": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "required": "string",
-                            "maxQuantity": "string",
-                            "minQuantity": "string",
-                            "single": "string",
-                            "VariationOption": {
-                              "name": "John Doe",
-                              "price": 1,
-                              "default": true
-                            }
-                          },
-                          "SubCategory": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "Parent": {
-                              "id": 1,
-                              "name": "John Doe",
-                              "Module": {
-                                "id": 1,
-                                "name": "John Doe"
-                              }
-                            }
-                          },
-                          "Store": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "cover": "string",
-                            "logo": "string",
-                            "address": "123 Main St",
-                            "rating": "2025-06-26T18:17:10.000Z",
-                            "review": "string"
-                          },
                           "Favorites": {
                             "where": {
                               "customerId": 1
@@ -8375,40 +8341,6 @@
                         "bestRated": "2025-06-26T18:17:10.000Z",
                         "mostSeller": "string",
                         "createdAt": "2025-06-26T18:17:10.000Z",
-                        "Variation": {
-                          "id": 1,
-                          "name": "John Doe",
-                          "required": "string",
-                          "maxQuantity": "string",
-                          "minQuantity": "string",
-                          "single": "string",
-                          "VariationOption": {
-                            "name": "John Doe",
-                            "price": 1,
-                            "default": true
-                          }
-                        },
-                        "SubCategory": {
-                          "id": 1,
-                          "name": "John Doe",
-                          "Parent": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "Module": {
-                              "id": 1,
-                              "name": "John Doe"
-                            }
-                          }
-                        },
-                        "Store": {
-                          "id": 1,
-                          "name": "John Doe",
-                          "cover": "string",
-                          "logo": "string",
-                          "address": "123 Main St",
-                          "rating": "2025-06-26T18:17:10.000Z",
-                          "review": "string"
-                        },
                         "Favorites": {
                           "where": {
                             "customerId": 1
@@ -8611,40 +8543,6 @@
                           "bestRated": "2025-06-26T18:17:10.000Z",
                           "mostSeller": "string",
                           "createdAt": "2025-06-26T18:17:10.000Z",
-                          "Variation": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "required": "string",
-                            "maxQuantity": "string",
-                            "minQuantity": "string",
-                            "single": "string",
-                            "VariationOption": {
-                              "name": "John Doe",
-                              "price": 1,
-                              "default": true
-                            }
-                          },
-                          "SubCategory": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "Parent": {
-                              "id": 1,
-                              "name": "John Doe",
-                              "Module": {
-                                "id": 1,
-                                "name": "John Doe"
-                              }
-                            }
-                          },
-                          "Store": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "cover": "string",
-                            "logo": "string",
-                            "address": "123 Main St",
-                            "rating": "2025-06-26T18:17:10.000Z",
-                            "review": "string"
-                          },
                           "Favorites": {
                             "where": {
                               "customerId": 1
@@ -8678,40 +8576,6 @@
                         "bestRated": "2025-06-26T18:17:10.000Z",
                         "mostSeller": "string",
                         "createdAt": "2025-06-26T18:17:10.000Z",
-                        "Variation": {
-                          "id": 1,
-                          "name": "John Doe",
-                          "required": "string",
-                          "maxQuantity": "string",
-                          "minQuantity": "string",
-                          "single": "string",
-                          "VariationOption": {
-                            "name": "John Doe",
-                            "price": 1,
-                            "default": true
-                          }
-                        },
-                        "SubCategory": {
-                          "id": 1,
-                          "name": "John Doe",
-                          "Parent": {
-                            "id": 1,
-                            "name": "John Doe",
-                            "Module": {
-                              "id": 1,
-                              "name": "John Doe"
-                            }
-                          }
-                        },
-                        "Store": {
-                          "id": 1,
-                          "name": "John Doe",
-                          "cover": "string",
-                          "logo": "string",
-                          "address": "123 Main St",
-                          "rating": "2025-06-26T18:17:10.000Z",
-                          "review": "string"
-                        },
                         "Favorites": {
                           "where": {
                             "customerId": 1
@@ -11438,7 +11302,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:05.086Z",
+              "example": "2025-10-22T10:26:52.488Z",
               "type": "string"
             }
           },
@@ -11448,7 +11312,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:05.086Z",
+              "example": "2025-10-22T10:26:52.488Z",
               "type": "string"
             }
           },
@@ -12703,7 +12567,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:05.110Z",
+              "example": "2025-10-22T10:26:52.518Z",
               "type": "string"
             }
           },
@@ -12713,7 +12577,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T09:13:05.110Z",
+              "example": "2025-10-22T10:26:52.518Z",
               "type": "string"
             }
           },
@@ -13244,12 +13108,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:04.960Z"
+            "example": "2025-10-22T10:26:52.357Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:04.960Z"
+            "example": "2025-10-22T10:26:52.357Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -13321,12 +13185,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:04.960Z"
+            "example": "2025-10-22T10:26:52.357Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:04.960Z"
+            "example": "2025-10-22T10:26:52.357Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -13686,12 +13550,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:05.038Z"
+            "example": "2025-10-22T10:26:52.436Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:05.038Z"
+            "example": "2025-10-22T10:26:52.436Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -13778,12 +13642,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:04.936Z"
+            "example": "2025-10-22T10:26:52.337Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:04.937Z"
+            "example": "2025-10-22T10:26:52.337Z"
           },
           "price": {
             "type": "number"
@@ -13846,12 +13710,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:04.936Z"
+            "example": "2025-10-22T10:26:52.337Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:04.937Z"
+            "example": "2025-10-22T10:26:52.337Z"
           },
           "price": {
             "type": "number"
@@ -14104,7 +13968,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:05.080Z"
+            "example": "2025-10-22T10:26:52.483Z"
           },
           "userId": {
             "type": "number"
@@ -14155,7 +14019,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T09:13:05.080Z"
+            "example": "2025-10-22T10:26:52.483Z"
           },
           "userId": {
             "type": "number"

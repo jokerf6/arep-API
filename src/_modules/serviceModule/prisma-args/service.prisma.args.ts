@@ -84,7 +84,15 @@ export const selectServiceOBJ = () => {
     bestRated: true,
     mostSeller: true,
     createdAt: true,
-    Variation:{
+  
+ 
+  };
+  return selectArgs;
+};
+export const selectServiceOBJById = () => {
+  const selectArgs: Prisma.ServiceSelect = {
+   ...selectServiceOBJ(),
+   Variation:{
       select:{
         id:true,
         name:true,
@@ -131,13 +139,12 @@ export const selectServiceOBJ = () => {
         review:true,
       }
     }
- 
   };
   return selectArgs;
 };
-export const selectServiceOBJWithFavourite = (customerId: Id) => {
+export const selectServiceOBJWithFavourite = (customerId: Id,id?:Id) => {
   const selectArgs: Prisma.ServiceSelect = {
-    ...selectServiceOBJ(),
+    ...(!id?selectServiceOBJ():selectServiceOBJById()),
     Favorites: {
       where: {
         customerId,
@@ -147,10 +154,10 @@ export const selectServiceOBJWithFavourite = (customerId: Id) => {
   return selectArgs;
 };
 
-export const getServiceArgsWithSelect = (customerId?: Id) => {
-  let obj = selectServiceOBJ();
+export const getServiceArgsWithSelect = (customerId?: Id,id?:Id) => {
+  let obj = id?selectServiceOBJById():selectServiceOBJ();
   if (customerId) {
-    obj = selectServiceOBJWithFavourite(customerId);
+    obj = selectServiceOBJWithFavourite(customerId,id);
   }
   return {
     select: obj,

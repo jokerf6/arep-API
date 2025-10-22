@@ -45,7 +45,7 @@ async create(body:CreateServiceDTO,){
   async findAll(filters: FilterServiceDTO) {
     const languages = await this.Language.getCashedLanguages();
     const args = getServiceArgs(filters, languages);
-    const argsWithSelect = getServiceArgsWithSelect();
+    const argsWithSelect = getServiceArgsWithSelect(filters?.customerId,filters?.id);
 
     const services = await this.prisma.service[firstOrMany(filters?.id)]({
       ...argsWithSelect,
