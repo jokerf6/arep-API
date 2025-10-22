@@ -14,7 +14,6 @@ export const getCategoryArgs = (
   const { orderBy, page, limit, ...filter } = query;
   const searchArray = [
     filterKey<Category>(filter, 'id'),
-    filterKey<Category>(filter, 'storeId'),
     filterJsonKeyWithRawSQL<Category>(filter, 'name', languages),
     filterKey<Category>(filter, 'moduleId'),
   ].filter(Boolean) as Prisma.CategoryWhereInput[];
@@ -31,7 +30,16 @@ export const getCategoryArgs = (
         ...searchArray,
         {
           parentId:null
+        },
+      {
+        Service:{
+          some:{
+            Store:{
+              id:query?.storeId
+            }
+          }
         }
+      }
       ],
     },
   } as Prisma.CategoryFindManyArgs;
@@ -43,7 +51,7 @@ export const selectCategoryOBJ = () => {
     name: true,
     image: true,
     createdAt: true,
-    storeId:true
+    createdByStoreId:true
   };
   return selectArgs;
 };

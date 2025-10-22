@@ -21,18 +21,13 @@ export class CategoryService {
   ) { }
 
   async create(data: CreateCategoryDTO) {
-    if (data.storeId) {
-      const isFound = await this.prisma.store.findUnique({
-        where: { id: data.storeId },
-      });
-      data.moduleId = isFound?.moduleId;
-    }
     await this.prisma.category.create({
       data: {
         name: data.name,
         image: data.image,
         moduleId: data.moduleId,
-        storeId: data.storeId,
+        createdByStoreId: data?.storeId,
+        active:data?.storeId?false:true
       },
     });
   }

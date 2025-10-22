@@ -17,7 +17,9 @@ export async function seedCategory(prisma: PrismaClient) {
       createdAt: new Date(),
       deletedAt: null,
       parentId: null,
-      storeId: null,
+      createdByStoreId: null,
+      active:true
+
     };
 
     const data2: Category = {
@@ -28,7 +30,8 @@ export async function seedCategory(prisma: PrismaClient) {
       createdAt: new Date(),
       deletedAt: null,
       parentId: null,
-      storeId: null,
+      createdByStoreId: null,
+      active:true
     };
 
     await prisma.category.upsert({
