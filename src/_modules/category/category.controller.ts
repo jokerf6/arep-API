@@ -34,6 +34,7 @@ import {
 import { selectCategoryOBJ } from './prisma-args/category.prisma.args';
 import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
 import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
+import { StripFieldsIfNoPermission } from 'src/decorators/api/permissionStripInterceptor.decorator';
 
 const prefix = 'categories';
 
@@ -60,7 +61,6 @@ export class CategoryController {
   @Auth({ prefix })
     @AttachStoreId()
 
-  @UploadFile('image')
   @ApiRequiredIdParam()
   @CanUserAccessModelRowId({
     prefix,
@@ -69,6 +69,13 @@ export class CategoryController {
     ownerFieldName:'storeId'
 
   })
+   @StripFieldsIfNoPermission({
+       prefix,
+       restrictedFields:['active'],
+       method:'manage'
+     })
+  @UploadFile('image')
+
   async update(
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,

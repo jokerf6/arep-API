@@ -3,6 +3,7 @@ import { OptionalFile } from 'src/_modules/media/decorators/upload.decorator';
 import { Optional } from 'src/decorators/dto/optional-input.decorator';
 import { Required } from 'src/decorators/dto/required-input.decorator';
 import { SortProp } from 'src/decorators/dto/sort-prop.decorator';
+import { ValidateBoolean } from 'src/decorators/dto/validators/validate-boolean.decorator';
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
 import { ValidateName } from 'src/decorators/dto/validators/validate-json.decorator';
 import { ValidateNumber } from 'src/decorators/dto/validators/validate-number.decorator';
@@ -24,7 +25,11 @@ export class CreateSubCategoryDTO {
   @ValidateExist<'store'>({ model: 'store', })
   storeId: Id;
 }
-export class UpdateSubCategoryDTO extends PartialType(CreateSubCategoryDTO) {}
+export class UpdateSubCategoryDTO extends PartialType(CreateSubCategoryDTO) {
+  @Optional()
+    @ValidateBoolean()
+    active?:boolean;
+}
 
 export class SortCategoryDTO {
   @SortProp()

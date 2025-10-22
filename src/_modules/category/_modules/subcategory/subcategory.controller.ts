@@ -28,6 +28,7 @@ import { selectSubCategoryOBJ } from './prisma-args/subcategory.prisma.args';
 import { SubCategoryService } from './subcategory.service';
 import { AttachStoreId } from 'src/decorators/api/attachStoreIdInterceptor.decorator';
 import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
+import { StripFieldsIfNoPermission } from 'src/decorators/api/permissionStripInterceptor.decorator';
 
 const prefix = 'subcategories';
 
@@ -63,6 +64,11 @@ export class SubCategoryController {
     ownerFieldName:'storeId'
 
   })
+   @StripFieldsIfNoPermission({
+         prefix,
+         restrictedFields:['active'],
+         method:'manage'
+       })
   async update(
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,

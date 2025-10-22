@@ -9,6 +9,7 @@ import { ValidateName } from 'src/decorators/dto/validators/validate-json.decora
 import { RequiredFile } from 'src/_modules/media/decorators/upload.decorator';
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
 import { ValidateString } from 'src/decorators/dto/validators/validate-string.decorator';
+import { ValidateBoolean } from 'src/decorators/dto/validators/validate-boolean.decorator';
 
 export class CreateCategoryDTO {
   @Required()
@@ -28,7 +29,11 @@ export class CreateCategoryDTO {
   @ValidateExist<'store'>({ model: 'store' })
   storeId?: Id;
 }
-export class UpdateCategoryDTO extends PartialType(CreateCategoryDTO) { }
+export class UpdateCategoryDTO extends PartialType(CreateCategoryDTO) {
+  @Optional()
+  @ValidateBoolean()
+  active?:boolean;
+ }
 
 export class SortCategoryDTO {
   @SortProp()

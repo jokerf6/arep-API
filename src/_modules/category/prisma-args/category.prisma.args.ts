@@ -31,15 +31,19 @@ export const getCategoryArgs = (
         {
           parentId:null
         },
-      {
-        Service:{
-          some:{
-            Store:{
-              id:query?.storeId
-            }
-          }
-        }
-      }
+ ...(query?.storeId
+        ? [
+            {
+              Service: {
+                some: {
+                  Store: {
+                    id: query.storeId,
+                  },
+                },
+              },
+            },
+          ]
+        : []),
       ],
     },
   } as Prisma.CategoryFindManyArgs;
