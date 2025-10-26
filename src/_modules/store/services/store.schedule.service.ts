@@ -10,6 +10,7 @@ export class ScheduleService {
     async createSchedule(
     data: CreateScheduleDTO,
   ): Promise<StoreSchedule> {
+    console.log(data)
     return this.prisma.storeSchedule.create({
       data
     });
