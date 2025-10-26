@@ -7,7 +7,7 @@ const adminPermissions: PermissionMap = {
   roles: ['post', 'get', 'delete', 'patch'],
   profile: ['get', 'patch'],
   permissions: ['get', 'patch'],
-  customers: ['post', 'get', 'delete', 'patch'],
+  customers: [ 'get', 'delete', 'patch'],
   modules: ['post', 'get', 'patch', 'delete'],
   banners: ['post', 'get', 'patch', 'delete'],
   categories: ['post', 'get', 'patch', 'delete','manage'],
