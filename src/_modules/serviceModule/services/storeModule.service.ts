@@ -54,7 +54,9 @@ async create(body:CreateServiceDTO,){
       ...args,
     });
     const data = this.helper.mapServices(Array.isArray(services) ? services : [services]);
-
+    if(filters?.id&&data?.length){
+      return data[0]
+    }
     return data;
   }
 
