@@ -8,13 +8,13 @@ export class ServiceModuleHelper {
 
   private mapServiceObject = (service: any): ServiceDTO => {
     const moduleDTO: ModuleDTO | null = service.SubCategory?.Parent?.Module
-      ? { id: service.SubCategory.Parent.Module.id, name: JSON.stringify(service.SubCategory.Parent.Module.name) }
+      ? { id: service.SubCategory.Parent.Module.id, name:service.SubCategory.Parent.Module.name }
       : null;
 
     const categoryDTO: CategoryDTO | null = service.SubCategory?.Parent
       ? {
           id: service.SubCategory.Parent.id,
-          name: JSON.stringify(service.SubCategory.Parent.name),
+          name:service.SubCategory.Parent.name,
           Module: moduleDTO,
         }
       : null;
@@ -22,14 +22,14 @@ export class ServiceModuleHelper {
     const subCategoryDTO: SubCategoryDTO | null = service.SubCategory
       ? {
           id: service.SubCategory.id,
-          name: JSON.stringify(service.SubCategory.name),
+          name:service.SubCategory.name,
         }
       : null;
 
     const storeDTO: StoreDTO | null = service.Store
       ? {
           id: service.Store.id,
-          name: JSON.stringify(service.Store.name),
+          name:service.Store.name,
           cover: service.Store.cover,
           logo: service.Store.logo,
           rating: service.Store.rating,
@@ -70,8 +70,8 @@ export class ServiceModuleHelper {
 
     return {
       id: service.id,
-      name: JSON.stringify(service.name),
-      description: JSON.stringify(service.description),
+      name:service.name,
+      description:service.description,
       image: service.image,
       durationMinutes: service.durationMinutes,
       availableFrom: service.availableFrom,
