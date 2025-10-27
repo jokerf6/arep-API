@@ -49,7 +49,12 @@ export class FilterSubCategoryDTO extends PaginationParamsDTO {
   @Optional()
   @ValidateString()
   name?: string;
-
+  @Optional()
+  @ValidateBoolean()
+  active?: boolean;
+@Optional()
+@ValidateNumber()
+storeId?:Id
   @Optional()
   orderBy?: SortCategoryDTO[];
 

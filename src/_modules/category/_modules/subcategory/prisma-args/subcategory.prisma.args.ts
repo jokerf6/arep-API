@@ -17,6 +17,7 @@ export const getSubCategoryArgs = (
     filterJsonKeyWithRawSQL<Category>(filter, 'name', languages),
     filterKey<Category>(filter, 'parentId'),
     filterKey<Category>(filter, 'moduleId'),
+    filterKey<Category>(filter, 'active'),
 
   ].filter(Boolean) as Prisma.CategoryWhereInput[];
 
@@ -32,6 +33,13 @@ export const getSubCategoryArgs = (
         ...searchArray,
         {
           parentId: { not: null },
+        },
+        {
+          Service:{
+            some:{
+              storeId:query?.storeId
+            }
+          }
         }
       ],
     },
