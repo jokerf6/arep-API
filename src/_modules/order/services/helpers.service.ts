@@ -56,7 +56,7 @@ export class HelpersService {
 
     if (coupon.minOrderAmount > totalPrice)
       throw new BadRequestException(
-        'Coupon cannot be used with this order amount',
+        'Coupon cannot be used with this order amount because of minOrderAmount',
       );
 
     switch (coupon.type) {
