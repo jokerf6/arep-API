@@ -30,7 +30,7 @@ async create(body:CreateServiceDTO,){
       await tx.variation.create({
         data: {
           ...variantData,
-          minQuantity:variantData?.minQuantity?Number(variantData?.maxQuantity):null,
+          minQuantity:variantData?.minQuantity?Number(variantData?.minQuantity):null,
           maxQuantity:variantData?.maxQuantity?Number(variantData?.maxQuantity):null,
           serviceId: service.id,
           VariationOption: {
@@ -98,7 +98,7 @@ async update(id:Id,body:UpdateServiceDTO){
       await tx.variation.create({
         data: {
           ...variantData,
-           minQuantity:variantData?.minQuantity?Number(variantData?.maxQuantity):null,
+           minQuantity:variantData?.minQuantity?Number(variantData?.minQuantity):null,
           maxQuantity:variantData?.maxQuantity?Number(variantData?.maxQuantity):null,
           serviceId: service.id,
           VariationOption: {
