@@ -190,29 +190,11 @@ export class GlobalHelpers {
     return result;
   }
   async getStoreAvailableDays(storeId: Id) {
-const schedules = await this.prisma.storeSchedule.findMany({
-  where: { storeId },
-  select: {
-    day: true,
-    openingTime: true,
-    closingTime: true,
-  },
-  orderBy: {
-    day: 'asc',
-  },
-});
-
-const groupedByDay = schedules.reduce((acc, schedule) => {
-  const { day, openingTime, closingTime } = schedule;
-  if (!acc[day]) acc[day] = [];
-  acc[day].push({ openingTime, closingTime });
-  return acc;
-}, {});
-
-const result = Object.entries(groupedByDay).map(([day, slots]) => ({
-  day,
-  slots,
-}));
-return result;
+const schedule=await this.prisma.storeSchedule.findMany({
+  where:{
+    storeId
+  }
+})
+return schedule
   }
 }
