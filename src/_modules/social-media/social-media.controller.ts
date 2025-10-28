@@ -21,6 +21,7 @@ import { isOne } from 'src/globals/helpers/first-or-many';
 import { selectSocialMediaOBJ } from './prisma-args/social-media.prisma.args';
 import { CurrentUser } from '../authentication/decorators/current-user.decorator';
 import { RolesKeys } from '../authorization/providers/roles';
+import { UploadFile } from 'src/decorators/api/upload-file.decorator';
 
 const prefix = 'social-media';
 
@@ -34,6 +35,7 @@ export class SocialMediaController {
   ) {}
 
   @Post('/')
+  @UploadFile('image', 'socialMedia', )
   async create(
     @Res() res: Response,
     @Body() body: CreateSocialMediaDTO
@@ -44,6 +46,8 @@ export class SocialMediaController {
 
   @Patch('/:id')
   @ApiRequiredIdParam()
+  @UploadFile('image', 'socialMedia', )
+
   async update(
     @Res() res: Response,
     @Param() { id }: RequiredIdParam,
