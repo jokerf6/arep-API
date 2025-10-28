@@ -10,6 +10,7 @@ import { PaginationParamsDTO } from 'src/dtos/params/pagination-params.dto';
 import { ValidateString } from 'src/decorators/dto/validators/validate-string.decorator';
 import { ValidateUnique } from 'src/decorators/dto/validators/validate-unique-number.decorator';
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
+import { RequiredFile } from 'src/_modules/media/decorators/upload.decorator';
 
 export class CreateSocialMediaDTO {
   @Required()
@@ -20,7 +21,7 @@ export class CreateSocialMediaDTO {
   @Required()
   link: string;
 
-  @Required()
+  @RequiredFile()
   image: string;
 
   @Required()
