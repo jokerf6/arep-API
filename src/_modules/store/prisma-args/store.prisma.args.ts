@@ -120,6 +120,13 @@ export const selectStoreOBJ = () => {
         name: true,
       },
     },
+    User:{
+      select:{
+        id:true,
+        name:true,
+        phone:true,
+      }
+    }
   };
   return selectArgs;
 };
