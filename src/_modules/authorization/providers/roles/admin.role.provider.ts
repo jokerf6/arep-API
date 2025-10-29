@@ -12,7 +12,7 @@ const adminPermissions: PermissionMap = {
   banners: ['post', 'get', 'patch', 'delete'],
   categories: ['post', 'get', 'patch', 'delete','manage'],
   subcategories: ['post', 'get', 'patch', 'delete','manage'],
-  stores: ['post', 'get', 'patch', 'delete'],
+  stores: ['get', 'patch', 'delete'],
   services: ['post', 'get', 'patch', 'delete'],
   settings: ['get', 'patch'],
   'social-media': ['post', 'get', 'patch', 'delete'],
