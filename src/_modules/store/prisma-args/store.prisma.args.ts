@@ -125,6 +125,7 @@ export const selectStoreOBJ = () => {
         id:true,
         name:true,
         phone:true,
+        email:true
       }
     }
   };
