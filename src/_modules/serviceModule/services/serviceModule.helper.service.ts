@@ -48,6 +48,7 @@ export class ServiceModuleHelper {
           single: v.single,
           VariationOption: Array.isArray(v.VariationOption)
             ? v.VariationOption.map((vo: any) => ({
+              id: vo?.id,
                 name: vo.name,
                 price: vo.price,
                 default: vo.default,
