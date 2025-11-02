@@ -227,12 +227,12 @@ async validateVariants(serviceId: Id, variantOptionIds: Id[], quantity: number) 
       (v.minQuantity && quantity < v.minQuantity) ||
       (v.maxQuantity && quantity > v.maxQuantity),
   );
-  if (invalidQuantities.length)
-    throw new BadRequestException(
-      `Quantity must be between min and max limits for variants: ${invalidQuantities
-        .map((v) => v.id)
-        .join(', ')}`,
-    );
+  // if (invalidQuantities.length)
+  //   throw new BadRequestException(
+  //     `Quantity must be between min and max limits for variants: ${invalidQuantities
+  //       .map((v) => v.id)
+  //       .join(', ')}`,
+  //   );
 
   // 6️⃣ Calculate total price
   let totalPrice = 0;
