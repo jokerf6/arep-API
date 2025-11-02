@@ -102,6 +102,8 @@ export class GlobalHelpers {
       throw new NotFoundException('Service or store not found');
 
     const service = store.Services[0];
+    if (!service?.durationMinutes || service?.durationMinutes <= 0)
+  throw new BadRequestException('Invalid service duration');
     const { availableFrom, availableTo, durationMinutes } = service;
 
     const availableStart = new Date(availableFrom);
