@@ -94,7 +94,7 @@ export class OrderController {
       total,
     });
   }
-   @Get('/calculate/order')
+   @Post('/calculate/order')
   @Auth({ prefix,})
   async calculateOrder(
     @Res() res: Response,
