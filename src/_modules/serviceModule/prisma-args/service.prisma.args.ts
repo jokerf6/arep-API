@@ -84,7 +84,25 @@ export const selectServiceOBJ = () => {
     bestRated: true,
     mostSeller: true,
     createdAt: true,
-  
+      SubCategory:{
+      select:{
+        id:true,
+        name:true,
+        Parent:{
+          select:{
+            id:true,
+            name:true,
+            Module:{
+              select:{
+                id:true,
+                name:true
+              }
+            }  
+          },
+
+        }
+      }
+    },
  
   };
   return selectArgs;
@@ -110,25 +128,7 @@ export const selectServiceOBJById = () => {
         }
       }
     },
-    SubCategory:{
-      select:{
-        id:true,
-        name:true,
-        Parent:{
-          select:{
-            id:true,
-            name:true,
-            Module:{
-              select:{
-                id:true,
-                name:true
-              }
-            }  
-          },
 
-        }
-      }
-    },
     Store:{
       select:{
         id:true,
