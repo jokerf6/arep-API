@@ -130,13 +130,13 @@ export class HelpersService {
       date,
     );
     if (!schedule?.length)
-      throw new BadRequestException('Service is not available');
+      throw new BadRequestException('Service is not available Because no schedule');
 
     const dayOfWeek = date
       .toLocaleString('en-US', { weekday: 'long' })
       .toUpperCase();
     const daySchedule = schedule.find((s) => s.day === dayOfWeek);
-    if (!daySchedule) throw new BadRequestException('Service is not available');
+    if (!daySchedule) throw new BadRequestException('Service is not available Because no schedule for this day');
 
     const targetTime =
       date.getUTCHours() * 3600 +
@@ -158,7 +158,7 @@ export class HelpersService {
         targetTime < toTime
       );
     });
-    if (!isAvailable) throw new BadRequestException('Service is not available');
+    if (!isAvailable) throw new BadRequestException('Service is not available at this time');
     return true;
   }
 async validateVariants(serviceId: Id, variantOptionIds: Id[], quantity: number) {
