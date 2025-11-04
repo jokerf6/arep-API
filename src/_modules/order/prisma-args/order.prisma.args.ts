@@ -47,12 +47,47 @@ export const getOrderArgs = (
 export const selectOrderOBJ = () => {
   const selectArgs: Prisma.OrderSelect = {
     id: true,
+    price:true,
+    note:true,
+    couponId:true,
+    date:true,
+    createdAt:true,
+    addressId :true,
+    userId:true,
+    quantity:true,
+    totalPriceAfterDiscount:true,
+    discountAmount:true,
+    serviceId:true,
+    paidWithWallet:true,
+    adminCommission:true,
+    acceptedAt:true,
+    cancelledAt:true,
+    rejectedAt:true,
+    in_progressAt:true,
+    deletedAt:true,
+    shipping:true,
+    tax:true,
+    paymentStatus:true,
+    paymentMethod:true,
+    status:true,
     
+    Service:{
+      select:{
+        id:true,
+        durationMinutes:true,
+        Store:{
+          select:{
+            name:true,
+            id:true
+          }
+        }
+      }
+    }
   };
   return selectArgs;
 };
 export const getOrderArgsWithSelect = () => {
   return {
-    // select: selectOrderOBJ(),
+    select: selectOrderOBJ(),
   } satisfies Prisma.OrderFindManyArgs;
 };
