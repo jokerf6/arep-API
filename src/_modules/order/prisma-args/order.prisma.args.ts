@@ -70,11 +70,13 @@ export const selectOrderOBJ = () => {
     paymentStatus:true,
     paymentMethod:true,
     status:true,
-    
+
     Service:{
       select:{
         id:true,
         durationMinutes:true,
+        name:true,
+        image:true,
         Store:{
           select:{
             name:true,
