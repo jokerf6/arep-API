@@ -111,6 +111,9 @@ export const selectServiceOBJById = () => {
   const selectArgs: Prisma.ServiceSelect = {
    ...selectServiceOBJ(),
    Variation:{
+          where:{
+deletedAt:null
+          },
       select:{
         id:true,
         name:true,
@@ -119,6 +122,9 @@ export const selectServiceOBJById = () => {
         minQuantity:true,
         single:true,
         VariationOption:{
+          where:{
+deletedAt:null
+          },
           select:{
             id:true,
             name:true,
