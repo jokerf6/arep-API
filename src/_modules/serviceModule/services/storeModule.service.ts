@@ -79,16 +79,22 @@ async update(id:Id,body:UpdateServiceDTO){
 
     },
   });
-  await tx.variationOption.deleteMany({
+  await tx.variationOption.updateMany({
     where:{
       Variation:{
         serviceId:id
-      }
+      },
+    },
+    data:{
+      deletedAt:new Date()
     }
   })
-  await tx.variation.deleteMany({
+  await tx.variation.updateMany({
     where:{
       serviceId:id
+    },
+    data:{
+      deletedAt:new Date()
     }
   })
   if(Variants?.length){

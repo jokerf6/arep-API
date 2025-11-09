@@ -4049,7 +4049,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.719Z",
+              "example": "2025-11-09T08:28:50.419Z",
               "type": "string"
             }
           },
@@ -4059,7 +4059,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.719Z",
+              "example": "2025-11-09T08:28:50.419Z",
               "type": "string"
             }
           },
@@ -4144,8 +4144,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-22T10:27:40.721Z",
-                          "endDate": "2025-10-22T10:27:40.722Z",
+                          "startDate": "2025-11-09T08:28:50.421Z",
+                          "endDate": "2025-11-09T08:28:50.421Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4167,8 +4167,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-22T10:27:40.722Z",
-                        "endDate": "2025-10-22T10:27:40.722Z",
+                        "startDate": "2025-11-09T08:28:50.421Z",
+                        "endDate": "2025-11-09T08:28:50.421Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4365,7 +4365,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.719Z",
+              "example": "2025-11-09T08:28:50.419Z",
               "type": "string"
             }
           },
@@ -4375,7 +4375,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.719Z",
+              "example": "2025-11-09T08:28:50.419Z",
               "type": "string"
             }
           },
@@ -4460,8 +4460,8 @@
                           "maxUsage": "string",
                           "usageCount": 1,
                           "minOrderAmount": 1,
-                          "startDate": "2025-10-22T10:27:40.721Z",
-                          "endDate": "2025-10-22T10:27:40.722Z",
+                          "startDate": "2025-11-09T08:28:50.421Z",
+                          "endDate": "2025-11-09T08:28:50.421Z",
                           "minDiscountValue": 1,
                           "maxDiscountValue": 1,
                           "createdAt": "2025-06-26T18:17:10.000Z"
@@ -4483,8 +4483,8 @@
                         "maxUsage": "string",
                         "usageCount": 1,
                         "minOrderAmount": 1,
-                        "startDate": "2025-10-22T10:27:40.722Z",
-                        "endDate": "2025-10-22T10:27:40.722Z",
+                        "startDate": "2025-11-09T08:28:50.421Z",
+                        "endDate": "2025-11-09T08:28:50.421Z",
                         "minDiscountValue": 1,
                         "maxDiscountValue": 1,
                         "createdAt": "2025-06-26T18:17:10.000Z"
@@ -5996,6 +5996,23 @@
           },
           {
             "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
             "name": "orderBy",
             "in": "query",
             "schema": {
@@ -6196,6 +6213,23 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "example": true,
+              "type": "boolean"
+            }
+          },
+          {
+            "required": false,
+            "name": "storeId",
+            "in": "query",
+            "schema": {
+              "type": "number"
             }
           },
           {
@@ -6622,6 +6656,12 @@
                             "id": 1,
                             "name": "John Doe"
                           },
+                          "User": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com"
+                          },
                           "Favorites": {
                             "where": {
                               "customerId": 1
@@ -6661,6 +6701,12 @@
                         "Module": {
                           "id": 1,
                           "name": "John Doe"
+                        },
+                        "User": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "phone": "+123456789",
+                          "email": "user@example.com"
                         },
                         "Favorites": {
                           "where": {
@@ -6927,6 +6973,12 @@
                             "id": 1,
                             "name": "John Doe"
                           },
+                          "User": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com"
+                          },
                           "Favorites": {
                             "where": {
                               "customerId": 1
@@ -6966,6 +7018,12 @@
                         "Module": {
                           "id": 1,
                           "name": "John Doe"
+                        },
+                        "User": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "phone": "+123456789",
+                          "email": "user@example.com"
                         },
                         "Favorites": {
                           "where": {
@@ -7275,6 +7333,12 @@
                           "Module": {
                             "id": 1,
                             "name": "John Doe"
+                          },
+                          "User": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com"
                           }
                         }
                       ],
@@ -7311,6 +7375,12 @@
                           "Module": {
                             "id": 1,
                             "name": "John Doe"
+                          },
+                          "User": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com"
                           },
                           "Favorites": [
                             "string"
@@ -7349,6 +7419,12 @@
                         "Module": {
                           "id": 1,
                           "name": "John Doe"
+                        },
+                        "User": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "phone": "+123456789",
+                          "email": "user@example.com"
                         }
                       }
                     }
@@ -7383,6 +7459,12 @@
                           "Module": {
                             "id": 1,
                             "name": "John Doe"
+                          },
+                          "User": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com"
                           },
                           "Favorites": [
                             "string"
@@ -7701,6 +7783,12 @@
                           "Module": {
                             "id": 1,
                             "name": "John Doe"
+                          },
+                          "User": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com"
                           }
                         }
                       ],
@@ -7737,6 +7825,12 @@
                           "Module": {
                             "id": 1,
                             "name": "John Doe"
+                          },
+                          "User": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com"
                           },
                           "Favorites": [
                             "string"
@@ -7775,6 +7869,12 @@
                         "Module": {
                           "id": 1,
                           "name": "John Doe"
+                        },
+                        "User": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "phone": "+123456789",
+                          "email": "user@example.com"
                         }
                       }
                     }
@@ -7809,6 +7909,12 @@
                           "Module": {
                             "id": 1,
                             "name": "John Doe"
+                          },
+                          "User": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "phone": "+123456789",
+                            "email": "user@example.com"
                           },
                           "Favorites": [
                             "string"
@@ -8045,7 +8151,7 @@
             "in": "path",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.803Z",
+              "example": "2025-11-09T08:28:50.492Z",
               "type": "string"
             }
           },
@@ -8308,6 +8414,18 @@
                           "bestRated": "2025-06-26T18:17:10.000Z",
                           "mostSeller": "string",
                           "createdAt": "2025-06-26T18:17:10.000Z",
+                          "SubCategory": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "Parent": {
+                              "id": 1,
+                              "name": "John Doe",
+                              "Module": {
+                                "id": 1,
+                                "name": "John Doe"
+                              }
+                            }
+                          },
                           "Favorites": {
                             "where": {
                               "customerId": 1
@@ -8341,6 +8459,18 @@
                         "bestRated": "2025-06-26T18:17:10.000Z",
                         "mostSeller": "string",
                         "createdAt": "2025-06-26T18:17:10.000Z",
+                        "SubCategory": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "Parent": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "Module": {
+                              "id": 1,
+                              "name": "John Doe"
+                            }
+                          }
+                        },
                         "Favorites": {
                           "where": {
                             "customerId": 1
@@ -8543,6 +8673,18 @@
                           "bestRated": "2025-06-26T18:17:10.000Z",
                           "mostSeller": "string",
                           "createdAt": "2025-06-26T18:17:10.000Z",
+                          "SubCategory": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "Parent": {
+                              "id": 1,
+                              "name": "John Doe",
+                              "Module": {
+                                "id": 1,
+                                "name": "John Doe"
+                              }
+                            }
+                          },
                           "Favorites": {
                             "where": {
                               "customerId": 1
@@ -8576,6 +8718,18 @@
                         "bestRated": "2025-06-26T18:17:10.000Z",
                         "mostSeller": "string",
                         "createdAt": "2025-06-26T18:17:10.000Z",
+                        "SubCategory": {
+                          "id": 1,
+                          "name": "John Doe",
+                          "Parent": {
+                            "id": 1,
+                            "name": "John Doe",
+                            "Module": {
+                              "id": 1,
+                              "name": "John Doe"
+                            }
+                          }
+                        },
                         "Favorites": {
                           "where": {
                             "customerId": 1
@@ -9470,7 +9624,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/CreateSocialMediaDTO"
               }
@@ -9652,7 +9806,7 @@
         "requestBody": {
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateSocialMediaDTO"
               }
@@ -11008,7 +11162,40 @@
                     "value": {
                       "data": [
                         {
-                          "id": 1
+                          "id": 1,
+                          "price": 1,
+                          "note": "string",
+                          "couponId": 1,
+                          "date": "2025-11-09T08:28:50.542Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "addressId": 1,
+                          "userId": 1,
+                          "quantity": "string",
+                          "totalPriceAfterDiscount": 1,
+                          "discountAmount": 1,
+                          "serviceId": 1,
+                          "paidWithWallet": 1,
+                          "adminCommission": "string",
+                          "acceptedAt": "2025-06-26T18:17:10.000Z",
+                          "cancelledAt": "2025-06-26T18:17:10.000Z",
+                          "rejectedAt": "2025-06-26T18:17:10.000Z",
+                          "in_progressAt": "2025-06-26T18:17:10.000Z",
+                          "deletedAt": "2025-06-26T18:17:10.000Z",
+                          "shipping": "string",
+                          "tax": "string",
+                          "paymentStatus": "2025-06-26T18:17:10.000Z",
+                          "paymentMethod": "string",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "Service": {
+                            "id": 1,
+                            "durationMinutes": "2025-06-26T18:17:10.000Z",
+                            "name": "John Doe",
+                            "image": "https://example.com/avatar.png",
+                            "Store": {
+                              "name": "John Doe",
+                              "id": 1
+                            }
+                          }
                         }
                       ],
                       "total": 1
@@ -11018,7 +11205,40 @@
                     "summary": "Single Order",
                     "value": {
                       "data": {
-                        "id": 1
+                        "id": 1,
+                        "price": 1,
+                        "note": "string",
+                        "couponId": 1,
+                        "date": "2025-11-09T08:28:50.542Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "addressId": 1,
+                        "userId": 1,
+                        "quantity": "string",
+                        "totalPriceAfterDiscount": 1,
+                        "discountAmount": 1,
+                        "serviceId": 1,
+                        "paidWithWallet": 1,
+                        "adminCommission": "string",
+                        "acceptedAt": "2025-06-26T18:17:10.000Z",
+                        "cancelledAt": "2025-06-26T18:17:10.000Z",
+                        "rejectedAt": "2025-06-26T18:17:10.000Z",
+                        "in_progressAt": "2025-06-26T18:17:10.000Z",
+                        "deletedAt": "2025-06-26T18:17:10.000Z",
+                        "shipping": "string",
+                        "tax": "string",
+                        "paymentStatus": "2025-06-26T18:17:10.000Z",
+                        "paymentMethod": "string",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "Service": {
+                          "id": 1,
+                          "durationMinutes": "2025-06-26T18:17:10.000Z",
+                          "name": "John Doe",
+                          "image": "https://example.com/avatar.png",
+                          "Store": {
+                            "name": "John Doe",
+                            "id": 1
+                          }
+                        }
                       }
                     }
                   }
@@ -11211,7 +11431,40 @@
                     "value": {
                       "data": [
                         {
-                          "id": 1
+                          "id": 1,
+                          "price": 1,
+                          "note": "string",
+                          "couponId": 1,
+                          "date": "2025-11-09T08:28:50.542Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "addressId": 1,
+                          "userId": 1,
+                          "quantity": "string",
+                          "totalPriceAfterDiscount": 1,
+                          "discountAmount": 1,
+                          "serviceId": 1,
+                          "paidWithWallet": 1,
+                          "adminCommission": "string",
+                          "acceptedAt": "2025-06-26T18:17:10.000Z",
+                          "cancelledAt": "2025-06-26T18:17:10.000Z",
+                          "rejectedAt": "2025-06-26T18:17:10.000Z",
+                          "in_progressAt": "2025-06-26T18:17:10.000Z",
+                          "deletedAt": "2025-06-26T18:17:10.000Z",
+                          "shipping": "string",
+                          "tax": "string",
+                          "paymentStatus": "2025-06-26T18:17:10.000Z",
+                          "paymentMethod": "string",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "Service": {
+                            "id": 1,
+                            "durationMinutes": "2025-06-26T18:17:10.000Z",
+                            "name": "John Doe",
+                            "image": "https://example.com/avatar.png",
+                            "Store": {
+                              "name": "John Doe",
+                              "id": 1
+                            }
+                          }
                         }
                       ],
                       "total": 1
@@ -11221,7 +11474,40 @@
                     "summary": "Single Order",
                     "value": {
                       "data": {
-                        "id": 1
+                        "id": 1,
+                        "price": 1,
+                        "note": "string",
+                        "couponId": 1,
+                        "date": "2025-11-09T08:28:50.542Z",
+                        "createdAt": "2025-06-26T18:17:10.000Z",
+                        "addressId": 1,
+                        "userId": 1,
+                        "quantity": "string",
+                        "totalPriceAfterDiscount": 1,
+                        "discountAmount": 1,
+                        "serviceId": 1,
+                        "paidWithWallet": 1,
+                        "adminCommission": "string",
+                        "acceptedAt": "2025-06-26T18:17:10.000Z",
+                        "cancelledAt": "2025-06-26T18:17:10.000Z",
+                        "rejectedAt": "2025-06-26T18:17:10.000Z",
+                        "in_progressAt": "2025-06-26T18:17:10.000Z",
+                        "deletedAt": "2025-06-26T18:17:10.000Z",
+                        "shipping": "string",
+                        "tax": "string",
+                        "paymentStatus": "2025-06-26T18:17:10.000Z",
+                        "paymentMethod": "string",
+                        "status": "2025-06-26T18:17:10.000Z",
+                        "Service": {
+                          "id": 1,
+                          "durationMinutes": "2025-06-26T18:17:10.000Z",
+                          "name": "John Doe",
+                          "image": "https://example.com/avatar.png",
+                          "Store": {
+                            "name": "John Doe",
+                            "id": 1
+                          }
+                        }
                       }
                     }
                   }
@@ -11242,7 +11528,7 @@
       }
     },
     "/api/orders/calculate/order": {
-      "get": {
+      "post": {
         "operationId": "OrderController_calculateOrder",
         "parameters": [
           {
@@ -11278,7 +11564,7 @@
           }
         },
         "responses": {
-          "200": {
+          "201": {
             "description": ""
           }
         },
@@ -11302,7 +11588,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.852Z",
+              "example": "2025-11-09T08:28:50.541Z",
               "type": "string"
             }
           },
@@ -11312,7 +11598,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.852Z",
+              "example": "2025-11-09T08:28:50.541Z",
               "type": "string"
             }
           },
@@ -11348,7 +11634,40 @@
                     "value": {
                       "data": [
                         {
-                          "id": 1
+                          "id": 1,
+                          "price": 1,
+                          "note": "string",
+                          "couponId": 1,
+                          "date": "2025-11-09T08:28:50.544Z",
+                          "createdAt": "2025-06-26T18:17:10.000Z",
+                          "addressId": 1,
+                          "userId": 1,
+                          "quantity": "string",
+                          "totalPriceAfterDiscount": 1,
+                          "discountAmount": 1,
+                          "serviceId": 1,
+                          "paidWithWallet": 1,
+                          "adminCommission": "string",
+                          "acceptedAt": "2025-06-26T18:17:10.000Z",
+                          "cancelledAt": "2025-06-26T18:17:10.000Z",
+                          "rejectedAt": "2025-06-26T18:17:10.000Z",
+                          "in_progressAt": "2025-06-26T18:17:10.000Z",
+                          "deletedAt": "2025-06-26T18:17:10.000Z",
+                          "shipping": "string",
+                          "tax": "string",
+                          "paymentStatus": "2025-06-26T18:17:10.000Z",
+                          "paymentMethod": "string",
+                          "status": "2025-06-26T18:17:10.000Z",
+                          "Service": {
+                            "id": 1,
+                            "durationMinutes": "2025-06-26T18:17:10.000Z",
+                            "name": "John Doe",
+                            "image": "https://example.com/avatar.png",
+                            "Store": {
+                              "name": "John Doe",
+                              "id": 1
+                            }
+                          }
                         }
                       ],
                       "total": 1
@@ -12567,7 +12886,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.875Z",
+              "example": "2025-11-09T08:28:50.569Z",
               "type": "string"
             }
           },
@@ -12577,7 +12896,7 @@
             "in": "query",
             "schema": {
               "format": "date-time",
-              "example": "2025-10-22T10:27:40.875Z",
+              "example": "2025-11-09T08:28:50.570Z",
               "type": "string"
             }
           },
@@ -13108,12 +13427,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.718Z"
+            "example": "2025-11-09T08:28:50.418Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.718Z"
+            "example": "2025-11-09T08:28:50.418Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -13185,12 +13504,12 @@
           "startDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.718Z"
+            "example": "2025-11-09T08:28:50.418Z"
           },
           "endDate": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.718Z"
+            "example": "2025-11-09T08:28:50.418Z"
           },
           "minDiscountValue": {
             "type": "number"
@@ -13550,12 +13869,12 @@
           "openingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.802Z"
+            "example": "2025-11-09T08:28:50.492Z"
           },
           "closingTime": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.802Z"
+            "example": "2025-11-09T08:28:50.492Z"
           },
           "day": {
             "$ref": "#/components/schemas/Day"
@@ -13642,12 +13961,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.698Z"
+            "example": "2025-11-09T08:28:50.399Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.698Z"
+            "example": "2025-11-09T08:28:50.399Z"
           },
           "price": {
             "type": "number"
@@ -13710,12 +14029,12 @@
           "availableFrom": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.698Z"
+            "example": "2025-11-09T08:28:50.399Z"
           },
           "availableTo": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.698Z"
+            "example": "2025-11-09T08:28:50.399Z"
           },
           "price": {
             "type": "number"
@@ -13821,7 +14140,8 @@
             "type": "string"
           },
           "image": {
-            "type": "string"
+            "type": "string",
+            "format": "binary"
           },
           "isActive": {
             "type": "boolean",
@@ -13845,7 +14165,8 @@
             "type": "string"
           },
           "image": {
-            "type": "string"
+            "type": "string",
+            "format": "binary"
           },
           "isActive": {
             "type": "boolean",
@@ -13968,7 +14289,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.848Z"
+            "example": "2025-11-09T08:28:50.537Z"
           },
           "userId": {
             "type": "number"
@@ -14019,7 +14340,7 @@
           "date": {
             "format": "date-time",
             "type": "string",
-            "example": "2025-10-22T10:27:40.848Z"
+            "example": "2025-11-09T08:28:50.537Z"
           },
           "userId": {
             "type": "number"
