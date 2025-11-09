@@ -1,7 +1,6 @@
 import { Prisma, Order, Language } from '@prisma/client';
 import { paginateOrNot } from 'src/globals/helpers/pagination-params';
 import {
-  filterJsonKeyWithRawSQL,
   filterKey,
   orderKey,
 } from 'src/globals/helpers/prisma-filters';
@@ -70,7 +69,15 @@ export const selectOrderOBJ = () => {
     paymentStatus:true,
     paymentMethod:true,
     status:true,
-
+Address:{
+select:{
+  lat:true,
+  lng:true,
+  title:true,
+  default:true,
+  id:true,
+}
+},
     Service:{
       select:{
         id:true,
