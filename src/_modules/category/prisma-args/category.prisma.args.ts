@@ -34,13 +34,15 @@ export const getCategoryArgs = (
  ...(query?.storeId
         ? [
             {
-              Service: {
-                some: {
-                  Store: {
-                    id: query.storeId,
-                  },
-                },
-              },
+             Children:{
+          some:{
+            Service:{
+              some:{
+                storeId:query?.storeId
+              }
+            }
+          }
+        }
             },
           ]
         : []),
