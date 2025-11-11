@@ -33,13 +33,11 @@ await tx.serviceRating.create({
     ...body,
   }
 })
-delete body?.serviceId
 await tx.service.update({
   where:{
     id:body.serviceId
   },
   data:{
-    ...body,
     review:{
       increment:1
     },
