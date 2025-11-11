@@ -5,6 +5,7 @@ export const getOrderStatusCountFilterArgs = (
   query: OrderStatusCountFilterDTO,
   languages: Language[],
 ) => {
+    const trimmedValue = query?.serviceOrClientName?.trim();
 
   return {
     where: {
@@ -14,7 +15,8 @@ export const getOrderStatusCountFilterArgs = (
             storeId: query?.storeId,
           },
         },
-        {
+       ...(trimmedValue?[
+         {
           Service: {
             OR: [
               {
@@ -32,6 +34,7 @@ export const getOrderStatusCountFilterArgs = (
             ],
           },
         },
+       ]:[]),
         {
             Customer:{
                 name:query.serviceOrClientName
