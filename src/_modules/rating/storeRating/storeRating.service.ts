@@ -39,7 +39,7 @@ await tx.service.update({
     id:body.storeId
   },
   data:{
-    ...body,
+    rating,
     review:{
       increment:1
     },
