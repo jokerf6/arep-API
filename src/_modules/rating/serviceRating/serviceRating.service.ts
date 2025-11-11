@@ -38,6 +38,7 @@ await tx.service.update({
     id:body.serviceId
   },
   data:{
+    rating,
     review:{
       increment:1
     },
