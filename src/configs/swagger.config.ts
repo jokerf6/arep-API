@@ -7,91 +7,95 @@ export const swaggerConfig = (app: INestApplication) => {
   const configService = app.get(ConfigService);
   const getEnv = (key: string) => configService.get<string>(key) || '';
   const prefix = getEnv('API_PREFIX') || '';
+  const projectName = getEnv('PROJECT_NAME');
+  
 
-  const restApiConfig = new DocumentBuilder()
-    .setTitle(getEnv('PROJECT_NAME'))
-    .setDescription(getEnv('PROJECT_DESCRIPTION'))
-    .setVersion('1.0')
+  const createDocument = (name: string, path: string, scopeName: string) => {
+    const config = new DocumentBuilder()
+      .setTitle(`${projectName} - ${name}`)
+      .setDescription(`${name} API Documentation`)
+      .setVersion('1.0')
+
     .setContact(
       getEnv('PROJECT_CONTACT_NAME'),
       getEnv('PROJECT_CONTACT_URL'),
       getEnv('PROJECT_CONTACT_EMAIL'),
     )
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
+      .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'ACCESS Token')
+      .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'REFRESH Token')
+      // Global Params
+      .addGlobalParameters({
+        in: 'header',
+        required: false,
+        name: 'Locale',
+        schema: { example: 'en' },
+      })
+      .build();
+
+    // Generate full document first (using the module inputs if we had them, or just app for deep scan)
+    // Since we don't have separate modules passed here effectively yet, 
+    // we create a document from the app and FILTER it.
+    const baseDocument = SwaggerModule.createDocument(app, config);
+    
+    const filteredDocument = {
+      ...baseDocument,
+      paths: Object.keys(baseDocument.paths).reduce((acc, key) => {
+        const pathItem = baseDocument.paths[key];
+        // Check each method (get, post, etc.) for `x-doc-scope`
+        // If ANY method in the path matches the scope, we keep the path (and filter methods inside? Ideally yes)
+        // For simplicity, we filter methods.
+        
+        const newPathItem = {};
+        let hasMethods = false;
+
+        ['get', 'post', 'put', 'delete', 'patch', 'options', 'head'].forEach((method) => {
+          if (pathItem[method]) {
+            const operation = pathItem[method];
+            // Check specific extension key for the scope
+            // e.g. x-scope-admin, x-scope-customer
+            const hasScope = operation[`x-scope-${scopeName}`];
+            
+            if (hasScope) {
+              newPathItem[method] = operation;
+              hasMethods = true;
+            }
+          }
+        });
+
+        if (hasMethods) {
+          acc[key] = newPathItem;
+        }
+        return acc;
+      }, {}),
+    };
+
+    SwaggerModule.setup(`${prefix}/docs/${path}`, app, filteredDocument, {
+      customSiteTitle: `${name} API`,
+      swaggerOptions: {
+        docExpansion: 'none',
+        filter: true,
       },
-      'ACCESS Token',
-    )
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-      },
-      'REFRESH Token',
-    )
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-      },
-      'PASSWORD_RESET Token',
-    )
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-      },
-      'VERIFY Token',
-    )
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-      },
-      'VISITOR Token',
-    )
+    });
+  };
+
+  // Main (All)
+  const mainConfig = new DocumentBuilder()
+    .setTitle(projectName)
+    .setDescription('Main API')
+    .setVersion('1.0')
+    .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'ACCESS Token')
     .addGlobalParameters({
-      in: 'header',
-      required: false,
-      name: 'Locale',
-      schema: { example: 'en' },
-    })
-    .addGlobalParameters({
-      in: 'header',
-      required: false,
-      name: 'isLocalized',
-      schema: { example: false, type: 'boolean', enum: [true, false] },
-    })
+        in: 'header',
+        required: false,
+        name: 'Locale',
+        schema: { example: 'en' },
+      })
     .build();
+    
+  const mainDoc = SwaggerModule.createDocument(app, mainConfig);
+  SwaggerModule.setup(`${prefix}/docs`, app, mainDoc);
 
-  const restApiDocument = SwaggerModule.createDocument(app, restApiConfig);
-
-  // Only setup once
-  SwaggerModule.setup(`${prefix}/docs`, app, restApiDocument, {
-    customSiteTitle: getEnv('PROJECT_NAME') + ' API Docs',
-    customfavIcon: 'media?media=swagger.png',
-    customCss: `
-    .topbar-wrapper::after {
-      content: " ${process.env.PROJECT_NAME} | Fahd Hakem - Website | Send email to Fahd Hakem | AutoNote";
-      color: #a6e22e !important; /* Match curl URL color */
-      font-size: 14px;
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 30px;
-    }
-  `,
-
-    swaggerOptions: {
-      docExpansion: 'none',
-      filter: true,
-    },
-  });
-  const outputPath = './swagger-spec.json'; // Path where the JSON will be saved
-  fs.writeFileSync(outputPath, JSON.stringify(restApiDocument, null, 2), {
-    encoding: 'utf8',
-  });
-  // eslint-disable-next-line no-console
-  console.log(`Swagger JSON saved to ${outputPath}`);
+  createDocument('Admin', 'admin', 'admin');
+  createDocument('Customer', 'customer', 'customer');
+  createDocument('Host', 'host', 'host');
 };

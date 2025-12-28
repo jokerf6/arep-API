@@ -1,6 +1,6 @@
 import './declares';
 // organize-imports-disable-above
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
@@ -46,6 +46,10 @@ async function bootstrap() {
   const prefix = env('API_PREFIX') || '';
 
   app.setGlobalPrefix(prefix);
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: '1',
+  });
 
   // app.useLogger(new Logger()); // By default, it logs the requests
 

@@ -24,6 +24,7 @@ import { UpdateUserDTO } from '../dto/create.user.dto';
 import { FilterUserDTO } from '../dto/filter.user.dto';
 import { selectUserOBJ } from '../prisma-args/user.prisma-select';
 import { UserService } from '../services/user.service';
+import { AdminEndpoint, CustomerEndpoint } from 'src/decorators/api/api-scope.decorator';
 
 const prefix = 'users';
 @Controller(prefix)
@@ -48,6 +49,7 @@ export class UserController {
       { title: 'Get User with id', paginated: false, body: selectUserOBJ() },
     ]),
   )
+  @CustomerEndpoint('Users')
   @ApiOptionalIdParam()
   async getAll(
     @Res() res: Response,
@@ -63,6 +65,8 @@ export class UserController {
   }
 
   @Patch('/:id')
+  @AdminEndpoint('Users')
+  @CustomerEndpoint('User')
   @ApiRequiredIdParam()
   async updateUser(
     @Res() res: Response,
