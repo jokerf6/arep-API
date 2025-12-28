@@ -10,10 +10,12 @@ import { EmailService } from '../services/email.service';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
 
+import { QueueName, JobName } from '../../app/_modules/worker/worker.constants';
+
 @Injectable()
 export class NotificationMiddleware implements NestMiddleware {
   constructor(
-    @InjectQueue('notification') private readonly notificationQueue: Queue,
+    @InjectQueue(QueueName.NOTIFICATION) private readonly notificationQueue: Queue,
 
     private readonly prisma: PrismaService,
     private readonly service: NotificationService,
@@ -48,7 +50,7 @@ export class NotificationMiddleware implements NestMiddleware {
             notification,
             user,
           );
-          await this.notificationQueue.add('processNotification', {
+          await this.notificationQueue.add(JobName.PROCESS_NOTIFICATION, {
             notification,
             languageId: locale.languageId,
             targetUsers,
