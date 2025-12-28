@@ -371,7 +371,7 @@
         ]
       }
     },
-    "/api/v1/authentication/refresh-token": {
+    "/api/v1/auth/refresh-token": {
       "post": {
         "operationId": "BaseAuthenticationController_refreshToken",
         "parameters": [
@@ -414,7 +414,7 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ],
         "security": [
           {
@@ -423,7 +423,7 @@
         ]
       }
     },
-    "/api/v1/authentication/bio": {
+    "/api/v1/auth/bio": {
       "post": {
         "operationId": "BaseAuthenticationController_loginWithBIO",
         "parameters": [
@@ -465,27 +465,14 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ]
       }
     },
-    "/api/v1/authentication/login/{roleKey}": {
+    "/api/v1/auth/login": {
       "post": {
         "operationId": "BaseAuthenticationController_login",
         "parameters": [
-          {
-            "name": "roleKey",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "enum": [
-                "Admin",
-                "Customer",
-                "Store"
-              ],
-              "type": "string"
-            }
-          },
           {
             "in": "header",
             "required": false,
@@ -524,27 +511,14 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ]
       }
     },
-    "/api/v1/authentication/forget-password/{roleKey}": {
+    "/api/v1/auth/forget-password": {
       "post": {
         "operationId": "BaseAuthenticationController_forgetPassword",
         "parameters": [
-          {
-            "name": "roleKey",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "enum": [
-                "Admin",
-                "Customer",
-                "Store"
-              ],
-              "type": "string"
-            }
-          },
           {
             "in": "header",
             "required": false,
@@ -583,11 +557,11 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ]
       }
     },
-    "/api/v1/authentication/resend-otp": {
+    "/api/v1/auth/resend-otp": {
       "post": {
         "operationId": "BaseAuthenticationController_resendOtp",
         "parameters": [
@@ -619,7 +593,7 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ],
         "security": [
           {
@@ -628,7 +602,7 @@
         ]
       }
     },
-    "/api/v1/authentication/verify": {
+    "/api/v1/auth/verify": {
       "post": {
         "operationId": "BaseAuthenticationController_verifyUser",
         "parameters": [
@@ -670,7 +644,7 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ],
         "security": [
           {
@@ -679,7 +653,7 @@
         ]
       }
     },
-    "/api/v1/authentication/verify-reset-password": {
+    "/api/v1/auth/verify-reset-password": {
       "post": {
         "operationId": "BaseAuthenticationController_verifyOtp",
         "parameters": [
@@ -721,7 +695,7 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ],
         "security": [
           {
@@ -730,7 +704,7 @@
         ]
       }
     },
-    "/api/v1/authentication/reset-password": {
+    "/api/v1/auth/reset-password": {
       "post": {
         "operationId": "BaseAuthenticationController_resetPassword",
         "parameters": [
@@ -772,7 +746,7 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ],
         "security": [
           {
@@ -781,7 +755,7 @@
         ]
       }
     },
-    "/api/v1/authentication/logout": {
+    "/api/v1/auth/logout": {
       "post": {
         "operationId": "BaseAuthenticationController_logout",
         "parameters": [
@@ -813,7 +787,7 @@
           }
         },
         "tags": [
-          "Authentication"
+          "Auth"
         ],
         "security": [
           {
@@ -1492,19 +1466,12 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
-                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
-                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
-                        "Details": {
-                          "wallet": 1,
-                          "points": 1,
-                          "male": true
-                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z",
                         "Role": {
@@ -1823,19 +1790,12 @@
                         {
                           "id": 1,
                           "name": "John Doe",
-                          "allowNotification": "2025-06-26T18:17:10.000Z",
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
-                          "storeId": 1,
                           "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
-                          "Details": {
-                            "wallet": 1,
-                            "points": 1,
-                            "male": true
-                          },
                           "createdAt": "2025-06-26T18:17:10.000Z",
                           "deletedAt": "2025-06-26T18:17:10.000Z"
                         }
@@ -1849,19 +1809,12 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
-                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
-                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
-                        "Details": {
-                          "wallet": 1,
-                          "points": 1,
-                          "male": true
-                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z"
                       }
@@ -1985,19 +1938,12 @@
                         {
                           "id": 1,
                           "name": "John Doe",
-                          "allowNotification": "2025-06-26T18:17:10.000Z",
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
-                          "storeId": 1,
                           "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
-                          "Details": {
-                            "wallet": 1,
-                            "points": 1,
-                            "male": true
-                          },
                           "createdAt": "2025-06-26T18:17:10.000Z",
                           "deletedAt": "2025-06-26T18:17:10.000Z"
                         }
@@ -2011,19 +1957,12 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
-                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
-                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
-                        "Details": {
-                          "wallet": 1,
-                          "points": 1,
-                          "male": true
-                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z"
                       }
@@ -2312,19 +2251,12 @@
                         {
                           "id": 1,
                           "name": "John Doe",
-                          "allowNotification": "2025-06-26T18:17:10.000Z",
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
-                          "storeId": 1,
                           "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
-                          "Details": {
-                            "wallet": 1,
-                            "points": 1,
-                            "male": true
-                          },
                           "createdAt": "2025-06-26T18:17:10.000Z",
                           "deletedAt": "2025-06-26T18:17:10.000Z",
                           "totalOrders": 1,
@@ -2340,19 +2272,12 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
-                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
-                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
-                        "Details": {
-                          "wallet": 1,
-                          "points": 1,
-                          "male": true
-                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z",
                         "totalOrders": 1,
@@ -2488,19 +2413,12 @@
                         {
                           "id": 1,
                           "name": "John Doe",
-                          "allowNotification": "2025-06-26T18:17:10.000Z",
                           "email": "user@example.com",
                           "phone": "+123456789",
                           "verified": true,
-                          "storeId": 1,
                           "roleKey": "string",
                           "active": true,
                           "image": "https://example.com/avatar.png",
-                          "Details": {
-                            "wallet": 1,
-                            "points": 1,
-                            "male": true
-                          },
                           "createdAt": "2025-06-26T18:17:10.000Z",
                           "deletedAt": "2025-06-26T18:17:10.000Z",
                           "totalOrders": 1,
@@ -2516,19 +2434,12 @@
                       "data": {
                         "id": 1,
                         "name": "John Doe",
-                        "allowNotification": "2025-06-26T18:17:10.000Z",
                         "email": "user@example.com",
                         "phone": "+123456789",
                         "verified": true,
-                        "storeId": 1,
                         "roleKey": "string",
                         "active": true,
                         "image": "https://example.com/avatar.png",
-                        "Details": {
-                          "wallet": 1,
-                          "points": 1,
-                          "male": true
-                        },
                         "createdAt": "2025-06-26T18:17:10.000Z",
                         "deletedAt": "2025-06-26T18:17:10.000Z",
                         "totalOrders": 1,
@@ -2648,457 +2559,6 @@
         },
         "tags": [
           "Customers"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      }
-    },
-    "/api/v1/addresses": {
-      "post": {
-        "operationId": "AddressController_create",
-        "parameters": [
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateAddressDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Addresses"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "get": {
-        "operationId": "AddressController_findAll",
-        "parameters": [
-          {
-            "required": false,
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "title",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "required": false,
-            "name": "lat",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "lng",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "default",
-            "in": "query",
-            "schema": {
-              "example": true,
-              "type": "boolean"
-            }
-          },
-          {
-            "required": false,
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "array"
-            }
-          },
-          {
-            "name": "id",
-            "required": false,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "get-all-addresses": {
-                    "summary": "Get All Addresses",
-                    "value": {
-                      "data": [
-                        {
-                          "id": 1,
-                          "title": "string",
-                          "lat": -53.349,
-                          "lng": 6.2603,
-                          "default": true,
-                          "createdAt": "2025-06-26T18:17:10.000Z"
-                        }
-                      ],
-                      "total": 1
-                    }
-                  },
-                  "single-address": {
-                    "summary": "Single Address",
-                    "value": {
-                      "data": {
-                        "id": 1,
-                        "title": "string",
-                        "lat": -53.349,
-                        "lng": 6.2603,
-                        "default": true,
-                        "createdAt": "2025-06-26T18:17:10.000Z"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "Addresses"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      }
-    },
-    "/api/v1/addresses/{id}": {
-      "patch": {
-        "operationId": "AddressController_update",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateAddressDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Addresses"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "get": {
-        "operationId": "AddressController_findAll",
-        "parameters": [
-          {
-            "required": false,
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "id",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "title",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "required": false,
-            "name": "lat",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "lng",
-            "in": "query",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "required": false,
-            "name": "default",
-            "in": "query",
-            "schema": {
-              "example": true,
-              "type": "boolean"
-            }
-          },
-          {
-            "required": false,
-            "name": "orderBy",
-            "in": "query",
-            "schema": {
-              "type": "array"
-            }
-          },
-          {
-            "name": "id",
-            "required": false,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "examples": {
-                  "get-all-addresses": {
-                    "summary": "Get All Addresses",
-                    "value": {
-                      "data": [
-                        {
-                          "id": 1,
-                          "title": "string",
-                          "lat": -53.349,
-                          "lng": 6.2603,
-                          "default": true,
-                          "createdAt": "2025-06-26T18:17:10.000Z"
-                        }
-                      ],
-                      "total": 1
-                    }
-                  },
-                  "single-address": {
-                    "summary": "Single Address",
-                    "value": {
-                      "data": {
-                        "id": 1,
-                        "title": "string",
-                        "lat": -53.349,
-                        "lng": 6.2603,
-                        "default": true,
-                        "createdAt": "2025-06-26T18:17:10.000Z"
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "description": ""
-          }
-        },
-        "tags": [
-          "Addresses"
-        ],
-        "security": [
-          {
-            "ACCESS Token": []
-          }
-        ]
-      },
-      "delete": {
-        "operationId": "AddressController_delete",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "Locale",
-            "schema": {
-              "example": "en"
-            }
-          },
-          {
-            "in": "header",
-            "required": false,
-            "name": "isLocalized",
-            "schema": {
-              "example": false,
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "Addresses"
         ],
         "security": [
           {
@@ -4508,43 +3968,6 @@
             "example": true
           },
           "active": {
-            "type": "boolean",
-            "example": true
-          }
-        }
-      },
-      "CreateAddressDTO": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "lat": {
-            "type": "number"
-          },
-          "lng": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "title",
-          "lat",
-          "lng"
-        ]
-      },
-      "UpdateAddressDTO": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "lat": {
-            "type": "number"
-          },
-          "lng": {
-            "type": "number"
-          },
-          "default": {
             "type": "boolean",
             "example": true
           }

@@ -3,11 +3,11 @@ model User {
   name      String
   email     String?
   phone     String?
-  password  String
+  password  String?
   birthDate DateTime? @map("birth_date")
   verified  Boolean   @default(false)
   active    Boolean   @default(true)
-  sex       Boolean   @default(false)
+  sex       Boolean?
   deviceId  String?   @unique @map("device_id")
   image     String    @default("uploads/default.png")
   // default columns
@@ -28,10 +28,10 @@ model User {
 
   Address Address?
 
-  @@unique([email, roleKey])
-  @@unique([phone, roleKey])
-  @@index([phone, roleKey])
-  @@index([email, roleKey])
+  @@unique([email])
+  @@unique([phone])
+  @@index([phone])
+  @@index([email])
   @@map("users")
 }
 

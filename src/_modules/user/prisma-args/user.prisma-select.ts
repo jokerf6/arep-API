@@ -12,14 +12,8 @@ export type FlattenedUser = {
   active: boolean;
   image: string;
   createdAt: Date;
-  storeId:Id;
-  allowNotification: boolean;
   deletedAt: Date | null;
-  Details?: {
-    wallet: number;
-    points: number;
-    male: boolean;
-  };
+ 
   Role?: {
     id: number;
     name: string;
@@ -59,18 +53,12 @@ export const transformFlattenUser = (data: any | any[]): any => {
       name: user.name,
       email: user.email,
       phone: user.phone,
-      storeId:user.storeId,
       verified: user.verified,
       active: user.active,
-      Details: {
-        wallet: user.Details?.wallet ?? 0,
-        points: user.Details?.points ?? 0,
-        male: user.Details?.male ?? false,
-      },
+    
       image: user.image,
       createdAt: user.createdAt,
       deletedAt: user.deletedAt,
-      allowNotification:user.allowNotification,
     };
 
     if (user?.Role) {
@@ -104,21 +92,13 @@ export const selectUserOBJ = () => {
   const selectArgs: Prisma.UserSelect = {
     id: true,
     name: true,
-    allowNotification:true,
     email: true,
     phone: true,
     verified: true,
-    storeId:true,
     roleKey: true,
     active: true,
     image: true,
-    Details: {
-      select: {
-        wallet: true,
-        points: true,
-        male: true,
-      },
-    },
+ 
     createdAt: true,
     deletedAt: true,
   };

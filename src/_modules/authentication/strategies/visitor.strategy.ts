@@ -69,7 +69,6 @@ export class VisitorStrategy extends PassportStrategy(Strategy, 'VISITOR') {
         },
         Sessions: { where: { jti } },
         active: true,
-        storeId:true
 
       },
     });
@@ -87,7 +86,6 @@ export class VisitorStrategy extends PassportStrategy(Strategy, 'VISITOR') {
         jti,
         Role,
         permissions: permissions.map((p) => p.Permission),
-        storeId:userExist?.storeId
       };
 
       return serializedUser;

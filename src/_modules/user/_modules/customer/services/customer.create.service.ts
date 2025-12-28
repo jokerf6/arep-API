@@ -48,13 +48,7 @@ export class CustomerCreateService {
             data: {
               ...rest,
               roleKey: RolesKeys.CUSTOMER,
-              Details: {
-                create: {
-                  male,
-                  points: 0,
-                  wallet: 0.0,
-                },
-              },
+             
             },
             select: { email: true, phone: true, id: true, name: true },
           });

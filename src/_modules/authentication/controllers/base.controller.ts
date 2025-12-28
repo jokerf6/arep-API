@@ -17,7 +17,7 @@ import { VerifyOtpDTO } from '../dto/verify-otp.dto';
 import { RoleInterceptor } from '../interceptor/role.interceptor';
 import { BaseAuthenticationService } from '../services/base.authentication.service';
 
-const prefix = 'authentication';
+const prefix = 'auth';
 @Controller(prefix)
 @ApiTags(tag(prefix))
 export class BaseAuthenticationController {
@@ -38,9 +38,7 @@ export class BaseAuthenticationController {
     @CurrentUser('id') userId: Id,
   ) {
     const { user, AccessToken } = await this.service.refreshToken(ip, userId);
-
     res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
-
     return this.response.success(res, 'Access token refreshed successfully', {
       user,
       AccessToken,
@@ -55,18 +53,15 @@ export class BaseAuthenticationController {
     @Body() dto: BioLoginDTO,
   ) {
     const data = await this.service.getBioInfo(dto);
-
     const { user, AccessToken, RefreshToken, unReadNotifications } =
       await this.service.login(ip, {
         email: data.email,
         password: 'undefined',
         fcm: dto.fcm,
-        roleKey: data.roleKey,
         locale: dto.locale,
       });
 
     res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
-
     return this.response.success(res, 'User Logged In Successfully', {
       user,
       unReadNotifications,
@@ -75,13 +70,7 @@ export class BaseAuthenticationController {
     });
   }
 
-  @Post('login/:roleKey')
-  @ApiParam({
-    name: 'roleKey',
-    enum: Object.values(RolesKeys),
-    required: true,
-  })
-  @UseInterceptors(RoleInterceptor)
+  @Post('login')
   async login(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -92,7 +81,6 @@ export class BaseAuthenticationController {
       await this.service.login(ip, dto);
 
     res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
-
     return this.response.success(res, 'User Logged In Successfully', {
       user,
       unReadNotifications,
@@ -101,13 +89,7 @@ export class BaseAuthenticationController {
     });
   }
 
-  @Post('forget-password/:roleKey')
-  @ApiParam({
-    name: 'roleKey',
-    enum: Object.values(RolesKeys),
-    required: true,
-  })
-  @UseInterceptors(RoleInterceptor)
+  @Post('forget-password')
   async forgetPassword(
     @IpAddress() ip: string,
     @Res() res: Response,

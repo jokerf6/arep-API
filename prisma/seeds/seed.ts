@@ -12,13 +12,8 @@ import { seedCustomer } from './customer.seed';
 import { seedNotification } from './notification.seed';
 import { seedCoupon } from './coupon.seed';
 import { seedModule } from './module.seed';
-import { seedStore } from './store.seed';
-import { seedBanner } from './banner.seed';
-import { seedCategory } from './category.seed';
 import { seedCity } from './city.seed';
-import { seedPlan } from './plan.seed';
-import { seedSubcategory } from './subCategory.seed';
-import { seedService } from './service.seed';
+
 
 const prisma = new PrismaClient();
 
@@ -31,7 +26,6 @@ async function main() {
   await seedAdmin(prisma);
   await seedNotification(prisma);
   await seedModule(prisma);
-  await seedCategory(prisma);
 
 
   // await seedLanguage(prisma);
@@ -39,11 +33,7 @@ async function main() {
     await seedCustomer(prisma);
     await seedCoupon(prisma);
     await seedCity(prisma);
-    await seedPlan(prisma);
-    await seedStore(prisma);
-    await seedBanner(prisma);
-    await seedSubcategory(prisma);
-    await seedService(prisma);
+
   }
   await prisma.$disconnect();
 }

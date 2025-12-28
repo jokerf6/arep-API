@@ -1,4 +1,3 @@
-import { Details } from './../../../../node_modules/.prisma/client/index.d';
 import {
   BadRequestException,
   Injectable,
@@ -134,11 +133,7 @@ export class UserService {
       where: { id: userId },
       data: {
         ...data,
-        Details:{
-          update:{
-            male
-          }
-        }
+       
       },
     });
   }

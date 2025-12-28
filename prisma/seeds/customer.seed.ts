@@ -27,12 +27,7 @@ export async function seedCustomer(prisma: PrismaClient) {
       },
       create: {
         ...data,
-        Details: {
-          create: {
-            wallet: 0.0,
-            male: true,
-          },
-        },
+      
       },
       update: data,
     });

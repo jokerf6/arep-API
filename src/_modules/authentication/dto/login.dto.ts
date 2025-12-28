@@ -42,8 +42,6 @@ export class EmailPasswordLoginDTO extends LoginInfoDTO {
   @ValidateLoginPassword()
   password: string;
 
-  @ValidateExist<'role'>({ model: 'role' })
-  roleKey?: string;
 }
 
 export class BioLoginDTO extends LoginInfoDTO {

@@ -51,7 +51,6 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy, 'ACCESS') {
         },
         Sessions: { where: { jti } },
         active: true,
-        storeId:true
       },
     });
 
@@ -68,7 +67,6 @@ export class AccessTokenStrategy extends PassportStrategy(Strategy, 'ACCESS') {
         jti,
         Role,
         permissions: permissions.map((p) => p.Permission),
-        storeId:userExist.storeId
 
       };
 

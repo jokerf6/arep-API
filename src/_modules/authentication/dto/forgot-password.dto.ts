@@ -7,6 +7,4 @@ export class ForgetPasswordDTO {
   @ValidatePhone()
   phone: string;
 
-  @ValidateExist<'role'>({ model: 'role' })
-  roleKey?: string;
 }
