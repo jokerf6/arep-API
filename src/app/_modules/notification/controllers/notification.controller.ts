@@ -14,7 +14,7 @@ import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRo
 import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
 import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 
-const prefix = 'notification';
+const prefix = 'notifications';
 @Controller(prefix)
 @ApiTags(tag(prefix))
 @Auth({})
@@ -22,9 +22,9 @@ export class NotificationController {
   constructor(
     private service: NotificationService,
     private response: ResponseService,
-  ) {}
+  ) { }
 
-  @Get('/notifications')
+  @Get('/')
   @Auth()
   @ApiQuery({ type: PartialType(FilterNotificationDTO) })
   async findAll(
@@ -42,25 +42,4 @@ export class NotificationController {
       },
     );
   }
-    @Post('/')
-    @UploadFile('image')
-    async create(@Res() res: Response, @Body() body: CreateNotificationDTO) {
-      await this.service.create(body);
-      return this.response.created(res, 'notification created successfully');
-    }
-    @Patch('/mark-read')
-      async markAllAsRead(@Res() res: Response, @CurrentUser() user: CurrentUser) {
-      await this.service.markAllAsRead(user.id);
-      return this.response.created(res, 'notification marked as read successfully');
-    }
-        @Patch('/:id/mark-read')
-        @ApiRequiredIdParam('id')
-        @CanUserAccessModelRowId({
-          prefix,
-          modelName: 'notification',
-        })
-      async mark(@Res() res: Response,@Param() { id }: RequiredIdParam) {
-      await this.service.markNotificationAsRead(id);
-      return this.response.created(res, 'notification marked as read successfully');
-    }
 }

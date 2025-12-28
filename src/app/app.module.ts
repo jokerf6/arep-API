@@ -27,25 +27,10 @@ import { NotificationService } from 'src/globals/services/notification.service';
 import { NotificationQueueModule } from 'src/notification-queue/notification-queue.module';
 import { BullModule } from '@nestjs/bull';
 import { ScheduleModule } from '@nestjs/schedule';
-import { ServiceModule } from 'src/_modules/serviceModule/serviceModule.module';
-import { CouponModule } from 'src/_modules/coupon/coupon.module';
-import { ModuleModule } from 'src/_modules/module/module.module';
-import { BannerModule } from 'src/_modules/banner/banner.module';
-import { CategoryModule } from 'src/_modules/category/category.module';
-import { StoreModule } from 'src/_modules/store/store.module';
 import { FilterModule } from 'src/_modules/filter/filter.modules';
-import { SocialMediaModule } from 'src/_modules/social-media/social-media.module';
-import { SettingsModule } from 'src/_modules/settings/settings.module';
-import { SystemNotificationModule } from 'src/_modules/system-notification/system-notification.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MaintenanceInterceptor } from 'src/globals/interceptors/maintance.interceptor';
-import { TransactionModule } from 'src/_modules/transaction/transaction.module';
-import { BankAccountModule } from 'src/_modules/bankAccount/bankAccount.module';
-import { BankModule } from 'src/_modules/bank/bank.module';
-import { OrderModule } from 'src/_modules/order/order.module';
 import { CityModule } from 'src/_modules/city/city.module';
-import { RatingModule } from 'src/_modules/rating/rating.module';
-import { StatisticsModule } from 'src/_modules/statistics/statistics.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -85,29 +70,14 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     UserModule,
     LanguagesModule,
     NotificationQueueModule,
-    CouponModule,
-     ModuleModule,
-     BannerModule,
-     CategoryModule,
-     StoreModule,
-     ServiceModule,
-     FilterModule,
-     SettingsModule,
-     SocialMediaModule,
-     SystemNotificationModule,
-     TransactionModule,
-     BankModule,
-     BankAccountModule,
-     OrderModule,
-     CityModule,
-     RatingModule,
-     StatisticsModule
+    FilterModule,
+    CityModule,
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService,
-   {
+    {
       provide: APP_INTERCEPTOR,
-      useClass: MaintenanceInterceptor, 
+      useClass: MaintenanceInterceptor,
     },
   ],
 })

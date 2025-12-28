@@ -5,7 +5,7 @@ import { SettingKey } from 'src/_modules/settings/settings';
 
 @Injectable()
 export class PrivateSettingService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async getSettings(
     key: SettingKey | SettingKey[],
