@@ -1,16 +1,15 @@
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String
-  email    String
-  phone    String
-  password String
-  verified Boolean @default(false)
-  active   Boolean @default(true)
-  deviceId String? @unique @map("device_id")
-  image    String  @default("uploads/default.png")
-  allowNotification Boolean @default(true) @map("allow_notification")
-storeId Int? 
-Store   Store? @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String?
+  phone     String?
+  password  String
+  birthDate DateTime? @map("birth_date")
+  verified  Boolean   @default(false)
+  active    Boolean   @default(true)
+  sex       Boolean   @default(false)
+  deviceId  String?   @unique @map("device_id")
+  image     String    @default("uploads/default.png")
   // default columns
   createdAt DateTime  @default(now()) @map("created_at")
   deletedAt DateTime? @map("deleted_at")
@@ -20,54 +19,37 @@ Store   Store? @relation(fields: [storeId], references: [id], onDelete: Cascade)
   roleKey String @map("role_key")
 
   // relations
-  OTPs             OTP[]
-  Sessions         Session[]
-  Notifications    Notification[]
-  UserCoupons      UserCoupons[]
-  FavoriteStores   FavoriteStore[]
-  FavoriteServices FavoriteService[]
+  OTPs          OTP[]
+  Sessions      Session[]
+  Notifications Notification[]
+  UserCoupons   UserCoupons[]
+  Fund          Fund[]
+  Transaction   Transaction[]
 
-  Details     Details?
-  Address     Address[]
-  Orders      Order[]
-  Fund        Fund[]
-  Transaction Transaction[]
+  Address Address?
 
   @@unique([email, roleKey])
   @@unique([phone, roleKey])
   @@index([phone, roleKey])
   @@index([email, roleKey])
   @@map("users")
-  ServiceRating ServiceRating[]
-  StoreRating StoreRating[]
-}
-
-model Details {
-  userId Int  @id @unique @map("user_id")
-  User   User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  wallet Float?   @default(0.0)
-  points Float?   @default(0.0)
-  male   Boolean?
-
-  @@map("details")
 }
 
 model Address {
   id Int @id @default(autoincrement())
 
-  userId Int  @map("user_id")
+  userId Int  @unique @map("user_id")
   User   User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   deletedAt DateTime? @map("deleted_at")
   createdAt DateTime  @default(now()) @map("created_at")
 
-  title   String  @map("title")
-  default Boolean @default(false)
-  lat     Float   @map("lat")
-  lng     Float   @map("lng")
+  street1 String @map("street_1") @db.Text
+  street2 String @map("street_2") @db.Text
+  city    String
+  state   String
+  country String
+  zipCode String @map("zip_code")
 
-  @@index([lat, lng])
   @@map("addresses")
-  Order Order[]
 }

@@ -21,11 +21,10 @@ model Coupon {
   deletedAt DateTime? @map("deleted_at")
 
   // Direct Relations
-  UserCoupons  UserCoupons[]
-  StoreCoupons StoreCoupons[]
+  UserCoupons UserCoupons[]
+  // StoreCoupons StoreCoupons[]
 
   @@map("coupons")
-  Orders Order[]
 }
 
 model UserCoupons {
@@ -38,18 +37,6 @@ model UserCoupons {
 
   @@unique([couponId, userId])
   @@map("user_coupons")
-}
-
-model StoreCoupons {
-  id       Int    @id @default(autoincrement())
-  Coupon   Coupon @relation(fields: [couponId], references: [id], onDelete: Cascade)
-  couponId Int    @map("coupon_id")
-
-  Store   Store @relation(fields: [storeId], references: [id], onDelete: Cascade)
-  storeId Int   @map("store_id")
-
-  @@unique([couponId, storeId])
-  @@map("store_coupons")
 }
 
 enum CouponType {

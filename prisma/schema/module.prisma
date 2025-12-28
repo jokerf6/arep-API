@@ -12,9 +12,6 @@ model Module {
   deletedAt   DateTime? @map("deleted_at")
 
   // Direct Relations
-  Category Category[] 
-  stores Store[] 
 
   @@map("modules")
-
 }

@@ -1,7 +1,0 @@
-model Plan {
-  id     Int     @id @default(autoincrement())
-  name   Json
-  stores Store[]
-
-  @@map("plan")
-}
