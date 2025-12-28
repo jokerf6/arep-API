@@ -245,6 +245,88 @@
         ]
       }
     },
+    "/api/v1/upload/presigned-url": {
+      "post": {
+        "operationId": "UploadController_getPresignedUrl",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Upload"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
+    "/api/v1/upload/verify": {
+      "post": {
+        "operationId": "UploadController_verifyUpload",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Upload"
+        ],
+        "security": [
+          {
+            "ACCESS Token": []
+          }
+        ]
+      }
+    },
     "/api/v1/media": {
       "get": {
         "operationId": "MediaController_returnMedia",

@@ -18,6 +18,7 @@ import { LocaleMiddleware } from 'src/globals/middlewares/locale.middleware';
 import { RateLimitMiddleware } from 'src/globals/middlewares/rate-limit.middleware';
 import { XssMiddleware } from 'src/globals/middlewares/xss.middleware';
 import { NotificationModule } from './_modules/notification/notification.module';
+import { UploadModule } from './_modules/upload/upload.module';
 import { SearchModule } from './_modules/search/search.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -64,6 +65,7 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     GlobalModule,
     SearchModule,
     NotificationModule,
+    UploadModule,
     MediaModule,
     AuthenticationModule,
     AuthorizationModule,
