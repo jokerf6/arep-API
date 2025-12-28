@@ -33,12 +33,18 @@ import { FilterModule } from 'src/_modules/filter/filter.modules';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MaintenanceInterceptor } from 'src/globals/interceptors/maintance.interceptor';
 import { CityModule } from 'src/_modules/city/city.module';
+import { ClsModule } from 'nestjs-cls';
+import { AuditModule } from './_modules/audit/audit.module';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
 @Module({
   imports: [
     ScheduleModule.forRoot(),
+    ClsModule.forRoot({
+      global: true,
+      middleware: { mount: true },
+    }),
     I18nModule.forRootAsync({
       imports: [
         ConfigModule.forRoot({
@@ -74,6 +80,7 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     WorkerModule,
     FilterModule,
     CityModule,
+    AuditModule,
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService,

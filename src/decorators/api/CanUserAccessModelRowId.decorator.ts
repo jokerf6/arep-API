@@ -24,7 +24,7 @@ export class CanUserAccessModelRowIdInterceptor implements NestInterceptor {
 
   ) {}
   private prisma = new PrismaClient();
-  private globalHelpers = new GlobalHelpers(new PrismaService());
+  private globalHelpers = new GlobalHelpers(new PrismaService({} as any));
 
   async intercept(
     context: ExecutionContext,

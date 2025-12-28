@@ -4026,6 +4026,165 @@
           }
         ]
       }
+    },
+    "/api/v1/audit/entities": {
+      "get": {
+        "operationId": "AuditController_getEntities",
+        "summary": "Get list of tracked entities",
+        "parameters": [
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Audit"
+        ]
+      }
+    },
+    "/api/v1/audit": {
+      "get": {
+        "operationId": "AuditController_getHistory",
+        "summary": "Get audit history for an entity",
+        "parameters": [
+          {
+            "required": false,
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "required": false,
+            "name": "entityName",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "required": false,
+            "name": "entityId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Audit"
+        ]
+      }
+    },
+    "/api/v1/audit/{id}": {
+      "get": {
+        "operationId": "AuditController_getLog",
+        "summary": "Get specific audit log entry",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "Locale",
+            "schema": {
+              "example": "en"
+            }
+          },
+          {
+            "in": "header",
+            "required": false,
+            "name": "isLocalized",
+            "schema": {
+              "example": false,
+              "type": "boolean",
+              "enum": [
+                true,
+                false
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Audit"
+        ]
+      }
     }
   },
   "info": {
