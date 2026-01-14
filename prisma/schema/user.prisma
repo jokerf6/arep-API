@@ -22,6 +22,7 @@ model User {
   OTPs          OTP[]
   Sessions      Session[]
   Notifications Notification[]
+  Devices       Devices[]
   UserCoupons   UserCoupons[]
   Fund          Fund[]
   Transaction   Transaction[]

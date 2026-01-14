@@ -20,6 +20,7 @@ module.exports = {
     '^src/(.*)$': '<rootDir>/src/$1',
     '^@globals/(.*)$': '<rootDir>/src/globals/$1',
     '^@services/(.*)$': '<rootDir>/src/globals/services/$1',
+    '^prisma/(.*)$': '<rootDir>/prisma/$1',
   },
   moduleFileExtensions: ['js', 'json', 'ts'],
   testRegex: '.*\\.spec\\.ts$',

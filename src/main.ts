@@ -18,7 +18,6 @@ import { GlobalExceptionFilter } from './globals/filters/global.exception.filter
 import { ResponseService } from './globals/services/response.service';
 import { MaintenanceInterceptor } from './globals/interceptors/maintance.interceptor';
 // import './instrument.ts';
-import { lens } from '@lensjs/nestjs';
 
 const environment = env('NODE_ENV') || 'development';
 const envFileName = environment == 'production' ? '.env.prod' : '.env';
@@ -32,9 +31,6 @@ async function bootstrap() {
   });
 
   const port = +env('PORT') || 3000;
-  await lens({ app ,
-    exceptionWatcherEnabled: true,
-  });
 
   app.use(morganMiddleware);
 

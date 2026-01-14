@@ -14,10 +14,4 @@ export class AppController {
   getError() {
     throw new Error('My first Sentry error!');
   }
-  @Get('/roles-show')
-  @ApiOperation({ deprecated: true })
-  async rolesShow(@Res() res: Response) {
-    const data = await this.service.getAllRoles();
-    return this.response.success(res, 'Roles returned successfully', data);
-  }
 }

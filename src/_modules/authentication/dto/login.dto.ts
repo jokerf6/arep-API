@@ -1,5 +1,6 @@
 import { Optional } from 'src/decorators/dto/optional-input.decorator';
 import { Required } from 'src/decorators/dto/required-input.decorator';
+import { OptionalSwagger } from 'src/decorators/dto/validators/optional-swagger.decorator';
 import { ValidateEmail } from 'src/decorators/dto/validators/validate-email.decorator';
 import { ValidateExist } from 'src/decorators/dto/validators/validate-found-number.decorator';
 import { ValidateOTP } from 'src/decorators/dto/validators/validate-otp.decorator';
@@ -42,12 +43,26 @@ export class EmailPasswordLoginDTO extends LoginInfoDTO {
   @ValidateLoginPassword()
   password: string;
 
+
+  @Required()
+  @ValidateString()
+  deviceId: string;
+
+
+  @OptionalSwagger()
+  @ValidateExist<'role'>({ model: 'role' })
+  roleKey?: string;
+
 }
 
 export class BioLoginDTO extends LoginInfoDTO {
   @Required({})
   @ValidateString()
   deviceId?: string;
+
+  @OptionalSwagger()
+  @ValidateExist<'role'>({ model: 'role' })
+  roleKey?: string;
 }
 
 enum RolesCanLoginWithPhone {

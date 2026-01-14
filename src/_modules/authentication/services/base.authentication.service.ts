@@ -11,6 +11,9 @@ import { ResetPasswordDTO } from '../dto/reset-password.dto';
 import { VerifyOtpDTO } from '../dto/verify-otp.dto';
 import { TokenService } from './jwt.service';
 import { OTPService } from './otp.service';
+import { InjectQueue } from '@nestjs/bull';
+import { Queue } from 'bull';
+import { JobName, QueueName } from 'src/app/_modules/worker/worker.constants';
 
 @Injectable()
 export class BaseAuthenticationService {
@@ -20,6 +23,7 @@ export class BaseAuthenticationService {
     private readonly userHelper: HelperService,
     private readonly userService: UserService,
     private readonly otpService: OTPService,
+    @InjectQueue(QueueName.NOTIFICATION) private readonly notificationQueue: Queue,
   ) {}
 
   async login(
@@ -90,8 +94,8 @@ export class BaseAuthenticationService {
   }
 
   async forgetPassword(ip: string, forgotPasswordDTO: ForgetPasswordDTO) {
-    const { phone } = forgotPasswordDTO;
-    const user = await this.userHelper.userExist({ phone });
+    const { phone,roleKey } = forgotPasswordDTO;
+    const user = await this.userHelper.userExist({ phone,roleKey });
 
     await this.userHelper.userCanLogin(user);
     await this.otpService.generateOTP(user.id, OTPType.PASSWORD_RESET);
@@ -185,5 +189,67 @@ export class BaseAuthenticationService {
     );
     return { user: data, AccessToken };
   }
- 
+
+  async saveDevice(deviceId: string, userId: Id, locale?: string) {
+    const isDeviceExist = await this.prisma.devices.findUnique({
+      where: {
+        userId_deviceId: {
+          userId,
+          deviceId,
+        },
+      },
+    });
+
+    if (!isDeviceExist) {
+      await this.sendNewDeviceNotification(userId, locale);
+    }
+
+    await this.prisma.devices.upsert({
+      where: {
+        userId_deviceId: {
+          userId,
+          deviceId,
+        },
+      },
+      update: {
+        lastLogin: new Date(),
+      },
+      create: {
+        userId,
+        deviceId,
+      },
+    });
+  }
+
+  private async sendNewDeviceNotification(userId: Id, localeKey?: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true, email: true, phone: true, roleKey: true },
+    });
+
+    if (!user) return;
+
+    const notifications = await this.prisma.systemNotification.findMany({
+      where: {
+        event: 'auth/new_device_login',
+        receiverId: user.roleKey,
+      },
+    });
+
+    if (notifications.length === 0) return;
+
+    let languageId = localeKey;
+    if (!languageId) {
+      const defaultLang = await this.prisma.language.findFirst();
+      languageId = defaultLang?.key || 'en';
+    }
+
+    for (const notification of notifications) {
+      await this.notificationQueue.add(JobName.PROCESS_NOTIFICATION, {
+        notification,
+        languageId,
+        targetUsers: [user],
+      });
+    }
+  }
 }

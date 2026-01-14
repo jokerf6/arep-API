@@ -18,6 +18,13 @@ export function CustomerEndpoint(path: string) {
   );
 }
 
+export function AllEndpoint() {
+  return applyDecorators(
+    ApiTags('Customer', 'Admin'),
+    ApiExtension('x-scope-all', true),
+  );
+}
+
 export function HostEndpoint(path: string) {
   return applyDecorators(
     ApiTags('Host'),
