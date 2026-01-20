@@ -321,6 +321,8 @@ export class ResponseService {
     locale: string | string[],
     isLocalized: string | string[],
   ) {
+    if (!isLocalized) return data;
+    
     const Localized = Array.isArray(isLocalized)
       ? toBoolean(isLocalized[0])
       : toBoolean(isLocalized);

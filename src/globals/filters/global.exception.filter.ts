@@ -71,13 +71,6 @@ export class GlobalExceptionFilter implements ExceptionFilter {
           this.responseService.unProcessableData(response, messageKey);
           break;
         default:
-          await axios.post(
-            `https://api.telegram.org/${process.env.ERRORS_BOT}/sendMessage`,
-            {
-              chat_id: '<YOUR_CHAT_ID>',
-              text: `${process.env.PROJECT_NAME} \n \n ${exception} `,
-            },
-          );
           // eslint-disable-next-line no-console
           console.log(exception);
           break;
@@ -89,13 +82,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         console.log(exception);
       }
       try {
-        await axios.post(
-          `https://api.telegram.org/${process.env.ERRORS_BOT}/sendMessage`,
-          {
-            chat_id: `${process.env.CHAT_ID}`,
-            text: `${process.env.PROJECT_NAME} \n \n ${exception} `,
-          },
-        );
+        
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error('Failed to send error message to Telegram:', error);

@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Logs Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              dark: {
+                900: '#0f172a',
+                800: '#1e293b',
+                700: '#334155',
+                600: '#475569',
+              },
+              primary: {
+                500: '#3b82f6',
+                600: '#2563eb',
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+      .glass {
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .slide-fade-enter-active,
+      .slide-fade-leave-active {
+        transition: all 0.3s ease-out;
+      }
+      .slide-fade-enter-from,
+      .slide-fade-leave-to {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+      body {
+        background-color: #0f172a; /* dark-900 */
+        color: #f1f5f9;
+      }
+      /* Json viewer style */
+      pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .string {
+        color: #86efac;
+      }
+      .number {
+        color: #93c5fd;
+      }
+      .boolean {
+        color: #fca5a5;
+      }
+      .null {
+        color: #d1d5db;
+      }
+      .key {
+        color: #cbd5e1;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen text-slate-200 font-sans">
+    <div id="app" v-cloak class="h-full">
+      <!-- Login Screen -->
+      <div
+        v-if="!isAuthenticated"
+        class="min-h-screen flex items-center justify-center relative overflow-hidden"
+      >
+        <!-- Background elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+          <div
+            class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500/20 rounded-full blur-3xl"
+          ></div>
+          <div
+            class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+          ></div>
+        </div>
+
+        <div
+          class="glass p-8 rounded-2xl shadow-2xl w-full max-w-md border border-slate-700"
+        >
+          <div class="text-center mb-8">
+            <h1
+              class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500"
+            >
+              Aroovia Logs
+            </h1>
+            <p class="text-slate-400 mt-2">Professional Audit System</p>
+          </div>
+          <form @submit.prevent="login">
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-slate-400 mb-1"
+                >Email</label
+              >
+              <div class="relative">
+                <span
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500"
+                >
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <input
+                  v-model="loginForm.email"
+                  type="email"
+                  class="w-full bg-slate-800/50 border border-slate-700 rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors placeholder-slate-600"
+                  placeholder="admin@example.com"
+                  required
+                />
+              </div>
+            </div>
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-slate-400 mb-1"
+                >Password</label
+              >
+              <div class="relative">
+                <span
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-500"
+                >
+                  <i class="fas fa-lock"></i>
+                </span>
+                <input
+                  v-model="loginForm.password"
+                  type="password"
+                  class="w-full bg-slate-800/50 border border-slate-700 rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors placeholder-slate-600"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+            </div>
+            <button
+              :disabled="isLoading"
+              type="submit"
+              class="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-semibold py-3 px-4 rounded-lg shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              <i v-if="isLoading" class="fas fa-spinner fa-spin"></i>
+              <span v-else>Access System</span>
+            </button>
+            <p
+              v-if="error"
+              class="text-red-400 text-center mt-4 text-sm bg-red-500/10 py-2 rounded border border-red-500/20"
+            >
+              {{ error }}
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Dashboard -->
+      <div v-else class="min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <nav class="glass sticky top-0 z-50 border-b border-slate-700/50">
+          <div class="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+              <div class="flex items-center gap-3">
+                <div class="bg-primary-600/20 p-2 rounded-lg">
+                  <i class="fas fa-shield-alt text-primary-500 text-xl"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight"
+                  >Request<span class="text-primary-500">Logs</span></span
+                >
+              </div>
+              <div class="flex items-center gap-4">
+                <button
+                  @click="refreshData"
+                  class="p-2 text-slate-400 hover:text-white transition-colors"
+                  title="Refresh"
+                >
+                  <i
+                    class="fas fa-sync-alt"
+                    :class="{'fa-spin': isLoading}"
+                  ></i>
+                </button>
+                <div class="h-6 w-px bg-slate-700"></div>
+                <button
+                  @click="logout"
+                  class="flex items-center gap-2 text-slate-400 hover:text-red-400 transition-colors text-sm font-medium"
+                >
+                  <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+          <div class="max-w-9xl mx-auto">
+            <!-- Filters -->
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6"
+            >
+              <div
+                class="glass rounded-xl p-1 px-3 flex items-center lg:col-span-2"
+              >
+                <i class="fas fa-search text-slate-500 mr-2"></i>
+                <input
+                  v-model.lazy="filters.url"
+                  @change="fetchLogs"
+                  type="text"
+                  class="bg-transparent border-none w-full focus:ring-0 text-sm py-2"
+                  placeholder="Search URL path..."
+                />
+              </div>
+              <div class="glass rounded-xl p-1 px-3 flex items-center">
+                <span class="text-slate-500 text-xs font-bold mr-2"
+                  >METHOD</span
+                >
+                <select
+                  v-model="filters.method"
+                  @change="fetchLogs"
+                  class="bg-transparent border-none w-full focus:ring-0 text-sm py-2 text-slate-300"
+                >
+                  <option value="">All Methods</option>
+                  <option value="GET">GET</option>
+                  <option value="POST">POST</option>
+                  <option value="PUT">PUT</option>
+                  <option value="DELETE">DELETE</option>
+                  <option value="PATCH">PATCH</option>
+                </select>
+              </div>
+              <div class="glass rounded-xl p-1 px-3 flex items-center">
+                <span class="text-slate-500 text-xs font-bold mr-2"
+                  >STATUS</span
+                >
+                <select
+                  v-model="filters.statusCode"
+                  @change="fetchLogs"
+                  class="bg-transparent border-none w-full focus:ring-0 text-sm py-2 text-slate-300"
+                >
+                  <option value="">All Statuses</option>
+                  <option value="200">200 OK</option>
+                  <option value="201">201 Created</option>
+                  <option value="400">400 Bad Request</option>
+                  <option value="401">401 Unauthorized</option>
+                  <option value="403">403 Forbidden</option>
+                  <option value="404">404 Not Found</option>
+                  <option value="500">500 Server Error</option>
+                </select>
+              </div>
+              <div class="glass rounded-xl p-1 px-3 flex items-center">
+                <i class="fas fa-user text-slate-500 mr-2"></i>
+                <input
+                  v-model.lazy="filters.userId"
+                  @change="fetchLogs"
+                  type="text"
+                  class="bg-transparent border-none w-full focus:ring-0 text-sm py-2"
+                  placeholder="User ID"
+                />
+              </div>
+              <div class="glass rounded-xl p-1 px-3 flex items-center">
+                <i class="fas fa-laptop-code text-slate-500 mr-2"></i>
+                <input
+                  v-model.lazy="filters.ip"
+                  @change="fetchLogs"
+                  type="text"
+                  class="bg-transparent border-none w-full focus:ring-0 text-sm py-2"
+                  placeholder="IP Address"
+                />
+              </div>
+            </div>
+
+            <!-- Filter Tags -->
+            <div
+              class="flex flex-wrap gap-2 mb-4"
+              v-if="activeFiltersCount > 0"
+            >
+              <span
+                v-if="filters.url"
+                class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium border border-blue-500/30"
+              >
+                URL: {{ filters.url }}
+                <i
+                  @click="filters.url = ''; fetchLogs()"
+                  class="fas fa-times ml-1 cursor-pointer hover:text-white"
+                ></i>
+              </span>
+              <span
+                v-if="filters.method"
+                class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-medium border border-purple-500/30"
+              >
+                Method: {{ filters.method }}
+                <i
+                  @click="filters.method = ''; fetchLogs()"
+                  class="fas fa-times ml-1 cursor-pointer hover:text-white"
+                ></i>
+              </span>
+              <span
+                v-if="filters.statusCode"
+                class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-xs font-medium border border-green-500/30"
+              >
+                Status: {{ filters.statusCode }}
+                <i
+                  @click="filters.statusCode = ''; fetchLogs()"
+                  class="fas fa-times ml-1 cursor-pointer hover:text-white"
+                ></i>
+              </span>
+            </div>
+
+            <!-- Table -->
+            <div
+              class="glass rounded-2xl overflow-hidden border border-slate-700/50 shadow-xl"
+            >
+              <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr
+                      class="bg-slate-800/50 text-slate-400 text-xs uppercase tracking-wider"
+                    >
+                      <th class="p-4 font-semibold">Method</th>
+                      <th class="p-4 font-semibold">Status</th>
+                      <th class="p-4 font-semibold">URL</th>
+                      <th class="p-4 font-semibold">Duration</th>
+                      <th class="p-4 font-semibold">IP</th>
+                      <th class="p-4 font-semibold">Time</th>
+                      <th class="p-4 font-semibold text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-700/50">
+                    <tr
+                      v-for="log in logs"
+                      :key="log.id"
+                      class="hover:bg-slate-800/30 transition-colors group"
+                    >
+                      <td class="p-4">
+                        <span
+                          :class="getMethodClass(log.method)"
+                          class="px-2 py-1 rounded text-xs font-bold w-16 text-center inline-block"
+                        >
+                          {{ log.method }}
+                        </span>
+                      </td>
+                      <td class="p-4">
+                        <span
+                          :class="getStatusClass(log.statusCode)"
+                          class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border"
+                        >
+                          <span
+                            class="w-1.5 h-1.5 rounded-full bg-current"
+                          ></span>
+                          {{ log.statusCode }}
+                        </span>
+                      </td>
+                      <td
+                        class="p-4 max-w-xs truncate text-slate-300 font-mono text-sm"
+                        :title="log.url"
+                      >
+                        {{ log.url }}
+                      </td>
+                      <td class="p-4 text-sm text-slate-400">
+                        {{ log.duration }}ms
+                      </td>
+                      <td class="p-4 text-sm text-slate-400">{{ log.ip }}</td>
+                      <td class="p-4 text-sm text-slate-400">
+                        {{ formatDate(log.createdAt) }}
+                      </td>
+                      <td class="p-4 text-right">
+                        <button
+                          @click="viewDetails(log)"
+                          class="text-slate-500 hover:text-primary-400 transition-colors p-2 rounded-lg hover:bg-slate-700/50"
+                        >
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr v-if="logs.length === 0">
+                      <td colspan="7" class="p-12 text-center text-slate-500">
+                        <div class="flex flex-col items-center justify-center">
+                          <div class="bg-slate-800/50 p-4 rounded-full mb-3">
+                            <i class="fas fa-search text-2xl"></i>
+                          </div>
+                          <p>No request logs found matching your criteria</p>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- Pagination -->
+              <div
+                class="p-4 border-t border-slate-700/50 flex items-center justify-between"
+              >
+                <span class="text-sm text-slate-500"
+                  >Showing {{ logs.length }} of {{ total }} entries</span
+                >
+                <div class="flex gap-2">
+                  <button
+                    @click="page--; fetchLogs()"
+                    :disabled="page <= 1"
+                    class="px-3 py-1 rounded border border-slate-700 hover:bg-slate-700 disabled:opacity-50 text-sm transition-colors text-slate-300"
+                  >
+                    Previous
+                  </button>
+                  <span
+                    class="px-3 py-1 text-sm bg-slate-800/50 rounded border border-slate-700 text-slate-300"
+                    >{{ page }}</span
+                  >
+                  <button
+                    @click="page++; fetchLogs()"
+                    :disabled="!hasMore"
+                    class="px-3 py-1 rounded border border-slate-700 hover:bg-slate-700 disabled:opacity-50 text-sm transition-colors text-slate-300"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <!-- Details Modal -->
+      <div
+        v-if="selectedLog"
+        class="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      >
+        <div
+          @click="selectedLog = null"
+          class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        ></div>
+        <div
+          class="glass rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl relative border border-slate-600 animate-fade-in-up"
+        >
+          <div
+            class="p-6 border-b border-slate-700 flex justify-between items-start bg-slate-800/30"
+          >
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span
+                  :class="getMethodClass(selectedLog.method)"
+                  class="px-3 py-1 rounded text-sm font-bold"
+                  >{{ selectedLog.method }}</span
+                >
+                <span
+                  :class="getStatusClass(selectedLog.statusCode)"
+                  class="px-3 py-1 rounded-full text-sm font-medium border text-xs"
+                  >{{ selectedLog.statusCode }}</span
+                >
+                <span class="text-slate-400 text-sm"
+                  ><i class="far fa-clock mr-1"></i> {{
+                  formatDate(selectedLog.createdAt) }}</span
+                >
+              </div>
+              <h2 class="text-lg font-mono text-white break-all">
+                {{ selectedLog.url }}
+              </h2>
+            </div>
+            <button
+              @click="selectedLog = null"
+              class="text-slate-400 hover:text-white transition-colors bg-slate-700/50 hover:bg-slate-600 p-2 rounded-lg"
+            >
+              <i class="fas fa-times text-lg"></i>
+            </button>
+          </div>
+          <div class="p-0 overflow-y-auto flex-1">
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-700 h-full"
+            >
+              <!-- Left Col: Request -->
+              <div class="p-6">
+                <h3
+                  class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4 flex items-center"
+                >
+                  <i class="fas fa-arrow-right text-blue-400 mr-2"></i> Request
+                  Details
+                </h3>
+
+                <div class="space-y-6">
+                  <div>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider"
+                        >Query Params</span
+                      >
+                      <button
+                        v-if="selectedLog.query"
+                        @click="copyToClipboard(selectedLog.query, 'query')"
+                        class="text-xs text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5 px-2 py-1 rounded hover:bg-slate-700/30"
+                        :title="copiedSection === 'query' ? 'Copied!' : 'Copy to clipboard'"
+                      >
+                        <i :class="copiedSection === 'query' ? 'fas fa-check text-green-400' : 'far fa-copy'"></i>
+                        <span v-if="copiedSection === 'query'">Copied!</span>
+                        <span v-else>Copy</span>
+                      </button>
+                    </div>
+                    <div
+                      class="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50 font-mono text-sm overflow-x-auto max-h-48 overflow-y-auto"
+                    >
+                      <div v-if="!selectedLog.query" class="text-slate-500">No query params</div>
+                      <pre
+                        v-else
+                        v-html="syntaxHighlight(selectedLog.query)"
+                        class="text-xs"
+                      ></pre>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Body</span>
+                      <button
+                        v-if="selectedLog.body"
+                        @click="copyToClipboard(selectedLog.body, 'body')"
+                        class="text-xs text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5 px-2 py-1 rounded hover:bg-slate-700/30"
+                        :title="copiedSection === 'body' ? 'Copied!' : 'Copy to clipboard'"
+                      >
+                        <i :class="copiedSection === 'body' ? 'fas fa-check text-green-400' : 'far fa-copy'"></i>
+                        <span v-if="copiedSection === 'body'">Copied!</span>
+                        <span v-else>Copy</span>
+                      </button>
+                    </div>
+                    <div
+                      class="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50 font-mono text-sm overflow-x-auto max-h-48 overflow-y-auto"
+                    >
+                      <div v-if="!selectedLog.body" class="text-slate-500">No body content</div>
+                      <pre
+                        v-else
+                        v-html="syntaxHighlight(selectedLog.body)"
+                        class="text-xs"
+                      ></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Right Col: Headers & Metadata -->
+              <div class="p-6">
+                <h3
+                  class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-4 flex items-center"
+                >
+                  <i class="fas fa-info-circle text-purple-400 mr-2"></i>
+                  Metadata
+                </h3>
+                <div class="space-y-4">
+                  <div class="grid grid-cols-2 gap-4">
+                    <div
+                      class="bg-slate-800/30 p-3 rounded-lg border border-slate-700/30"
+                    >
+                      <span class="text-xs text-slate-500 block">User ID</span>
+                      <span class="text-slate-200 font-mono text-sm"
+                        >{{ selectedLog.userId || 'Guest' }}</span
+                      >
+                    </div>
+                    <div
+                      class="bg-slate-800/30 p-3 rounded-lg border border-slate-700/30"
+                    >
+                      <span class="text-xs text-slate-500 block"
+                        >IP Address</span
+                      >
+                      <span class="text-slate-200 font-mono text-sm"
+                        >{{ selectedLog.ip || 'Unknown' }}</span
+                      >
+                    </div>
+                    <div
+                      class="bg-slate-800/30 p-3 rounded-lg border border-slate-700/30"
+                    >
+                      <span class="text-xs text-slate-500 block">Duration</span>
+                      <span class="text-slate-200 font-mono text-sm"
+                        >{{ selectedLog.duration }}ms</span
+                      >
+                    </div>
+                    <div
+                      class="bg-slate-800/30 p-3 rounded-lg border border-slate-700/30"
+                    >
+                      <span class="text-xs text-slate-500 block"
+                        >User Agent</span
+                      >
+                      <span
+                        class="text-slate-200 text-xs truncate block"
+                        :title="selectedLog.userAgent"
+                        >{{ selectedLog.userAgent || '-' }}</span
+                      >
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider"
+                        >Headers</span
+                      >
+                      <button
+                        @click="copyToClipboard(selectedLog.headers, 'headers')"
+                        class="text-xs text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5 px-2 py-1 rounded hover:bg-slate-700/30"
+                        :title="copiedSection === 'headers' ? 'Copied!' : 'Copy to clipboard'"
+                      >
+                        <i :class="copiedSection === 'headers' ? 'fas fa-check text-green-400' : 'far fa-copy'"></i>
+                        <span v-if="copiedSection === 'headers'">Copied!</span>
+                        <span v-else>Copy</span>
+                      </button>
+                    </div>
+                    <div
+                      class="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50 font-mono text-xs overflow-x-auto max-h-60 overflow-y-auto"
+                    >
+                      <pre v-html="syntaxHighlight(selectedLog.headers)"></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const { createApp, ref, computed, onMounted, watch } = Vue;
+
+      createApp({
+        setup() {
+          const logs = ref([]);
+          const total = ref(0);
+          const page = ref(1);
+          const limit = ref(20);
+          const isLoading = ref(false);
+          const error = ref(null);
+          const isAuthenticated = ref(false);
+          const selectedLog = ref(null);
+
+          const loginForm = ref({
+            email: '',
+            password: '',
+            locale: 'en',
+          });
+
+          const filters = ref({
+            url: '',
+            method: '',
+            statusCode: '',
+            userId: '',
+            ip: '',
+          });
+
+          const activeFiltersCount = computed(() => {
+            return Object.values(filters.value).filter(Boolean).length;
+          });
+
+          const hasMore = computed(() => {
+            return page.value * limit.value < total.value;
+          });
+
+          const api = axios.create({
+            baseURL: window.location.href.split('?')[0].replace(/\/dashboard\/?$/, ''),
+            headers: {
+                'locale': 'en',
+                'accept-language': 'en',
+                'isLocalized': 'true'
+            }
+          });
+
+          // Check auth on mount
+          onMounted(() => {
+            const token = localStorage.getItem('access_token');
+            if (token) {
+              isAuthenticated.value = true;
+              // Set auth header
+              api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+              fetchLogs();
+            }
+          });
+
+          const login = async () => {
+            isLoading.value = true;
+            error.value = null;
+            try {
+              // Relative path: from /api/v1/request-logs to /api/v1/auth/login/Admin
+              const response = await api.post('../auth/login/Admin', {
+                email: loginForm.value.email,
+                password: loginForm.value.password,
+                deviceId:
+                  'web-dashboard-' + Math.random().toString(36).substring(7),
+                roleKey: 'Admin',
+                locale: 'en',
+              });
+
+              const token = response.data.data.AccessToken;
+              localStorage.setItem('access_token', token);
+              api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+              isAuthenticated.value = true;
+              fetchLogs();
+            } catch (err) {
+              console.error(err);
+              error.value =
+                err.response?.data?.message ||
+                'Login failed. Please check your credentials.';
+            } finally {
+              isLoading.value = false;
+            }
+          };
+
+          const logout = () => {
+            localStorage.removeItem('access_token');
+            isAuthenticated.value = false;
+            delete api.defaults.headers.common['Authorization'];
+            logs.value = [];
+            loginForm.value = { email: '', password: '' };
+          };
+
+          const fetchLogs = async () => {
+            if (!isAuthenticated.value) return;
+            isLoading.value = true;
+            try {
+              const response = await api.get('', {
+                params: {
+                  page: page.value,
+                  limit: limit.value,
+                  ...filters.value,
+                },
+              });
+              logs.value = response.data.data.items || response.data.data; // Handle both structures if needed
+
+              // Adapt to structure
+              if (response.data.data.items) {
+                logs.value = response.data.data.items;
+                total.value = response.data.data.meta.total; // If I change the controller to my suggested structure
+              } else {
+                // Fallback to simple array if controller not changed significantly, but we need total from somewhere
+                logs.value = response.data.data;
+                total.value = response.data.total; // from options merged into response root or options?
+                // Wait, responseService puts options at root level alongside data and message
+                if (response.data.total) total.value = response.data.total;
+              }
+            } catch (err) {
+              if (err.response?.status === 401) {
+                logout();
+              }
+              console.error(err);
+            } finally {
+              isLoading.value = false;
+            }
+          };
+
+          const viewDetails = (log) => {
+            selectedLog.value = log;
+          };
+
+          const getMethodClass = (method) => {
+            const map = {
+              GET: 'bg-blue-500/20 text-blue-400',
+              POST: 'bg-green-500/20 text-green-400',
+              PUT: 'bg-yellow-500/20 text-yellow-400',
+              DELETE: 'bg-red-500/20 text-red-400',
+              PATCH: 'bg-purple-500/20 text-purple-400',
+            };
+            return map[method] || 'bg-slate-500/20 text-slate-400';
+          };
+
+          const getStatusClass = (status) => {
+            if (status >= 200 && status < 300)
+              return 'border-green-500/30 text-green-400 bg-green-500/10';
+            if (status >= 300 && status < 400)
+              return 'border-blue-500/30 text-blue-400 bg-blue-500/10';
+            if (status >= 400 && status < 500)
+              return 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10';
+            if (status >= 500)
+              return 'border-red-500/30 text-red-400 bg-red-500/10';
+            return 'border-slate-500/30 text-slate-400';
+          };
+
+          const formatDate = (dateStr) => {
+            return new Date(dateStr).toLocaleString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            });
+          };
+
+          const refreshData = () => {
+            fetchLogs();
+          };
+
+          const syntaxHighlight = (json) => {
+            if (typeof json !== 'string') {
+              json = JSON.stringify(json, undefined, 2);
+            }
+            json = json
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;');
+            return json.replace(
+              /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+              function (match) {
+                var cls = 'number';
+                if (/^"/.test(match)) {
+                  if (/:$/.test(match)) {
+                    cls = 'key';
+                  } else {
+                    cls = 'string';
+                  }
+                } else if (/true|false/.test(match)) {
+                  cls = 'boolean';
+                } else if (/null/.test(match)) {
+                  cls = 'null';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+              },
+            );
+          };
+
+          const copiedSection = ref(null);
+          const copyToClipboard = async (data, section) => {
+            try {
+              const text = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+              await navigator.clipboard.writeText(text);
+              copiedSection.value = section;
+              setTimeout(() => {
+                copiedSection.value = null;
+              }, 2000);
+            } catch (err) {
+              console.error('Failed to copy:', err);
+            }
+          };
+
+          return {
+            logs,
+            total,
+            page,
+            limit,
+            isLoading,
+            error,
+            isAuthenticated,
+            loginForm,
+            filters,
+            activeFiltersCount,
+            hasMore,
+            login,
+            logout,
+            fetchLogs,
+            viewDetails,
+            getMethodClass,
+            getStatusClass,
+            formatDate,
+            selectedLog,
+            syntaxHighlight,
+            refreshData,
+            copiedSection,
+            copyToClipboard,
+          };
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>

@@ -10,15 +10,22 @@ export class LocaleMiddleware implements NestMiddleware {
     const localeHeader = req.headers['locale'];
     const acceptLanguageHeader = req.headers['accept-language']?.toString();
 
-    const localeBeforeFilter = localeHeader || acceptLanguageHeader || 'en';
-    const locale = Array.isArray(localeBeforeFilter)
-      ? localeBeforeFilter[0].toLowerCase()
-      : localeBeforeFilter.toLowerCase();
+    let locale = 'en';
+
+    if (localeHeader) {
+      locale = Array.isArray(localeHeader) ? localeHeader[0] : localeHeader;
+    } else if (acceptLanguageHeader) {
+      // Example: "en-US,en;q=0.9" -> "en-US" -> "en"
+      const firstLang = acceptLanguageHeader.split(',')[0].trim();
+      locale = firstLang.split('-')[0].split(';')[0];
+    }
+
+    locale = locale.toLowerCase();
+ 
     const isFound = await this.prisma.language.findUnique({
       where: { key: locale },
     });
-
-    if (!isFound && !req.url.toLowerCase().includes('media')) {
+    if (!isFound && !req.originalUrl.toLowerCase().includes('media') && !req.originalUrl.toLowerCase().includes('request-logs/dashboard')) {
       throw new NotFoundException(`This language not found or not supported.`);
     }
 

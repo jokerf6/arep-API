@@ -1,0 +1,16 @@
+model RequestLog {
+    id         Int      @id @default(autoincrement())
+    method     String
+    url        String
+    headers    Json
+    body       Json?
+    query      Json?
+    ip         String?
+    userAgent  String?  @map("user_agent")
+    userId     String?  @map("user_id")
+    statusCode Int?     @map("status_code")
+    duration   Int? // milliseconds
+    createdAt  DateTime @default(now()) @map("created_at")
+
+    @@map("request_logs")
+}

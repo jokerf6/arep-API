@@ -11,12 +11,9 @@ export class CustomerCreateService {
   async create(data: CreateCustomerDTO) {
     const { male, ...rest } = data;
 
-    const existingCustomer = await this.prisma.user.findUnique({
+    const existingCustomer = await this.prisma.user.findFirst({
       where: {
-        phone_roleKey: {
-          phone: rest.phone,
-          roleKey: RolesKeys.CUSTOMER,
-        },
+       phone:rest.phone,
       },
       select: {
         email: true,

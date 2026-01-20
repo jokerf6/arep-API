@@ -35,6 +35,8 @@ import { MaintenanceInterceptor } from 'src/globals/interceptors/maintance.inter
 import { CityModule } from 'src/_modules/city/city.module';
 import { ClsModule } from 'nestjs-cls';
 import { AuditModule } from './_modules/audit/audit.module';
+import { RequestLogModule } from './_modules/request-log/request-log.module';
+import { RequestLogInterceptor } from 'src/globals/interceptors/request-log.interceptor';
 
 const I18N_DIR = path.join(process.cwd(), './i18n');
 
@@ -81,12 +83,17 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     FilterModule,
     CityModule,
     AuditModule,
+    RequestLogModule,
   ],
   controllers: [AppController, SwaggerDiffController],
   providers: [AppService, NotificationService,
     {
       provide: APP_INTERCEPTOR,
       useClass: MaintenanceInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: RequestLogInterceptor,
     },
   ],
 })

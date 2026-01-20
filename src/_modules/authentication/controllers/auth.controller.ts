@@ -91,7 +91,7 @@ export class BaseAuthenticationController {
   async login(
     @IpAddress() ip: string,
     @Res() res: Response,
-    @Body() dto: EmailPasswordLoginDTO,
+    @Body() dto: any,
   ) {
     const { user, AccessToken, RefreshToken, unReadNotifications } =
       await this.service.login(ip, dto);
@@ -99,6 +99,7 @@ export class BaseAuthenticationController {
     await this.service.saveDevice(dto.deviceId, user.id, dto.locale);
 
     res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
+
     return this.response.success(res, 'User Logged In Successfully', {
       user,
       unReadNotifications,
