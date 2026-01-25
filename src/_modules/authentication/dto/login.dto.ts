@@ -39,7 +39,7 @@ export class EmailPasswordLoginDTO extends LoginInfoDTO {
   @ValidateLoginPassword()
   password: string;
 
-  @Required()
+  @Optional()
   @ValidateString()
   deviceId: string;
 

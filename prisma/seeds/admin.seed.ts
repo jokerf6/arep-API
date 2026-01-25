@@ -6,11 +6,11 @@ export async function seedAdmin(prisma: PrismaClient) {
   const createData = {
     id: 1,
     name: `admin`,
-    email: process.env.EMAIL,
+    email: "admin@admin.com",
     phone: `+966 050999999`,
     roleKey: RolesKeys.ADMIN,
     verified: true,
-    password: bcrypt.hashSync(process.env.PASSWORD, +process.env.HASH_SALT),
+    password: bcrypt.hashSync("Default@123", +process.env.HASH_SALT),
   };
 
   await prisma.user.upsert({

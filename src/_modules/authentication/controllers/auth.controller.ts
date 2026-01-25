@@ -32,8 +32,7 @@ export class BaseAuthenticationController {
   @Post('refresh-token')
   @AllEndpoint()
   @ApiDefaultOkResponse(null)
-  @Auth({ type: SessionType.REFRESH })
-  @CustomerEndpoint("auth")
+  @CustomerEndpoint(undefined, false, SessionType.REFRESH)
   async refreshToken(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -50,8 +49,8 @@ export class BaseAuthenticationController {
 
 
   @Post('login/:roleKey')
-  @CustomerEndpoint("auth")
-  @AdminEndpoint("auth")
+  @CustomerEndpoint(undefined, true)
+  @AdminEndpoint(undefined, true)
   @ApiParam({
     name:'roleKey',
     enum: Object.values(RolesKeys),
@@ -66,7 +65,7 @@ export class BaseAuthenticationController {
     const { user, AccessToken, RefreshToken, unReadNotifications } =
       await this.service.login(ip, dto);
 
-    await this.service.saveDevice(dto.deviceId, user.id, dto.locale);
+   if(dto.deviceId) await this.service.saveDevice(dto.deviceId, user.id, dto.locale);
 
     res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
 
@@ -96,9 +95,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('resend-otp')
-    @CustomerEndpoint("auth")
-  @AdminEndpoint("auth")
-  @Auth({ type: SessionType.VERIFY })
+    @CustomerEndpoint(undefined, false, SessionType.VERIFY)
+  @AdminEndpoint(undefined, false, SessionType.VERIFY)
   async resendOtp(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -110,9 +108,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('verify')
-    @CustomerEndpoint("auth")
-  @AdminEndpoint("auth")
-  @Auth({ type: SessionType.VERIFY })
+  @CustomerEndpoint(undefined, false, SessionType.VERIFY)
+  @AdminEndpoint(undefined, false, SessionType.VERIFY)
   async verifyUser(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -133,9 +130,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('verify-reset-password')
-    @CustomerEndpoint("auth")
-  @AdminEndpoint("auth")
-  @Auth({ type: SessionType.VERIFY })
+    @CustomerEndpoint(undefined, false, SessionType.VERIFY)
+  @AdminEndpoint(undefined, false, SessionType.VERIFY)
   async verifyOtp(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -153,9 +149,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('reset-password')
-    @CustomerEndpoint("auth")
-  @AdminEndpoint("auth")
-  @Auth({ type: SessionType.PASSWORD_RESET })
+    @CustomerEndpoint(undefined, false, SessionType.PASSWORD_RESET)
+  @AdminEndpoint(undefined, false, SessionType.PASSWORD_RESET)
   async resetPassword(
     @Res() res: Response,
     @Body() dto: ResetPasswordDTO,
@@ -169,7 +164,6 @@ export class BaseAuthenticationController {
   @Post('logout')
     @CustomerEndpoint("auth")
   @AdminEndpoint("auth")
-  @Auth()
   async logout(@Res() res: Response, @CurrentUser() { jti }: CurrentUser) {
     await this.service.logout(jti);
     return this.response.success(res, 'User Logged Out');

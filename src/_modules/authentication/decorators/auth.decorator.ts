@@ -30,12 +30,15 @@ export function Auth({
 
   if (prefix) guards.push(PermissionAndTypeGuard);
 
-  const decorators = [
-    RequiredPermissions(prefix),
+  const decorators: any[] = [
     SetMetadata(ALLOW_VISITOR_METADATA_KEY, visitor),
     UseGuards(...guards),
     ApiBearerAuth(`${type} Token`),
   ];
+
+  if (prefix) {
+    decorators.push(RequiredPermissions(prefix));
+  }
 
   return applyDecorators(...decorators);
 }

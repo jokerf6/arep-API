@@ -7,11 +7,11 @@ const adminPermissions: PermissionMap = {
   roles: ['post', 'get', 'delete', 'patch'],
   profile: ['get', 'patch'],
   permissions: ['get', 'patch'],
-  customers: [ 'get', 'delete', 'patch'],
+  customers: ['post', 'get', 'delete', 'patch'],
   modules: ['post', 'get', 'patch', 'delete'],
   banners: ['post', 'get', 'patch', 'delete'],
-  categories: ['post', 'get', 'patch', 'delete','manage'],
-  subcategories: ['post', 'get', 'patch', 'delete','manage'],
+  categories: ['post', 'get', 'patch', 'delete', 'manage'],
+  subcategories: ['post', 'get', 'patch', 'delete', 'manage'],
   stores: ['get', 'patch', 'delete'],
   services: ['post', 'get', 'patch', 'delete'],
   settings: ['get', 'patch'],
@@ -19,21 +19,17 @@ const adminPermissions: PermissionMap = {
   'system-notifications': ['get', 'patch'],
   fund: ['post', 'get'],
   coupons: ['post', 'get', 'patch', 'delete'],
-  addresses:['post','get','patch','delete'],
-  employees:['post','get','patch','delete','manage'],
-  schedule:['post','get','patch','delete','manage'],
-  orders:['post','get','patch','delete','manage'],
-  cities:['post','get','patch','delete','manage'],
-
-servicerating:['get',],
-storerating:['get',],
-  banks:['post','get','patch','delete','manage'],
-  bankAccounts:['post','get','patch','delete','manage'],
-  notification:['post','get','patch','delete','manage'],
-statistics:['get',],
-
-
-
+  addresses: ['post', 'get', 'patch', 'delete'],
+  employees: ['post', 'get', 'patch', 'delete', 'manage'],
+  schedule: ['post', 'get', 'patch', 'delete', 'manage'],
+  orders: ['post', 'get', 'patch', 'delete', 'manage'],
+  cities: ['post', 'get', 'patch', 'delete', 'manage'],
+  servicerating: ['get'],
+  storerating: ['get'],
+  banks: ['post', 'get', 'patch', 'delete', 'manage'],
+  bankAccounts: ['post', 'get', 'patch', 'delete', 'manage'],
+  notification: ['post', 'get', 'patch', 'delete', 'manage'],
+  statistics: ['get'],
 } as const satisfies PermissionMap;
 
 export const AdminRole = {

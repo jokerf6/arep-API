@@ -23,6 +23,8 @@ export const swaggerConfig = (app: INestApplication) => {
     )
       .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'ACCESS Token')
       .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'REFRESH Token')
+      .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'VERIFY Token')
+      .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'PASSWORD_RESET Token')
       // Global Params
       .addGlobalParameters({
         in: 'header',
@@ -84,6 +86,9 @@ export const swaggerConfig = (app: INestApplication) => {
     .setDescription('Main API')
     .setVersion('1.0')
     .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'ACCESS Token')
+         .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'REFRESH Token')
+      .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'VERIFY Token')
+      .addBearerAuth({ type: 'http', scheme: 'bearer' }, 'PASSWORD_RESET Token')
     .addGlobalParameters({
         in: 'header',
         required: false,

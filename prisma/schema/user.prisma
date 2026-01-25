@@ -25,7 +25,6 @@ model User {
   Fund          Fund[]
   Transaction   Transaction[]
 
-  @@unique([email])
   @@index([email])
   @@map("users")
 }

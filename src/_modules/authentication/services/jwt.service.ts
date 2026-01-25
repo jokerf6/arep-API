@@ -52,6 +52,16 @@ export class TokenService {
         },
       });
     }
+    else{
+      await this.prisma.session.deleteMany({
+        where: {
+          userId,
+          type: {
+            notIn: [SessionType.ACCESS, SessionType.REFRESH],
+          },
+        },
+      });
+    }
 
     const session = await this.prisma.session.create({
       data: {
@@ -72,7 +82,7 @@ export class TokenService {
   }
 
   private getTokenConfig(type: SessionType): jwt.SignOptions {
-    const tokenSecrets = {
+    const expiresTimes = {
       [SessionType.ACCESS]: +this.configService.get<string>(
         'ACCESS_TOKEN_EXPIRE_TIME',
       ),
@@ -86,7 +96,9 @@ export class TokenService {
         'VERIFY_TOKEN_EXPIRE_TIME',
       ),
     };
-    return tokenSecrets[type];
+    return {
+      expiresIn: Math.floor(expiresTimes[type] / 1000),
+    };
   }
 
   async GenerateLessonToken(userId: Id, lessonId: Id, endDate: Date) {
