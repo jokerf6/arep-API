@@ -35,23 +35,18 @@ export class EmailPasswordLoginDTO extends LoginInfoDTO {
   @ValidateEmail()
   email?: string;
 
-  @Optional({})
-  @ValidatePhone()
-  phone?: string;
-
   @Required()
   @ValidateLoginPassword()
   password: string;
-
 
   @Required()
   @ValidateString()
   deviceId: string;
 
-
   @OptionalSwagger()
   @ValidateExist<'role'>({ model: 'role' })
   roleKey?: string;
+
 
 }
 

@@ -17,16 +17,9 @@ export class CreateCustomerDTO {
   email: string;
 
   @Required()
-  @ValidatePhone()
-  phone: string;
-
-  @Required()
   @ValidatePassword()
   password: string;
 
-  @Required()
-  @ValidateBoolean()
-  male: boolean;
 }
 
 export class UpdateCustomerDTO extends OmitType(

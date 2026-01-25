@@ -16,7 +16,7 @@ import { ResetPasswordDTO } from '../dto/reset-password.dto';
 import { VerifyOtpDTO } from '../dto/verify-otp.dto';
 import { RoleInterceptor } from '../interceptor/role.interceptor';
 import { BaseAuthenticationService } from '../services/base.authentication.service';
-import { AdminEndpoint, AllEndpoint } from 'src/decorators/api/api-scope.decorator';
+import { AdminEndpoint, AllEndpoint, CustomerEndpoint } from 'src/decorators/api/api-scope.decorator';
 
 const prefix = 'auth';
 @Controller(prefix)
@@ -33,6 +33,7 @@ export class BaseAuthenticationController {
   @AllEndpoint()
   @ApiDefaultOkResponse(null)
   @Auth({ type: SessionType.REFRESH })
+  @CustomerEndpoint("auth")
   async refreshToken(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -47,43 +48,12 @@ export class BaseAuthenticationController {
   }
 
 
-  // @Post('bio/:roleKey')
-  // @ApiParam({
-  //   name: 'roleKey',
-  //   enum: Object.values(RolesKeys),
-  //   required: true,
-  // })
-  // @UseInterceptors(RoleInterceptor)
-  // async loginWithBIO(
-  //   @IpAddress() ip: string,
-  //   @Res() res: Response,
-  //   @Body() dto: BioLoginDTO,
-  // ) {
-  //   const data = await this.service.getBioInfo(dto);
-  //   if(!data) throw new UnprocessableEntityException('Invalid bio data');
-  //   const { user, AccessToken, RefreshToken, unReadNotifications } =
-  //     await this.service.login(ip, {
-  //       email: data.email,
-  //       password: 'undefined',
-  //       fcm: dto.fcm,
-  //       roleKey: dto.roleKey,
-  //       locale: dto.locale,
-  //     });
-
-  //   res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
-  //   await this.service.saveDevice(dto.deviceId, user.id, dto.locale);
-
-  //   return this.response.success(res, 'User Logged In Successfully', {
-  //     user,
-  //     unReadNotifications,
-  //     AccessToken,
-  //     RefreshToken,
-  //   });
-  // }
 
   @Post('login/:roleKey')
+  @CustomerEndpoint("auth")
+  @AdminEndpoint("auth")
   @ApiParam({
-    name: 'roleKey',
+    name:'roleKey',
     enum: Object.values(RolesKeys),
     required: true,
   })
@@ -91,7 +61,7 @@ export class BaseAuthenticationController {
   async login(
     @IpAddress() ip: string,
     @Res() res: Response,
-    @Body() dto: any,
+    @Body() dto: EmailPasswordLoginDTO,
   ) {
     const { user, AccessToken, RefreshToken, unReadNotifications } =
       await this.service.login(ip, dto);
@@ -102,19 +72,14 @@ export class BaseAuthenticationController {
 
     return this.response.success(res, 'User Logged In Successfully', {
       user,
-      unReadNotifications,
       AccessToken,
       RefreshToken,
     });
   }
 
-  @Post('forget-password/:roleKey')
-  @ApiParam({
-    name: 'roleKey',
-    enum: Object.values(RolesKeys),
-    required: true,
-  })
-  @UseInterceptors(RoleInterceptor)
+  @Post('forget-password')
+  @CustomerEndpoint("auth")
+  @AdminEndpoint("auth")
   async forgetPassword(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -131,6 +96,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('resend-otp')
+    @CustomerEndpoint("auth")
+  @AdminEndpoint("auth")
   @Auth({ type: SessionType.VERIFY })
   async resendOtp(
     @IpAddress() ip: string,
@@ -143,6 +110,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('verify')
+    @CustomerEndpoint("auth")
+  @AdminEndpoint("auth")
   @Auth({ type: SessionType.VERIFY })
   async verifyUser(
     @IpAddress() ip: string,
@@ -164,6 +133,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('verify-reset-password')
+    @CustomerEndpoint("auth")
+  @AdminEndpoint("auth")
   @Auth({ type: SessionType.VERIFY })
   async verifyOtp(
     @IpAddress() ip: string,
@@ -182,6 +153,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('reset-password')
+    @CustomerEndpoint("auth")
+  @AdminEndpoint("auth")
   @Auth({ type: SessionType.PASSWORD_RESET })
   async resetPassword(
     @Res() res: Response,
@@ -194,6 +167,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('logout')
+    @CustomerEndpoint("auth")
+  @AdminEndpoint("auth")
   @Auth()
   async logout(@Res() res: Response, @CurrentUser() { jti }: CurrentUser) {
     await this.service.logout(jti);

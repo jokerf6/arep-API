@@ -9,11 +9,10 @@ export class CustomerCreateService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: CreateCustomerDTO) {
-    const { male, ...rest } = data;
 
-    const existingCustomer = await this.prisma.user.findFirst({
+    const existingCustomer = await this.prisma.user.findUnique({
       where: {
-       phone:rest.phone,
+       email:data.email,
       },
       select: {
         email: true,
@@ -21,20 +20,24 @@ export class CustomerCreateService {
         id: true,
         name: true,
         verified: true,
+        roleKey:true,
       },
 
       __includeDeleted: true as never,
     });
+    if(existingCustomer && existingCustomer.roleKey !== RolesKeys.CUSTOMER){
+      throw new ConflictException('user with this email already exists');
+    }
     
     if (existingCustomer && existingCustomer.verified)
       throw new ConflictException('customer already exists');
 
-    const hashedPassword = hashPassword(rest.password);
-    rest.password = hashedPassword;
-    if(existingCustomer && existingCustomer.email !== rest.email){
+    const hashedPassword = hashPassword(data.password);
+    data.password = hashedPassword;
+    if(existingCustomer && existingCustomer.email !== data.email){
       await this.prisma.user.update({
         where: { id: existingCustomer.id },
-        data: { email: rest.email, name: rest.name },
+        data: { email: data.email, name: data.name },
       });
       return existingCustomer;
     }
@@ -43,7 +46,7 @@ export class CustomerCreateService {
         ? existingCustomer
         : await this.prisma.user.create({
             data: {
-              ...rest,
+              ...data,
               roleKey: RolesKeys.CUSTOMER,
              
             },

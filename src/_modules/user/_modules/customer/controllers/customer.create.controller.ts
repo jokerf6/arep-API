@@ -11,11 +11,12 @@ import { OTPType, SessionType } from '@prisma/client';
 import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
 import { TokenService } from 'src/_modules/authentication/services/jwt.service';
 import { IpAddress } from 'src/_modules/authentication/decorators/ip.decorator';
+import { AdminEndpoint, CustomerEndpoint } from 'src/decorators/api/api-scope.decorator';
 
 const prefix = 'customers';
-@Controller(prefix)
-@ApiTags(tag(prefix))
+@Controller(["auth",prefix])
 @Auth({ visitor: true, prefix: 'customers/create' })
+@ApiTags(tag("auth"))
 export class CustomerCreateController {
   constructor(
     private readonly service: CustomerCreateService,
@@ -23,13 +24,16 @@ export class CustomerCreateController {
     private responses: ResponseService,
     private readonly tokenService: TokenService,
   ) {}
-  @Post('/')
+
+  @CustomerEndpoint("auth")
+   @AdminEndpoint("Customers")
+  @Post(["register","create"])
   @ApiOperation({
     description: 'Create a new customer with permission or register customer',
   })
   async createUser(
     @IpAddress() ip: string,
-    @Res() res: Response,
+    @Res() res: Response, 
     @Body() dto: CreateCustomerDTO,
     @CurrentUser() currentUser: CurrentUser,
   ) {

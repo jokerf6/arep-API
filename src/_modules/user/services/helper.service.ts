@@ -51,14 +51,16 @@ export class HelperService {
       where: {
         id,
         email,
-        phone,
-        roleKey,
         deletedAt: null,
       },
     });
 
+
     if (!isFound) throw new UnprocessableEntityException(message);
 
+    if(isFound && isFound.roleKey !== roleKey){
+      throw new UnprocessableEntityException('user_not_found');
+    }
     if (password) validateUserPassword(password, isFound.password);
 
     await this.userCanLogin(isFound, checkVerified);
@@ -81,8 +83,7 @@ export class HelperService {
     const isFound = await this.prisma.user.findFirst({
       where: {
         id,
-        OR: [{ email }, { phone }],
-        roleKey,
+        email,
         deletedAt: null,
       },
     });

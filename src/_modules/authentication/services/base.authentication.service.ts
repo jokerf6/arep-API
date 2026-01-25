@@ -84,18 +84,15 @@ export class BaseAuthenticationService {
   }
 
   async validateDto(dto: EmailPasswordLoginDTO) {
-    const { phone, email } = dto;
-    if (!phone && !email) {
-      throw new NotFoundException('Phone or Email is required');
-    }
-    if (!phone) {
-      throw new NotFoundException('Phone is required for customer login');
+    const { email } = dto;
+    if (!email) {
+      throw new NotFoundException('Email is required for customer login');
     }
   }
 
   async forgetPassword(ip: string, forgotPasswordDTO: ForgetPasswordDTO) {
-    const { phone,roleKey } = forgotPasswordDTO;
-    const user = await this.userHelper.userExist({ phone,roleKey });
+    const { email } = forgotPasswordDTO;
+    const user = await this.userHelper.userExist({ email });
 
     await this.userHelper.userCanLogin(user);
     await this.otpService.generateOTP(user.id, OTPType.PASSWORD_RESET);

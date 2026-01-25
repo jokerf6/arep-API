@@ -28,7 +28,7 @@ import { AdminEndpoint, CustomerEndpoint } from 'src/decorators/api/api-scope.de
 
 const prefix = 'users';
 @Controller(prefix)
-@ApiTags(tag(prefix))
+@ApiTags(tag(prefix), tag('auth'))
 @Auth({ prefix })
 export class UserController {
   constructor(
@@ -49,7 +49,6 @@ export class UserController {
       { title: 'Get User with id', paginated: false, body: selectUserOBJ() },
     ]),
   )
-  @CustomerEndpoint('Users')
   @ApiOptionalIdParam()
   async getAll(
     @Res() res: Response,
@@ -66,7 +65,6 @@ export class UserController {
 
   @Patch('/:id')
   @AdminEndpoint('Users')
-  @CustomerEndpoint('User')
   @ApiRequiredIdParam()
   async updateUser(
     @Res() res: Response,

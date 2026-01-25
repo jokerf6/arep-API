@@ -7,12 +7,6 @@ import { tag } from 'src/globals/helpers/tag.helper';
 import { ResponseService } from 'src/globals/services/response.service';
 import { FilterNotificationDTO } from '../dto/notification.dto';
 import { NotificationService } from '../services/notification.service';
-import { UploadFile } from 'src/decorators/api/upload-file.decorator';
-import { CreateNotificationDTO } from '../dto/notification.create.dto';
-import { CurrentUser } from 'src/_modules/authentication/decorators/current-user.decorator';
-import { CanUserAccessModelRowId } from 'src/decorators/api/CanUserAccessModelRowId.decorator';
-import { RequiredIdParam } from 'src/dtos/params/id-param.dto';
-import { ApiRequiredIdParam } from 'src/decorators/api/id-params.decorator';
 
 const prefix = 'notifications';
 @Controller(prefix)

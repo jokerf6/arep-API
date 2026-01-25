@@ -22,12 +22,12 @@ import { FilterUserDTO } from '../dto/filter.user.dto';
 import { getUserArgs } from '../prisma-args/user.prisma-ags';
 import {
   FlattenedUser,
-  getUserCouponArgs,
   selectUserWithRoleAndPermissionsOBJ,
   transformFlattenUser,
 } from '../prisma-args/user.prisma-select';
 import { HelperService } from './helper.service';
 import { FilterUserCouponDTO } from '../dto/filter.user.coupon.dto';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 
 @Injectable()
 export class UserService {
@@ -99,14 +99,14 @@ export class UserService {
   async create(data: CreateUserDTO) {
     await this.helper.userExistOrThrow({
       email: data.email,
-      roleKey: data.roleKey,
     });
 
     const hashedPassword = hashPassword(data.password);
     data.password = hashedPassword;
+    data.roleKey = RolesKeys.CUSTOMER;
     await this.prisma.user.create({
       data,
-      select: { email: true, phone: true, id: true, name: true },
+      select: { email: true, id: true, name: true },
     });
   }
 
@@ -195,15 +195,4 @@ export class UserService {
     });
   }
 
-  async getCoupons(userId: Id, filters?: FilterUserCouponDTO) {
-    const args = getUserCouponArgs(filters, userId);
-    const data = await this.prisma.coupon.findMany({
-      ...args,
-    });
-    const total = await this.prisma.coupon.count({
-      where: args.where,
-    });
-
-    return { data, total };
-  }
 }
