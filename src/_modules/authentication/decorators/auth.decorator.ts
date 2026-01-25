@@ -1,4 +1,4 @@
-import { UseGuards, applyDecorators } from '@nestjs/common';
+import { UseGuards, applyDecorators, SetMetadata } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { SessionType } from '@prisma/client';
@@ -13,6 +13,8 @@ interface AuthOptions {
   visitor?: boolean;
 }
 
+export const ALLOW_VISITOR_METADATA_KEY = 'allow_visitor';
+
 export function Auth({
   type = SessionType.ACCESS,
   prefix,
@@ -21,12 +23,16 @@ export function Auth({
   const guards: any[] = [];
 
   if (visitor) {
-    return applyDecorators(OptionalAuth());
+    guards.push(OptionalAuthGuard);
+  } else {
+    guards.push(AuthGuard(type));
   }
-  guards.push(AuthGuard(type));
+
   if (prefix) guards.push(PermissionAndTypeGuard);
+
   const decorators = [
     RequiredPermissions(prefix),
+    SetMetadata(ALLOW_VISITOR_METADATA_KEY, visitor),
     UseGuards(...guards),
     ApiBearerAuth(`${type} Token`),
   ];

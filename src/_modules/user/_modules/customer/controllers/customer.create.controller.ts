@@ -25,8 +25,8 @@ export class CustomerCreateController {
     private readonly tokenService: TokenService,
   ) {}
 
-  @CustomerEndpoint("auth")
-   @AdminEndpoint("Customers")
+  @CustomerEndpoint("auth", true)
+   @AdminEndpoint("Customers", true)
   @Post(["register","create"])
   @ApiOperation({
     description: 'Create a new customer with permission or register customer',
