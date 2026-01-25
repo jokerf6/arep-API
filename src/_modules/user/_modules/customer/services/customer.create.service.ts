@@ -30,7 +30,7 @@ export class CustomerCreateService {
     }
     
     if (existingCustomer && existingCustomer.verified)
-      throw new ConflictException('customer already exists');
+      throw new ConflictException('user already exists'); 
 
     const hashedPassword = hashPassword(data.password);
     data.password = hashedPassword;

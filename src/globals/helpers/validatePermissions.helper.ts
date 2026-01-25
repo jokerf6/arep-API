@@ -1,19 +1,23 @@
-  export  function validatePermissions(
-    requiredPermissions: string,
-    userPermissions: {
-      prefix: string;
-      method: string;
-    }[],
-  ): boolean {
-    if (!requiredPermissions || requiredPermissions.length === 0) {
-      return true;
-    }
-    const hasPermission = userPermissions.some(
-      (perm) => `${perm.prefix?.toLowerCase()}_${perm.method}` === requiredPermissions?.toLowerCase(),
-    );
-    if (hasPermission) {
-      return true;
+export function validatePermissions(
+  requiredPermission: string,
+  userPermissions: {
+    prefix: string;
+    method: string | string[];
+  }[],
+): boolean {
+  if (!requiredPermission || requiredPermission.length === 0) {
+    return true;
+  }
+
+  const [reqPrefix, reqMethod] = requiredPermission.toLowerCase().split('_');
+  return userPermissions.some((perm) => {
+    const userPrefix = perm.prefix?.toLowerCase();
+    if (userPrefix !== reqPrefix) return false;
+
+    if (Array.isArray(perm.method)) {
+      return perm.method.some((m) => m.toLowerCase() === reqMethod);
     }
 
-    return false;
-  }
+    return `${userPrefix}_${perm.method?.toLowerCase()}` === requiredPermission.toLowerCase();
+  });
+}

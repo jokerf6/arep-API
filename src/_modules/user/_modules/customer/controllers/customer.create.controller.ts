@@ -15,7 +15,6 @@ import { AdminEndpoint, CustomerEndpoint } from 'src/decorators/api/api-scope.de
 
 const prefix = 'customers';
 @Controller(["auth",prefix])
-@Auth({ visitor: true, prefix: 'customers/create' })
 @ApiTags(tag("auth"))
 export class CustomerCreateController {
   constructor(
@@ -26,7 +25,7 @@ export class CustomerCreateController {
   ) {}
 
   @CustomerEndpoint(undefined, true)
-   @AdminEndpoint("customers", false, SessionType.ACCESS)
+   @AdminEndpoint("customers/create", true, SessionType.ACCESS)
   @Post(["register","create"])
   @ApiOperation({
     description: 'Create a new customer with permission or register customer',

@@ -64,7 +64,6 @@ export class UserController {
   }
 
   @Patch('/:id')
-  @AdminEndpoint('Users')
   @ApiRequiredIdParam()
   async updateUser(
     @Res() res: Response,

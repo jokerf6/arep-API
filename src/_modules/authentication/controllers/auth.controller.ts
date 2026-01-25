@@ -30,7 +30,8 @@ export class BaseAuthenticationController {
 
   
   @Post('refresh-token')
-  @AllEndpoint()
+   @CustomerEndpoint(undefined, true)
+  @AdminEndpoint(undefined, true)
   @ApiDefaultOkResponse(null)
   @CustomerEndpoint(undefined, false, SessionType.REFRESH)
   async refreshToken(
@@ -77,8 +78,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('forget-password')
-  @CustomerEndpoint("auth")
-  @AdminEndpoint("auth")
+  @CustomerEndpoint(undefined, true)
+  @AdminEndpoint(undefined, true)
   async forgetPassword(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -162,8 +163,8 @@ export class BaseAuthenticationController {
   }
 
   @Post('logout')
-    @CustomerEndpoint("auth")
-  @AdminEndpoint("auth")
+  @CustomerEndpoint(undefined, false,SessionType.ACCESS)
+  @AdminEndpoint(undefined, false,SessionType.ACCESS)
   async logout(@Res() res: Response, @CurrentUser() { jti }: CurrentUser) {
     await this.service.logout(jti);
     return this.response.success(res, 'User Logged Out');

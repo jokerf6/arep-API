@@ -39,7 +39,13 @@ export const permissions = [
     name: { en: 'Customers', ar: 'العملاء' },
     prefix: 'customers',
     default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
+    methods: ['get', 'patch', 'delete'],
+  },
+   {
+    name: { en: 'Customers Create', ar: 'إنشاء عملاء' },
+    prefix: 'customers/create',
+    default: true,
+    methods: ['post'],
   },
   {
     name: { en: 'Modules', ar: 'الوحدات' },
