@@ -150,7 +150,7 @@ export class BaseAuthenticationController {
   }
 
   @Post('reset-password')
-    @CustomerEndpoint(undefined, false, SessionType.PASSWORD_RESET)
+  @CustomerEndpoint(undefined, false, SessionType.PASSWORD_RESET)
   @AdminEndpoint(undefined, false, SessionType.PASSWORD_RESET)
   async resetPassword(
     @Res() res: Response,

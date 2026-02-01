@@ -97,9 +97,10 @@ export class HelperService {
     }
     if (!user.verified && checkVerified) {
       await this.OTPService.generateOTP(user.id, OTPType.EMAIL_VERIFICATION);
-      const token = await this.Token.generateToken(
+      const {token} = await this.Token.generateToken(
         user.id,
         ip,
+        undefined,
         undefined,
         SessionType.VERIFY,
       );

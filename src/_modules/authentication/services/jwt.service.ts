@@ -36,10 +36,11 @@ export class TokenService {
   async generateToken(
     userId: Id,
     ipAddress?: string,
+    jti?: string,
     fcmToken?: string,
     type: SessionType = SessionType.ACCESS,
     locale: string = 'en',
-  ): Promise<string> {
+  ): Promise<{token: string, jti: string}> {
     if (
       !([SessionType.ACCESS, SessionType.REFRESH] as SessionType[]).includes(
         type,
@@ -69,6 +70,7 @@ export class TokenService {
         userId,
         fcmToken,
         type,
+        refreshParentJti: type === SessionType.REFRESH ? jti : null,
         languageId: locale,
       },
     });
@@ -78,7 +80,7 @@ export class TokenService {
 
     const token = jwt.sign({ jti: session.jti, id: userId }, secret, config);
 
-    return token;
+    return {token, jti: session.jti};
   }
 
   private getTokenConfig(type: SessionType): jwt.SignOptions {

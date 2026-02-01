@@ -1,13 +1,14 @@
 model Session {
-    id            Int         @id @default(autoincrement())
-    jti           String      @unique @default(uuid())
-    ipAddress     String?     @map("ip_address") @db.Text
-    userId        Int?        @map("user_id")
-    fcmToken      String?     @map("fcm_token") @db.VarChar(255)
-    socketId      String?     @map("socket_id")
-    createdAt     DateTime    @default(now()) @map("created_at")
-    invalidatedAt DateTime?   @map("invalidated_at")
-    type          SessionType @default(ACCESS)
+    id               Int         @id @default(autoincrement())
+    jti              String      @unique @default(uuid())
+    ipAddress        String?     @map("ip_address") @db.Text
+    userId           Int?        @map("user_id")
+    fcmToken         String?     @map("fcm_token") @db.VarChar(255)
+    socketId         String?     @map("socket_id")
+    createdAt        DateTime    @default(now()) @map("created_at")
+    invalidatedAt    DateTime?   @map("invalidated_at")
+    type             SessionType @default(ACCESS)
+    refreshParentJti String?     @map("refresh_parent_jti")
 
     User User? @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 

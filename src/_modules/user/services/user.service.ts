@@ -88,8 +88,9 @@ export class UserService {
       data: { verified: true },
     });
     const user = await this.getProfile(userId);
-    const token = await this.Token.generateToken(
+    const {token} = await this.Token.generateToken(
       user?.user?.id,
+      undefined,
       undefined,
       SessionType.ACCESS,
     );

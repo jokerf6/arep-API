@@ -38,10 +38,11 @@ export class CustomerCreateController {
   ) {
     const user = await this.service.create(dto);
     await this.OTPService.generateOTP(user.id, OTPType.EMAIL_VERIFICATION);
-    const token = !currentUser
+    const {token} = !currentUser
       ? await this.tokenService.generateToken(
           user.id,
           ip,
+          undefined,
           undefined,
           SessionType.VERIFY,
         )

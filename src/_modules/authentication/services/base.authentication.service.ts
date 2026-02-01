@@ -49,15 +49,17 @@ export class BaseAuthenticationService {
     });
     await this.userHelper.userCanLogin(user, true, ip);
     const data = await this.userService.getProfile(user.id);
-    const AccessToken = await this.tokenService.generateToken(
+    const {token: AccessToken, jti: AccessJti} = await this.tokenService.generateToken(
       user.id,
       ip,
       undefined,
+      undefined,
       SessionType.ACCESS,
     );
-    const RefreshToken = await this.tokenService.generateToken(
+    const {token: RefreshToken} = await this.tokenService.generateToken(
       user.id,
       ip,
+      AccessJti,
       undefined,
       SessionType.REFRESH,
     );
@@ -97,9 +99,10 @@ export class BaseAuthenticationService {
     await this.userHelper.userCanLogin(user);
     await this.otpService.generateOTP(user.id, OTPType.PASSWORD_RESET);
 
-    const token = await this.tokenService.generateToken(
+    const {token} = await this.tokenService.generateToken(
       user.id,
       ip,
+      undefined,
       undefined,
       SessionType.VERIFY,
     );
@@ -117,9 +120,10 @@ export class BaseAuthenticationService {
 
   async resendOtp(ip: string, userId: Id) {
     await this.otpService.generateOTP(userId, OTPType.EMAIL_VERIFICATION);
-    const token = await this.tokenService.generateToken(
+    const {token} = await this.tokenService.generateToken(
       userId,
       ip,
+      undefined,
       undefined,
       SessionType.VERIFY,
     );
@@ -141,15 +145,17 @@ export class BaseAuthenticationService {
       data: { verified: true },
     });
     const data = await this.userService.getProfile(userId);
-    const AccessToken = await this.tokenService.generateToken(
+    const {token: AccessToken, jti: AccessJti} = await this.tokenService.generateToken(
       user.id,
       ip,
       undefined,
+      undefined,
       SessionType.ACCESS,
     );
-    const RefreshToken = await this.tokenService.generateToken(
+    const {token: RefreshToken} = await this.tokenService.generateToken(
       user.id,
       ip,
+      AccessJti,
       undefined,
       SessionType.REFRESH,
     );
@@ -164,9 +170,10 @@ export class BaseAuthenticationService {
   async verifyReset(userId: Id, dto: VerifyOtpDTO,ip: string) { 
     const user = await this.userHelper.userExist({ id: userId });
     await this.otpService.verifyOTP(userId, dto.otp, OTPType.PASSWORD_RESET);
-    const token = await this.tokenService.generateToken(
+    const {token} = await this.tokenService.generateToken(
       userId,
       ip,
+      undefined,
       undefined,
       SessionType.PASSWORD_RESET,
     );
@@ -179,7 +186,7 @@ export class BaseAuthenticationService {
 
   async refreshToken(ip: string, userId: Id) {
     const data = await this.userService.getProfile(userId);
-    const AccessToken = await this.tokenService.generateToken(
+    const {token: AccessToken} = await this.tokenService.generateToken(
       userId,
       ip,
       undefined,

@@ -28,6 +28,8 @@ import { UserService } from '../services/user.service';
 import { LocaleHeader } from 'src/_modules/authentication/decorators/locale.decorator';
 import { FilterUserCouponDTO } from '../dto/filter.user.coupon.dto';
 import { Filter } from 'src/decorators/param/filter.decorator';
+import { AdminEndpoint, CustomerEndpoint } from 'src/decorators/api/api-scope.decorator';
+import { SessionType } from '@prisma/client';
 
 const prefix = 'profile';
 @Controller('users/me')
@@ -39,6 +41,8 @@ export class MeController {
     private responses: ResponseService,
   ) {}
   @Get('/permissions')
+   @CustomerEndpoint(undefined, false,SessionType.ACCESS)
+    @AdminEndpoint(undefined, false,SessionType.ACCESS)
   @ApiOkResponse(
     buildExamples([
       {
@@ -60,15 +64,15 @@ export class MeController {
     );
   }
 
-  @Post('/enable-bio')
-  async enableBio(
-    @Res() res: Response,
-    @CurrentUser() currentUser: CurrentUser,
-    @Body() dto: EnableBioDTO,
-  ) {
-    await this.userService.enableBio(currentUser.id, dto);
-    return this.responses.success(res, 'bio enabled successfully');
-  }
+  // @Post('/enable-bio')
+  // async enableBio(
+  //   @Res() res: Response,
+  //   @CurrentUser() currentUser: CurrentUser,
+  //   @Body() dto: EnableBioDTO,
+  // ) {
+  //   await this.userService.enableBio(currentUser.id, dto);
+  //   return this.responses.success(res, 'bio enabled successfully');
+  // }
 
 
   @Get('/')
@@ -81,6 +85,8 @@ export class MeController {
       },
     ]),
   )
+   @CustomerEndpoint(undefined, false,SessionType.ACCESS)
+  @AdminEndpoint(undefined, false,SessionType.ACCESS)
   async Profile(@Res() res: Response, @CurrentUser() currentUser: CurrentUser) {
     const { user, unReadNotifications } = await this.userService.getProfile(
       currentUser.id,
@@ -90,6 +96,8 @@ export class MeController {
       unReadNotifications,
     });
   }
+   @CustomerEndpoint(undefined, false,SessionType.ACCESS)
+  @AdminEndpoint(undefined, false,SessionType.ACCESS)
   @Patch('/change-password')
   async updatePassword(
     @Res() res: Response,
@@ -101,6 +109,8 @@ export class MeController {
   }
 
   @Patch('/locale')
+  @CustomerEndpoint(undefined, false,SessionType.ACCESS)
+  @AdminEndpoint(undefined, false,SessionType.ACCESS)
   async updateLocale(
     @Res() res: Response,
     @LocaleHeader() locale: string,
@@ -110,6 +120,8 @@ export class MeController {
     return this.responses.success(res, 'locale updated successfully');
   }
   @Patch('/')
+  @CustomerEndpoint(undefined, false,SessionType.ACCESS)
+  @AdminEndpoint(undefined, false,SessionType.ACCESS)
   @UploadFile('image', 'user')
   async updateCurrentUser(
     @Res() res: Response,
@@ -120,6 +132,8 @@ export class MeController {
     return this.responses.success(res, 'password updated successfully');
   }
   @Delete('/')
+  @CustomerEndpoint(undefined, false,SessionType.ACCESS)
+  @AdminEndpoint(undefined, false,SessionType.ACCESS)
   async deleteCurrentUser(
     @Res() res: Response,
     @CurrentUser() user: CurrentUser,
