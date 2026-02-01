@@ -108,8 +108,7 @@ export const transformFlattenUser = (data: any | any[]): any => {
   if (Array.isArray(data)) {
     return data.map(transform);
   }
-   console.log("------------");
-   console.log(transform(data));
+  
   return transform(data);
 };
 export const selectUserOBJ = (jti?: string) => {

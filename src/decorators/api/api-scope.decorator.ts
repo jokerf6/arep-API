@@ -5,7 +5,6 @@ import { SessionType } from '@prisma/client';
 
 export function AdminEndpoint(path?: string, visitor = false, type: SessionType = SessionType.ACCESS) {
   return applyDecorators(
-    ApiTags('Admin'),
     ApiExtension('x-scope-admin', true),
     Auth({ prefix: path, visitor, type }),
   );
@@ -13,7 +12,6 @@ export function AdminEndpoint(path?: string, visitor = false, type: SessionType 
 
 export function CustomerEndpoint(path?: string, visitor = false, type: SessionType = SessionType.ACCESS) {
   return applyDecorators(
-    ApiTags('Customer'),
     ApiExtension('x-scope-customer', true),
     Auth({ prefix: path, visitor, type }),
   );
@@ -21,7 +19,6 @@ export function CustomerEndpoint(path?: string, visitor = false, type: SessionTy
 
 export function AllEndpoint() {
   return applyDecorators(
-    ApiTags('Customer', 'Admin'),
     ApiExtension('x-scope-all', true),
   );
 }

@@ -25,6 +25,7 @@ import { FilterUserDTO } from '../dto/filter.user.dto';
 import { selectUserOBJ } from '../prisma-args/user.prisma-select';
 import { UserService } from '../services/user.service';
 import { AdminEndpoint, CustomerEndpoint } from 'src/decorators/api/api-scope.decorator';
+import { SessionType } from '@prisma/client';
 
 const prefix = 'users';
 @Controller(prefix)
@@ -42,6 +43,7 @@ export class UserController {
   // }
 
   @Get(['/', '/:id'])
+  
   @ApiQuery({ type: FilterUserDTO })
   @ApiOkResponse(
     buildExamples([
