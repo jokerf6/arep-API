@@ -4,9 +4,8 @@ import { PrismaClient } from '@prisma/client';
 import { permissions } from 'src/_modules/authorization/providers/permissions.provider';
 import { AdminRole } from 'src/_modules/authorization/providers/roles/admin.role.provider';
 import { CustomerRole } from 'src/_modules/authorization/providers/roles/customer.role.provider';
-import { StoreRole } from 'src/_modules/authorization/providers/roles/store.role.provider';
 
-const roles = [AdminRole, CustomerRole,StoreRole];
+const roles = [AdminRole, CustomerRole];
 
 export async function seedPermissions(prisma: PrismaClient) {
   for (const perm of permissions) {

@@ -34,7 +34,7 @@ import { SessionType } from '@prisma/client';
 const prefix = 'profile';
 @Controller('users/me')
 @ApiTags(tag(prefix))
-@Auth({ prefix })
+@Auth({  })
 export class MeController {
   constructor(
     private userService: UserService,

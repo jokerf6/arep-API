@@ -2,27 +2,10 @@ import { mapPermissionConfigToRole } from '../../../../../src/globals/helpers/ma
 import { PermissionMap } from '../permissions.provider';
 
 const customerPermissions: PermissionMap = {
-  languages: ['get'],
-  profile: ['post', 'get','delete', 'patch',],
-  modules: ['get'],
-  addresses: ['post', 'get', 'patch', 'delete'],
-  banners: ['get'],
-  categories: ['get'],
-  subcategories: ['get'],
-  stores: ['get'],
-  'stores/favourite': ['get', 'patch'],
-  services: ['get'],
-  'services/favourite': ['get', 'patch'],
-  filters:['get'],
-  'social-media': ['get'],
-  coupons: [ 'get',],
-  schedule:['get'],
-  orders:['post','get','patch'],
-  cities:['get',],
-servicerating:['post','get','patch','delete',],
-storerating:['post','get','patch','delete',],
-  notification:['get',],
-
+  // languages: ['get'],
+ 
+ 
+ 
 
 } as const satisfies PermissionMap;
 

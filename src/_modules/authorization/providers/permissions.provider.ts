@@ -1,34 +1,34 @@
 export const permissions = [
-  {
-    name: { en: 'Languages', ar: 'اللغات' },
-    prefix: 'languages',
-    default: true,
-    methods: ['post', 'get', 'delete', 'patch'],
-  },
-    {
-    name: { en: 'Employees', ar: 'الموظفين' },
-    prefix: 'employees',
-    default: true,
-    methods: ['post', 'get', 'delete', 'patch','manage'],
-  },
-  {
-    name: { en: 'Users', ar: 'المستخدمين' },
-    prefix: 'users',
-    default: false,
-    methods: ['get', 'delete', 'patch'],
-  },
+  // {
+  //   name: { en: 'Languages', ar: 'اللغات' },
+  //   prefix: 'languages',
+  //   default: true,
+  //   methods: ['get', 'delete', 'patch'],
+  // },
+  //   {
+  //   name: { en: 'Employees', ar: 'الموظفين' },
+  //   prefix: 'employees',
+  //   default: true,
+  //   methods: ['post', 'get', 'delete', 'patch','manage'],
+  // },
+  // {
+  //   name: { en: 'Users', ar: 'المستخدمين' },
+  //   prefix: 'users',
+  //   default: false,
+  //   methods: ['post', 'get', 'delete', 'patch'],
+  // },
   {
     name: { en: 'Roles', ar: 'الادوار' },
     prefix: 'roles',
     default: true,
     methods: ['post', 'get', 'delete', 'patch'],
   },
-  {
-    name: { en: 'Profile', ar: 'الحساب الشخصي' },
-    prefix: 'profile',
-    default: true,
-    methods: ['post', 'get', 'patch','delete'],
-  },
+  // {
+  //   name: { en: 'Profile', ar: 'الحساب الشخصي' },
+  //   prefix: 'profile',
+  //   default: true,
+  //   methods: ['post', 'get', 'patch','delete'],
+  // },
   {
     name: { en: 'Permissions', ar: 'الصلاحيات' },
     prefix: 'permissions',
@@ -47,152 +47,34 @@ export const permissions = [
     default: true,
     methods: ['post'],
   },
-  {
-    name: { en: 'Modules', ar: 'الوحدات' },
-    prefix: 'modules',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
-  },
-  {
-    name: { en: 'Addresses', ar: 'العناوين' },
-    prefix: 'addresses',
-    default: true,
-    methods: ['post', 'get', 'patch', 'delete'],
-  },
-  {
-    name: { en: 'Banners', ar: 'البانرات' },
-    prefix: 'banners',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
-  },
-  {
-    name: { en: 'Categories', ar: 'الفئات' },
-    prefix: 'categories',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-
-  {
-    name: { en: 'SubCategories', ar: 'الفئات الفرعية' },
-    prefix: 'subcategories',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-  {
-    name: { en: 'Stores', ar: 'المتاجر' },
-    prefix: 'stores',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
-  },
-  {
-    name: { en: 'Store Favourite', ar: 'المتجر المفضل' },
-    prefix: 'stores/favourite',
-    default: true,
-    methods: ['get', 'patch'],
-  },
-
-  {
-    name: { en: 'Service', ar: 'الخدمات' },
-    prefix: 'services',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-  {
-    name: { en: 'Service Favourite', ar: 'الخدمات المفضلة' },
-    prefix: 'services/favourite',
-    default: true,
-    methods: ['get', 'patch'],
-  },
-  {
-    name: { en: 'filters', ar: 'الفلاتر' },
-    prefix: 'filters',
-    default: true,
-    methods: ['get'],
-  },
-  {
-    name: { en: 'settings', ar: 'الإعدادات' },
-    prefix: 'settings',
-    default: false,
-    methods: ['get', 'patch'],
-  },
-  {
-    name: { en: 'Social Media', ar: 'وسائل التواصل الاجتماعي' },
-    prefix: 'social-media',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
-  },
-    {
-    name: { en: 'System Notifications', ar: 'إشعارات النظام' },
-    prefix: 'system-notifications',
-    default: false,
-    methods: ['get', 'patch',],
-  },
-   {
-    name: { en: 'Fund', ar: 'رصيد المحفظة' },
-    prefix: 'fund',
-    default: false,
-    methods: ['post', 'get'],
-  },
-     {
-    name: { en: 'Coupons', ar: 'القسائم' },
-    prefix: 'coupons',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete'],
-  },
-       {
-    name: { en: 'Schedule', ar: 'جدول الجدولة' },
-    prefix: 'schedule',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-    {
-    name: { en: 'Orders', ar: 'الطلبات' },
-    prefix: 'orders',
-    default: false,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-    {
-    name: { en: 'Cities', ar: 'المدن' },
-    prefix: 'cities',
-    default: true,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-      {
-    name: { en: 'Service Rating', ar: 'تقييم الخدمات' },
-    prefix: 'servicerating',
-    default: true,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-        {
-    name: { en: 'Store Rating', ar: 'تقييم المتجر' },
-    prefix: 'storerating',
-    default: true,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-      {
-    name: { en: 'banks', ar: 'البنك' },
-    prefix: 'banks',
-    default: true,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-   {
-    name: { en: 'bankAccounts', ar: 'الحسابات البنكية' },
-    prefix: 'bankAccounts',
-    default: true,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-     {
-    name: { en: 'statistics', ar: 'الإحصائيات' },
-    prefix: 'statistics',
-    default: true,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
-      {
-    name: { en: 'notification', ar: 'الإشعارات' },
-    prefix: 'notification',
-    default: true,
-    methods: ['post', 'get', 'patch', 'delete','manage'],
-  },
+  
+  // {
+  //   name: { en: 'filters', ar: 'الفلاتر' },
+  //   prefix: 'filters',
+  //   default: true,
+  //   methods: ['get'],
+  // },
+  // {
+  //   name: { en: 'settings', ar: 'الإعدادات' },
+  //   prefix: 'settings',
+  //   default: false,
+  //   methods: ['get', 'patch'],
+  // },
+  // {
+  //   name: { en: 'Social Media', ar: 'وسائل التواصل الاجتماعي' },
+  //   prefix: 'social-media',
+  //   default: false,
+  //   methods: ['post', 'get', 'patch', 'delete'],
+  // },
+ 
+  
+  //   {
+  //   name: { en: 'Cities', ar: 'المدن' },
+  //   prefix: 'cities',
+  //   default: true,
+  //   methods: ['post', 'get', 'patch', 'delete','manage'],
+  // },
+      
 ];
 
 type Permission = (typeof permissions)[number];
