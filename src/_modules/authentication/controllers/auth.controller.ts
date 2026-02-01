@@ -30,10 +30,9 @@ export class BaseAuthenticationController {
 
   
   @Post('refresh-token')
-   @CustomerEndpoint(undefined, true)
-  @AdminEndpoint(undefined, true)
+   @CustomerEndpoint(undefined, false, SessionType.REFRESH)
+  @AdminEndpoint(undefined, false, SessionType.REFRESH)
   @ApiDefaultOkResponse(null)
-  @CustomerEndpoint(undefined, false, SessionType.REFRESH)
   async refreshToken(
     @IpAddress() ip: string,
     @Res() res: Response,
@@ -63,7 +62,7 @@ export class BaseAuthenticationController {
     @Res() res: Response,
     @Body() dto: EmailPasswordLoginDTO,
   ) {
-    const { user, AccessToken, RefreshToken, unReadNotifications } =
+    const { user, AccessToken, RefreshToken } =
       await this.service.login(ip, dto);
 
    if(dto.deviceId) await this.service.saveDevice(dto.deviceId, user.id, dto.locale);
@@ -117,14 +116,13 @@ export class BaseAuthenticationController {
     @Body() dto: VerifyOtpDTO,
     @CurrentUser() currentUser: CurrentUser,
   ) {
-    const { user, unReadNotifications, AccessToken, RefreshToken } =
+    const { user, AccessToken, RefreshToken } =
       await this.service.verify(ip, currentUser.id, dto);
 
     res.cookie(env('ACCESS_TOKEN_COOKIE_KEY'), AccessToken, cookieConfig);
 
     return this.response.success(res, 'user verified successfully', {
       user,
-      unReadNotifications,
       AccessToken,
       RefreshToken,
     });

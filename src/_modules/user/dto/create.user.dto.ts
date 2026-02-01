@@ -43,19 +43,27 @@ export class UpdateUserDTO extends OmitType(PartialType(CreateUserDTO), [
 ]) {
   @Optional()
   @ValidateString()
-  deviceId: string;
+  deviceId?: string;
 
   @Optional()
   @ValidateString()
-  fcm: string;
-  @OptionalFile()
-  image: string;
+  fcm?: string;
+  
   @Optional()
   @ValidateBoolean()
-  allowNotification: boolean;
+  allowNotificationByEmail?: boolean;
+
+
   @Optional()
-  @ValidateBoolean()
-  male: boolean;
+  @ValidateNumber()
+  @ValidateExist<'nationality'>({
+    model: 'nationality',
+  })
+  nationalityId?: number;
+
+  @Optional()
+  @ValidateString()
+  locale?: string;
 }
 
 export class UpdateUserPasswordDTO {

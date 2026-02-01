@@ -1,4 +1,4 @@
-import {  Prisma, User } from '@prisma/client';
+import { Prisma, User, SessionType } from '@prisma/client';
 import { grouped } from '../helpers/auth.groupBy.helper';
 import { paginateOrNot } from 'src/globals/helpers/pagination-params';
 import { FilterUserCouponDTO } from '../dto/filter.user.coupon.dto';
@@ -11,9 +11,14 @@ export type FlattenedUser = {
   verified: boolean;
   active: boolean;
   image: string;
+  wallet:number;
+  Nationality?:{
+    id:number;
+    name:string;
+  },
+allowNotificationByEmail:boolean;
   createdAt: Date;
   deletedAt: Date | null;
- 
   Role?: {
     id: number;
     name: string;
@@ -23,15 +28,18 @@ export type FlattenedUser = {
     prefix: string;
     method: string[];
   }[];
+  Language?: {
+    key: string;
+    name: string;
+  };
 };
 
 export const transformFlattenUser = (data: any | any[]): any => {
   const transform = (
     user: User & {
-      Details: {
-        wallet: number;
-        points: number;
-        male: boolean;
+      Nationality?: {
+        id: number;
+        name: string;
       };
       Role?: {
         id: number;
@@ -46,6 +54,12 @@ export const transformFlattenUser = (data: any | any[]): any => {
           };
         }[];
       };
+      Sessions?: {
+        Language: {
+          key: string;
+          name: string;
+        };
+      }[];
     },
   ): FlattenedUser => {
     const flatUser: FlattenedUser = {
@@ -55,8 +69,10 @@ export const transformFlattenUser = (data: any | any[]): any => {
       phone: user.phone,
       verified: user.verified,
       active: user.active,
-    
       image: user.image,
+      wallet: (user as any).wallet,
+      allowNotificationByEmail: (user as any).allowNotificationByEmail,
+      Nationality: (user as any).Nationality,
       createdAt: user.createdAt,
       deletedAt: user.deletedAt,
     };
@@ -79,16 +95,24 @@ export const transformFlattenUser = (data: any | any[]): any => {
       }
     }
 
+    if (user?.Sessions?.[0]?.Language) {
+      flatUser.Language = {
+        key: user.Sessions[0].Language.key,
+        name: user.Sessions[0].Language.name,
+      };
+    }
+
     return flatUser;
   };
 
   if (Array.isArray(data)) {
     return data.map(transform);
   }
-
+   console.log("------------");
+   console.log(transform(data));
   return transform(data);
 };
-export const selectUserOBJ = () => {
+export const selectUserOBJ = (jti?: string) => {
   const selectArgs: Prisma.UserSelect = {
     id: true,
     name: true,
@@ -98,16 +122,37 @@ export const selectUserOBJ = () => {
     roleKey: true,
     active: true,
     image: true,
- 
+    wallet:true,
+    allowNotificationByEmail:true,
+    Nationality:{
+      select:{
+        id:true,
+        name:true,
+      }
+    },
+    Sessions:{
+      where:{
+        jti,
+        type:SessionType.ACCESS
+      },
+      select:{
+        Language:{
+          select:{
+            key:true,
+            name:true,
+          }
+        }
+      }
+    },
     createdAt: true,
     deletedAt: true,
   };
   return selectArgs;
 };
 
-export const selectUserWithRoleOBJ = () => {
+export const selectUserWithRoleOBJ = (jti: string) => {
   const selectArgs: Prisma.UserSelect = {
-    ...(selectUserOBJ() as Prisma.UserSelect),
+    ...(selectUserOBJ(jti) as Prisma.UserSelect),
     Role: {
       select: {
         id: true,
@@ -118,9 +163,27 @@ export const selectUserWithRoleOBJ = () => {
   };
   return selectArgs;
 };
-export const selectUserWithRoleAndPermissionsOBJ = () => {
+export const selectUserWithRoleAndPermissionsOBJ = (jti: string) => {
   const selectArgs: Prisma.UserSelect = {
-    ...(selectUserWithRoleOBJ() as Prisma.UserSelect),
+    ...(selectUserWithRoleOBJ(jti) as Prisma.UserSelect),
+    ...(jti
+      ? {
+          Sessions: {
+            where: {
+              jti,
+              type: SessionType.ACCESS,
+            },
+            select: {
+              Language: {
+                select: {
+                  key: true,
+                  name: true,
+                },
+              },
+            },
+          },
+        }
+      : {}),
     Role: {
       select: {
         id: true,
@@ -143,10 +206,9 @@ export const selectUserWithRoleAndPermissionsOBJ = () => {
   };
   return selectArgs;
 };
-export const selectFlattenedUserOBJ = () => {
+export const selectFlattenedUserOBJ = (jti: string) => {
   const selectArgs: FlattenedUser = {
-    ...(selectUserWithRoleOBJ() as any),
-    unReadNotifications: 'number',
+    ...(selectUserWithRoleOBJ(jti) as any),
     Permissions: [
       {
         name: 'string',

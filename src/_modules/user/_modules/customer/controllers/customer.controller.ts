@@ -37,16 +37,7 @@ export class CustomerController {
 
   @Get(['/', '/:id'])
   @ApiQuery({ type: FilterCustomerDTO })
-  @ApiOkResponse(
-    buildExamples([
-      { title: 'Get All Customer', paginated: true, body: [{...selectUserOBJ(),  totalOrders: 0, totalSpent: 0}] },
-      {
-        title: 'Get Customer with id',
-        paginated: false,
-        body: {...selectUserOBJ(),  totalOrders: 0, totalSpent: 0}
-      },
-    ]),
-  )
+  
   @ApiOptionalIdParam()
   async getAll(
     @Res() res: Response,

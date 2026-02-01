@@ -1,14 +1,14 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { PrismaService } from '../../../globals/services/prisma.service';
 
 import { OTPType, SessionType } from '@prisma/client';
+import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 import { firstOrMany } from 'src/globals/helpers/first-or-many';
-import { hashPassword, validateUserPassword } from 'src/globals/helpers/password.helpers';
+import {
+  hashPassword,
+  validateUserPassword,
+} from 'src/globals/helpers/password.helpers';
 import { VerifyResetOtpDTO } from '../../authentication/dto/reset-password.dto';
 import { TokenService } from '../../authentication/services/jwt.service';
 import { OTPService } from '../../authentication/services/otp.service';
@@ -26,8 +26,6 @@ import {
   transformFlattenUser,
 } from '../prisma-args/user.prisma-select';
 import { HelperService } from './helper.service';
-import { FilterUserCouponDTO } from '../dto/filter.user.coupon.dto';
-import { RolesKeys } from 'src/_modules/authorization/providers/roles';
 
 @Injectable()
 export class UserService {
@@ -38,13 +36,14 @@ export class UserService {
     private helper: HelperService,
   ) {}
 
-  async getUser(userId: Id) {
-    const selectObj = selectUserWithRoleAndPermissionsOBJ();
+  async getUser(userId: Id, jti: string) {
+    const selectObj = selectUserWithRoleAndPermissionsOBJ(jti);
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
       select: selectObj,
     });
     const flattenUser = transformFlattenUser(user);
+
     return flattenUser;
   }
 
@@ -88,7 +87,7 @@ export class UserService {
       data: { verified: true },
     });
     const user = await this.getProfile(userId);
-    const {token} = await this.Token.generateToken(
+    const { token } = await this.Token.generateToken(
       user?.user?.id,
       undefined,
       undefined,
@@ -112,7 +111,7 @@ export class UserService {
   }
 
   async updateCurrentUser(dto: UpdateUserDTO, userId: Id, jti: string) {
-    const { fcm,male, ...data } = dto;
+    const { fcm, locale, ...data } = dto;
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
     });
@@ -126,6 +125,23 @@ export class UserService {
         },
       });
     }
+    if (locale) {
+      await this.prisma.session.updateMany({
+        where: {
+          OR: [
+            {
+              jti,
+            },
+            {
+              refreshParentJti: jti,
+            },
+          ],
+        },
+        data: {
+          languageId: locale,
+        },
+      });
+    }
     if (!user) {
       throw new NotFoundException('user_not_found');
     }
@@ -134,7 +150,6 @@ export class UserService {
       where: { id: userId },
       data: {
         ...data,
-       
       },
     });
   }
@@ -152,9 +167,9 @@ export class UserService {
   async updatePassword(id: Id, data: UpdateUserPasswordDTO) {
     const { password, newPassword } = data;
     const user = await this.prisma.user.findUnique({ where: { id } });
-  validateUserPassword(password, user.password)
+    validateUserPassword(password, user.password);
     const hashedPassword = hashPassword(newPassword);
-   await this.prisma.user.update({
+    await this.prisma.user.update({
       where: { id },
       data: {
         password: hashedPassword,
@@ -165,20 +180,13 @@ export class UserService {
     });
   }
 
-  async getProfile(id) {
-    const user = await this.getUser(id);
-    const unReadNotifications = await this.prisma.notification.count({
-      where: {
-        userId: id,
-        read: false,
-      },
-    });
-
-    return { user, unReadNotifications };
+  async getProfile(id, jti?: string) {
+    const user = await this.getUser(id, jti);
+    return user;
   }
 
-  async getPermissions(id: Id) {
-    const user: FlattenedUser = await this.getUser(id);
+  async getPermissions(id: Id, jti?: string) {
+    const user: FlattenedUser = await this.getUser(id, jti);
     return user.Permissions;
   }
 
@@ -195,5 +203,4 @@ export class UserService {
       data: { languageId: locale },
     });
   }
-
 }

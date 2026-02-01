@@ -9,7 +9,9 @@ model City {
 model Nationality {
   id        Int       @id @default(autoincrement())
   name      Json
+  createdAt DateTime  @default(now()) @map("created_at")
   deletedAt DateTime? @map("deleted_at")
+  users     User[]
 
-  @@map("nationality")
+  @@map("nationalities")
 }

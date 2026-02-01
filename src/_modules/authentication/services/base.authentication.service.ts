@@ -33,7 +33,6 @@ export class BaseAuthenticationService {
     user: User;
     AccessToken: string;
     RefreshToken: string;
-    unReadNotifications: number;
   }> {
     const isLocaleFound = await this.prisma.language.findUnique({
       where: {
@@ -43,6 +42,7 @@ export class BaseAuthenticationService {
     if (!isLocaleFound) {
       throw new NotFoundException('Locale not found');
     }
+
     const user = await this.userHelper.userExist({
       message: 'invalid credentials',
       ...dto,
@@ -55,6 +55,7 @@ export class BaseAuthenticationService {
       undefined,
       undefined,
       SessionType.ACCESS,
+      dto.locale,
     );
     const {token: RefreshToken} = await this.tokenService.generateToken(
       user.id,
@@ -62,10 +63,10 @@ export class BaseAuthenticationService {
       AccessJti,
       undefined,
       SessionType.REFRESH,
+      dto.locale,
     );
     return {
-      user: data.user,
-      unReadNotifications: data.unReadNotifications,
+      user: data,
       AccessToken,
       RefreshToken,
     };
@@ -165,8 +166,7 @@ export class BaseAuthenticationService {
       SessionType.REFRESH,
     );
     return {
-      user: data.user,
-      unReadNotifications: data.unReadNotifications,
+      user: data,
       AccessToken,
       RefreshToken,
     };

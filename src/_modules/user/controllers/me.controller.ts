@@ -56,7 +56,7 @@ export class MeController {
     @Res() res: Response,
     @CurrentUser() currentUser: CurrentUser,
   ) {
-    const user = await this.userService.getPermissions(currentUser.id);
+    const user = await this.userService.getPermissions(currentUser.id, currentUser.jti);
     return this.responses.success(
       res,
       'User Permissions returned successfully',
@@ -76,25 +76,14 @@ export class MeController {
 
 
   @Get('/')
-  @ApiOkResponse(
-    buildExamples([
-      {
-        title: 'User Profile',
-        paginated: false,
-        body: selectFlattenedUserOBJ(),
-      },
-    ]),
-  )
    @CustomerEndpoint(undefined, false,SessionType.ACCESS)
   @AdminEndpoint(undefined, false,SessionType.ACCESS)
   async Profile(@Res() res: Response, @CurrentUser() currentUser: CurrentUser) {
-    const { user, unReadNotifications } = await this.userService.getProfile(
+    const user = await this.userService.getProfile(
       currentUser.id,
+      currentUser.jti,
     );
-    return this.responses.success(res, 'User returned successfully', {
-      user,
-      unReadNotifications,
-    });
+    return this.responses.success(res, 'User returned successfully', user);
   }
    @CustomerEndpoint(undefined, false,SessionType.ACCESS)
   @AdminEndpoint(undefined, false,SessionType.ACCESS)
@@ -108,17 +97,17 @@ export class MeController {
     return this.responses.success(res, 'user updated successfully');
   }
 
-  @Patch('/locale')
-  @CustomerEndpoint(undefined, false,SessionType.ACCESS)
-  @AdminEndpoint(undefined, false,SessionType.ACCESS)
-  async updateLocale(
-    @Res() res: Response,
-    @LocaleHeader() locale: string,
-    @CurrentUser() user: CurrentUser,
-  ) {
-    await this.userService.updateLocale(user.jti, locale);
-    return this.responses.success(res, 'locale updated successfully');
-  }
+  // @Patch('/locale')
+  // @CustomerEndpoint(undefined, false,SessionType.ACCESS)
+  // @AdminEndpoint(undefined, false,SessionType.ACCESS)
+  // async updateLocale(
+  //   @Res() res: Response,
+  //   @LocaleHeader() locale: string,
+  //   @CurrentUser() user: CurrentUser,
+  // ) {
+  //   await this.userService.updateLocale(user.jti, locale);
+  //   return this.responses.success(res, 'locale updated successfully');
+  // }
   @Patch('/')
   @CustomerEndpoint(undefined, false,SessionType.ACCESS)
   @AdminEndpoint(undefined, false,SessionType.ACCESS)
@@ -131,14 +120,13 @@ export class MeController {
     await this.userService.updateCurrentUser(dto, user.id, user.jti);
     return this.responses.success(res, 'password updated successfully');
   }
-  @Delete('/')
-  @CustomerEndpoint(undefined, false,SessionType.ACCESS)
-  @AdminEndpoint(undefined, false,SessionType.ACCESS)
-  async deleteCurrentUser(
-    @Res() res: Response,
-    @CurrentUser() user: CurrentUser,
-  ) {
-    await this.userService.delete(user.id);
-    return this.responses.success(res, 'user deleted successfully');
-  }
+  // @Delete('/')
+  // @AdminEndpoint(undefined, false,SessionType.ACCESS)
+  // async deleteCurrentUser(
+  //   @Res() res: Response,
+  //   @CurrentUser() user: CurrentUser,
+  // ) {
+  //   await this.userService.delete(user.id);
+  //   return this.responses.success(res, 'user deleted successfully');
+  // }
 }

@@ -59,7 +59,7 @@ export class HelperService {
     if (!isFound) throw new UnprocessableEntityException(message);
 
     if(isFound && roleKey && isFound.roleKey !== roleKey){
-      throw new UnprocessableEntityException('user_not_found');
+      throw new UnprocessableEntityException(message);
     }
     if (password) validateUserPassword(password, isFound.password);
 

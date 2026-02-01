@@ -12,6 +12,7 @@ import { CurrentUser } from 'src/_modules/authentication/decorators/current-user
 import { TokenService } from 'src/_modules/authentication/services/jwt.service';
 import { IpAddress } from 'src/_modules/authentication/decorators/ip.decorator';
 import { AdminEndpoint, CustomerEndpoint } from 'src/decorators/api/api-scope.decorator';
+import { CurrentLocale } from 'src/_modules/authentication/decorators/currentLocale.decorator';
 
 const prefix = 'customers';
 @Controller(["auth",prefix])
@@ -35,6 +36,7 @@ export class CustomerCreateController {
     @Res() res: Response, 
     @Body() dto: CreateCustomerDTO,
     @CurrentUser() currentUser: CurrentUser,
+    @CurrentLocale() locale: string,
   ) {
     const user = await this.service.create(dto);
     await this.OTPService.generateOTP(user.id, OTPType.EMAIL_VERIFICATION);
@@ -45,6 +47,7 @@ export class CustomerCreateController {
           undefined,
           undefined,
           SessionType.VERIFY,
+          locale
         )
       : undefined;
     return this.responses.success(res, 'customer created successfully', {

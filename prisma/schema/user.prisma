@@ -1,17 +1,20 @@
 model User {
-  id        Int       @id @default(autoincrement())
-  name      String
-  email     String    @unique
-  phone     String?
-  password  String?
-  verified  Boolean   @default(false)
-  active    Boolean   @default(true)
-  deviceId  String?   @unique @map("device_id")
-  image     String    @default("uploads/default.png")
-  wallet    Float?    @default(0)
+  id                       Int          @id @default(autoincrement())
+  name                     String
+  email                    String       @unique
+  phone                    String?
+  password                 String?
+  verified                 Boolean      @default(false)
+  active                   Boolean      @default(true)
+  deviceId                 String?      @unique @map("device_id")
+  image                    String       @default("uploads/default.png")
+  wallet                   Float?       @default(0)
+  allowNotificationByEmail Boolean      @default(true) @map("allow_notification_by_email")
+  nationalityId            Int?         @map("nationality_id")
+  Nationality              Nationality? @relation(fields: [nationalityId], references: [id])
   // default columns
-  createdAt DateTime  @default(now()) @map("created_at")
-  deletedAt DateTime? @map("deleted_at")
+  createdAt                DateTime     @default(now()) @map("created_at")
+  deletedAt                DateTime?    @map("deleted_at")
 
   // direct relations
   Role    Role   @relation(fields: [roleKey], references: [roleKey], onDelete: Cascade)
