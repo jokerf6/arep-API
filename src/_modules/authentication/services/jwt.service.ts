@@ -49,21 +49,13 @@ export class TokenService {
       await this.prisma.session.deleteMany({
         where: {
           userId,
-          type,
-        },
-      });
-    }
-    else{
-      await this.prisma.session.deleteMany({
-        where: {
-          userId,
           type: {
             notIn: [SessionType.ACCESS, SessionType.REFRESH],
           },
         },
       });
     }
-
+ 
     const session = await this.prisma.session.create({
       data: {
         ipAddress,

@@ -112,6 +112,11 @@ export class BaseAuthenticationService {
 
   async resetPassword(userId: Id, dto: ResetPasswordDTO) {
     const hashedPassword = await hashPassword(dto.password);
+    await this.prisma.session.deleteMany({
+      where: {
+        userId,
+      },
+    });
     await this.prisma.user.update({
       data: { password: hashedPassword },
       where: { id: userId },

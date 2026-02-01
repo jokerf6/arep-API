@@ -32,6 +32,12 @@ export const swaggerConfig = (app: INestApplication) => {
         name: 'Locale',
         schema: { example: 'en' },
       })
+      .addGlobalParameters({
+        in: 'header',
+        required: false,
+        name: 'isLocalized',
+        schema: { type: 'boolean', default: false },
+      })
       .build();
 
     // Generate full document first (using the module inputs if we had them, or just app for deep scan)
@@ -94,6 +100,12 @@ export const swaggerConfig = (app: INestApplication) => {
         required: false,
         name: 'Locale',
         schema: { example: 'en' },
+      })
+    .addGlobalParameters({
+        in: 'header',
+        required: false,
+        name: 'isLocalized',
+        schema: { type: 'boolean', default: false },
       })
     .build();
     

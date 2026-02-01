@@ -9,6 +9,9 @@ export class LocaleMiddleware implements NestMiddleware {
   async use(req: Request, _: Response, next: NextFunction) {
     const localeHeader = req.headers['locale'];
     const acceptLanguageHeader = req.headers['accept-language']?.toString();
+    const isLocalizedHeader = req.headers['islocalized'];
+
+    req.isLocalized = isLocalizedHeader === 'true';
 
     let locale = 'en';
 
