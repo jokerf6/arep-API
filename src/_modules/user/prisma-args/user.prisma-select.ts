@@ -12,6 +12,7 @@ export type FlattenedUser = {
   active: boolean;
   image: string;
   wallet:number;
+  lastLoginAt:Date;
   Nationality?:{
     id:number;
     name:string;
@@ -70,6 +71,7 @@ export const transformFlattenUser = (data: any | any[]): any => {
       verified: user.verified,
       active: user.active,
       image: user.image,
+      lastLoginAt: user.lastLoginAt,
       wallet: (user as any).wallet,
       allowNotificationByEmail: (user as any).allowNotificationByEmail,
       Nationality: (user as any).Nationality,
@@ -122,6 +124,7 @@ export const selectUserOBJ = (jti?: string) => {
     active: true,
     image: true,
     wallet:true,
+    lastLoginAt:true,
     allowNotificationByEmail:true,
     Nationality:{
       select:{

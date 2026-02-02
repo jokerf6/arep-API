@@ -12,6 +12,7 @@ model User {
   allowNotificationByEmail Boolean      @default(true) @map("allow_notification_by_email")
   nationalityId            Int?         @map("nationality_id")
   Nationality              Nationality? @relation(fields: [nationalityId], references: [id])
+  lastLoginAt              DateTime     @default(now()) @map("last_login_at")
   // default columns
   createdAt                DateTime     @default(now()) @map("created_at")
   deletedAt                DateTime?    @map("deleted_at")

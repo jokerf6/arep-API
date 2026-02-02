@@ -49,6 +49,10 @@ export class BaseAuthenticationService {
     });
     await this.userHelper.userCanLogin(user, true, ip);
     const data = await this.userService.getProfile(user.id);
+    await this.prisma.user.update({
+      where: { id: user.id },
+      data: { lastLoginAt: new Date() },
+    });
     const {token: AccessToken, jti: AccessJti} = await this.tokenService.generateToken(
       user.id,
       ip,
