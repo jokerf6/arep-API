@@ -1,10 +1,13 @@
-import { Body, Controller, Post, Res, BadRequestException } from '@nestjs/common';
+import { Body, Controller, Post, Res, BadRequestException, Put, Param, Req } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Response } from 'express';
+import { Response, Request } from 'express';
 import { Auth } from 'src/_modules/authentication/decorators/auth.decorator';
 import { ResponseService } from 'src/globals/services/response.service';
 import { tag } from 'src/globals/helpers/tag.helper';
 import { UploadService } from './upload.service';
+import * as fs from 'fs';
+import * as path from 'path';
+import { ConfigService } from '@nestjs/config';
 
 const prefix = 'upload';
 
@@ -12,10 +15,15 @@ const prefix = 'upload';
 @ApiTags(tag(prefix))
 @Auth()
 export class UploadController {
+  private uploadsPath: string;
+
   constructor(
     private service: UploadService,
     private response: ResponseService,
-  ) {}
+    private configService: ConfigService,
+  ) {
+    this.uploadsPath = this.configService.get('UPLOADS_PATH') || './uploads';
+  }
 
   @Post('/presigned-url')
   async getPresignedUrl(@Body() body: { filename: string; filetype: string; folder?: string }, @Res() res: Response) {
@@ -49,5 +57,33 @@ export class UploadController {
       'Upload verified successfully',
       result.metadata
     );
+  }
+
+  @Put('/local-upload/:folder/:filename')
+  async localUpload(
+    @Param('folder') folder: string,
+    @Param('filename') filename: string,
+    @Req() req: Request,
+    @Res() res: Response,
+  ) {
+    const filePath = path.join(this.uploadsPath, folder, filename);
+    const dir = path.dirname(filePath);
+
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
+    const writeStream = fs.createWriteStream(filePath);
+    
+    req.pipe(writeStream);
+
+    return new Promise((resolve, reject) => {
+      writeStream.on('finish', () => {
+        resolve(this.response.success(res, 'File uploaded successfully', { key: `${folder}/${filename}` }));
+      });
+      writeStream.on('error', (err) => {
+        reject(new BadRequestException(`Upload failed: ${err.message}`));
+      });
+    });
   }
 }
