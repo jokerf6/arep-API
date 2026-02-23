@@ -12,12 +12,31 @@ export async function seedAdmin(prisma: PrismaClient) {
     verified: true,
     password: bcrypt.hashSync("Default@123", +process.env.HASH_SALT),
   };
+  const superAdmin = {
+    id: 2,
+    name: `super admin`,
+    email: "super@super.com",
+    phone: `+966 0192725145`,
+    roleKey: RolesKeys.ADMIN,
+    verified: true,
+    password: bcrypt.hashSync("Default@123", +process.env.HASH_SALT),
+  }; 
 
   await prisma.user.upsert({
     where: {
       id: 1,
     },
     create: createData,
+    update: {
+      roleKey: RolesKeys.ADMIN,
+    },
+  });
+
+  await prisma.user.upsert({
+    where: {
+      id: 2,
+    },
+    create: superAdmin,
     update: {
       roleKey: RolesKeys.ADMIN,
     },

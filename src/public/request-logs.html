@@ -178,6 +178,22 @@
                 >
               </div>
               <div class="flex items-center gap-4">
+                <!-- Real-time Toggle -->
+                <div class="flex items-center gap-2 px-3 py-1.5 glass rounded-lg border-slate-700/50">
+                  <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Real-time</span>
+                  <button 
+                    @click="isRealTime = !isRealTime"
+                    class="relative inline-flex h-5 w-9 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none translate-y-[1px]"
+                    :class="isRealTime ? 'bg-primary-500' : 'bg-slate-700'"
+                  >
+                    <span
+                      aria-hidden="true"
+                      class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
+                      :class="isRealTime ? 'translate-x-4' : 'translate-x-0'"
+                    ></span>
+                  </button>
+                </div>
+                <div class="h-6 w-px bg-slate-700"></div>
                 <button
                   @click="refreshData"
                   class="p-2 text-slate-400 hover:text-white transition-colors"
@@ -587,6 +603,27 @@
                     </div>
                   </div>
 
+                  <div v-if="selectedLog.info">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xs text-red-400 font-bold uppercase tracking-wider">Error Info / Stack Trace</span>
+                      <button
+                        @click="copyToClipboard(selectedLog.info, 'info')"
+                        class="text-xs text-slate-400 hover:text-blue-400 transition-colors flex items-center gap-1.5 px-2 py-1 rounded hover:bg-slate-700/30"
+                        :title="copiedSection === 'info' ? 'Copied!' : 'Copy to clipboard'"
+                      >
+                        <i :class="copiedSection === 'info' ? 'fas fa-check text-green-400' : 'far fa-copy'"></i>
+                        <span v-if="copiedSection === 'info'">Copied!</span>
+                        <span v-else>Copy</span>
+                      </button>
+                    </div>
+                    <div
+                      class="bg-red-500/5 rounded-lg p-4 border border-red-500/20 font-mono text-xs overflow-x-auto max-h-80 overflow-y-auto"
+                    >
+                      <pre v-if="typeof selectedLog.info === 'string'" class="text-red-300">{{ selectedLog.info }}</pre>
+                      <pre v-else v-html="syntaxHighlight(selectedLog.info)" class="text-red-300"></pre>
+                    </div>
+                  </div>
+
                   <div>
                     <div class="flex items-center justify-between mb-2">
                       <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider"
@@ -629,6 +666,8 @@
           const error = ref(null);
           const isAuthenticated = ref(false);
           const selectedLog = ref(null);
+          const isRealTime = ref(false);
+          let realTimeInterval = null;
 
           const loginForm = ref({
             email: '',
@@ -672,6 +711,17 @@
             }
           });
 
+          // Handle real-time updates
+          watch(isRealTime, (val) => {
+            if (val) {
+              realTimeInterval = setInterval(() => {
+                fetchLogs(true);
+              }, 3000);
+            } else {
+              if (realTimeInterval) clearInterval(realTimeInterval);
+            }
+          });
+
           const login = async () => {
             isLoading.value = true;
             error.value = null;
@@ -709,9 +759,9 @@
             loginForm.value = { email: '', password: '' };
           };
 
-          const fetchLogs = async () => {
+          const fetchLogs = async (isSilent = false) => {
             if (!isAuthenticated.value) return;
-            isLoading.value = true;
+            if (!isSilent) isLoading.value = true;
             try {
               const response = await api.get('', {
                 params: {
@@ -850,6 +900,7 @@
             refreshData,
             copiedSection,
             copyToClipboard,
+            isRealTime,
           };
         },
       }).mount('#app');

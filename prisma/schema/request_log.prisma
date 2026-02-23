@@ -10,6 +10,7 @@ model RequestLog {
     userId     String?  @map("user_id")
     statusCode Int?     @map("status_code")
     duration   Int? // milliseconds
+    info       Json?
     createdAt  DateTime @default(now()) @map("created_at")
 
     @@map("request_logs")

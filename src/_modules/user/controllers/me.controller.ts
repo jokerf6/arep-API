@@ -83,6 +83,7 @@ export class MeController {
       currentUser.id,
       currentUser.jti,
     );
+    
     return this.responses.success(res, 'User returned successfully', user);
   }
    @CustomerEndpoint(undefined, false,SessionType.ACCESS)
