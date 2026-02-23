@@ -19,14 +19,13 @@ export class RequestLogService {
       orderBy = RequestLogSortField.CREATED_AT,
       sortOrder = SortOrder.DESC,
     } = filters;
-    console.log(userId);
 
     const where: Prisma.RequestLogWhereInput = {
       ...(method && method[0] !== '' && { method: { contains: method } }),
       ...(url && url[0] !== '' && { url: { contains: url } }),
-      ...(statusCode && statusCode[0] !== '' && { statusCode }),
+      ...(statusCode && statusCode[0] !== '' && { statusCode: Number(statusCode) }),
       ...(userId && userId[0] !== '' && { userId: { contains: userId } }),
-      ...(ip && ip[0] !== '' && { ip: { contains: ip } }),
+      ...(ip && ip[0] !== '' && { ip: { contains: ip.toString() } }),
     };
 
     const [data, total] = await Promise.all([
@@ -37,7 +36,7 @@ export class RequestLogService {
         orderBy: {
           [orderBy]: sortOrder,
         },
-      }),
+      }), 
       this.prisma.requestLog.count({ where }),
     ]);
 
