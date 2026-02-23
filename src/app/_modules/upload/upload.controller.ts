@@ -1,44 +1,64 @@
-import { Body, Controller, Post, Res, BadRequestException, Put, Param, Req } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Res,
+  BadRequestException,
+  Put,
+  Param,
+  Req,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Response, Request } from 'express';
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { ConfigService } from '@nestjs/config';
 import { Auth } from 'src/_modules/authentication/decorators/auth.decorator';
 import { ResponseService } from 'src/globals/services/response.service';
 import { tag } from 'src/globals/helpers/tag.helper';
 import { UploadService } from './upload.service';
-import * as fs from 'fs';
-import * as path from 'path';
-import { ConfigService } from '@nestjs/config';
+import { sanitizeSegment, safeJoin } from './upload.helpers';
+import {
+  ALLOWED_EXTENSIONS,
+  BLOCKED_EXTENSIONS,
+  getMaxBytes,
+} from './upload.constants';
 
-const prefix = 'upload';
+const PREFIX = 'upload';
 
-@Controller(prefix)
-@ApiTags(tag(prefix))
+@Controller(PREFIX)
+@ApiTags(tag(PREFIX))
 @Auth()
 export class UploadController {
-  private uploadsPath: string;
+  private readonly uploadsPath: string;
 
   constructor(
-    private service: UploadService,
-    private response: ResponseService,
-    private configService: ConfigService,
+    private readonly service: UploadService,
+    private readonly response: ResponseService,
+    private readonly configService: ConfigService,
   ) {
-    this.uploadsPath = this.configService.get('UPLOADS_PATH') || './uploads';
+    this.uploadsPath = this.configService.get<string>('UPLOADS_PATH') ?? './uploads';
   }
 
+  // ─── Presigned URL ───────────────────────────────────────────────────────────
+
   @Post('/presigned-url')
-  async getPresignedUrl(@Body() body: { filename: string; filetype: string; folder?: string }, @Res() res: Response) {
-    if (!body.filename || !body.filetype) {
+  async getPresignedUrl(
+    @Body() body: { filename: string; filetype: string; folder?: string },
+    @Res() res: Response,
+  ) {
+    const { filename, filetype, folder } = body;
+
+    if (!filename || !filetype) {
       throw new BadRequestException('Filename and filetype are required');
     }
 
-    const data = await this.service.getPresignedUrl(body.filename, body.filetype, body.folder);
-    
-    return this.response.success(
-      res,
-      'Presigned URL generated successfully',
-      data
-    );
+    const data = await this.service.getPresignedUrl(filename, filetype, folder);
+    return this.response.success(res, 'Presigned URL generated successfully', data);
   }
+
+  // ─── Verify Upload ───────────────────────────────────────────────────────────
 
   @Post('/verify')
   async verifyUpload(@Body() body: { key: string }, @Res() res: Response) {
@@ -47,43 +67,126 @@ export class UploadController {
     }
 
     const result = await this.service.verifyUpload(body.key);
-    
+
     if (!result.success) {
       throw new BadRequestException(`Verification failed: ${result.error}`);
     }
 
-    return this.response.success(
-      res,
-      'Upload verified successfully',
-      result.metadata
-    );
+    return this.response.success(res, 'Upload verified successfully', result.metadata);
   }
 
-  @Put('/local-upload/:folder/:filename')
+  // ─── Local Upload ────────────────────────────────────────────────────────────
+
+  @Put('/local-upload/:key(*)')
   async localUpload(
-    @Param('folder') folder: string,
-    @Param('filename') filename: string,
+    @Param('key') key: string,
     @Req() req: Request,
     @Res() res: Response,
   ) {
-    const filePath = path.join(this.uploadsPath, folder, filename);
-    const dir = path.dirname(filePath);
+    key = sanitizeSegment(key, 'key');
 
+    const ext = path.extname(key).toLowerCase();
+    const maxBytes = getMaxBytes(ext);
+
+    this.validateExtension(ext);
+    this.validateContentLength(req, maxBytes);
+
+    const filePath = safeJoin(this.uploadsPath, key);
+    this.ensureDirectoryExists(path.dirname(filePath));
+
+    const writeStream = this.createWriteStream(filePath);
+
+    this.enforceSizeLimit(req, writeStream, filePath, maxBytes);
+
+    req.pipe(writeStream);
+
+    return this.waitForUpload(req, writeStream, filePath).then(() =>
+      this.response.success(res, 'File uploaded successfully', { key }),
+    );
+  }
+
+  // ─── Private Helpers ─────────────────────────────────────────────────────────
+
+  private validateExtension(ext: string): void {
+    if (BLOCKED_EXTENSIONS.has(ext)) {
+      throw new BadRequestException('File type is not allowed');
+    }
+    if (ALLOWED_EXTENSIONS.size > 0 && !ALLOWED_EXTENSIONS.has(ext)) {
+      throw new BadRequestException('Unsupported file extension');
+    }
+  }
+
+  private validateContentLength(req: Request, maxBytes: number): void {
+    const contentLength = req.headers['content-length'];
+    if (!contentLength) return;
+
+    const size = Number(contentLength);
+    if (Number.isFinite(size) && size > maxBytes) {
+      throw new BadRequestException(
+        `File too large. Max ${maxBytes / (1024 * 1024)}MB allowed`,
+      );
+    }
+  }
+
+  private ensureDirectoryExists(dir: string): void {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
+  }
 
-    const writeStream = fs.createWriteStream(filePath);
-    
-    req.pipe(writeStream);
+  private createWriteStream(filePath: string): fs.WriteStream {
+    try {
+      // 'wx' flag → fail if file already exists (prevents overwrite)
+      return fs.createWriteStream(filePath, { flags: 'wx' });
+    } catch (err) {
+      throw new BadRequestException(`Could not initiate upload: ${err.message}`);
+    }
+  }
 
+  private enforceSizeLimit(
+    req: Request,
+    writeStream: fs.WriteStream,
+    filePath: string,
+    maxBytes: number,
+  ): void {
+    let bytesReceived = 0;
+
+    req.on('data', (chunk: Buffer) => {
+      bytesReceived += chunk.length;
+
+      if (bytesReceived > maxBytes) {
+        req.destroy(new Error('File too large'));
+        writeStream.destroy(new Error('File too large'));
+        this.cleanupFile(filePath);
+      }
+    });
+  }
+
+  private waitForUpload(
+    req: Request,
+    writeStream: fs.WriteStream,
+    filePath: string,
+  ): Promise<void> {
     return new Promise((resolve, reject) => {
-      writeStream.on('finish', () => {
-        resolve(this.response.success(res, 'File uploaded successfully', { key: `${folder}/${filename}` }));
-      });
+      writeStream.on('finish', resolve);
+
       writeStream.on('error', (err) => {
+        this.cleanupFile(filePath);
+        reject(new BadRequestException(`Upload failed: ${err.message}`));
+      });
+
+      req.on('error', (err) => {
+        this.cleanupFile(filePath);
         reject(new BadRequestException(`Upload failed: ${err.message}`));
       });
     });
+  }
+
+  private cleanupFile(filePath: string): void {
+    try {
+      if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+    } catch {
+      // Silently ignore cleanup errors
+    }
   }
 }
