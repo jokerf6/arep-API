@@ -8,6 +8,7 @@ const adminPermissions: PermissionMap = {
   permissions: ['get', 'patch'],
   customers: ['get', 'delete', 'patch'],
   'customers/create': ['post'],
+  audit: ['get'],
   // settings: ['get', 'patch'],
   // 'social-media': ['post', 'get', 'patch', 'delete'],
   // employees: ['post', 'get', 'patch', 'delete', 'manage'],

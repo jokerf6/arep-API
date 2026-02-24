@@ -23,6 +23,12 @@ export const permissions = [
     default: true,
     methods: ['post', 'get', 'delete', 'patch'],
   },
+    {
+    name: { en: 'Audit', ar: 'السجل' },
+    prefix: 'audit',
+    default: true,
+    methods: ['get'],
+  },
   // {
   //   name: { en: 'Profile', ar: 'الحساب الشخصي' },
   //   prefix: 'profile',
