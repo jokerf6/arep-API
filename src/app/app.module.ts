@@ -45,7 +45,15 @@ const I18N_DIR = path.join(process.cwd(), './i18n');
     ScheduleModule.forRoot(),
     ClsModule.forRoot({
       global: true,
-      middleware: { mount: true },
+      middleware: {
+        mount: true,
+        setup: (cls, req) => {
+          cls.set('req', req);
+          if (req.user) {
+            cls.set('user', req.user);
+          }
+        },
+      },
     }),
     I18nModule.forRootAsync({
       imports: [

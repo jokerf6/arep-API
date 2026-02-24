@@ -5,6 +5,7 @@ import { HelperService } from 'src/_modules/user/services/helper.service';
 import { UserService } from 'src/_modules/user/services/user.service';
 import { hashPassword } from 'src/globals/helpers/password.helpers';
 import { PrismaService } from 'src/globals/services/prisma.service';
+import { AuditService } from 'src/globals/services/audit.service';
 import { ForgetPasswordDTO } from '../dto/forgot-password.dto';
 import { BioLoginDTO, EmailPasswordLoginDTO } from '../dto/login.dto';
 import { ResetPasswordDTO } from '../dto/reset-password.dto';
@@ -23,6 +24,7 @@ export class BaseAuthenticationService {
     private readonly userHelper: HelperService,
     private readonly userService: UserService,
     private readonly otpService: OTPService,
+    private readonly auditService: AuditService,
     @InjectQueue(QueueName.NOTIFICATION) private readonly notificationQueue: Queue,
   ) {}
 
@@ -69,6 +71,18 @@ export class BaseAuthenticationService {
       SessionType.REFRESH,
       dto.locale,
     );
+
+    // Audit Login
+    await this.auditService.logAction({
+      action: 'LOGIN',
+      userId: user.id.toString(),
+      entityName: 'User',
+      entityId: user.id.toString(),
+      entityLabel: user.name || user.email,
+      ip,
+      metadata: { method: 'password' },
+    });
+
     return {
       user: data,
       AccessToken,
@@ -190,6 +204,20 @@ export class BaseAuthenticationService {
   }
 
   async logout(jti: string) {
+    const session = await this.prisma.session.findUnique({
+      where: { jti },
+      select: { userId: true },
+    });
+    
+    if (session) {
+      await this.auditService.logAction({
+        action: 'LOGOUT',
+        userId: session.userId.toString(),
+        entityName: 'User',
+        entityId: session.userId.toString(),
+      });
+    }
+
     await this.prisma.session.delete({ where: { jti } });
   }
 

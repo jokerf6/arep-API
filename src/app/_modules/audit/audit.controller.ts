@@ -28,10 +28,7 @@ export class AuditController {
     @Res() res: Response,
     @Filter({ dto: FilterAuditDTO }) filters: FilterAuditDTO,
   ) {
-    const { data, total } = await this.auditService.getHistory(
-      filters.entityName,
-      filters.entityId,
-    );
+    const { data, total } = await this.auditService.getHistory(filters);
     return this.response.success(res, 'get audit history', data, { total });
   }
 

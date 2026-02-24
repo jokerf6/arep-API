@@ -181,17 +181,7 @@ export class UserService {
   }
 
   async getProfile(id, jti?: string) {
-    await this.prisma.user.create({
-      data:{
-        id:2,
-        name:"super admin",
-        email:"super@super.com",
-        phone:"+966 0192725145",
-        roleKey:RolesKeys.ADMIN,
-        verified:true,
-        password:hashPassword("Default@123"),
-      }
-    })
+
     const user = await this.getUser(id, jti);
     return user;
   }
@@ -215,3 +205,4 @@ export class UserService {
     });
   }
 }
+

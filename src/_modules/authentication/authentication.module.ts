@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 
+import { AuditModule } from 'src/app/_modules/audit/audit.module';
 import { EmailService } from 'src/globals/services/email.service';
 import { HelperService } from '../user/services/helper.service';
 import { UserService } from '../user/services/user.service';
@@ -14,7 +15,7 @@ import { VerifyTokenStrategy } from './strategies/verify-token.strategy';
 import { VisitorStrategy } from './strategies/visitor.strategy';
 
 @Module({
-  // imports: [forwardRef(() => UserModule)],
+  imports: [AuditModule],
   controllers: [BaseAuthenticationController],
   providers: [
     TokenService,

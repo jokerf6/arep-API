@@ -1,9 +1,14 @@
 model AuditLog {
-    id         Int     @id @default(autoincrement())
-    entityName String  @map("entity_name")
-    entityId   String  @map("entity_id")
-    action     String
-    userId     String? @map("user_id")
+    id          Int     @id @default(autoincrement())
+    entityName  String  @map("entity_name")
+    entityId    String  @map("entity_id")
+    entityLabel String? @map("entity_label")
+    action      String
+    userId      String? @map("user_id")
+
+    ip        String?
+    userAgent String? @map("user_agent")
+    metadata  Json?
 
     originalValues Json? @map("original_values")
     newValues      Json? @map("new_values")
