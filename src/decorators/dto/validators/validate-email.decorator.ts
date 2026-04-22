@@ -8,6 +8,8 @@ export function ValidateEmail(apiPropertyOptions?: ApiPropertyOptions) {
       ...apiPropertyOptions,
       example: apiPropertyOptions?.example || 'test@test.com',
     }),
-    IsEmail(),
+    IsEmail(undefined, {
+      message: 'enter valid email',
+    }),
   );
 }

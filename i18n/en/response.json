@@ -1,4 +1,10 @@
+
 {
+
+  "enter valid phone": "Enter valid phone",
+  "enter valid email": "Enter valid email",
+  "enter valid link": "Enter valid link",
+  "Password must be: 8+ characters, 1 uppercase, 1 lowercase, 1 number, 1 special character": "Password must be: 8+ characters, 1 uppercase, 1 lowercase, 1 number, 1 special character",
   "Access token refreshed successfully": "Access token refreshed successfully",
   "User Logged In Successfully": "User Logged In Successfully",
   "otp sent to email successfully": "otp sent to email successfully",

@@ -11,7 +11,7 @@ export function ValidatePhone(apiPropertyOptions?: ApiPropertyOptions) {
     }),
     IsString(),
     Matches(/^\+966\s?(5|05)\d{8}$/, {
-      message: 'enter valid phone like this +966 0509999999',
+      message: 'enter valid phone',
     }),
     // Matches(/^\+?[\d\s-]{7,20}$/, {
     //   message: 'enter valid phone like this +966 0509999999 || +20 1092725145',

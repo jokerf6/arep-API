@@ -12,7 +12,7 @@ export function ValidateLink(apiPropertyOptions?: ApiPropertyOptions) {
     Matches(
       /\bhttps?:\/\/(?:www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\/[^\s]*)?$/,
       {
-        message: 'enter valid link like https://domain.com',
+        message: 'enter valid link',
       },
     ),
   );

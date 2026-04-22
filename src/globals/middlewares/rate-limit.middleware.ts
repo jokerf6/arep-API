@@ -25,10 +25,10 @@ export class RateLimitMiddleware implements NestMiddleware {
 
     const isBlocked = await redisClient.get(blockKey);
     if (isBlocked) {
-      // throw new HttpException(
-      //   'Too many requests - try again later',
-      //   HttpStatus.TOO_MANY_REQUESTS,
-      // );
+      throw new HttpException(
+        'Too many requests - try again later',
+        HttpStatus.TOO_MANY_REQUESTS,
+      );
     }
 
     const current = await redisClient.incr(key);
@@ -39,10 +39,10 @@ export class RateLimitMiddleware implements NestMiddleware {
     if (current > MAX_REQUESTS) {
       await redisClient.set(blockKey, '1', 'EX', BLOCK_DURATION_SECONDS);
       // TODO remove comment when we on production
-      // throw new HttpException(
-      //   'Too many requests - you are blocked for 1 hour',
-      //   HttpStatus.TOO_MANY_REQUESTS,
-      // );
+      throw new HttpException(
+        'Too many requests - you are blocked for 1 hour',
+        HttpStatus.TOO_MANY_REQUESTS,
+      );
     }
 
     next();

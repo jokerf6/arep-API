@@ -35,6 +35,7 @@ export class ResponseService {
       response.req.headers['locale'],
       response.req.headers['islocalized'],
     );
+
     const message = this.translateMessage(
       response.req.headers['locale'],
       messageKey,
@@ -215,6 +216,7 @@ export class ResponseService {
     options: ResOptions = {},
   ) {
     await this.reqDeleteFiles(response);
+
     const message = this.translateMessage(
       response.req.headers['locale'],
       messageKey,
@@ -266,10 +268,13 @@ export class ResponseService {
     }
   }
   private translateMessage(lang: string | string[], messageKey: string) {
+    console.log(messageKey);
+
     if (lang && Array.isArray(lang)) {
       const { extractedProperty, extractedKey } = this.getMessageArgs(
         messageKey[0],
       );
+
       if (extractedKey)
         return this.i18n.translate(`response.${extractedKey}`, {
           lang: lang[0],
@@ -282,9 +287,16 @@ export class ResponseService {
       });
     }
     if (lang && typeof lang === 'string') {
+      console.log(messageKey);
+      console.log(messageKey[0]);
+
       const { extractedProperty, extractedKey } = this.getMessageArgs(
         Array.isArray(messageKey) ? messageKey[0] : messageKey,
       );
+      console.log(extractedProperty);
+
+      console.log(extractedKey);
+
 
       if (extractedKey)
         return this.i18n.translate(`response.${extractedKey}`, {
@@ -299,6 +311,7 @@ export class ResponseService {
     }
   }
   private getMessageArgs(messageKey: string) {
+
     const regexProperty = /\*(.*?)\*/;
     const regexKey = /0(.*?)0/;
 

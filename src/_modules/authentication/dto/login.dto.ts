@@ -31,7 +31,10 @@ export class PhoneOTPLoginDTO extends LoginInfoDTO {
 }
 
 export class EmailPasswordLoginDTO extends LoginInfoDTO {
-  @Optional({ example: 'test@test.com' })
+  @ValidatePhone()
+  phone?: string;
+
+  @Optional()
   @ValidateEmail()
   email?: string;
 
